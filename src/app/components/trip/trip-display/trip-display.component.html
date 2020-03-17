@@ -1,0 +1,31 @@
+<div class="card mx-auto mt-4" style="width: 18rem;">
+  <div class="card-body">
+    <button [hidden]="trip.cancelled" class="float-right fa fa-trash-o mt-1 mr-1" (click)="cancelTrip()"></button>
+  </div>
+  <img class="=card-img-top mx-auto" src="{{trip.picture}}" style="width: 40%; height: 40%;"/>
+  <div class="card-body mb-2">
+    <h5 class="card-title text-center">{{trip.title}}</h5>
+    <h6 class="card-subtitle text-center text-muted">{{trip.ticker}}</h6>
+    <p class="card-text m1-2">{{trip.description}}</p>
+  </div>
+  <div class="card-body">
+    <p class="card-text text-right mr-1 mb-1">
+      <strong>{{'Price:'}}</strong>&nbsp;{{trip.price}}
+    </p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" *ngFor = "let requirement of getRequirements(); let i = index">
+      <p class="card-text m1-2 m2-1">{{i+1}}) {{requirement}}</p>
+    </li>
+  </ul>
+  <div class="card-body" [hidden]="!trip.cancelled">
+    <span class="card-text text-danger m1-2 nb-1">{{trip.cancelledReason}}</span>
+  </div>
+  <div class="card-body" *ngIf="trip.cancelled">
+    <span class="card-text text-danger m1-2 nb-1">{{trip.cancelledReason}}</span>
+  </div>
+  <div class="form-group row mt-1">
+    <label for="price" class="m1-1 col-5 form-label">New Price:</label>
+    <input type="text" class="form-control col-4" [(ngModel)]="trip.price">
+  </div>
+</div> 

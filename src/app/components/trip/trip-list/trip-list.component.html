@@ -1,0 +1,38 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">Img</th>
+            <th scope="col">Ticker</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Requirements</th>
+            <th scope="col">Start date</th>
+            <th scope="col">End date</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let trip of trips; let i = index">
+        <tr *ngIf="!trip.cancelled">
+            <th scope="row">
+                <button [hidden]="cancelled" class="float-right fa fa-trash-o mt-1 mr-1" (click)="cancellTrip(i)"></button>
+            </th>
+            <th scope="row">{{i+1}}</th>
+            <td><img src={{trip.picture}} alt="" class="card-img-top img-fluid"></td>
+            <td>{{trip.ticker}}</td>
+            <td>{{trip.title}}</td>
+            <td>{{trip.description}}</td>
+            <td>{{trip.price}}</td>
+            <td>
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let requirement of getRequirements(i)">
+                        <p class="card-text m1-2 m2-1">{{requirement}}</p>
+                    </li>
+                </ul>
+            </td>
+            <td>{{trip.startDate | date}}</td>
+            <td>{{trip.endDate | date}}</td>
+        </tr>
+    </tbody>
+</table>
