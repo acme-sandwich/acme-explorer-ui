@@ -21,7 +21,11 @@ export class TripListComponent implements OnInit {
   getRequirements(index: number){
     return this.trips[index].requirements;
   }
-  
+
+  getTrips(){
+    return this.trips;
+  }
+
   ngOnInit() {
   }
 

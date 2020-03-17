@@ -9,4 +9,12 @@ describe('TripService', () => {
     const service: TripService = TestBed.get(TripService);
     expect(service).toBeTruthy();
   });
+
+  it('should create 3 trips', () => {
+    const service: TripService = TestBed.get(TripService);
+    const trips = service.createTrips();
+    expect(trips.length).toBe(3);
+    console.log(trips);
+    expect(trips.filter(trip => trip.cancelled == true).length).toBe(1);
+  });
 });
