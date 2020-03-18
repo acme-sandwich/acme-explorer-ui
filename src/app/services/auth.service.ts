@@ -37,6 +37,28 @@ export class AuthService {
     });
   };
 
+  login(email: string, password: string){
+    return new Promise<any>((resolve, reject) => {
+      this.fireAuth.auth.signInWithEmailAndPassword(email, password)
+      .then(_=> {
+        resolve();
+      }).catch(error => {
+        reject(error);
+      });
+    });
+  }
+
+  logout(){
+    return new Promise<any>((resolve, reject) => {
+      this.fireAuth.auth.signOut()
+        .then(_ => {
+          resolve();
+        }).catch(error => {
+          reject(error);
+        });
+    });
+  }
+
   getRoles(): string[] {
     return ['ADMINISTRATOR', 'EXPLORER', 'MANAGER', 'SPONSOR'];
   };

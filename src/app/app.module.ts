@@ -9,7 +9,16 @@ import { HeaderComponent } from './components/master/header/header.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { RegisterComponent } from './components/security/register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { LoginComponent } from './components/security/login/login.component';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslatableComponent } from './components/shared/translatable/translatable.component';
+import { FooterComponent } from './components/master/footer/footer.component';
+import { LocalizedDataPipe } from './components/shared/LocalizedDatePipe';
+import { registerLocaleData } from '@angular/common';
+import locales from '@angular/common/locales/es';
+import { AppRoutingModule } from './app-routing.module';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -22,6 +31,12 @@ export const firebaseConfig  = {
   measurementId: "G-VG730MX3T7"
 };
 
+registerLocaleData(locales, 'es');
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,13 +44,25 @@ export const firebaseConfig  = {
     TripDisplayComponent,
     HeaderComponent,
     RegisterComponent,
+    LoginComponent,
+    TranslatableComponent,
+    FooterComponent,
+    LocalizedDataPipe,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    AppRoutingModule
   ],
   providers: [AngularFireAuth],
   bootstrap: [AppComponent]
