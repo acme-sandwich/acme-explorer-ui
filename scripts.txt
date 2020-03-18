@@ -1,0 +1,1 @@
+json-server --watch ./src/assets/json-files/acme-explorer.json --routes ./src/assets/json-files/routes.json -m ./src/assets/json-files/version.js

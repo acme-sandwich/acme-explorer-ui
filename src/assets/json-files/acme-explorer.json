@@ -1,0 +1,83 @@
+{
+  "trips": [
+    {
+      "id": "5b11322za90b6581dee5dbc5",
+      "version": 0,
+      "ticker": "180320-ABCD",
+      "title": "Swim with sharks in Huelva!",
+      "description": "Enjoy a 2 hour swimming experience around sharks and other marine creatures in the beach of Huelva!",
+      "price": 273,
+      "requirements": [
+        "Can swim",
+        "Passion for new experiences"
+      ],
+      "startDate": "2020-07-15",
+      "endDate": "2020-07-16",
+      "picture": "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials-images.forbesimg.com%2Fdam%2Fimageserve%2F1004792742%2F960x0.jpg",
+      "cancelled": false,
+      "cancelledReason": null
+    },
+    {
+      "id": "5b11322za90b6581dee5dbc6",
+      "version": 0,
+      "ticker": "180320-NFLE",
+      "title": "Skydiving in Constantina!",
+      "description": "Jump off a plane at 4000 feet!",
+      "price": 150,
+      "requirements": [
+        "Not having vertigo",
+        "Not having a phobia of flying"
+      ],
+      "startDate": "2020-05-10",
+      "endDate": "2020-05-10",
+      "picture": "https://dreampeaks.com/wp-content/uploads/2018/07/Skydiving-Madrid-Spain.jpg",
+      "cancelled": false,
+      "cancelledReason": null
+    },
+    {
+      "id": "5b11322za90b6581dee5dbc7",
+      "version": 0,
+      "ticker": "170320-MGER",
+      "title": "Trip to Lisboa",
+      "description": "Bus trip to Lisboa from Seville, 8 hours.",
+      "price": 8,
+      "requirements": [
+        "Be under 26 years old",
+        "Be a student",
+        "Tolerate long bus trips"
+      ],
+      "startDate": "2020-04-14",
+      "endDate": "2020-04-21",
+      "picture": "https://www.guruwalk.com/blog/wp-content/uploads/2019/09/que-ver-lisboa.jpg",
+      "cancelled": true,
+      "cancelledReason": "Cancelled due to COVID-19"
+    }
+  ],
+  "actors": [
+    {
+      "id": "5b11322za90b6581dee5dbc8",
+      "version": 0,
+      "name": "Antonio",
+      "surname": "Rodriguez",
+      "email": "antonio@gmail.com",
+      "password": "123456",
+      "phone": "13459",
+      "address": "Sevilla city",
+      "banned": false,
+      "role": [
+        "ADMINISTRATOR"
+      ]
+    },
+    {
+      "name": "Explorer1",
+      "surname": "explorer1",
+      "email": "explorer@explorer.com",
+      "password": "explorer1",
+      "phone": "2154",
+      "address": "Sevilla",
+      "role": "EXPLORER",
+      "banned": "false",
+      "id": "KUX_gqH"
+    }
+  ]
+}
