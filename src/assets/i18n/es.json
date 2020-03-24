@@ -1,4 +1,7 @@
 {
+    "main": {
+        "header": "¡Bienvenido a Acme Explorer!"
+    },
     "actor":{
         "email": "Correo electrónico",
         "password": "Contraseña",
@@ -13,10 +16,18 @@
     },
     "security": {
         "login": "Iniciar sesión",
-        "logout": "Cerrar sesión"
+        "logout": "Cerrar sesión",
+        "enterEmail": "Introduce el correo electrónico",
+        "enterPassword": "Introduce la contraseña"
     },
     "footer": {
         "terms": "Términos y condiciones",
         "visitors": "Visitantes"
+    },
+    "header": {
+        "login": "Iniciar sesión",
+        "logout": "Cerrar sesión",
+        "search": "Buscar",
+        "register": "Registrarse"
     }
 }

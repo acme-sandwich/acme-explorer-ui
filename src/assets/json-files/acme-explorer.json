@@ -78,6 +78,17 @@
       "role": "EXPLORER",
       "banned": "false",
       "id": "KUX_gqH"
+    },
+    {
+      "name": "Francisco",
+      "surname": "Ortega",
+      "email": "manager1@mail.com",
+      "password": "manager1",
+      "phone": "45297",
+      "address": "Jaén",
+      "role": "MANAGER",
+      "banned": "false",
+      "id": "yb6ORb8"
     }
   ]
 }

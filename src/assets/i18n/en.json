@@ -1,4 +1,7 @@
 {
+    "main": {
+        "header": "Welcome to acme-explorer!"
+    },
     "actor":{
         "email": "Email",
         "password": "Password",
@@ -13,10 +16,18 @@
     },
     "security": {
         "login": "Login",
-        "logout": "Logout"
+        "logout": "Logout",
+        "enterEmail": "Enter email",
+        "enterPassword": "Enter password"
     },
     "footer": {
         "terms": "Terms and conditions",
         "visitors": "Visitors"
+    },
+    "header": {
+        "login": "Login",
+        "logout": "Logout",
+        "search": "Search",
+        "register": "Register"
     }
 }
