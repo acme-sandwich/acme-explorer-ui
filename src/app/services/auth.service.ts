@@ -21,7 +21,7 @@ export class AuthService {
       this.fireAuth.auth.createUserWithEmailAndPassword(actor.email, actor.password)
       .then(_ => {
         // if the authentication was ok, then we proceed
-        const headers = new HttpHeaders();
+        /*const headers = new HttpHeaders();
         headers.append('Content-type', 'application/json');
         const url = `${environment.backendApiBaseURL + '/actors'}`;
         const body = JSON.stringify(actor);
@@ -30,7 +30,9 @@ export class AuthService {
             resolve(res);
           }, err => {
             reject(err);
-          });
+          });*/
+          console.log('Actor created succesfully');
+          resolve(_);
       }).catch(err => {
         reject(err);
       });
