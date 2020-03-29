@@ -18,33 +18,30 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
     super(translateService);
    }
 
-   changeLanguage(language: string){
+   changeLanguage(language: string) {
      super.changeLanguage(language);
    }
 
   ngOnInit() {
     if ($('.nav-menu').length) {
-      var $mobile_nav = $('.nav-menu').clone().prop({
+      const $mobile_nav = $('.nav-menu').clone().prop({
         class: 'mobile-nav d-lg-none'
       });
       $('body').append($mobile_nav);
       $('body').prepend('<button type="button" class="mobile-nav-toggle d-lg-none"><i class="icofont-navigation-menu"></i></button>');
       $('body').append('<div class="mobile-nav-overly"></div>');
-  
       $(document).on('click', '.mobile-nav-toggle', function(e) {
         $('body').toggleClass('mobile-nav-active');
         $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
         $('.mobile-nav-overly').toggle();
       });
-  
       $(document).on('click', '.mobile-nav .drop-down > a', function(e) {
         e.preventDefault();
         $(this).next().slideToggle(300);
         $(this).parent().toggleClass('active');
       });
-  
       $(document).click(function(e) {
-        var container = $(".mobile-nav, .mobile-nav-toggle");
+        const container = $('.mobile-nav, .mobile-nav-toggle');
         if (!container.is(e.target) && container.has(e.target).length === 0) {
           if ($('body').hasClass('mobile-nav-active')) {
             $('body').removeClass('mobile-nav-active');
@@ -53,8 +50,8 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
           }
         }
       });
-    } else if ($(".mobile-nav, .mobile-nav-toggle").length) {
-      $(".mobile-nav, .mobile-nav-toggle").hide();
+    } else if ($('.mobile-nav, .mobile-nav-toggle').length) {
+      $('.mobile-nav, .mobile-nav-toggle').hide();
     }
 
     $('[data-toggle="counter-up"]').counterUp({
@@ -64,13 +61,13 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
 
     $('.skills-content').waypoint(function() {
       $('.progress .progress-bar').each(function() {
-        $(this).css("width", $(this).attr("aria-valuenow") + '%');
+        $(this).css('width', $(this).attr('aria-valuenow') + '%');
       });
     }, {
       offset: '80%'
     });
 
-    $(".clients-carousel").owlCarousel({
+    $('.clients-carousel').owlCarousel({
       autoplay: true,
       dots: true,
       loop: true,
@@ -87,7 +84,7 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
       }
     });
 
-    $(".portfolio-details-carousel").owlCarousel({
+    $('.portfolio-details-carousel').owlCarousel({
       autoplay: true,
       dots: true,
       loop: true,
