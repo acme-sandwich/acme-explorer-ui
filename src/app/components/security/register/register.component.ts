@@ -14,25 +14,25 @@ export class RegisterComponent  {
   registrationForm: FormGroup;
   roleList: string[];
 
-  constructor(private authService: AuthService, private fb: FormBuilder) { 
+  constructor(private authService: AuthService, private fb: FormBuilder) {
     this.roleList = this.authService.getRoles();
     this.createForm();
   }
 
-  createForm(){
+  createForm() {
     this.registrationForm = this.fb.group({
       name: [''],
-      surname:[''],
-      email:[''],
-      password:[''],
-      phone:[''],
-      address:[''],
-      role:[''],
-      banned:['false']
+      surname: [''],
+      email: [''],
+      password: [''],
+      phone: [''],
+      address: [''],
+      role: [''],
+      banned: ['false']
     });
   }
 
-  onRegister(){
+  onRegister() {
     this.authService.registerUser(this.registrationForm.value)
     .then(res => {
       console.log(res);

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare const $: any;
 
 @Component({
   selector: 'app-footer',
@@ -15,6 +16,13 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
     this.today = Date.now();
     this.numClients = 122222;
+    $('.back-to-top').click(function() {
+      console.log('boton presionao2');
+      $('html, body').animate({
+        scrollTop: 0
+      }, 1500, 'easeInOutExpo');
+      return false;
+    });
   }
 
 }

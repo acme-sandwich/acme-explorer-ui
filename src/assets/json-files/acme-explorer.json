@@ -89,6 +89,17 @@
       "role": "MANAGER",
       "banned": "false",
       "id": "yb6ORb8"
+    },
+    {
+      "name": "Paco",
+      "surname": "Jiménez",
+      "email": "explorer2@gmail.com",
+      "password": "explorer2",
+      "phone": "484532",
+      "address": "Sevilla",
+      "role": "EXPLORER",
+      "banned": "false",
+      "id": "3nn4DEX"
     }
   ]
 }

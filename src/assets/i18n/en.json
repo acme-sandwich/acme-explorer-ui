@@ -1,6 +1,8 @@
 {
     "main": {
-        "header": "Welcome to acme-explorer!"
+        "header": "Welcome to Acme Explorer!",
+        "subheader": "Enjoy now the best national and international trips booking with us",
+        "getstarted": "Get started"
     },
     "actor":{
         "email": "Email",
@@ -18,16 +20,26 @@
         "login": "Login",
         "logout": "Logout",
         "enterEmail": "Enter email",
-        "enterPassword": "Enter password"
+        "enterPassword": "Enter password",
+        "register": "Create account",
+        "noAccount": "Don't have an account?",
+        "alreadyRegistered": "Already registered?"
     },
     "footer": {
         "terms": "Terms and conditions",
         "visitors": "Visitors"
     },
     "header": {
+        "home": "Home",
         "login": "Login",
         "logout": "Logout",
         "search": "Search",
         "register": "Register"
+    },
+    "trips": {
+        "trips": "Trips",
+        "list": "List trips",
+        "load": "Load trip",
+        "new": "New trip"
     }
 }
