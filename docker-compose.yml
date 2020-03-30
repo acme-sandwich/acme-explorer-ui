@@ -1,6 +1,18 @@
 version: '3'
 
 services:
+  acme-server:
+    build:
+      context: .
+      dockerfile: Dockerfile-jsonserver
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST_SERVER}
+      - VIRTUAL_PORT=${PORT_SERVER}
+      - API_HOST=${VIRTUAL_HOST}
+      - API_PORT=${PORT}
+    restart: on-failure
+    ports:
+      - "127.0.0.1:${PORT_SERVER}:3000"
   acme-explorer:
     build: .
     environment: 
@@ -11,7 +23,6 @@ services:
     restart: on-failure
     ports:
       - "127.0.0.1:${PORT}:4200"
-
 networks: 
   default:
     external:
