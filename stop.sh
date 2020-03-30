@@ -1,4 +1,4 @@
-BASE_SITE=ec2-54-152-184-65.compute-1.amazonaws.com
+BASE_SITE=ec2-52-207-253-241.compute-1.amazonaws.com
 
 # production
 export NODE_ENV=production
