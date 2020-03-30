@@ -2,6 +2,7 @@ version: '3'
 
 services:
   acme-explorer:
+    network_mode: host
     build: .
     environment: 
       - NODE_ENV=${NODE_ENV}
