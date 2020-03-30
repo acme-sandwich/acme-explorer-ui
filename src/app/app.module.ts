@@ -19,6 +19,8 @@ import { LocalizedDataPipe } from './components/shared/LocalizedDatePipe';
 import { registerLocaleData } from '@angular/common';
 import locales from '@angular/common/locales/es';
 import { AppRoutingModule } from './app-routing.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HomeComponent } from './components/home/home.component';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -48,6 +50,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TranslatableComponent,
     FooterComponent,
     LocalizedDataPipe,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [AngularFireAuth],
   bootstrap: [AppComponent]

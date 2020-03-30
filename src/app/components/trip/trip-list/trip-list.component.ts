@@ -10,19 +10,19 @@ import { TripService } from 'src/app/services/trip.service';
 export class TripListComponent implements OnInit {
   private trips: Trip[];
 
-  constructor(private tripService: TripService) { 
+  constructor(private tripService: TripService) {
     this.trips = tripService.createTrips();
   }
 
-  cancellTrip(index: number){
+  cancellTrip(index: number) {
     this.trips[index].cancelled = true;
   }
 
-  getRequirements(index: number){
+  getRequirements(index: number) {
     return this.trips[index].requirements;
   }
 
-  getTrips(){
+  getTrips() {
     return this.trips;
   }
 

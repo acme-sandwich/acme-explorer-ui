@@ -31,6 +31,8 @@ export class AuthService {
           }, err => {
             reject(err);
           });
+          /*console.log('Actor created succesfully');
+          resolve(_);*/
       }).catch(err => {
         reject(err);
       });

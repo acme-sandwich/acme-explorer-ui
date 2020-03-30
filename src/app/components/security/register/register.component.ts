@@ -20,20 +20,20 @@ export class RegisterComponent  {
     this.createForm();
   }
 
-  createForm(){
+  createForm() {
     this.registrationForm = this.fb.group({
       name: [''],
-      surname:[''],
-      email:[''],
-      password:[''],
-      phone:[''],
-      address:[''],
-      role:[''],
-      banned:['false']
+      surname: [''],
+      email: [''],
+      password: [''],
+      phone: [''],
+      address: [''],
+      role: [''],
+      banned: ['false']
     });
   }
 
-  onRegister(){
+  onRegister() {
     this.authService.registerUser(this.registrationForm.value)
     .then(res => {
       console.log(res);

@@ -1,6 +1,8 @@
 {
     "main": {
-        "header": "¡Bienvenido a Acme Explorer!"
+        "header": "¡Bienvenido a Acme Explorer!",
+        "subheader": "Empieza a disfrutar ahora de las mejores excursiones nacionales e internacionales reservando con nosotros",
+        "getstarted": "Vamos allá"
     },
     "actor":{
         "email": "Correo electrónico",
@@ -18,16 +20,26 @@
         "login": "Iniciar sesión",
         "logout": "Cerrar sesión",
         "enterEmail": "Introduce el correo electrónico",
-        "enterPassword": "Introduce la contraseña"
+        "enterPassword": "Introduce la contraseña",
+        "register": "Crear cuenta",
+        "noAccount": "¿Todavía no tienes cuenta?",
+        "alreadyRegistered": "¿Ya estás registrado?"
     },
     "footer": {
         "terms": "Términos y condiciones",
         "visitors": "Visitantes"
     },
     "header": {
+        "home": "Inicio",
         "login": "Iniciar sesión",
         "logout": "Cerrar sesión",
         "search": "Buscar",
         "register": "Registrarse"
+    },
+    "trips": {
+        "trips": "Excursiones",
+        "list": "Listar excursiones",
+        "load": "Cargar excursión",
+        "new": "Nueva excursión"
     }
 }

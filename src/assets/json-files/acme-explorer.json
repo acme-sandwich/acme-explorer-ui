@@ -89,6 +89,28 @@
       "role": "MANAGER",
       "banned": "false",
       "id": "yb6ORb8"
+    },
+    {
+      "name": "Paco",
+      "surname": "Jiménez",
+      "email": "explorer2@gmail.com",
+      "password": "explorer2",
+      "phone": "484532",
+      "address": "Sevilla",
+      "role": "EXPLORER",
+      "banned": "false",
+      "id": "3nn4DEX"
+    },
+    {
+      "name": "explorer666",
+      "surname": "explorer666",
+      "email": "explorer666@mail.com",
+      "password": "explorer666",
+      "phone": "explorer666",
+      "address": "explorer666",
+      "role": "EXPLORER",
+      "banned": "false",
+      "id": "usRUR5m"
     }
   ]
 }
