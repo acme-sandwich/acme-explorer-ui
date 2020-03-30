@@ -5,6 +5,7 @@ import { LoginComponent } from './components/security/login/login.component';
 import { RegisterComponent } from './components/security/register/register.component';
 import { TripListComponent } from './components/trip/trip-list/trip-list.component';
 import { HomeComponent } from './components/home/home.component';
+import {APP_BASE_HREF} from '@angular/common';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -16,11 +17,12 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
   ],
   exports: [
     RouterModule
   ],
-  declarations: []
+  declarations: [],
+  providers: [{provide: APP_BASE_HREF, useValue: '/'}]
 })
 export class AppRoutingModule { }
