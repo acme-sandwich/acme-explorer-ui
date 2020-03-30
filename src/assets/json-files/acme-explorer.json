@@ -100,6 +100,17 @@
       "role": "EXPLORER",
       "banned": "false",
       "id": "3nn4DEX"
+    },
+    {
+      "name": "explorer666",
+      "surname": "explorer666",
+      "email": "explorer666@mail.com",
+      "password": "explorer666",
+      "phone": "explorer666",
+      "address": "explorer666",
+      "role": "EXPLORER",
+      "banned": "false",
+      "id": "usRUR5m"
     }
   ]
 }
