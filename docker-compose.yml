@@ -13,6 +13,8 @@ services:
     restart: on-failure
     ports:
       - "127.0.0.1:${PORT_SERVER}:3000"
+    expose:
+      - "3000"
   acme-explorer:
     build: .
     environment: 

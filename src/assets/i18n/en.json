@@ -34,7 +34,8 @@
         "login": "Login",
         "logout": "Logout",
         "search": "Search",
-        "register": "Register"
+        "register": "Register",
+        "language": "Language"
     },
     "trips": {
         "trips": "Trips",
