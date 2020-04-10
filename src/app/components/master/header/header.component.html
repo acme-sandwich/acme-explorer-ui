@@ -1,3 +1,8 @@
+<script type="text/javascript">  
+  function callAngularFunction() {  
+      window.angularComponentReference.zone.run(() => { window.angularComponentReference.loadAngularFunction(); });  
+  }  
+</script> 
 <header id="header" class="fixed-top">
   <div class="container d-flex">
 
@@ -7,25 +12,24 @@
 
     <nav class="nav-menu d-none d-lg-block">
       <ul>
-        <li class="active"><a href="/">{{'header.home' | translate}}</a></li>
+        <li class="active"><a id="header-home" href="/">{{'header.home' | translate}}</a></li>
 
-        <li class="drop-down"><a href="javascript:void(0);">{{'trips.trips' | translate}}</a>
+        <li class="drop-down" ><a id="header-trips" href="javascript:void(0);">{{'trips.trips' | translate}}</a>
           <ul>
-            <li><a href="/trips">{{'trips.list' | translate}}</a></li>
-            <li><a href="team.html">{{'trips.load' | translate}}</a></li>
-            <li><a href="team.html">{{'trips.new' | translate}}</a></li>
+            <li><a id="header-trips-list" href="/trips">{{'trips.list' | translate}}</a></li>
+            <li><a id="header-trips-new" href="">{{'trips.new' | translate}}</a></li>
           </ul>
         </li>
 
-        <li><a href="/login">{{'header.login' | translate}}</a></li>
-        <li><a href="javascript:void(0);" (click)="logout()">{{'header.logout' | translate}}</a></li>
+        <li><a id="header-login" href="/login">{{'header.login' | translate}}</a></li>
+        <li><a id="header-logout" href="javascript:void(0);" (click)="logout()">{{'header.logout' | translate}}</a></li>
 
-        <li class="get-started"><a href="/register">{{'header.register' | translate}}</a></li>
+        <li class="get-started"><a id="header-register" href="/register">{{'header.register' | translate}}</a></li>
 
-        <li class="drop-down"><a href="javascript:void(0);"><fa-icon [icon]="faGlobe"></fa-icon></a>
+        <li class="drop-down"><a id="header-language" href="javascript:void(0);"><fa-icon [icon]="faGlobe"></fa-icon></a>
           <ul>
-            <li><a href="javascript:void(0);" (click)="changeLanguage('en')">EN</a></li>
-            <li><a href="javascript:void(0);" (click)="changeLanguage('es')">ES</a></li>
+            <li><a href="javascript:void(0);" id="changeLangEn" (click)="changeLanguage('en')">EN</a></li>
+            <li><a href="javascript:void(0);" id="changeLangEs" (click)="changeLanguage('es')">ES</a></li>
           </ul>
         </li>
       </ul>

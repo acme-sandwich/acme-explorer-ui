@@ -34,7 +34,8 @@
         "login": "Iniciar sesión",
         "logout": "Cerrar sesión",
         "search": "Buscar",
-        "register": "Registrarse"
+        "register": "Registrarse",
+        "language": "Idioma"
     },
     "trips": {
         "trips": "Excursiones",
