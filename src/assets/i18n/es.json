@@ -41,5 +41,11 @@
         "list": "Listar excursiones",
         "load": "Cargar excursión",
         "new": "Nueva excursión"
+    },
+    "sponsorships": {
+        "sponsorships": "Patrocinios",
+        "list": "Mis patrocinios",
+        "new": "Nuevo patrocinio",
+        "edit": "Editar patrocinio"
     }
 }

@@ -41,5 +41,11 @@
         "list": "List trips",
         "load": "Load trip",
         "new": "New trip"
+    },
+    "sponsorships": {
+        "sponsorships": "Sponsorships",
+        "list": "My sponsorships",
+        "new": "New sponsorship",
+        "edit": "Edit sponsorship"
     }
 }

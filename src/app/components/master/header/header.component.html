@@ -11,13 +11,21 @@
 
         <li class="drop-down"><a href="javascript:void(0);">{{'trips.trips' | translate}}</a>
           <ul>
-            <li><a href="/trips">{{'trips.list' | translate}}</a></li>
+            <li><a routerLink="/trips">{{'trips.list' | translate}}</a></li>
             <li><a href="team.html">{{'trips.load' | translate}}</a></li>
             <li><a href="team.html">{{'trips.new' | translate}}</a></li>
           </ul>
         </li>
 
-        <li><a href="/login">{{'header.login' | translate}}</a></li>
+        <li class="drop-down"><a href="javascript:void(0);">{{'sponsorships.sponsorships' | translate}}</a>
+          <ul>
+            <li><a routerLink="/sponsorships">{{'sponsorships.list' | translate}}</a></li>
+            <li><a routerLink="/sponsorships/new">{{'sponsorships.new' | translate}}</a></li>
+            <li><a routerLink="/sponsorships/edit">{{'sponsorships.edit' | translate}}</a></li>
+          </ul>
+        </li>
+
+        <li><a routerLink="/login">{{'header.login' | translate}}</a></li>
         <li><a href="javascript:void(0);" (click)="logout()">{{'header.logout' | translate}}</a></li>
 
         <li class="get-started"><a href="/register">{{'header.register' | translate}}</a></li>
