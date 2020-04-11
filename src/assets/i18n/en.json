@@ -48,5 +48,8 @@
         "list": "My sponsorships",
         "new": "New sponsorship",
         "edit": "Edit sponsorship"
+    },
+    "not-found":{
+        "not-found": "Error 404 - Page not found"
     }
 }

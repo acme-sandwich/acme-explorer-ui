@@ -13,7 +13,9 @@ const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'trips', component: TripListComponent},
+  {path: 'trips', children: [
+    {path: '', component: TripListComponent},
+  ]},
   {path: 'sponsorships', children: [
     {path: 'new', component: TripListComponent},
     {path: 'edit', component: TripListComponent},

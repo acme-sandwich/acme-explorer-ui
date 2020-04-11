@@ -48,5 +48,8 @@
         "list": "Mis patrocinios",
         "new": "Nuevo patrocinio",
         "edit": "Editar patrocinio"
+    },
+    "not-found":{
+        "not-found": "Error 404 - Página no encontrada"
     }
 }
