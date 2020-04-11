@@ -51,5 +51,13 @@
     },
     "not-found":{
         "not-found": "Error 404 - Page not found"
+    },
+    "messages": {
+        "auth":{
+            "login.correct":"Correct login",
+            "login.failed": "Error during login, please try again later",
+            "user.not.found": "User email not found",
+            "wrong.password": "Wrong password"
+        }
     }
 }

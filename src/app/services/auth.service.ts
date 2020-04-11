@@ -4,6 +4,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
+
+import{ MessageService } from '../services/message.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,7 +17,11 @@ const httpOptions = {
 })
 export class AuthService {
 
-  constructor(private fireAuth: AngularFireAuth, private http: HttpClient) { }
+  private currentActor: Actor;
+  userLoggedIn = new Subject();
+
+  constructor(private fireAuth: AngularFireAuth, private http: HttpClient, 
+    private messageService: MessageService) { }
 
   registerUser(actor: Actor){
     return new Promise<any>((resolve, reject) => {
@@ -43,8 +50,19 @@ export class AuthService {
     return new Promise<any>((resolve, reject) => {
       this.fireAuth.auth.signInWithEmailAndPassword(email, password)
       .then(_=> {
-        resolve();
+        const url = environment.backendApiBaseURL + '/actors?email=' + email;
+        this.http.get<Actor[]>(url).toPromise()
+        .then((actor: Actor[]) => {
+          this.currentActor = actor[0];
+          this.userLoggedIn.next(true);
+          this.messageService.notifyMessage('messages.auth.login.correct','alert alert-success');
+          resolve(this.currentActor);
+        }).catch(error => {
+          this.messageService.notifyMessage('messages.auth.login.failed','alert alert-danger');
+          reject(error);
+        });
       }).catch(error => {
+        this.messageService.notifyMessage('messages.' + error.code.replace(/\//gi, '.').replace(/\-/gi, '.'), 'alert alert-danger');
         reject(error);
       });
     });
