@@ -34,11 +34,15 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
 
   ngOnInit() {
     const component = this;
-    let headerHome, headerTrips, headerTripsList, headerTripsNew, headerLogin, headerLogout, headerRegister, headerLanguage;
+    let headerHome, headerTrips, headerTripsList, headerTripsNew, headerLogin, headerLogout, headerRegister, headerLanguage,
+    headerSponsorships, headerSponsorshipsList, headerSponsorshipsNew;
     this.translateService.stream('header.home').subscribe((text:string) => {headerHome = text});
     this.translateService.stream('trips.trips').subscribe((text:string) => {headerTrips = text});
     this.translateService.stream('trips.list').subscribe((text:string) => {headerTripsList = text});
     this.translateService.stream('trips.new').subscribe((text:string) => {headerTripsNew = text});
+    this.translateService.stream('sponsorships.sponsorships').subscribe((text:string) => {headerSponsorships = text});
+    this.translateService.stream('sponsorships.list').subscribe((text:string) => {headerSponsorshipsList = text});
+    this.translateService.stream('sponsorships.new').subscribe((text:string) => {headerSponsorshipsNew = text});
     this.translateService.stream('header.login').subscribe((text:string) => {headerLogin = text});
     this.translateService.stream('header.logout').subscribe((text:string) => {headerLogout = text});
     this.translateService.stream('header.register').subscribe((text:string) => {headerRegister = text});
@@ -59,6 +63,9 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
         $('.mobile-nav #header-trips').html(headerTrips);
         $('.mobile-nav #header-trips-list').html(headerTripsList);
         $('.mobile-nav #header-trips-new').html(headerTripsNew);
+        $('.mobile-nav #header-sponsorships').html(headerSponsorships);
+        $('.mobile-nav #header-sponsorships-list').html(headerSponsorshipsList);
+        $('.mobile-nav #header-sponsorships-new').html(headerSponsorshipsNew);
         $('.mobile-nav #header-login').html(headerLogin);
         $('.mobile-nav #header-logout').html(headerLogout);
         $('.mobile-nav #header-register').html(headerRegister);
