@@ -17,21 +17,28 @@
         <li class="drop-down" ><a id="header-trips" href="javascript:void(0);">{{'trips.trips' | translate}}</a>
           <ul>
             <li><a id="header-trips-list" routerLink="/trips">{{'trips.list' | translate}}</a></li>
-            <li><a id="header-trips-new" routerLink="">{{'trips.new' | translate}}</a></li>
+            <li *ngIf="activeRole === 'MANAGER'"><a id="header-trips-new" routerLink="">{{'trips.new' | translate}}</a></li>
           </ul>
         </li>
 
-        <li class="drop-down" ><a id="header-sponsorships" href="javascript:void(0);">{{'sponsorships.sponsorships' | translate}}</a>
+        <li class="drop-down" *ngIf="activeRole === 'SPONSOR'">
+          <a id="header-sponsorships" href="javascript:void(0);">{{'sponsorships.sponsorships' | translate}}</a>
           <ul>
-            <li><a id="header-sponsorships-list" routerLink="/trips">{{'sponsorships.list' | translate}}</a></li>
-            <li><a id="header-sponsorships-new" routerLink="">{{'sponsorships.new' | translate}}</a></li>
+            <li *ngIf="activeRole === 'SPONSOR'"><a id="header-sponsorships-list" routerLink="/trips">{{'sponsorships.list' | translate}}</a></li>
+            <li *ngIf="activeRole === 'SPONSOR'"><a id="header-sponsorships-new" routerLink="">{{'sponsorships.new' | translate}}</a></li>
           </ul>
         </li>
 
-        <li><a id="header-login" routerLink="/login">{{'header.login' | translate}}</a></li>
-        <li><a id="header-logout" href="javascript:void(0);" (click)="logout()">{{'header.logout' | translate}}</a></li>
+        <li *ngIf="!currentActor">
+          <a id="header-login" routerLink="/login">{{'header.login' | translate}}</a>
+        </li>
+        <li *ngIf="currentActor">
+          <a id="header-logout" href="javascript:void(0);" (click)="logout()">{{'header.logout' | translate}}</a>
+        </li>
 
-        <li class="get-started"><a id="header-register" routerLink="/register">{{'header.register' | translate}}</a></li>
+        <li class="get-started" *ngIf="!currentActor">
+          <a id="header-register" routerLink="/register">{{'header.register' | translate}}</a>
+        </li>
 
         <li class="drop-down"><a id="header-language" href="javascript:void(0);"><fa-icon [icon]="faGlobe"></fa-icon></a>
           <ul>

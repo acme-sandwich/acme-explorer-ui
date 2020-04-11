@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { TranslatableComponent } from '../../shared/translatable/translatable.component';
 import { TranslateService } from '@ngx-translate/core';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { Actor } from 'src/app/models/actor.model';
 declare const $: any;
 
 @Component({
@@ -14,7 +15,9 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
 
   faGlobe = faGlobe;
   private home: String;
-
+  private activeRole: String;
+  private currentActor: Actor;
+  private userLoggedIn: boolean;
 
   constructor(private authService: AuthService, private translateService: TranslateService, private ngZone: NgZone) {
     super(translateService);
@@ -33,6 +36,17 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.authService.userLoggedIn.subscribe((loggedIn: boolean) => {
+      if (loggedIn) {
+        this.currentActor = this.authService.getCurrentActor();
+        this.activeRole = this.currentActor.role.toString();
+      } else {
+        this.activeRole = 'anonymous';
+        this.currentActor = null;
+      }
+    })
+
+
     const component = this;
     let headerHome, headerTrips, headerTripsList, headerTripsNew, headerLogin, headerLogout, headerRegister, headerLanguage,
     headerSponsorships, headerSponsorshipsList, headerSponsorshipsNew;
@@ -144,7 +158,8 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
   logout() {
     this.authService.logout()
     .then(_ => {
-      console.log('Logging out...');
+      this.activeRole = 'anonymous';
+      this.currentActor = null;
     }).catch(error => {
       console.log(error);
     });

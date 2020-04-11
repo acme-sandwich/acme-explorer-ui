@@ -111,6 +111,17 @@
       "role": "EXPLORER",
       "banned": "false",
       "id": "usRUR5m"
+    },
+    {
+      "name": "Sponsorino",
+      "surname": "Sponsorete",
+      "email": "sponsor001@mail.com",
+      "password": "sponsor001",
+      "phone": "5445762",
+      "address": "Sponsor's Street",
+      "role": "SPONSOR",
+      "banned": "false",
+      "id": "bMKshch"
     }
   ]
 }

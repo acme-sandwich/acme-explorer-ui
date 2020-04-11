@@ -52,6 +52,11 @@
     "not-found":{
         "not-found": "Error 404 - Page not found"
     },
+    "denied-access-page": {
+        "title": "Denied access",
+        "message-start": "You don't have permission to access",
+        "message-end": "on this server"
+    },
     "messages": {
         "auth":{
             "login.correct":"Correct login",
