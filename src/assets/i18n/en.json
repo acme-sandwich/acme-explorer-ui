@@ -81,5 +81,11 @@
             "user.not.found": "User email not found",
             "wrong.password": "Wrong password"
         }
+    },
+    "applications": {
+        "list": "List applications",
+        "moment": "Moment",
+        "Status": "Status",
+        "Comments": "Comments"
     }
 }
