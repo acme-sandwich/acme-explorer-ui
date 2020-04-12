@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AppComponent } from './app.component';
 import { TripDisplayComponent } from './components/trip/trip-display/trip-display.component';
 import { TripListComponent } from './components/trip/trip-list/trip-list.component';
@@ -80,7 +80,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     AppRoutingModule,
     FontAwesomeModule,
-    HttpModule
+    HttpModule,
+    InfiniteScrollModule
   ],
   providers: [AngularFireAuth],
   bootstrap: [AppComponent]

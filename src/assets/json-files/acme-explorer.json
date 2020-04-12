@@ -51,6 +51,23 @@
       "picture": "https://www.guruwalk.com/blog/wp-content/uploads/2019/09/que-ver-lisboa.jpg",
       "cancelled": true,
       "cancelledReason": "Cancelled due to COVID-19"
+    },
+    {
+      "id": "5b11322za90b6581dee5dbc8",
+      "version": 0,
+      "ticker": "170320-MGZR",
+      "title": "Trip to Huelva",
+      "description": "Bus trip to Huelva from Seville, 1 hour.",
+      "price": 3.5,
+      "requirements": [
+        "Be under 26 years old",
+        "Be a student"
+      ],
+      "startDate": "2020-05-14",
+      "endDate": "2020-05-14",
+      "picture": "https://fotos.hoteles.net/articulos/guia-huelva-ciudad-6159-1.jpg",
+      "cancelled": true,
+      "cancelledReason": "Cancelled due to COVID-19"
     }
   ],
   "actors": [

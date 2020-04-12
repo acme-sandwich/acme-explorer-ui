@@ -1,6 +1,6 @@
 {
     "/trips/search?startFrom=:startFrom&pageSize=:pageSize":
-        "/trips?_page=:startFrom&_limit=:pageSize",
+        "/trips?_start=:startFrom&_limit=:pageSize",
     "/trips/search?tripTitle=:keyword":
         "/trips?q=:keyword&attr=title,description"
 }

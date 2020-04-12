@@ -100,4 +100,21 @@ export class TripService {
     const url = `${this.tripsUrl}`;
     return this.http.get<Trip[]>(url).toPromise();
   }
+
+  getTripsPage(start: number, psize: number, keyword:string) {
+    const url = `${this.tripsUrl}/search`;
+    const parameters = {
+      startFrom: '' + start,
+      pageSize: '' + psize,
+      tripTitle: keyword == null ? '' : keyword
+    };
+
+    if(keyword == null) {
+      delete parameters.tripTitle;
+    }
+
+    return this.http.get<Trip[]>(url, {
+      params: parameters, observe: 'body',
+    }).toPromise();
+  }
 }
