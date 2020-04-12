@@ -1,0 +1,42 @@
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="breadcrumb-hero">
+      <div class="container">
+          <div class="breadcrumb-hero">
+              <h2>{{'actor.actors' | translate}}</h2>
+          </div>
+      </div>
+  </div>
+  <div class="container">
+      <ol>
+          <li><a routerLink="/">{{'header.home' | translate}}</a></li>
+          <li>{{'actor.actors' | translate}}</li>
+      </ol>
+  </div>
+</section>
+
+<table datatable [dtOptions]="dtOptions" class="table table-sm table-striped" dt-columns="dtColumns" width="100%">
+  <thead style="background-color: #94c045;">
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Role</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let actor of actors">
+      <td>{{actor.name}}</td>
+      <td>{{actor.surname}}</td>
+      <td>{{actor.phone}}</td>
+      <td>{{actor.email}}</td>
+      <td>{{actor.address}}</td>
+      <td>{{actor.role}}</td>
+      <td *ngIf="actor.banned" style="background-color: red; color: white;">Banned</td>
+      <td *ngIf="!actor.banned" style="background-color: #94c045;">Available</td>
+    </tr>
+  </tbody>
+</table>
+

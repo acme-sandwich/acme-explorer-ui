@@ -14,7 +14,10 @@
         "role": "Role",
         "register": "Register",
         "update": "Update",
-        "register.title": "Register new actor"
+        "register.title": "Register new actor",
+        "list": "List actors",
+        "display": "Display actor",
+        "actors": "Actors"
     },
     "security": {
         "login": "Login",
@@ -85,7 +88,8 @@
     "applications": {
         "list": "List applications",
         "moment": "Moment",
-        "Status": "Status",
-        "Comments": "Comments"
+        "status": "Status",
+        "comments": "Comments",
+        "applications": "Applications"
     }
 }

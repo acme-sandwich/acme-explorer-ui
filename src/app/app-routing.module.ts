@@ -12,6 +12,8 @@ import { DeniedAccessPageComponent } from './components/security/denied-access-p
 import { ActorRoleGuard } from './guards/actor-role.guard';
 import { TripDisplayComponent } from './components/trip/trip-display/trip-display.component';
 import { ApplicationListComponent } from './components/application/application-list/application-list.component';
+import { ActorListComponent } from './components/actor/actor-list/actor-list.component';
+import { ActorDisplayComponent } from './components/actor/actor-display/actor-display.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -23,6 +25,10 @@ const appRoutes: Routes = [
   ]},
   {path: 'applications', children: [
     {path: '', component: ApplicationListComponent },
+  ]},
+  {path: 'actors', children: [
+    {path: '', component: ActorListComponent},
+    {path: 'display', component: ActorDisplayComponent},
   ]},
   {path: 'sponsorships', children: [
     {path: 'new', component: TripListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}},
