@@ -66,6 +66,9 @@
         }
     },
     "applications": {
-        "list": "Listar applications"
+        "list": "Listar applications",
+        "moment": "Momento",
+        "status": "Estado",
+        "comments": "Comentarios"
     }
 }

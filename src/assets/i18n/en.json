@@ -66,6 +66,9 @@
         }
     },
     "applications": {
-        "list": "List applications"
+        "list": "List applications",
+        "moment": "Moment",
+        "Status": "Status",
+        "Comments": "Comments"
     }
 }

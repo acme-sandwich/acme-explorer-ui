@@ -1,5 +1,5 @@
-<table datatable [dtOptions]="dtOptions" class="row-border hover" dt-columns="dtColumns" width="100%">
-  <thead>
+<table datatable [dtOptions]="dtOptions" class="table table-sm" dt-columns="dtColumns" width="100%">
+  <thead style="background-color: #94c045;">
     <tr>
       <th>Moment</th>
       <th>Status</th>
@@ -10,7 +10,13 @@
     <tr *ngFor="let app of applications">
       <td>{{app.moment | date}}</td>
       <td>{{app.status}}</td>
-      <td>{{app.comments}}</td>
+      <td>
+        <ul class="list-group">
+        <li class="list-group-item" *ngFor="let comment of app.comments">
+            <p class="card-text">{{comment}}</p>
+        </li>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>
