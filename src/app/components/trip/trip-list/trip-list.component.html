@@ -1,38 +1,83 @@
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">#</th>
-            <th scope="col">Img</th>
-            <th scope="col">Ticker</th>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
-            <th scope="col">Price</th>
-            <th scope="col">Requirements</th>
-            <th scope="col">Start date</th>
-            <th scope="col">End date</th>
-        </tr>
-    </thead>
-    <tbody *ngFor="let trip of trips; let i = index">
-        <tr *ngIf="!trip.cancelled">
-            <th scope="row">
-                <button [hidden]="cancelled" class="float-right fa fa-trash-o mt-1 mr-1" (click)="cancellTrip(i)"></button>
-            </th>
-            <th scope="row">{{i+1}}</th>
-            <td><img src={{trip.picture}} alt="" class="card-img-top img-fluid"></td>
-            <td>{{trip.ticker}}</td>
-            <td>{{trip.title}}</td>
-            <td>{{trip.description}}</td>
-            <td>{{trip.price}}</td>
-            <td>
-                <ul class="list-group">
-                    <li class="list-group-item" *ngFor="let requirement of getRequirements(i)">
-                        <p class="card-text m1-2 m2-1">{{requirement}}</p>
-                    </li>
-                </ul>
-            </td>
-            <td>{{trip.startDate | date}}</td>
-            <td>{{trip.endDate | date}}</td>
-        </tr>
-    </tbody>
-</table>
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="breadcrumb-hero">
+        <div class="container">
+            <div class="breadcrumb-hero">
+                <h2>{{'trips.trips' | translate}}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <ol>
+            <li><a routerLink="/">{{'header.home' | translate}}</a></li>
+            <li>{{'trips.trips' | translate}}</li>
+        </ol>
+    </div>
+</section>
+
+<div *ngIf="data == undefined || data.length == 0">
+    {{ 'trips.empty' | translate}}
+</div>
+
+
+<!-- ======= Blog Section ======= -->
+<section id="blog" class="blog">
+    <div class="container">
+
+        <div class="blog-pagination" data-aos="fade-up">
+            <ul class="">
+                <li class="active"><a routerLink="/trips">{{'trips.new' |translate}}</a></li>
+            </ul>
+        </div>
+
+        <div class="row">
+
+            <div *ngFor="let trip of data; let i = index" class="col-lg-4  col-md-6 d-flex align-items-stretch"
+                data-aos="fade-up">
+                <article class="entry">
+
+                    <div class="entry-img">
+                        <img *ngIf="trip.picture != null && trip.picture.length != 0" class="img-fluid"
+                            src="{{trip.picture}}" alt="{{trip.title}}">
+                        <img *ngIf="!trip.picture || trip.picture.length === 0" class="img-fluid"
+                            src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{trip.title}}">
+                    </div>
+
+                    <h2 class="entry-title">
+                        <a routerLink="/trips/display/{{trip.id}}">{{trip.title}}</a>
+                    </h2>
+
+                    <div class="entry-meta">
+                        <ul>
+                            <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i>
+                                {{trip.startDate |localizedDate}} - {{trip.endDate |localizedDate}}</li>
+                            <li class="d-flex align-items-center"><i class="icofont-price"></i>
+                                {{trip.price}} €</li>
+                        </ul>
+                    </div>
+
+                    <div class="entry-content">
+                        <p>
+                            {{trip.description}}
+                        </p>
+
+                        <div class="read-more">
+                            <a *ngIf="actor != null && actor.id === trip.creator" routerLink="/trips/display/{{trip.id}}" >{{'trips.edit' |translate}}</a>
+                            <a *ngIf="!actor || actor.id !== trip.creator" routerLink="/trips/display/{{trip.id}}">{{'trips.more' |translate}}</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div class="blog-pagination" data-aos="fade-up">
+            <ul class="justify-content-center">
+                <li class="disabled"><i class="icofont-rounded-left"></i></li>
+                <li><a routerLink="/">1</a></li>
+                <li class="active"><a href="#">2</a></li>
+                <li><a routerLink="/">3</a></li>
+                <li><a routerLink="/"><i class="icofont-rounded-right"></i></a></li>
+            </ul>
+        </div>
+
+    </div>
+</section>

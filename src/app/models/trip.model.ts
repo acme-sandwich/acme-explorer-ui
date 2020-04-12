@@ -11,6 +11,7 @@ export class Trip extends Entity {
     requirements: string[];
     cancelled: boolean;
     cancelledReason: string;
+    creator: string;
 
     constructor(){
         super();

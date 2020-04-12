@@ -1,12 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Trip } from '../models/trip.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Actor } from '../models/actor.model';
+import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { catchError, map, tap } from 'rxjs/operators';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class TripService {
 
-  constructor() { }
+  private tripsUrl = environment.backendApiBaseURL + '/trips';
+
+  constructor(private http: HttpClient) { }
 
   createTrips(): Trip[] {
     let trips: Trip[];
@@ -26,6 +37,7 @@ export class TripService {
       + '-images.forbesimg.com%2Fdam%2Fimageserve%2F1004792742%2F960x0.jpg';
     trip.cancelled = false;
     trip.cancelledReason = null;
+    trip.creator = "yb6ORb8";
     trips.push(trip);
     // Trip 2
     trip = new Trip();
@@ -39,6 +51,7 @@ export class TripService {
     trip.picture = 'https://dreampeaks.com/wp-content/uploads/2018/07/Skydiving-Madrid-Spain.jpg';
     trip.cancelled = false;
     trip.cancelledReason = null;
+    trip.creator = "yb6ORb8";
     trips.push(trip);
 
     // Trip 3
@@ -53,8 +66,38 @@ export class TripService {
     trip.picture = 'https://www.guruwalk.com/blog/wp-content/uploads/2019/09/que-ver-lisboa.jpg';
     trip.cancelled = true;
     trip.cancelledReason = 'Cancelled due to COVID-19';
+    trip.creator = "yb6ORb8";
     trips.push(trip);
 
     return trips;
+  }
+
+  /**
+   * Devuelve el objeto Trip cuyo id coincide con el parámetro
+   * @param id id del trip
+   */
+  getTrip(id: String){
+    const url = `${this.tripsUrl}/${id}`;
+    return this.http.get<Trip>(url).toPromise();
+  }
+
+  /**
+   * Devuelve el objeto Actor del mánager que creó el Trip
+   * @param id creador del trip (trip.creator)
+   */
+  getTripCreator(id: String){
+    return new Promise<any>((resolve, reject) => {
+      let apiURL = environment.backendApiBaseURL+'/actors/yb6ORb8';
+      this.http.get(apiURL).toPromise().then(res => {
+        resolve(res);
+      }).catch(error => {
+        reject(error);
+      });
+    });
+  }
+
+  getTrips(){
+    const url = `${this.tripsUrl}`;
+    return this.http.get<Trip[]>(url).toPromise();
   }
 }
