@@ -64,5 +64,8 @@
             "user.not.found": "Error iniciando sesión, usuario no encontrado",
             "wrong.password": "Error iniciando sesión, contraseña incorrecta"
         }
+    },
+    "applications": {
+        "list": "Listar applications"
     }
 }

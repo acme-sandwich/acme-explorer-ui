@@ -1,3 +1,16 @@
-<p>
-  application-list works!
-</p>
+<table datatable [dtOptions]="dtOptions" class="row-border hover" dt-columns="dtColumns" width="100%">
+  <thead>
+    <tr>
+      <th>Moment</th>
+      <th>Status</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let app of applications">
+      <td>{{app.moment | date}}</td>
+      <td>{{app.status}}</td>
+      <td>{{app.comments}}</td>
+    </tr>
+  </tbody>
+</table>

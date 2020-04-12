@@ -10,6 +10,7 @@ import { NotFoundPageComponent } from './components/shared/not-found-page/not-fo
 import { TermsAndConditionsComponent } from './components/master/terms-and-conditions/terms-and-conditions.component';
 import { DeniedAccessPageComponent } from './components/security/denied-access-page/denied-access-page.component';
 import { ActorRoleGuard } from './guards/actor-role.guard';
+import { ApplicationListComponent } from './components/application/application-list/application-list.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -17,6 +18,9 @@ const appRoutes: Routes = [
   {path: 'register', component: RegisterComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'anonymous'}},
   {path: 'trips', children: [
     {path: '', component: TripListComponent},
+  ]},
+  {path: 'applications', children: [
+    {path: '', component: ApplicationListComponent },
   ]},
   {path: 'sponsorships', children: [
     {path: 'new', component: TripListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}},
