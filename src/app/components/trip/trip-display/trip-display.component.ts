@@ -1,29 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { Trip } from 'src/app/models/trip.model';
+import { TranslatableComponent } from '../../shared/translatable/translatable.component';
+import { TripService } from 'src/app/services/trip.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { Actor } from 'src/app/models/actor.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-trip-display',
   templateUrl: './trip-display.component.html',
   styleUrls: ['./trip-display.component.css']
 })
-export class TripDisplayComponent implements OnInit {
-  private trip: Trip;
+export class TripDisplayComponent extends TranslatableComponent implements OnInit {
+  
+  trip = new Trip();
+  creator = new Actor();
+  id: String;
+  private currentActor: Actor;
+  private activeRole: String;
+  private purchasable: boolean;
 
-  constructor() { 
-    this.trip = new Trip();
-    this.trip.ticker = "170320-ABCD";
-    this.trip.title = "Swim with sharks in Huelva!";
-    this.trip.description = "Enjoy a 2 hour swimming experience around sharks and other marine creatures in the beach of Huelva!";
-    this.trip.price = 273;
-    this.trip.requirements = ["Can swim", "Passion for new experiences"];
-    this.trip.startDate = new Date("2020-07-15");
-    this.trip.endDate = new Date("2020-07-16");
-    this.trip.picture = "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials-images.forbesimg.com%2Fdam%2Fimageserve%2F1004792742%2F960x0.jpg";
-    this.trip.cancelled = false;
-    this.trip.cancelledReason = "Cancelled due to COVID-19";
+  constructor(private authService: AuthService, private tripService: TripService, private router: Router, 
+    private route: ActivatedRoute, private translateService: TranslateService) { 
+      super(translateService);
   }
 
   getRequirements(){
+    console.log(this.trip.requirements);
     return this.trip.requirements;
   }
 
@@ -32,6 +36,51 @@ export class TripDisplayComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Recover id param
+    this.id = this.route.snapshot.params['id'];
+    // Todays date
+    const today = new Date();
+
+    // Recover trip
+    this.tripService.getTrip(this.id)
+      .then((val) => {
+        this.trip = val;
+        // Checks if the trip can be bought
+        if(this.trip.cancelled || today > this.trip.startDate){
+          this.purchasable = false;
+        }else{
+          this.purchasable = true;
+        };
+        this.tripService.getTripCreator(this.trip.creator)
+        .then((val1) => {
+          this.creator = val1;
+        }).catch((err1) => {
+          console.log(err1);
+        })
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+
+      // Recover current actor
+      this.authService.userLoggedIn.subscribe((loggedIn: boolean) => {
+        if (loggedIn) {
+          this.currentActor = this.authService.getCurrentActor();
+          this.activeRole = this.currentActor.role.toString();
+        } else {
+          this.currentActor = null;
+          this.activeRole = 'anonymous';
+        }
+      });
+    
+  }
+
+  goBack(): void {
+    this.router.navigate(['/trips']);
+  }
+
+  newTrip(): void{
+    console.log("New trip functionallity not implemented yet");
   }
 
 }

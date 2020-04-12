@@ -44,7 +44,7 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
         this.activeRole = 'anonymous';
         this.currentActor = null;
       }
-    })
+    });
 
 
     const component = this;

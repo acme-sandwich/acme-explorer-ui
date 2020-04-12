@@ -41,7 +41,24 @@
         "trips": "Trips",
         "list": "List trips",
         "load": "Load trip",
-        "new": "New trip"
+        "new": "New trip",
+        "empty": "No trips found",
+        "more": "View more"
+    },
+    "trip": {
+        "info": "Information",
+        "title": "Title",
+        "ticker": "Ticker",
+        "description": "Description",
+        "price": "Price",
+        "creator": "Creador",
+        "requirements": "Requirements",
+        "cancelled": "This trip is cancelled",
+        "searchOthers": "Look for other trips",
+        "options": "Options",
+        "goBack": "Go back",
+        "edit": "Editar",
+        "buy": "Buy trip"
     },
     "sponsorships": {
         "sponsorships": "Sponsorships",

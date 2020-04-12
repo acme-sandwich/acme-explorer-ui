@@ -38,10 +38,27 @@
         "language": "Idioma"
     },
     "trips": {
-        "trips": "Excursiones",
-        "list": "Listar excursiones",
-        "load": "Cargar excursión",
-        "new": "Nueva excursión"
+        "trips": "Viajes",
+        "list": "Listar viajes",
+        "load": "Cargar viaje",
+        "new": "Nuevo viaje",
+        "empty": "No se ha encontrado ningún viaje",
+        "more": "Ver más"
+    },
+    "trip": {
+        "info": "Información",
+        "title": "Título",
+        "ticker": "Ticker",
+        "description": "Descripción",
+        "price": "Precio",
+        "creator": "Creador",
+        "requirements": "Requisitos",
+        "cancelled": "Este viaje ha sido cancelado",
+        "searchOthers": "Buscar otros viajes",
+        "options": "Opciones",
+        "goBack": "Volver atrás",
+        "edit": "Editar",
+        "buy": "Comprar viaje"
     },
     "sponsorships": {
         "sponsorships": "Patrocinios",
