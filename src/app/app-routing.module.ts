@@ -14,6 +14,8 @@ import { TripDisplayComponent } from './components/trip/trip-display/trip-displa
 import { ApplicationListComponent } from './components/application/application-list/application-list.component';
 import { ActorListComponent } from './components/actor/actor-list/actor-list.component';
 import { ActorDisplayComponent } from './components/actor/actor-display/actor-display.component';
+import { SponsorshipDisplayComponent } from './components/sponsorship/sponsorship-display/sponsorship-display.component';
+import { SponsorshipListComponent } from './components/sponsorship/sponsorship-list/sponsorship-list.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -31,10 +33,10 @@ const appRoutes: Routes = [
     {path: 'display', component: ActorDisplayComponent},
   ]},
   {path: 'sponsorships', children: [
-    {path: 'new', component: TripListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}},
-    {path: 'edit', component: TripListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}},
-    {path: ':id', component: TripListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}},
-    {path: '', component: TripListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}}
+    {path: 'new', component: SponsorshipListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}},
+    {path: 'edit', component: SponsorshipListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}},
+    {path: ':id', component: SponsorshipDisplayComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}},
+    {path: '', component: SponsorshipListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}}
   ]},
   {path: 'terms-and-conditions', component: TermsAndConditionsComponent},
   {path: 'not-found', component: NotFoundPageComponent},

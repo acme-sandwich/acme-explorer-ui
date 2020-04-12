@@ -67,7 +67,14 @@
         "sponsorships": "Patrocinios",
         "list": "Mis patrocinios",
         "new": "Nuevo patrocinio",
-        "edit": "Editar patrocinio"
+        "edit": "Editar patrocinio",
+        "empty": "No se ha encontrado ningún patrocinio",
+        "display": "Ver patrocinio"
+    },
+    "sponsorship": {
+        "sponsorship": "Patrocinio",
+        "payed": "Pagado",
+        "notPayed": "No pagado"
     },
     "not-found":{
         "not-found": "Error 404 - Página no encontrada"

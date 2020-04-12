@@ -67,7 +67,14 @@
         "sponsorships": "Sponsorships",
         "list": "My sponsorships",
         "new": "New sponsorship",
-        "edit": "Edit sponsorship"
+        "edit": "Edit sponsorship",
+        "empty": "No sponsorships found",
+        "display": "Display sponsorship"
+    },
+    "sponsorship": {
+        "sponsorship": "Sponsorship",
+        "payed": "Payed",
+        "notPayed": "Not payed"
     },
     "not-found":{
         "not-found": "Error 404 - Page not found"

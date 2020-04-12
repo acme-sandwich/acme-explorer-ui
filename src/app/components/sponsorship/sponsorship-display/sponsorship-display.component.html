@@ -1,0 +1,46 @@
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="breadcrumb-hero">
+    <div class="container">
+      <div class="breadcrumb-hero">
+        <h2>{{'sponsorship.sponsorship' | translate}}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <ol>
+      <li><a routerLink="/">{{'header.home' | translate}}</a></li>
+      <li><a routerLink="/sponsorships">{{'sponsorships.list' | translate}}</a></li>
+      <li>{{'sponsorship.sponsorship' | translate}}</li>
+    </ol>
+  </div>
+</section>
+
+
+<section id="blog" class="blog container">
+  <div class="row">
+    <div class="col-lg-8 entries">
+
+      <article class="entry entry-single">
+
+        <div class="entry-img">
+          <img *ngIf="sponsorship.banner != null && sponsorship.banner.length != 0" class="img-fluid" src="{{sponsorship.banner}}"
+            alt="{{sponsorship.landingPage}}">
+          <img *ngIf="!sponsorship.banner || sponsorship.banner.length === 0" class="img-fluid"
+            src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{sponsorship.landingPage}}">
+        </div>
+
+        <div class="entry-content">
+          <h3>
+            <a href="{{sponsorship.landingPage}}">{{sponsorship.landingPage}}</a>
+          </h3>
+          <div *ngIf="sponsorship.payed" class="text-success">
+            <h3>{{'sponsorship.payed' | translate}}</h3>
+          </div>
+          <div *ngIf="!sponsorship.payed" class="text-danger">
+            <h3>{{'sponsorship.notPayed' | translate}}</h3>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
