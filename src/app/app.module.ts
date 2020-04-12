@@ -28,6 +28,8 @@ import { HttpModule } from '@angular/http';
 import { DeniedAccessPageComponent } from './components/security/denied-access-page/denied-access-page.component';
 import { ApplicationListComponent } from './components/application/application-list/application-list.component';
 import { DataTablesModule } from 'angular-datatables';
+import { ActorListComponent } from './components/actor/actor-list/actor-list.component';
+import { ActorDisplayComponent } from './components/actor/actor-display/actor-display.component';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -63,6 +65,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TermsAndConditionsComponent,
     DeniedAccessPageComponent,
     ApplicationListComponent,
+    ActorListComponent,
+    ActorDisplayComponent,
   ],
   imports: [
     DataTablesModule,

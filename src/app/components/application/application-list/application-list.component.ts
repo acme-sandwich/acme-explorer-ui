@@ -8,7 +8,10 @@ import { ApplicationService } from '../../../services/application.service';
   styleUrls: ['./application-list.component.css']
 })
 export class ApplicationListComponent implements OnInit {
+
   private applications: Application[];
+  dtOptions: DataTables.Settings = {};
+
 
   constructor(private applicationService: ApplicationService) {
     this.applications = applicationService.createApplications();
@@ -23,6 +26,9 @@ export class ApplicationListComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.dtOptions = {
+      pageLength: 2
+    }
   }
 
 }

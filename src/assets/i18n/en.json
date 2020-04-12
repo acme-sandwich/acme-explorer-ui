@@ -14,7 +14,9 @@
         "role": "Role",
         "register": "Register",
         "update": "Update",
-        "register.title": "Register new actor"
+        "register.title": "Register new actor",
+        "list": "List actors",
+        "display": "Display actor"
     },
     "security": {
         "login": "Login",

@@ -14,7 +14,9 @@
         "role": "Rol",
         "register": "Registrar",
         "update": "Actualizar",
-        "register.title": "Registro de actor"
+        "register.title": "Registro de actor",
+        "list": "Listar actores",
+        "display": "Mostrar actor"
     },
     "security": {
         "login": "Iniciar sesión",

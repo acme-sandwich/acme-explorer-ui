@@ -11,6 +11,8 @@ import { TermsAndConditionsComponent } from './components/master/terms-and-condi
 import { DeniedAccessPageComponent } from './components/security/denied-access-page/denied-access-page.component';
 import { ActorRoleGuard } from './guards/actor-role.guard';
 import { ApplicationListComponent } from './components/application/application-list/application-list.component';
+import { ActorListComponent } from './components/actor/actor-list/actor-list.component';
+import { ActorDisplayComponent } from './components/actor/actor-display/actor-display.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -21,6 +23,10 @@ const appRoutes: Routes = [
   ]},
   {path: 'applications', children: [
     {path: '', component: ApplicationListComponent },
+  ]},
+  {path: 'actors', children: [
+    {path: '', component: ActorListComponent},
+    {path: 'display', component: ActorDisplayComponent},
   ]},
   {path: 'sponsorships', children: [
     {path: 'new', component: TripListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}},
