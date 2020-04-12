@@ -16,7 +16,8 @@
         "update": "Actualizar",
         "register.title": "Registro de actor",
         "list": "Listar actores",
-        "display": "Mostrar actor"
+        "display": "Mostrar actor",
+        "actors": "Actores"
     },
     "security": {
         "login": "Iniciar sesión",
@@ -88,6 +89,7 @@
         "list": "Listar applications",
         "moment": "Momento",
         "status": "Estado",
-        "comments": "Comentarios"
+        "comments": "Comentarios",
+        "applications": "Applications"
     }
 }
