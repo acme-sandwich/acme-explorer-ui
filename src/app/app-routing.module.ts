@@ -29,7 +29,7 @@ const appRoutes: Routes = [
     {path: '', component: ApplicationListComponent },
   ]},
   {path: 'actors', children: [
-    {path: '', component: ActorListComponent},
+    {path: '', component: ActorListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'ADMINISTRATOR'}},
     {path: 'display/:id', component: ActorDisplayComponent},
   ]},
   {path: 'sponsorships', children: [

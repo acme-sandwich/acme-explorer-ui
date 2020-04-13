@@ -93,10 +93,10 @@
         }
     },
     "applications": {
-        "list": "Listar applications",
+        "list": "Listar peticiones",
         "moment": "Momento",
         "status": "Estado",
         "comments": "Comentarios",
-        "applications": "Applications"
+        "applications": "Peticiones"
     }
 }

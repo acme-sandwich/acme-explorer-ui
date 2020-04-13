@@ -87,7 +87,7 @@ export class TripService {
    */
   getTripCreator(id: String){
     return new Promise<any>((resolve, reject) => {
-      let apiURL = environment.backendApiBaseURL+'/actors/yb6ORb8';
+      let apiURL = environment.backendApiBaseURL+'/actors/' + id;
       this.http.get(apiURL).toPromise().then(res => {
         resolve(res);
       }).catch(error => {
