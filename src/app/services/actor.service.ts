@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Actor } from '../models/actor.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActorService {
+  private actorsUrl = environment.backendApiBaseURL + '/actors';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   createActors(): Actor[] {
     let actors: Actor[];
@@ -70,5 +77,15 @@ export class ActorService {
     actors.push(actor);
 
     return actors;
+  }
+
+  getActors() {
+    const url = `${this.actorsUrl}`;
+    return this.http.get<Actor[]>(url).toPromise();
+  }
+
+  getActor(id: String) {
+    const url = `${this.actorsUrl}/${id}`;
+    return this.http.get<Actor>(url).toPromise();
   }
 }

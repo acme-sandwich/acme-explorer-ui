@@ -14,7 +14,7 @@
   </div>
 </section>
 
-<table datatable [dtOptions]="dtOptions" class="table table-sm table-striped" dt-columns="dtColumns" width="100%">
+<table datatable [dtOptions]="dtOptions" class="table table-sm table-hover" dt-columns="dtColumns" width="100%">
   <thead style="background-color: #94c045;">
     <tr>
       <th>Name</th>
@@ -27,7 +27,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let actor of actors">
+    <tr *ngFor="let actor of data" style="cursor: pointer;" routerLink="/actors/display/{{actor.id}}">
       <td>{{actor.name}}</td>
       <td>{{actor.surname}}</td>
       <td>{{actor.phone}}</td>

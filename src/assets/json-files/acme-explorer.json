@@ -93,7 +93,7 @@
       "phone": "2154",
       "address": "Sevilla",
       "role": "EXPLORER",
-      "banned": "false",
+      "banned": false,
       "id": "KUX_gqH"
     },
     {
@@ -104,7 +104,7 @@
       "phone": "45297",
       "address": "Jaén",
       "role": "MANAGER",
-      "banned": "false",
+      "banned": false,
       "id": "yb6ORb8"
     },
     {
@@ -115,7 +115,7 @@
       "phone": "484532",
       "address": "Sevilla",
       "role": "EXPLORER",
-      "banned": "false",
+      "banned": false,
       "id": "3nn4DEX"
     },
     {
@@ -126,7 +126,7 @@
       "phone": "explorer666",
       "address": "explorer666",
       "role": "EXPLORER",
-      "banned": "false",
+      "banned": false,
       "id": "usRUR5m"
     },
     {
@@ -137,8 +137,50 @@
       "phone": "5445762",
       "address": "Sponsor's Street",
       "role": "SPONSOR",
-      "banned": "false",
+      "banned": true,
       "id": "bMKshch"
+    }
+  ],
+  "applications": [
+    {
+      "moment": "2020-02-14",
+      "status": "ACCEPTED",
+      "comments": [
+        "I want to go, please...",
+        "I am a good person"
+      ]
+    },
+    {
+      "moment": "2020-04-10",
+      "status": "DUE",
+      "comments": [
+        "I want to go, please...",
+        "I am a good person"
+      ]
+    },
+    {
+      "moment": "2020-03-02",
+      "status": "PENDING",
+      "comments": [
+        "I want to go, please...",
+        "I am a good person"
+      ]
+    },
+    {
+      "moment": "2020-03-29",
+      "status": "PENDING",
+      "comments": [
+        "I want to go, please...",
+        "I am a good person"
+      ]
+    },
+    {
+      "moment": "2020-04-13",
+      "status": "REJECTED",
+      "comments": [
+        "I want to go, please...",
+        "I am a good person"
+      ]
     }
   ]
 }

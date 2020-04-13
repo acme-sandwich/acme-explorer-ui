@@ -10,6 +10,7 @@ import { ApplicationService } from '../../../services/application.service';
 export class ApplicationListComponent implements OnInit {
 
   private applications: Application[];
+  data: any[];
   dtOptions: DataTables.Settings = {};
 
 
@@ -26,6 +27,12 @@ export class ApplicationListComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.applicationService.getApplications()
+      .then((val) => {
+        this.data = val;
+        console.log(this.data);
+      })
+      .catch((err) => console.error(err.message));
     this.dtOptions = {
       pageLength: 2
     }

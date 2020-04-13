@@ -10,6 +10,7 @@ import { ActorService } from '../../../services/actor.service';
 export class ActorListComponent implements OnInit {
 
   private actors: Actor[];
+  data: any[];
   dtOptions: DataTables.Settings = {};
 
   constructor(private actorService: ActorService) {
@@ -21,6 +22,12 @@ export class ActorListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.actorService.getActors()
+      .then((val) => {
+        this.data = val;
+        console.log(this.data);
+      })
+      .catch((err) => console.error(err.message));
     this.dtOptions = {
       pageLength: 2
     }
