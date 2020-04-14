@@ -13,7 +13,6 @@ export class ApplicationListComponent implements OnInit {
   data: any[];
   dtOptions: DataTables.Settings = {};
 
-
   constructor(private applicationService: ApplicationService) {
     this.applications = applicationService.createApplications();
    }
@@ -34,8 +33,9 @@ export class ApplicationListComponent implements OnInit {
       })
       .catch((err) => console.error(err.message));
     this.dtOptions = {
-      pageLength: 2
-    }
+      pagingType: 'full_numbers',
+      pageLength: 4,
+    };
   }
 
 }

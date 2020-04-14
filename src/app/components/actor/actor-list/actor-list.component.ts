@@ -28,9 +28,11 @@ export class ActorListComponent implements OnInit {
         console.log(this.data);
       })
       .catch((err) => console.error(err.message));
-    this.dtOptions = {
-      pageLength: 2
-    }
+
+      this.dtOptions = {
+        pagingType: 'full_numbers',
+        pageLength: 5,
+      }
   }
 
 }
