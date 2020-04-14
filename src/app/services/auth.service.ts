@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
-import{ MessageService } from '../services/message.service';
+import { MessageService } from '../services/message.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,58 +20,59 @@ export class AuthService {
   private currentActor: Actor;
   userLoggedIn = new Subject();
 
-  constructor(private fireAuth: AngularFireAuth, private http: HttpClient, 
+  constructor(private fireAuth: AngularFireAuth, private http: HttpClient,
     private messageService: MessageService) { }
 
-  registerUser(actor: Actor){
+  registerUser(actor: Actor) {
     return new Promise<any>((resolve, reject) => {
       this.fireAuth.auth.createUserWithEmailAndPassword(actor.email, actor.password)
-      .then(_ => {
-        // if the authentication was ok, then we proceed
-        const headers = new HttpHeaders();
-        headers.append('Content-type', 'application/json');
-        const url = `${environment.backendApiBaseURL + '/actors'}`;
-        const body = JSON.stringify(actor);
-        this.http.post(url, body, httpOptions).toPromise()
-          .then(res => {
-            resolve(res);
-          }, err => {
-            reject(err);
-          });
-          /*console.log('Actor created succesfully');
-          resolve(_);*/
-      }).catch(err => {
-        reject(err);
-      });
+        .then(_ => {
+          // if the authentication was ok, then we proceed
+          const headers = new HttpHeaders();
+          headers.append('Content-type', 'application/json');
+          const url = `${environment.backendApiBaseURL + '/actors'}`;
+          const body = JSON.stringify(actor);
+          this.http.post(url, body, httpOptions).toPromise()
+            .then(res => {
+              resolve(res);
+            }, err => {
+              reject(err);
+            });
+        }).catch(err => {
+          reject(err);
+        });
     });
   };
 
-  login(email: string, password: string){
+  login(email: string, password: string) {
     return new Promise<any>((resolve, reject) => {
       this.fireAuth.auth.signInWithEmailAndPassword(email, password)
-      .then(_=> {
-        const url = environment.backendApiBaseURL + '/actors?email=' + email;
-        this.http.get<Actor[]>(url).toPromise()
-        .then((actor: Actor[]) => {
-          this.currentActor = actor[0];
-          this.userLoggedIn.next(true);
-          this.messageService.notifyMessage('messages.auth.login.correct','alert alert-success');
-          resolve(this.currentActor);
+        .then(_ => {
+          const url = environment.backendApiBaseURL + '/actors?email=' + email;
+          this.http.get<Actor[]>(url).toPromise()
+            .then((actor: Actor[]) => {
+              this.currentActor = actor[0];
+              this.userLoggedIn.next(true);
+              this.messageService.notifyMessage('messages.auth.login.correct', 'alert alert-success');
+              localStorage.setItem('currentActor', JSON.stringify(this.currentActor));
+              resolve(this.currentActor);
+            }).catch(error => {
+              this.messageService.notifyMessage('messages.auth.login.failed', 'alert alert-danger');
+              reject(error);
+            });
         }).catch(error => {
-          this.messageService.notifyMessage('messages.auth.login.failed','alert alert-danger');
+          this.messageService.notifyMessage('messages.' + error.code.replace(/\//gi, '.').replace(/\-/gi, '.'), 'alert alert-danger');
           reject(error);
         });
-      }).catch(error => {
-        this.messageService.notifyMessage('messages.' + error.code.replace(/\//gi, '.').replace(/\-/gi, '.'), 'alert alert-danger');
-        reject(error);
-      });
     });
   }
 
-  logout(){
+  logout() {
     return new Promise<any>((resolve, reject) => {
       this.fireAuth.auth.signOut()
         .then(_ => {
+          this.currentActor = null;
+          localStorage.setItem('currentActor', null);
           resolve();
         }).catch(error => {
           reject(error);
@@ -83,17 +84,25 @@ export class AuthService {
     return ['ADMINISTRATOR', 'EXPLORER', 'MANAGER', 'SPONSOR'];
   };
 
-  getCurrentActor(){
+  getCurrentActor() {
+    if (this.currentActor == null) {
+      const currentActorLocalStorage = localStorage.getItem('currentActor');
+      if(currentActorLocalStorage != null){
+        let currentActorLocalStorageObject = JSON.parse(currentActorLocalStorage);
+        this.currentActor = currentActorLocalStorageObject;
+      }
+    }
     return this.currentActor;
+    ;
   }
 
-  checkRole(roles:string): boolean {
+  checkRole(roles: string): boolean {
     let result = false;
 
-    if(this.currentActor) {
-      if (roles.indexOf(this.currentActor.role.toString()) !== -1) {
+    if (this.getCurrentActor()) {
+      if (roles.indexOf(this.getCurrentActor().role.toString()) !== -1) {
         result = true;
-      }else{
+      } else {
         result = false;
       }
     } else {

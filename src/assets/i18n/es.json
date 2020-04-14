@@ -46,7 +46,8 @@
         "load": "Cargar viaje",
         "new": "Nuevo viaje",
         "empty": "No se ha encontrado ningún viaje",
-        "more": "Ver más"
+        "more": "Ver más",
+        "edit": "Editar"
     },
     "trip": {
         "info": "Información",

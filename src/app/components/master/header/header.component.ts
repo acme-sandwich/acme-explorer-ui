@@ -37,6 +37,7 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
 
   ngOnInit() {
     this.authService.userLoggedIn.subscribe((loggedIn: boolean) => {
+      
       if (loggedIn) {
         this.currentActor = this.authService.getCurrentActor();
         this.activeRole = this.currentActor.role.toString();
@@ -45,7 +46,9 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
         this.currentActor = null;
       }
     });
-
+    if(this.currentActor == null){
+      this.currentActor = this.authService.getCurrentActor();
+    }
 
     const component = this;
     let headerHome, headerTrips, headerTripsList, headerTripsNew, headerLogin, headerLogout, headerRegister, headerLanguage,

@@ -46,7 +46,8 @@
         "load": "Load trip",
         "new": "New trip",
         "empty": "No trips found",
-        "more": "View more"
+        "more": "View more",
+        "edit": "Edit"
     },
     "trip": {
         "info": "Information",
