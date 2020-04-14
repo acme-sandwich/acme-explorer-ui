@@ -11,7 +11,7 @@ export class ApplicationListComponent implements OnInit {
 
   private applications: Application[];
   data: any[];
-  dtOptions: DataTables.Settings = {};
+  dtOptions: any = {};
 
   constructor(private applicationService: ApplicationService) {
     this.applications = applicationService.createApplications();
@@ -35,6 +35,18 @@ export class ApplicationListComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 4,
+      columns: [{
+        title: 'Moment',
+        data: 'moment'
+      }, {
+        title: 'Status',
+        data: 'status'
+      }, {
+        title: 'Comments',
+        data: 'comments',
+        class: 'none'
+      }],
+      responsive: true
     };
   }
 
