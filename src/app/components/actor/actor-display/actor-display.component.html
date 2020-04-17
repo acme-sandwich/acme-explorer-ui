@@ -44,8 +44,8 @@
                             <a href="">{{'actor.completedTrips' | translate}}</a><br/>
                             <a href="">{{'actor.futureTrips' | translate}}</a><br/>
                             <p style="margin-bottom: 5px;">{{'actor.applications' | translate}}</p>
-                            <a href="">{{'actor.myApplications' | translate}}</a><br/>
-                            <!--<a href="">Received applications</a><br/> -->
+                            <a *ngIf="activeRole === 'EXPLORER'" href="/actors/{{currentActor.id}}/applications">{{'actor.myApplications' | translate}}</a>
+                            <a *ngIf="activeRole === 'MANAGER'" href="/actors/{{currentActor.id}}/applications">{{'actor.receivedApplications' | translate}}</a>
                         </div>
                     </div>
                     <div class="col-md-8">

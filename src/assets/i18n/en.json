@@ -27,7 +27,9 @@
         "about": "About me",
         "statistics": "Statistics",
         "trips": "TRIPS",
-        "applications": "APPLICATIONS"
+        "applications": "APPLICATIONS",
+        "receivedApplications": "Received applications",
+        "profile": "My profile"
     },
     "security": {
         "login": "Login",

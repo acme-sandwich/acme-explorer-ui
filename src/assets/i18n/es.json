@@ -27,7 +27,9 @@
         "about": "Sobre mi",
         "statistics": "Estadísticas",
         "trips": "VIAJES",
-        "applications": "PETICIONES"
+        "applications": "PETICIONES",
+        "receivedApplications": "Peticiones recibidas",
+        "profile": "Mi perfil"
     },
     "security": {
         "login": "Iniciar sesión",
