@@ -15,9 +15,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SponsorshipDisplayComponent extends TranslatableComponent implements OnInit {
   sponsorship = new Sponsorship();
   creator = new Actor();
+  trips = [];
   id: String;
   private currentActor: Actor;
-  private activeRole: String;
 
   constructor(private authService: AuthService, private sponsorshipService: SponsorshipService, private router: Router, 
     private route: ActivatedRoute, private translateService: TranslateService) { 
@@ -30,25 +30,31 @@ export class SponsorshipDisplayComponent extends TranslatableComponent implement
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-
+    this.currentActor = this.authService.getCurrentActor();
+    console.log(this.route);
     // Recover sponsorship
     this.sponsorshipService.getSponsorship(this.id)
       .then((val) => {
         this.sponsorship = val;
+        if (!this.currentActor || !this.currentActor.id || this.currentActor.id != this.sponsorship.creator) {
+          this.router.navigate(['/denied-access']);
+        } else {
+          this.sponsorshipService.getSponsorshipCreator(this.sponsorship.creator)
+          .then((val1) => {
+            this.creator = val1;
+            this.sponsorshipService.getSponsorshipTrips(this.sponsorship.trips)
+            .then((val2) => {
+              this.trips = val2;
+            }).catch((err2) => {
+              console.log(err2);
+            })
+          }).catch((err1) => {
+            console.log(err1);
+          });
+        }
       })
       .catch((err) => {
         console.error(err);
-      });
-
-      // Recover current actor
-      this.authService.userLoggedIn.subscribe((loggedIn: boolean) => {
-        if (loggedIn) {
-          this.currentActor = this.authService.getCurrentActor();
-          this.activeRole = this.currentActor.role.toString();
-        } else {
-          this.currentActor = null;
-          this.activeRole = 'anonymous';
-        }
       });
     
   }

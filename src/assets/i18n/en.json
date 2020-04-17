@@ -85,7 +85,9 @@
     "sponsorship": {
         "sponsorship": "Sponsorship",
         "payed": "Payed",
-        "notPayed": "Not payed"
+        "notPayed": "Not payed",
+        "creator": "Creator",
+        "trips": "Trips"
     },
     "not-found":{
         "not-found": "Error 404 - Page not found"

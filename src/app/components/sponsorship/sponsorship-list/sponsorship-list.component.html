@@ -45,10 +45,10 @@
                       <a routerLink="/sponsorships/{{sponsorship.id}}">{{'sponsorships.display' | translate}}</a>
                   </h2>
                   <div *ngIf="sponsorship.payed" class="text-success">
-                    <h3>{{'sponsorship.payed' | translate}}</h3>
+                    <h4>{{'sponsorship.payed' | translate}}</h4>
                   </div>
                   <div *ngIf="!sponsorship.payed" class="text-danger">
-                    <h3>{{'sponsorship.notPayed' | translate}}</h3>
+                    <h4>{{'sponsorship.notPayed' | translate}}</h4>
                   </div>
               </article>
           </div>
