@@ -75,7 +75,9 @@
     "sponsorship": {
         "sponsorship": "Patrocinio",
         "payed": "Pagado",
-        "notPayed": "No pagado"
+        "notPayed": "No pagado",
+        "creator": "Creador",
+        "trips": "Viajes"
     },
     "not-found":{
         "not-found": "Error 404 - Página no encontrada"
