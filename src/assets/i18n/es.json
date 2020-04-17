@@ -17,7 +17,17 @@
         "register.title": "Registro de actor",
         "list": "Listar actores",
         "display": "Mostrar actor",
-        "actors": "Actores"
+        "actors": "Actores",
+        "changePhoto": "Cambiar foto",
+        "completedTrips": "Viajes completados",
+        "futureTrips": "Próximos viajes",
+        "myApplications": "Mis peticiones",
+        "spentMoney": "Dinero invertido",
+        "sentApplications": "Peticiones enviadas",
+        "about": "Sobre mi",
+        "statistics": "Estadísticas",
+        "trips": "VIAJES",
+        "applications": "PETICIONES"
     },
     "security": {
         "login": "Iniciar sesión",
@@ -98,6 +108,7 @@
         "moment": "Momento",
         "status": "Estado",
         "comments": "Comentarios",
-        "applications": "Peticiones"
+        "applications": "Peticiones",
+        "trip": "Viaje"
     }
 }

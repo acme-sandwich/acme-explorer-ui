@@ -4,6 +4,7 @@ export class Application  extends Entity {
     moment: Date;
     status: string;
     comments: string[];
+    trip: string;
 
     constructor() {
         super();

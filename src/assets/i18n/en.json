@@ -17,7 +17,17 @@
         "register.title": "Register new actor",
         "list": "List actors",
         "display": "Display actor",
-        "actors": "Actors"
+        "actors": "Actors",
+        "changePhoto": "Change photo",
+        "completedTrips": "Completed trips",
+        "futureTrips": "Future trips",
+        "myApplications": "My applications",
+        "spentMoney": "Spent money",
+        "sentApplications": "Sent applications",
+        "about": "About me",
+        "statistics": "Statistics",
+        "trips": "TRIPS",
+        "applications": "APPLICATIONS"
     },
     "security": {
         "login": "Login",
@@ -98,6 +108,7 @@
         "moment": "Moment",
         "status": "Status",
         "comments": "Comments",
-        "applications": "Applications"
+        "applications": "Applications",
+        "trip": "Trip"
     }
 }
