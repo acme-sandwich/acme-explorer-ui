@@ -21,7 +21,8 @@
           </ul>
         </li>
 
-        <li *ngIf="activeRole === 'MANAGER'"><a id="header-applications-list" routerLink="/applications">{{'applications.list' | translate}}</a></li>
+        <li *ngIf="activeRole === 'EXPLORER'"><a id="header-applications-list" routerLink="/actors/applications/{{currentActor.id}}">{{'applications.list' | translate}}</a></li>
+        <li *ngIf="activeRole === 'MANAGER'"><a id="header-applications-list" routerLink="/actors/applications/{{currentActor.id}}">{{'applications.list' | translate}}</a></li>
         <li *ngIf="activeRole === 'ADMINISTRATOR'"><a id="header-actors-list" routerLink="/actors">{{'actor.list' | translate}}</a></li>
 
         <li class="drop-down" *ngIf="activeRole === 'SPONSOR'">

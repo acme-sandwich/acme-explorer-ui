@@ -111,6 +111,7 @@
         "status": "Status",
         "comments": "Comments",
         "applications": "Applications",
-        "trip": "Trip"
+        "trip": "Trip",
+        "explorer": "Explorer"
     }
 }

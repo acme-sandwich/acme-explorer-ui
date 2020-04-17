@@ -5,6 +5,7 @@ export class Application  extends Entity {
     status: string;
     comments: string[];
     trip: string;
+    explorer: string;
 
     constructor() {
         super();

@@ -107,10 +107,11 @@
     },
     "applications": {
         "list": "Listar peticiones",
-        "moment": "Momento",
+        "moment": "Fecha",
         "status": "Estado",
         "comments": "Comentarios",
         "applications": "Peticiones",
-        "trip": "Viaje"
+        "trip": "Viaje",
+        "explorer": "Explorador"
     }
 }

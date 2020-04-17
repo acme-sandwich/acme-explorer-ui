@@ -19,6 +19,7 @@
     <tr>
       <td translate>{{'applications.status'}}</td>
       <th translate>{{'applications.trip'}}</th>
+      <th translate>{{'applications.explorer'}}</th>
       <th translate>{{'applications.moment'}}</th>
       <th translate>Comments</th>
     </tr>
@@ -28,6 +29,7 @@
       <td>{{app.status}}</td>
       <!--<td style="cursor: pointer;" routerLink="/trips/display/{{app.trip}}">{{app.tripName}}</td>-->
       <td><a href="/trips/display/{{app.trip}}">{{app.tripName}}</a></td>
+      <td><a href="/actors/display/{{app.explorer}}">{{app.explorerName}}</a></td>
       <td>{{app.moment | date}}</td>
       <td>
         <ul class="list-group">

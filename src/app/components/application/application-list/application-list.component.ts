@@ -5,6 +5,9 @@ import { TripService } from '../../../services/trip.service';
 import { Trip } from 'src/app/models/trip.model';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslatableComponent } from '../../shared/translatable/translatable.component';
+import { ActorService } from '../../../services/actor.service';
+import { Actor } from 'src/app/models/actor.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-application-list',
@@ -14,44 +17,68 @@ import { TranslatableComponent } from '../../shared/translatable/translatable.co
 export class ApplicationListComponent extends TranslatableComponent implements OnInit {
 
   private applications: Application[];
-  data: any[];
+  data: any[] = [];
   dtOptions: any = {};
-  trip: Trip;
+  private currentActor: Actor;
+  private activeRole: String;
 
-  constructor(private applicationService: ApplicationService, private translateService: TranslateService, private tripService: TripService) {
+  constructor(private applicationService: ApplicationService, private translateService: TranslateService,
+    private tripService: TripService, private actorService: ActorService, private authService: AuthService) {
     super(translateService);
    }
 
-   getComments(index: number) {
-     return this.applications[index].comments;
+   getExplorerApplications() {
+      this.applicationService.getApplicationsByExplorer(this.currentActor.id)
+        .then((val) => {
+          for (let i = 0; i < val.length; i ++) {
+            this.tripService.getTrip(val[i].trip).then((tripVal) => {
+              val[i]['tripName'] = tripVal.title;
+            });
+            this.actorService.getActor(val[i].explorer).then((explorerVal) => {
+              val[i]['explorerName'] = explorerVal.name + ' ' + explorerVal.surname;
+            });
+          }
+          this.data = val;
+        }).catch((err) => console.error(err.message));
    }
 
-   getApplications() {
-     return this.applications;
-   }
-
-  ngOnInit() {
-    this.applicationService.getApplications()
+   getManagerApplications() {
+      this.applicationService.getApplicationsByManager(this.currentActor.id)
       .then((val) => {
-        for (let i = 0; i < val.length; i++) {
+        for (let i = 0; i < val.length; i ++) {
           this.tripService.getTrip(val[i].trip).then((tripVal) => {
             val[i]['tripName'] = tripVal.title;
           });
+          this.actorService.getActor(val[i].explorer).then((explorerVal) => {
+            val[i]['explorerName'] = explorerVal.name + ' ' + explorerVal.surname;
+          });
         }
         this.data = val;
-        console.log(this.data);
-      })
-      .catch((err) => console.error(err.message));
+      }).catch((err) => console.error(err.message));
+   }
+
+  ngOnInit() {
+    // Recover current actor
+    this.currentActor = this.authService.getCurrentActor();
+
+    if (this.currentActor.role === 'EXPLORER') {
+      this.getExplorerApplications();
+    } else if (this.currentActor.role === 'MANAGER') {
+      this.getManagerApplications();
+    }
+
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 4,
       columns: [
-        {
-          title: 'applications.status',
-          data: 'status'
+      {
+        title: 'applications.status',
+        data: 'status'
       }, {
         title: 'applications.trip',
         //data: 'tripName'
+      }, {
+        title: 'applications.explorer'
       }, {
         title: 'applications.moment',
         data: 'moment'
