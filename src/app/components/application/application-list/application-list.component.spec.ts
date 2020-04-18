@@ -22,4 +22,8 @@ describe('ApplicationListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have 5 applications in the collection', () => {
+    expect(component.getManagerApplications.length).toEqual(5);
+  });
 });

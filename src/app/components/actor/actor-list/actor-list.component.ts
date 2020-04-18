@@ -13,7 +13,7 @@ export class ActorListComponent extends TranslatableComponent implements OnInit 
 
   private actors: Actor[];
   data: any[];
-  dtOptions: DataTables.Settings = {};
+  dtOptions: any = {};
 
   constructor(private actorService: ActorService, private translateService: TranslateService) {
     super(translateService);

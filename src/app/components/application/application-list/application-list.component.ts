@@ -43,6 +43,7 @@ export class ApplicationListComponent extends TranslatableComponent implements O
    }
 
    getManagerApplications() {
+      let result;
       this.applicationService.getApplicationsByManager(this.currentActor.id)
       .then((val) => {
         for (let i = 0; i < val.length; i ++) {
@@ -54,7 +55,10 @@ export class ApplicationListComponent extends TranslatableComponent implements O
           });
         }
         this.data = val;
+        result = val;
       }).catch((err) => console.error(err.message));
+
+      return result;
    }
 
   ngOnInit() {
