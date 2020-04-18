@@ -115,5 +115,25 @@
         "applications": "Applications",
         "trip": "Trip",
         "explorer": "Explorer"
+    },
+    "dashboard": {
+        "display": "Dashboard",
+        "tripsPerManager": "NUMBER OF TRIPS PER MANAGER",
+        "applicationsPerTrip": "NUMBER OF APPLICATIONS PER TRIP",
+        "priceOfTrips": "PRICE OF THE TRIPS",
+        "applicationsByStatus": "APPLICATIONS GROUPED BY STATUS",
+        "explorersFinder": "EXPLORERS FINDER",
+        "average": "AVERAGE",
+        "minimum": "MINIMUM",
+        "maximum": "MAXIMUM",
+        "stdDeviation": "STANDART DEVIATION",
+        "pending": "PENDING",
+        "rejected": "REJECTED",
+        "due": "DUE",
+        "accepted": "ACCEPTED",
+        "cancelled": "CANCELLED",
+        "avgPriceRange": "AVERAGE PRICE RANGE",
+        "topTenKeywords": "TOP 10 KEYWORDS",
+        "moreInfo": "More info"
     }
 }
