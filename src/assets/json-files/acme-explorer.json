@@ -174,7 +174,10 @@
       "comments": [
         "I want to go, please...",
         "I am a good person"
-      ]
+      ],
+      "trip": "5b11322za90b6581dee5dbc5",
+      "explorer": "KUX_gqH",
+      "manager": "yb6ORb8"
     },
     {
       "moment": "2020-04-10",
@@ -182,7 +185,10 @@
       "comments": [
         "I want to go, please...",
         "I am a good person"
-      ]
+      ],
+      "trip": "5b11322za90b6581dee5dbc8",
+      "explorer": "KUX_gqH",
+      "manager": "yb6ORb8"
     },
     {
       "moment": "2020-03-02",
@@ -190,7 +196,10 @@
       "comments": [
         "I want to go, please...",
         "I am a good person"
-      ]
+      ],
+      "trip": "5b11322za90b6581dee5dbc5",
+      "explorer": "KUX_gqH",
+      "manager": "yb6ORb8"
     },
     {
       "moment": "2020-03-29",
@@ -198,7 +207,10 @@
       "comments": [
         "I want to go, please...",
         "I am a good person"
-      ]
+      ],
+      "trip": "5b11322za90b6581dee5dbc7",
+      "explorer": "KUX_gqH",
+      "manager": "yb6ORb8"
     },
     {
       "moment": "2020-04-13",
@@ -207,7 +219,62 @@
         "I want to go, please...",
         "I am a good person",
         "I want to visit Seville because I consider it is one of the most beautiful cities all over the world."
-      ]
+      ],
+      "trip": "5b11322za90b6581dee5dbc6",
+      "explorer": "KUX_gqH",
+      "manager": ""
+    }
+  ],
+  "sponsorships": [
+    {
+      "id": "ah7Jdn9",
+      "banner": "https://media.wired.com/photos/5d09594a62bcb0c9752779d9/4:3/w_2000,h_1500,c_limit/Transpo_G70_TA-518126.jpg",
+      "landingPage": "https://www.cars.com",
+      "payed": true,
+      "trips": [
+        "5b11322za90b6581dee5dbc6",
+        "5b11322za90b6581dee5dbc7"
+      ],
+      "creator": "bMKshch"
+    },
+    {
+      "id": "a9sJk18",
+      "banner": "https://www.cecidiomas.es/images/cecidiomases/684-thinking-of-getting-a-cat-international-cat-care-3435.png",
+      "landingPage": "https://www.pets.com",
+      "payed": false,
+      "trips": [],
+      "creator": "bMKshch"
+    },
+    {
+      "id": "9lKi20S",
+      "banner": "https://s3-prod.chicagobusiness.com/A321XLR_CFM_UAL_V07.jpg",
+      "landingPage": "https://www.planes.com",
+      "payed": true,
+      "trips": [
+        "5b11322za90b6581dee5dbc7"
+      ],
+      "creator": "bMKshch"
+    },
+    {
+      "id": "sn3j09A",
+      "banner": "https://www.thetrainline.com/cmsmedia/cms/11224/france_train2_hero_2x.jpg",
+      "landingPage": "https://www.trains.com",
+      "payed": true,
+      "trips": [
+        "5b11322za90b6581dee5dbc6"
+      ],
+      "creator": "fnEyJQG"
+    },
+    {
+      "id": "102LSkd",
+      "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/1200px-Good_Food_Display_-_NCI_Visuals_Online.jpg",
+      "landingPage": "https://www.foods.com",
+      "payed": false,
+      "trips": [
+        "5b11322za90b6581dee5dbc5",
+        "5b11322za90b6581dee5dbc7"
+      ],
+      "creator": "fnEyJQG"
     }
   ]
 }

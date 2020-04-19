@@ -29,16 +29,29 @@
             src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{sponsorship.landingPage}}">
         </div>
 
+        <div class="entry-meta">
+          <ul>
+            <li class="d-flex align-items-center"><i class="icofont-user"></i> {{'sponsorship.creator' | translate}}: <a routerLink="/actors/display/{{creator.id}}"> {{creator.name}}</a>
+            </li>
+          </ul>
+        </div>
+
         <div class="entry-content">
           <h3>
             <a href="{{sponsorship.landingPage}}">{{sponsorship.landingPage}}</a>
           </h3>
           <div *ngIf="sponsorship.payed" class="text-success">
-            <h3>{{'sponsorship.payed' | translate}}</h3>
+            <h4>{{'sponsorship.payed' | translate}}</h4>
           </div>
           <div *ngIf="!sponsorship.payed" class="text-danger">
-            <h3>{{'sponsorship.notPayed' | translate}}</h3>
+            <h4>{{'sponsorship.notPayed' | translate}}</h4>
           </div>
+          <h3>{{'sponsorship.trips' | translate}}</h3>
+          <p>
+            <span *ngFor="let trip of trips; let i = index">
+              <a routerLink="/trips/display/{{trip.id}}">{{trip.title}}</a> <br />
+            </span>
+          </p>
         </div>
       </article>
     </div>

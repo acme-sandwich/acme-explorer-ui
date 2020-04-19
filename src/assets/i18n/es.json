@@ -17,7 +17,19 @@
         "register.title": "Registro de actor",
         "list": "Listar actores",
         "display": "Mostrar actor",
-        "actors": "Actores"
+        "actors": "Actores",
+        "changePhoto": "Cambiar foto",
+        "completedTrips": "Viajes completados",
+        "futureTrips": "Próximos viajes",
+        "myApplications": "Mis peticiones",
+        "spentMoney": "Dinero invertido",
+        "sentApplications": "Peticiones enviadas",
+        "about": "Sobre mi",
+        "statistics": "Estadísticas",
+        "trips": "VIAJES",
+        "applications": "PETICIONES",
+        "receivedApplications": "Peticiones recibidas",
+        "profile": "Mi perfil"
     },
     "security": {
         "login": "Iniciar sesión",
@@ -75,7 +87,9 @@
     "sponsorship": {
         "sponsorship": "Patrocinio",
         "payed": "Pagado",
-        "notPayed": "No pagado"
+        "notPayed": "No pagado",
+        "creator": "Creador",
+        "trips": "Viajes"
     },
     "not-found":{
         "not-found": "Error 404 - Página no encontrada"
@@ -95,9 +109,31 @@
     },
     "applications": {
         "list": "Listar peticiones",
-        "moment": "Momento",
+        "moment": "Fecha",
         "status": "Estado",
         "comments": "Comentarios",
-        "applications": "Peticiones"
+        "applications": "Peticiones",
+        "trip": "Viaje",
+        "explorer": "Explorador"
+    },
+    "dashboard": {
+        "display": "Dashboard",
+        "tripsPerManager": "NÚMERO DE VIAJES POR MÁNAGER",
+        "applicationsPerTrip": "NÚMERO DE PETICIONES POR VIAJE",
+        "priceOfTrips": "PRECIO DE LOS VIAJES",
+        "applicationsByStatus": "PETICIONES AGRUPADAS POR ESTADO",
+        "explorersFinder": "BUSCADOR DE LOS EXPLORADORES",
+        "average": "MEDIA",
+        "minimum": "MÍNIMO",
+        "maximum": "MÁXIMO",
+        "stdDeviation": "DESVIACIÓN ESTÁNDAR",
+        "pending": "PENDIENTE",
+        "rejected": "RECHAZADA",
+        "due": "POR PAGAR",
+        "accepted": "ACEPTADA",
+        "cancelled": "CANCELADA",
+        "avgPriceRange": "RANGO MEDIO DE PRECIO",
+        "topTenKeywords": "TOP 10 PALABRAS CLAVE",
+        "moreInfo": "Más información"
     }
 }

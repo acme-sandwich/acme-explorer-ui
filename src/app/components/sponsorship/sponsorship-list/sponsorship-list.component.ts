@@ -22,12 +22,12 @@ export class SponsorshipListComponent extends TranslatableComponent implements O
   }
 
   ngOnInit() {
-    this.sponsorshipService.getSponsorships()
+    this.actor = this.authService.getCurrentActor();
+    this.sponsorshipService.getSponsorshipsSponsor(this.actor.id)
       .then((val) => {
         this.data = val;
       })
       .catch((err) => console.error(err.message));
-    this.actor = this.authService.getCurrentActor();
   }
 
   newSponsorship() {

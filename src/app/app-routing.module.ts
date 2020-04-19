@@ -17,6 +17,7 @@ import { ActorDisplayComponent } from './components/actor/actor-display/actor-di
 import { SponsorshipDisplayComponent } from './components/sponsorship/sponsorship-display/sponsorship-display.component';
 import { SponsorshipListComponent } from './components/sponsorship/sponsorship-list/sponsorship-list.component';
 import { TripEditComponent } from './components/trip/trip-edit/trip-edit.component';
+import { DashboardDisplayComponent } from './components/dashboard/dashboard-display/dashboard-display.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
   {path: 'actors', children: [
     {path: '', component: ActorListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'ADMINISTRATOR'}},
     {path: 'display/:id', component: ActorDisplayComponent},
+    {path: ':id/applications', component: ApplicationListComponent},
   ]},
   {path: 'sponsorships', children: [
     {path: 'new', component: SponsorshipListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}},
@@ -40,10 +42,11 @@ const appRoutes: Routes = [
     {path: ':id', component: SponsorshipDisplayComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}},
     {path: '', component: SponsorshipListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}}
   ]},
+  {path: 'dashboard', component: DashboardDisplayComponent},
   {path: 'terms-and-conditions', component: TermsAndConditionsComponent},
   {path: 'not-found', component: NotFoundPageComponent},
   {path: 'denied-access', component: DeniedAccessPageComponent},
-  {path: '**', redirectTo: '/not-found'}
+  {path: '**', redirectTo: '/not-found'},
 ];
 
 @NgModule({
