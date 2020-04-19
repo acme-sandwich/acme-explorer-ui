@@ -32,6 +32,7 @@ import { ActorListComponent } from './components/actor/actor-list/actor-list.com
 import { ActorDisplayComponent } from './components/actor/actor-display/actor-display.component';
 import { SponsorshipListComponent } from './components/sponsorship/sponsorship-list/sponsorship-list.component';
 import { SponsorshipDisplayComponent } from './components/sponsorship/sponsorship-display/sponsorship-display.component';
+import { TripEditComponent } from './components/trip/trip-edit/trip-edit.component';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -71,6 +72,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ActorDisplayComponent,
     SponsorshipListComponent,
     SponsorshipDisplayComponent,
+    TripEditComponent,
   ],
   imports: [
     DataTablesModule,

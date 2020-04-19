@@ -96,6 +96,10 @@ export class AuthService {
     ;
   }
 
+  setCurrentActor(actor: Actor) {
+    this.currentActor = actor;
+  }
+
   checkRole(roles: string): boolean {
     let result = false;
 

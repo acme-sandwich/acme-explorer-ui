@@ -5,6 +5,7 @@ import { Actor } from '../models/actor.model';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { catchError, map, tap } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -17,7 +18,7 @@ export class TripService {
 
   private tripsUrl = environment.backendApiBaseURL + '/trips';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   createTrips(): Trip[] {
     let trips: Trip[];
@@ -116,5 +117,20 @@ export class TripService {
     return this.http.get<Trip[]>(url, {
       params: parameters, observe: 'body',
     }).toPromise();
+  }
+
+  updateTrip(trip: Trip) {
+    const url = `${this.tripsUrl}/${trip.id}`;
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+
+    const body = JSON.stringify(trip);
+
+    return new Promise<any>((resolve, reject) => {
+      this.http.put(url, body, httpOptions).toPromise()
+        .then(res => {
+          resolve(res);
+        }, err => {console.log(err); reject(err)});
+    });
   }
 }
