@@ -19,7 +19,6 @@
 </div>
 
 
-<!-- ======= Blog Section ======= -->
 <section id="blog" class="blog">
     <div class="container">
 
@@ -32,19 +31,19 @@
         <div *ngIf="data != undefined && data.length > 0" class="row">
 
             <div *ngFor="let trip of data; let i = index" class="col-lg-4  col-md-6 d-flex align-items-stretch"
-                data-aos="fade-up" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
-                (scrolled)="onScrollDown()" (scrolledUp)="onScrollUp()" >
+                data-aos="fade-up" infiniteScroll [infiniteScrollDistance]="0.01" [infiniteScrollThrottle]="150"
+                (scrolled)="onScrollDown()"  >
                 <article class="entry">
 
                     <div class="entry-img">
                         <img *ngIf="trip.picture != null && trip.picture.length != 0" class="img-fluid"
-                            src="{{trip.picture}}" alt="{{trip.title}}">
+                            src="{{trip.picture[0].data}}" alt="{{trip.title}}">
                         <img *ngIf="!trip.picture || trip.picture.length === 0" class="img-fluid"
                             src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{trip.title}}">
                     </div>
 
                     <h2 class="entry-title">
-                        <a routerLink="/trips/display/{{trip.id}}">{{trip.title}}</a>
+                        <a routerLink="/trips/display/{{trip._id}}">{{trip.title}}</a>
                     </h2>
 
                     <div class="entry-meta">
@@ -62,8 +61,8 @@
                         </p>
 
                         <div class="read-more">
-                            <a *ngIf="actor != null && actor.id === trip.creator" routerLink="/trips/display/{{trip.id}}" >{{'trips.edit' |translate}}</a>
-                            <a *ngIf="!actor || actor.id !== trip.creator" routerLink="/trips/display/{{trip.id}}">{{'trips.more' |translate}}</a>
+                            <a *ngIf="actor != null && actor.id === trip.creator" routerLink="/trips/display/{{trip._id}}" >{{'trips.edit' |translate}}</a>
+                            <a *ngIf="!actor || actor.id !== trip.creator" routerLink="/trips/display/{{trip._id}}">{{'trips.more' |translate}}</a>
                         </div>
                     </div>
                 </article>

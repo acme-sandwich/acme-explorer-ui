@@ -7,7 +7,7 @@ import { TranslatableComponent } from '../../shared/translatable/translatable.co
 import { TranslateService } from '@ngx-translate/core';
 import { Actor } from 'src/app/models/actor.model';
 
-const MAX_TRIPS = 3;
+const MAX_TRIPS = 12;
 
 @Component({
   selector: 'app-trip-list',
@@ -18,6 +18,7 @@ const MAX_TRIPS = 3;
 export class TripListComponent extends TranslatableComponent implements OnInit {
 
   numObjects = MAX_TRIPS;
+  page = 1;
   data: any[];
   actor: Actor;
   keyword: string;
@@ -31,7 +32,7 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => this.keyword = params['keyword']);
 
-    this.tripService.getTripsPage(0, MAX_TRIPS, this.keyword)
+    this.tripService.getTripsPage(this.page, MAX_TRIPS, this.keyword)
       .then((val) => {
         this.data = val;
       })
@@ -45,24 +46,18 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
   }
 
   onScrollDown(ev){
-    console.log('En el down');
-    const start = this.numObjects;
-    console.log('start: ' +start);
+    this.page = this.page + 1;
+    const start = this.page;
     this.numObjects += MAX_TRIPS;
-    console.log('numObjects'+ this.numObjects);
     this.appendTrips(start, this.numObjects);
-
     this.direction = 'down';
   }
 
   onScrollUp(ev) {
-    console.log('En el up');
-    const start = this.numObjects;
-    
-    this.numObjects += MAX_TRIPS;
-    
+    this.page = this.page + 1;
+    const start = this.page;
+    this.numObjects += MAX_TRIPS; 
     this.prependTrips(start, this.numObjects);
-
     this.direction = 'up';
   }
 
@@ -75,11 +70,9 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
   }
 
   addTrips(startIndex, endIndex, _method) {
-    console.log('en el add trips');
     this.tripService.getTripsPage(startIndex, MAX_TRIPS, this.keyword)
       .then(val => { 
         this.data = this.data.concat(val); 
-        console.log(this.data);
       })
       .catch(err => { 
         console.log(err); 

@@ -17,6 +17,7 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
   trip = new Trip();
   creator = new Actor();
   id: String;
+  pictures = [];
   private currentActor: Actor;
   private activeRole: String;
   private purchasable: boolean;
@@ -56,7 +57,12 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
           this.creator = val1;
         }).catch((err1) => {
           console.log(err1);
-        })
+        });
+        for(var i = 0; i < this.trip.picture.length; i++){
+          this.pictures.push(this.trip.picture[i]);
+        }
+        console.log(this.trip.picture);
+        console.log(this.pictures);
       })
       .catch((err) => {
         console.error(err);

@@ -21,9 +21,8 @@
     <div class="col-lg-8 entries">
 
       <article class="entry entry-single">
-
         <div class="entry-img">
-          <img *ngIf="trip.picture != null && trip.picture.length != 0" class="img-fluid" src="{{trip.picture}}"
+          <img *ngIf="trip.picture != null && trip.picture.length != 0" class="img-fluid" src="{{trip.picture[0].data}}"
             alt="{{trip.title}}">
           <img *ngIf="!trip.picture || trip.picture.length === 0" class="img-fluid"
             src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{trip.title}}">
@@ -35,9 +34,12 @@
 
         <div class="entry-meta">
           <ul>
-            <li class="d-flex align-items-center"><i class="icofont-user"></i> {{'trip.creator' | translate}}: <a href=""> {{creator.name}}</a>
+            <li class="d-flex align-items-center"><i class="icofont-user"></i> {{'trip.creator' | translate}}: <a
+                href=""> {{creator.name}}</a>
             </li>
-            <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i>{{trip.startDate |localizedDate}} - {{trip.endDate |localizedDate}}</li>
+            <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i>{{trip.startDate |localizedDate}} -
+              {{trip.endDate |localizedDate}}</li>
+            <li class="d-flex align-items-center"><i class="icofont-price"></i>{{trip.price}} €</li>
           </ul>
         </div>
 
@@ -45,7 +47,7 @@
           <div [hidden]="!trip.cancelled" class="text-danger">
             <h3>{{'trip.cancelled' | translate}}</h3>
             <p>
-                {{trip.cancelledReason}}
+              {{trip.cancelledReason}}
             </p>
           </div>
           <p>
@@ -98,10 +100,13 @@
         <h3 class="sidebar-title">{{'trip.options' |translate}}</h3>
         <div class="sidebar-item categories">
           <ul>
-            <li [hidden]="!currentActor || currentActor.id !== trip.creator"><a href="#">{{'trip.edit' |translate}}</a></li>
+            <li [hidden]="!currentActor || currentActor.id !== trip.creator"><a href="#">{{'trip.edit' |translate}}</a>
+            </li>
 
             <li *ngIf="purchasable"><a *ngIf="!currentActor" href="/login">{{'trip.buy' |translate}}</a></li>
-            <li *ngIf="purchasable"><a *ngIf="currentActor !== null && activeRole === 'EXPLORER'" href="javascript:alert('El usuario será redirigido a la ventana de comprar un viaje pagando con Paypal');">{{'trip.buy' |translate}}</a></li>
+            <li *ngIf="purchasable"><a *ngIf="currentActor !== null && activeRole === 'EXPLORER'"
+                href="javascript:alert('El usuario será redirigido a la ventana de comprar un viaje pagando con Paypal');">{{'trip.buy' |translate}}</a>
+            </li>
             <li><a href="javascript:void(0);" (click)="goBack()">{{'trip.goBack' |translate}}</a></li>
           </ul>
 
@@ -112,3 +117,34 @@
     </div><!-- End trip sidebar -->
   </div>
 </section>
+
+<script>
+  var slideIndex = 1;
+  showSlides(slideIndex);
+
+  // Next/previous controls
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  // Thumbnail image controls
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+  }
+</script>
