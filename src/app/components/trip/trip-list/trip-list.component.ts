@@ -7,7 +7,7 @@ import { TranslatableComponent } from '../../shared/translatable/translatable.co
 import { TranslateService } from '@ngx-translate/core';
 import { Actor } from 'src/app/models/actor.model';
 
-const MAX_TRIPS = 3;
+const MAX_TRIPS = 12;
 
 @Component({
   selector: 'app-trip-list',
@@ -18,51 +18,71 @@ const MAX_TRIPS = 3;
 export class TripListComponent extends TranslatableComponent implements OnInit {
 
   numObjects = MAX_TRIPS;
+  page = 0;
   data: any[];
+  filteredTrips: any[];
   actor: Actor;
   keyword: string;
   direction: string;
+  myTrips = false;
 
-  constructor(private tripService: TripService, private router: Router, private route: ActivatedRoute, 
+  constructor(private tripService: TripService, private router: Router, private route: ActivatedRoute,
     public authService: AuthService, private translateService: TranslateService) {
-      super(translateService);
+    super(translateService);
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => this.keyword = params['keyword']);
+    this.route.data.subscribe(data => {
+        if(data.myTrips){
+          this.myTrips = true;
+        }else{
+          this.myTrips = false;
+        }
+    });
 
-    this.tripService.getTripsPage(0, MAX_TRIPS, this.keyword)
+    console.log(this.myTrips);
+
+    this.tripService.getTripsPage(this.page, MAX_TRIPS, this.keyword, this.myTrips)
       .then((val) => {
         this.data = val;
+        this.assignCopy();
       })
       .catch((err) => console.error(err.message));
 
     this.actor = this.authService.getCurrentActor();
   }
 
+  assignCopy() {
+    this.filteredTrips = Object.assign([], this.data);
+  }
+
+  filterTrip(value) {
+    if (!value) {
+      this.assignCopy();
+    }
+    this.filteredTrips = Object.assign([], this.data).filter(
+      item => (item.title.toLowerCase().indexOf(value.toLowerCase()) > -1) || (item.description.toLowerCase().indexOf(value.toLowerCase()) > -1) || (item.ticker.toLowerCase().indexOf(value.toLowerCase()) > -1)
+    )
+  }
+
   newTrip() {
     this.router.navigate(['/trips/new']);
   }
 
-  onScrollDown(ev){
-    console.log('En el down');
-    const start = this.numObjects;
-    console.log('start: ' +start);
+  onScrollDown(ev) {
+    this.page = this.page + 1;
+    const start = this.page;
     this.numObjects += MAX_TRIPS;
-    console.log('numObjects'+ this.numObjects);
     this.appendTrips(start, this.numObjects);
-
     this.direction = 'down';
   }
 
   onScrollUp(ev) {
-    console.log('En el up');
-    const start = this.numObjects;
-    
+    this.page = this.page + 1;
+    const start = this.page;
     this.numObjects += MAX_TRIPS;
-    
     this.prependTrips(start, this.numObjects);
-
     this.direction = 'up';
   }
 
@@ -75,14 +95,13 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
   }
 
   addTrips(startIndex, endIndex, _method) {
-    console.log('en el add trips');
-    this.tripService.getTripsPage(startIndex, MAX_TRIPS, this.keyword)
-      .then(val => { 
-        this.data = this.data.concat(val); 
-        console.log(this.data);
+    this.tripService.getTripsPage(startIndex, MAX_TRIPS, this.keyword, this.myTrips)
+      .then(val => {
+        this.data = this.data.concat(val);
+        this.assignCopy();
       })
-      .catch(err => { 
-        console.log(err); 
+      .catch(err => {
+        console.log(err);
       });
   }
 

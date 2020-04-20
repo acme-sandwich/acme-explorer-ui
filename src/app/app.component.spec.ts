@@ -21,6 +21,20 @@ import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { ApplicationListComponent } from './components/application/application-list/application-list.component';
+import { ActorDisplayComponent } from './components/actor/actor-display/actor-display.component';
+import { ActorListComponent } from './components/actor/actor-list/actor-list.component';
+import { SponsorshipListComponent } from './components/sponsorship/sponsorship-list/sponsorship-list.component';
+import { SponsorshipDisplayComponent } from './components/sponsorship/sponsorship-display/sponsorship-display.component';
+import { AuditsListComponent } from './components/audits/audits-list/audits-list.component';
+import { AuditsDisplayComponent } from './components/audits/audits-display/audits-display.component';
+import { DashboardDisplayComponent } from './components/dashboard/dashboard-display/dashboard-display.component';
+import { TermsAndConditionsComponent } from './components/master/terms-and-conditions/terms-and-conditions.component';
+import { NotFoundPageComponent } from './components/shared/not-found-page/not-found-page.component';
+import { DeniedAccessPageComponent } from './components/security/denied-access-page/denied-access-page.component';
+import { MessageComponent } from './components/master/message/message.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { DataTablesModule } from 'angular-datatables';
 
 registerLocaleData(locales, 'es');
 
@@ -51,11 +65,13 @@ describe('AppComponent', () => {
       }),
       FontAwesomeModule,
       HttpClientModule,
-      AngularFireModule.initializeApp(firebaseConfig),
+      AngularFireModule.initializeApp(firebaseConfig),InfiniteScrollModule, DataTablesModule
       ],
       declarations: [
         AppComponent, TripListComponent, TripDisplayComponent, HeaderComponent, FooterComponent, HomeComponent, LoginComponent, 
-        RegisterComponent, LocalizedDataPipe, TranslatableComponent
+        RegisterComponent, LocalizedDataPipe, TranslatableComponent, ApplicationListComponent, ActorDisplayComponent, ActorListComponent,
+        SponsorshipListComponent, SponsorshipDisplayComponent, AuditsListComponent, AuditsDisplayComponent, DashboardDisplayComponent, TermsAndConditionsComponent,
+        NotFoundPageComponent, DeniedAccessPageComponent, MessageComponent
       ],
       providers: [AngularFireAuth]
     }).compileComponents();

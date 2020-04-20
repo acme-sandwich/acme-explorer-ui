@@ -1,0 +1,51 @@
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="breadcrumb-hero">
+    <div class="container">
+      <div class="breadcrumb-hero">
+        <h2>{{'audits.audit' | translate}}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <ol>
+      <li><a routerLink="/">{{'header.home' | translate}}</a></li>
+      <li><a routerLink="/audits">{{'audits.audits' | translate}}</a></li>
+      <li>{{'audits.audit' | translate}}</li>
+    </ol>
+  </div>
+</section>
+
+
+<section id="blog" class="blog container">
+  <div class="row">
+    <div class="col-lg-8 entries">
+
+      <article class="entry entry-single">
+
+        <h2 class="entry-title">
+          {{audit.title}}
+        </h2>
+        <div class="entry-meta">
+          <ul>
+            <li class="d-flex align-items-center"><i class="icofont-user"></i> {{'audits.auditor' | translate}}: <a routerLink="/actors/display/{{auditor._id}}"> {{auditor.name}}</a>
+            </li>
+            <li class="d-flex align-items-center"><i class="icofont-user"></i> {{'audits.trip' | translate}}: <a routerLink="/trips/display/{{trip._id}}"> {{trip.title}}</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="entry-content">
+          <p>
+            {{audit.description}}
+          </p>
+          <h3>{{'audits.attachments' | translate}}</h3>
+          <p>
+            <span *ngFor="let att of audit.attachments; let i = index">
+              <p> <i class="icofont-check"></i> {{att}}</p>
+            </span>
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

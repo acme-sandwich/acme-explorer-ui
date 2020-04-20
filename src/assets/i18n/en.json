@@ -17,7 +17,20 @@
         "register.title": "Register new actor",
         "list": "List actors",
         "display": "Display actor",
-        "actors": "Actors"
+        "actors": "Actors",
+        "changePhoto": "Change photo",
+        "completedTrips": "Completed trips",
+        "futureTrips": "Future trips",
+        "myApplications": "My applications",
+        "spentMoney": "Spent money",
+        "sentApplications": "Sent applications",
+        "about": "About me",
+        "statistics": "Statistics",
+        "trips": "TRIPS",
+        "applications": "APPLICATIONS",
+        "receivedApplications": "Received applications",
+        "profile": "My profile",
+        "status": "Status"
     },
     "security": {
         "login": "Login",
@@ -46,7 +59,10 @@
         "load": "Load trip",
         "new": "New trip",
         "empty": "No trips found",
-        "more": "View more"
+        "more": "View more",
+        "edit": "Edit",
+        "placeholderSearcher": "Title, ticker or description",
+        "myCreated": "My created trips"
     },
     "trip": {
         "info": "Information",
@@ -61,13 +77,24 @@
         "options": "Options",
         "goBack": "Go back",
         "edit": "Editar",
-        "buy": "Buy trip"
+        "buy": "Buy trip",
+        "stages": "Stages",
+        "stage": "Stage"
     },
     "sponsorships": {
         "sponsorships": "Sponsorships",
         "list": "My sponsorships",
         "new": "New sponsorship",
-        "edit": "Edit sponsorship"
+        "edit": "Edit sponsorship",
+        "empty": "No sponsorships found",
+        "display": "Display sponsorship"
+    },
+    "sponsorship": {
+        "sponsorship": "Sponsorship",
+        "payed": "Payed",
+        "notPayed": "Not payed",
+        "creator": "Creator",
+        "trips": "Trips"
     },
     "not-found":{
         "not-found": "Error 404 - Page not found"
@@ -90,6 +117,37 @@
         "moment": "Moment",
         "status": "Status",
         "comments": "Comments",
-        "applications": "Applications"
+        "applications": "Applications",
+        "trip": "Trip",
+        "explorer": "Explorer"
+    },
+    "dashboard": {
+        "display": "Dashboard",
+        "tripsPerManager": "NUMBER OF TRIPS PER MANAGER",
+        "applicationsPerTrip": "NUMBER OF APPLICATIONS PER TRIP",
+        "priceOfTrips": "PRICE OF THE TRIPS",
+        "applicationsByStatus": "APPLICATIONS GROUPED BY STATUS",
+        "explorersFinder": "EXPLORERS FINDER",
+        "average": "AVERAGE",
+        "minimum": "MINIMUM",
+        "maximum": "MAXIMUM",
+        "stdDeviation": "STANDART DEVIATION",
+        "pending": "PENDING",
+        "rejected": "REJECTED",
+        "due": "DUE",
+        "accepted": "ACCEPTED",
+        "cancelled": "CANCELLED",
+        "avgPriceRange": "AVERAGE PRICE RANGE",
+        "topTenKeywords": "TOP 10 KEYWORDS",
+        "moreInfo": "More info"
+    },
+    "audits":{
+        "audits": "Audits",
+        "audit": "Audit",
+        "empty": "You have not created any audit",
+        "new": "New audit",
+        "auditor": "Auditor",
+        "attachments": "Attachments",
+        "trip": "Trip"
     }
 }

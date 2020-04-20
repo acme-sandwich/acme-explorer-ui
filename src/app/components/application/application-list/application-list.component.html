@@ -14,18 +14,23 @@
   </div>
 </section>
 
-<table datatable [dtOptions]="dtOptions" class="table table-sm table-striped" dt-columns="dtColumns" width="100%">
+<table datatable [dtOptions]="dtOptions" class="table table-sm table-striped" width="100%">
   <thead style="background-color: #94c045;">
     <tr>
-      <th>Moment</th>
-      <th>Status</th>
-      <th>Comments</th>
+      <td translate>{{'applications.status'}}</td>
+      <th translate>{{'applications.trip'}}</th>
+      <th translate>{{'applications.explorer'}}</th>
+      <th translate>{{'applications.moment'}}</th>
+      <th translate>Comments</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let app of applications">
-      <td>{{app.moment | date}}</td>
+    <tr *ngFor="let app of data">
       <td>{{app.status}}</td>
+      <!--<td style="cursor: pointer;" routerLink="/trips/display/{{app.trip}}">{{app.tripName}}</td>-->
+      <td><a href="/trips/display/{{app.trip}}">{{app.tripName}}</a></td>
+      <td><a href="/actors/display/{{app.explorer}}">{{app.explorerName}}</a></td>
+      <td>{{app.moment | date}}</td>
       <td>
         <ul class="list-group">
         <li class="list-group-item" *ngFor="let comment of app.comments">

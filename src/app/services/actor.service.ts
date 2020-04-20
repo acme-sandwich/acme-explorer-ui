@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Actor } from '../models/actor.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActorService {
+  private actorsUrl = environment.backendApiBaseURL + '/api/v1/actors';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   createActors(): Actor[] {
     let actors: Actor[];
@@ -19,7 +26,7 @@ export class ActorService {
     actor.name = 'Jorge';
     actor.surname = 'Gordo Aguilar';
     actor.phone = '675849839';
-    actor.role = 'ADMINISTRATOR';
+    actor.role = ['ADMINISTRATOR'];
     actor.email = 'jorge@acme-explorer.com';
     actor.address = 'Calle San Juan, 7';
     actor.banned = false;
@@ -30,7 +37,7 @@ export class ActorService {
     actor.name = 'Antonio';
     actor.surname = 'Rodríguez Artacho';
     actor.phone = '633617283';
-    actor.role = 'MANAGER';
+    actor.role = ['MANAGER'];
     actor.email = 'antonio@acme-explorer.com';
     actor.address = 'Calle Feria, 33';
     actor.banned = false;
@@ -41,7 +48,7 @@ export class ActorService {
     actor.name = 'Rafael';
     actor.surname = 'Fresno Aranda';
     actor.phone = '622727388';
-    actor.role = 'MANAGER';
+    actor.role = ['MANAGER'];
     actor.email = 'rafael@acme-explorer.com';
     actor.address = 'Avenida Milagros, 41';
     actor.banned = false;
@@ -52,7 +59,7 @@ export class ActorService {
     actor.name = 'Clara';
     actor.surname = 'Fernández Díaz';
     actor.phone = '666787678';
-    actor.role = 'EXPLORER';
+    actor.role = ['EXPLORER'];
     actor.email = 'clara@gmail.com';
     actor.address = 'Calle Rosalía, 22';
     actor.banned = false;
@@ -63,12 +70,22 @@ export class ActorService {
     actor.name = 'Julia';
     actor.surname = 'Smith Corrales';
     actor.phone = '666757099';
-    actor.role = 'EXPLORER';
+    actor.role = ['EXPLORER'];
     actor.email = 'julia@gmail.com';
     actor.address = 'Calle Smith, 8';
     actor.banned = true;
     actors.push(actor);
 
     return actors;
+  }
+
+  getActors() {
+    const url = `${this.actorsUrl}`;
+    return this.http.get<Actor[]>(url).toPromise();
+  }
+
+  getActor(id: String) {
+    const url = `${this.actorsUrl}/${id}`;
+    return this.http.get<Actor>(url).toPromise();
   }
 }

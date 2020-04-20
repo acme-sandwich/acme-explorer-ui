@@ -1,18 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Actor } from '../../../models/actor.model';
 import { ActorService } from '../../../services/actor.service';
+import { TranslateService } from '@ngx-translate/core';
+import { TranslatableComponent } from '../../shared/translatable/translatable.component';
 
 @Component({
   selector: 'app-actor-list',
   templateUrl: './actor-list.component.html',
   styleUrls: ['./actor-list.component.css']
 })
-export class ActorListComponent implements OnInit {
+export class ActorListComponent extends TranslatableComponent implements OnInit {
 
   private actors: Actor[];
-  dtOptions: DataTables.Settings = {};
+  data: any[];
+  dtOptions: any = {};
 
-  constructor(private actorService: ActorService) {
+  constructor(private actorService: ActorService, private translateService: TranslateService) {
+    super(translateService);
     this.actors = actorService.createActors();
    }
 
@@ -22,8 +26,15 @@ export class ActorListComponent implements OnInit {
 
   ngOnInit() {
     this.dtOptions = {
-      pageLength: 2
-    }
-  }
+      pagingType: 'full_numbers',
+      pageLength: 5,
+    };
 
+    this.actorService.getActors()
+      .then((val) => {
+        this.data = val;
+        console.log(this.data);
+      })
+      .catch((err) => console.error(err.message));
+  }
 }

@@ -17,19 +17,25 @@
         <li class="drop-down" ><a id="header-trips" href="javascript:void(0);">{{'trips.trips' | translate}}</a>
           <ul>
             <li><a id="header-trips-list" routerLink="/trips">{{'trips.list' | translate}}</a></li>
-            <li *ngIf="activeRole === 'MANAGER'"><a id="header-trips-new" routerLink="">{{'trips.new' | translate}}</a></li>
+            <li *ngIf="activeRole === 'MANAGER'"><a id="header-trips-new" routerLink="/trips/my-trips">{{'trips.myCreated' | translate}}</a></li>
           </ul>
         </li>
 
-        <li><a id="header-applications-list" routerLink="/applications">{{'applications.list' | translate}}</a></li>
-        <li><a id="header-actors-list" routerLink="/actors">{{'actor.list' | translate}}</a></li>
+        <li *ngIf="activeRole === 'EXPLORER' || activeRole === 'MANAGER'"><a id="header-applications-list" routerLink="/actors/{{currentActor._id}}/applications">{{'applications.list' | translate}}</a></li>
+        <li *ngIf="activeRole === 'ADMINISTRATOR'"><a id="header-actors-list" routerLink="/actors">{{'actor.list' | translate}}</a></li>
+        <li *ngIf="activeRole === 'ADMINISTRATOR'"><a id="header-dashboard-display" routerLink="/dashboard">{{'dashboard.display' | translate}}</a></li>
+        <li *ngIf="activeRole === 'AUDITOR'"><a id="header-audit-list" routerLink="/audits">{{'audits.audits' | translate}}</a></li>
 
         <li class="drop-down" *ngIf="activeRole === 'SPONSOR'">
           <a id="header-sponsorships" href="javascript:void(0);">{{'sponsorships.sponsorships' | translate}}</a>
           <ul>
-            <li *ngIf="activeRole === 'SPONSOR'"><a id="header-sponsorships-list" routerLink="/trips">{{'sponsorships.list' | translate}}</a></li>
+            <li *ngIf="activeRole === 'SPONSOR'"><a id="header-sponsorships-list" routerLink="/sponsorships">{{'sponsorships.list' | translate}}</a></li>
             <li *ngIf="activeRole === 'SPONSOR'"><a id="header-sponsorships-new" routerLink="">{{'sponsorships.new' | translate}}</a></li>
           </ul>
+        </li>
+
+        <li *ngIf="currentActor">
+          <a id="header-profile" routerLink="/actors/display/{{currentActor._id}}">{{'actor.profile' | translate}}</a>
         </li>
 
         <li *ngIf="!currentActor">

@@ -1,0 +1,57 @@
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="breadcrumb-hero">
+      <div class="container">
+          <div class="breadcrumb-hero">
+              <h2>{{'sponsorships.list' | translate}}</h2>
+          </div>
+      </div>
+  </div>
+  <div class="container">
+      <ol>
+          <li><a routerLink="/">{{'header.home' | translate}}</a></li>
+          <li>{{'sponsorships.list' | translate}}</li>
+      </ol>
+  </div>
+</section>
+
+<div *ngIf="data == undefined || data.length == 0">
+  {{ 'sponsorships.empty' | translate}}
+</div>
+
+<!-- ======= Blog Section ======= -->
+<section id="blog" class="blog">
+  <div class="container">
+
+      <div class="blog-pagination" data-aos="fade-up">
+          <ul class="">
+              <li class="active"><a routerLink="/sponsorships">{{'sponsorships.new' |translate}}</a></li>
+          </ul>
+      </div>
+
+      <div *ngIf="data != undefined && data.length > 0" class="row">
+
+          <div *ngFor="let sponsorship of data; let i = index" class="col-lg-4  col-md-6 d-flex align-items-stretch"
+              data-aos="fade-up">
+              <article class="entry">
+
+                  <div class="entry-img">
+                      <img *ngIf="sponsorship.banner != null && sponsorship.banner.length != 0" class="img-fluid"
+                          src="{{sponsorship.banner.data}}" alt="{{sponsorship.landingPage}}">
+                      <img *ngIf="!sponsorship.banner || sponsorship.banner.length === 0" class="img-fluid"
+                          src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{sponsorship.landingPage}}">
+                  </div>
+
+                  <h2 class="entry-title">
+                      <a routerLink="/sponsorships/{{sponsorship._id}}">{{'sponsorships.display' | translate}}</a>
+                  </h2>
+                  <div *ngIf="sponsorship.payed" class="text-success">
+                    <h4>{{'sponsorship.payed' | translate}}</h4>
+                  </div>
+                  <div *ngIf="!sponsorship.payed" class="text-danger">
+                    <h4>{{'sponsorship.notPayed' | translate}}</h4>
+                  </div>
+              </article>
+          </div>
+      </div>
+  </div>
+</section>

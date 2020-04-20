@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Actor } from 'src/app/models/actor.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { AuditsService } from 'src/app/services/audits.service';
 
 @Component({
   selector: 'app-trip-display',
@@ -17,12 +18,14 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
   trip = new Trip();
   creator = new Actor();
   id: String;
+  pictures = [];
   private currentActor: Actor;
   private activeRole: String;
   private purchasable: boolean;
+  audits = [];
 
   constructor(private authService: AuthService, private tripService: TripService, private router: Router, 
-    private route: ActivatedRoute, private translateService: TranslateService) { 
+    private route: ActivatedRoute, private translateService: TranslateService, private auditService: AuditsService) { 
       super(translateService);
   }
 
@@ -56,7 +59,16 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
           this.creator = val1;
         }).catch((err1) => {
           console.log(err1);
-        })
+        });
+        for(var i = 0; i < this.trip.picture.length; i++){
+          this.pictures.push(this.trip.picture[i]);
+        }
+        this.auditService.getAuditsTrip(this.id)
+          .then((val) => {
+            this.audits = val;
+          }).catch((err1) => {
+            console.log(err1);
+          });
       })
       .catch((err) => {
         console.error(err);

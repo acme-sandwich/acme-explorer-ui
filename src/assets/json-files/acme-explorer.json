@@ -15,7 +15,8 @@
       "endDate": "2020-07-16",
       "picture": "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials-images.forbesimg.com%2Fdam%2Fimageserve%2F1004792742%2F960x0.jpg",
       "cancelled": false,
-      "cancelledReason": null
+      "cancelledReason": null,
+      "creator": "yb6ORb8"
     },
     {
       "id": "5b11322za90b6581dee5dbc6",
@@ -32,7 +33,8 @@
       "endDate": "2020-05-10",
       "picture": "https://dreampeaks.com/wp-content/uploads/2018/07/Skydiving-Madrid-Spain.jpg",
       "cancelled": false,
-      "cancelledReason": null
+      "cancelledReason": null,
+      "creator": "yb6ORb8"
     },
     {
       "id": "5b11322za90b6581dee5dbc7",
@@ -50,7 +52,8 @@
       "endDate": "2020-04-21",
       "picture": "https://www.guruwalk.com/blog/wp-content/uploads/2019/09/que-ver-lisboa.jpg",
       "cancelled": true,
-      "cancelledReason": "Cancelled due to COVID-19"
+      "cancelledReason": "Cancelled due to COVID-19",
+      "creator": "yb6ORb8"
     },
     {
       "id": "5b11322za90b6581dee5dbc8",
@@ -67,7 +70,8 @@
       "endDate": "2020-05-14",
       "picture": "https://fotos.hoteles.net/articulos/guia-huelva-ciudad-6159-1.jpg",
       "cancelled": true,
-      "cancelledReason": "Cancelled due to COVID-19"
+      "cancelledReason": "Cancelled due to COVID-19",
+      "creator": "yb6ORb8"
     }
   ],
   "actors": [
@@ -93,7 +97,7 @@
       "phone": "2154",
       "address": "Sevilla",
       "role": "EXPLORER",
-      "banned": "false",
+      "banned": false,
       "id": "KUX_gqH"
     },
     {
@@ -104,7 +108,7 @@
       "phone": "45297",
       "address": "Jaén",
       "role": "MANAGER",
-      "banned": "false",
+      "banned": false,
       "id": "yb6ORb8"
     },
     {
@@ -115,7 +119,7 @@
       "phone": "484532",
       "address": "Sevilla",
       "role": "EXPLORER",
-      "banned": "false",
+      "banned": false,
       "id": "3nn4DEX"
     },
     {
@@ -126,7 +130,7 @@
       "phone": "explorer666",
       "address": "explorer666",
       "role": "EXPLORER",
-      "banned": "false",
+      "banned": false,
       "id": "usRUR5m"
     },
     {
@@ -137,8 +141,140 @@
       "phone": "5445762",
       "address": "Sponsor's Street",
       "role": "SPONSOR",
-      "banned": "false",
+      "banned": true,
       "id": "bMKshch"
+    },
+    {
+      "name": "Admin",
+      "surname": "Admin",
+      "email": "admin1@mail.com",
+      "password": "admin1",
+      "phone": "87432",
+      "address": "Admin street",
+      "role": "ADMINISTRATOR",
+      "banned": "false",
+      "id": "9PmcqXQ"
+    },
+    {
+      "name": "Sponsor",
+      "surname": "sponsor",
+      "email": "sponsor01@mail.com",
+      "password": "sponsor01",
+      "phone": "546668",
+      "address": "sponsors street",
+      "role": "SPONSOR",
+      "banned": "false",
+      "id": "fnEyJQG"
+    }
+  ],
+  "applications": [
+    {
+      "moment": "2020-02-14",
+      "status": "ACCEPTED",
+      "comments": [
+        "I want to go, please...",
+        "I am a good person"
+      ],
+      "trip": "5b11322za90b6581dee5dbc5",
+      "explorer": "KUX_gqH",
+      "manager": "yb6ORb8"
+    },
+    {
+      "moment": "2020-04-10",
+      "status": "DUE",
+      "comments": [
+        "I want to go, please...",
+        "I am a good person"
+      ],
+      "trip": "5b11322za90b6581dee5dbc8",
+      "explorer": "KUX_gqH",
+      "manager": "yb6ORb8"
+    },
+    {
+      "moment": "2020-03-02",
+      "status": "PENDING",
+      "comments": [
+        "I want to go, please...",
+        "I am a good person"
+      ],
+      "trip": "5b11322za90b6581dee5dbc5",
+      "explorer": "KUX_gqH",
+      "manager": "yb6ORb8"
+    },
+    {
+      "moment": "2020-03-29",
+      "status": "PENDING",
+      "comments": [
+        "I want to go, please...",
+        "I am a good person"
+      ],
+      "trip": "5b11322za90b6581dee5dbc7",
+      "explorer": "KUX_gqH",
+      "manager": "yb6ORb8"
+    },
+    {
+      "moment": "2020-04-13",
+      "status": "REJECTED",
+      "comments": [
+        "I want to go, please...",
+        "I am a good person",
+        "I want to visit Seville because I consider it is one of the most beautiful cities all over the world."
+      ],
+      "trip": "5b11322za90b6581dee5dbc6",
+      "explorer": "KUX_gqH",
+      "manager": ""
+    }
+  ],
+  "sponsorships": [
+    {
+      "id": "ah7Jdn9",
+      "banner": "https://media.wired.com/photos/5d09594a62bcb0c9752779d9/4:3/w_2000,h_1500,c_limit/Transpo_G70_TA-518126.jpg",
+      "landingPage": "https://www.cars.com",
+      "payed": true,
+      "trips": [
+        "5b11322za90b6581dee5dbc6",
+        "5b11322za90b6581dee5dbc7"
+      ],
+      "creator": "bMKshch"
+    },
+    {
+      "id": "a9sJk18",
+      "banner": "https://www.cecidiomas.es/images/cecidiomases/684-thinking-of-getting-a-cat-international-cat-care-3435.png",
+      "landingPage": "https://www.pets.com",
+      "payed": false,
+      "trips": [],
+      "creator": "bMKshch"
+    },
+    {
+      "id": "9lKi20S",
+      "banner": "https://s3-prod.chicagobusiness.com/A321XLR_CFM_UAL_V07.jpg",
+      "landingPage": "https://www.planes.com",
+      "payed": true,
+      "trips": [
+        "5b11322za90b6581dee5dbc7"
+      ],
+      "creator": "bMKshch"
+    },
+    {
+      "id": "sn3j09A",
+      "banner": "https://www.thetrainline.com/cmsmedia/cms/11224/france_train2_hero_2x.jpg",
+      "landingPage": "https://www.trains.com",
+      "payed": true,
+      "trips": [
+        "5b11322za90b6581dee5dbc6"
+      ],
+      "creator": "fnEyJQG"
+    },
+    {
+      "id": "102LSkd",
+      "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/1200px-Good_Food_Display_-_NCI_Visuals_Online.jpg",
+      "landingPage": "https://www.foods.com",
+      "payed": false,
+      "trips": [
+        "5b11322za90b6581dee5dbc5",
+        "5b11322za90b6581dee5dbc7"
+      ],
+      "creator": "fnEyJQG"
     }
   ]
 }

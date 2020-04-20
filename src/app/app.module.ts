@@ -30,6 +30,12 @@ import { ApplicationListComponent } from './components/application/application-l
 import { DataTablesModule } from 'angular-datatables';
 import { ActorListComponent } from './components/actor/actor-list/actor-list.component';
 import { ActorDisplayComponent } from './components/actor/actor-display/actor-display.component';
+import { SponsorshipListComponent } from './components/sponsorship/sponsorship-list/sponsorship-list.component';
+import { SponsorshipDisplayComponent } from './components/sponsorship/sponsorship-display/sponsorship-display.component';
+import { TripEditComponent } from './components/trip/trip-edit/trip-edit.component';
+import { DashboardDisplayComponent } from './components/dashboard/dashboard-display/dashboard-display.component';
+import { AuditsListComponent } from './components/audits/audits-list/audits-list.component';
+import { AuditsDisplayComponent } from './components/audits/audits-display/audits-display.component';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -67,6 +73,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     ApplicationListComponent,
     ActorListComponent,
     ActorDisplayComponent,
+    SponsorshipListComponent,
+    SponsorshipDisplayComponent,
+    TripEditComponent,
+    DashboardDisplayComponent,
+    AuditsListComponent,
+    AuditsDisplayComponent
   ],
   imports: [
     DataTablesModule,

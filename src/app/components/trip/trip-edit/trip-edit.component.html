@@ -1,0 +1,61 @@
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="breadcrumb-hero">
+    <div class="container">
+      <div class="breadcrumb-hero">
+        <h2>Editando trip</h2>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <ol>
+      <li><a href="/">{{'header.home' | translate}}</a></li>
+      <li><a href="/trips">{{'trips.trips' | translate}}</a></li>
+      <li>Editar</li>
+    </ol>
+  </div>
+</section>
+
+<form [formGroup]="tripForm" (ngSubmit)="onSubmit()">
+  <div class="form-group has-danger">
+    <input class="form-control" formControlName="id" type="hidden">
+    <input class="form-control" formControlName="title" type="hidden">
+    <input class="form-control" formControlName="description" type="hidden">
+    <input class="form-control" formControlName="price" type="hidden">
+    <input class="form-control" formControlName="picture" type="hidden">
+    <input class="form-control" formControlName="startDate" type="hidden">
+    <input class="form-control" formControlName="endDate" type="hidden">
+
+    <label class="center-block">Titulo
+      <input class="form-control" formControlName="title" placeholder="Titulo">
+    </label>
+  
+    <label class="center-block">Descripcion
+      <input class="form-control" formControlName="description" placeholder="Descripcion">
+    </label>
+  
+    <label class="center-block">Precio
+      <input class="form-control" formControlName="price" placeholder="Precio">
+    </label>
+  
+    <label class="center-block">Imagen
+      <input class="form-control" formControlName="picture">
+    </label>
+  
+    <label class="center-block">Fecha de comienzo
+      <input class="form-control" formControlName="startDate" placeholder="Fecha">
+    </label>
+  
+    <label class="center-block">Fecha de fin
+      <input class="form-control" formControlName="endDate" placeholder="Fecha">
+    </label>
+  
+    <button type="submit" class="btn btn-success" [disabled]="tripForm.invalid">
+      Guardar
+    </button>
+  
+    <button (click)="goBack()" class="bn btn-primary">
+      Cancelar
+    </button>
+
+  </div>
+</form>

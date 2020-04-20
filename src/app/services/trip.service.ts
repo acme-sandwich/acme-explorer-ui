@@ -5,6 +5,7 @@ import { Actor } from '../models/actor.model';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { catchError, map, tap } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -15,9 +16,9 @@ const httpOptions = {
 })
 export class TripService {
 
-  private tripsUrl = environment.backendApiBaseURL + '/trips';
+  private tripsUrl = environment.backendApiBaseURL + '/api/v1/trips';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   createTrips(): Trip[] {
     let trips: Trip[];
@@ -33,7 +34,7 @@ export class TripService {
     trip.requirements = ['Can swim', 'Passion for new experiences'];
     trip.startDate = new Date('2020-07-15');
     trip.endDate = new Date('2020-07-16');
-    trip.picture = 'https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials'
+    //trip.picture = 'https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials'
       + '-images.forbesimg.com%2Fdam%2Fimageserve%2F1004792742%2F960x0.jpg';
     trip.cancelled = false;
     trip.cancelledReason = null;
@@ -48,7 +49,7 @@ export class TripService {
     trip.requirements = ['Not having vertigo', 'Not having a phobia of flying'];
     trip.startDate = new Date('2020-05-10');
     trip.endDate = new Date('2020-05-10');
-    trip.picture = 'https://dreampeaks.com/wp-content/uploads/2018/07/Skydiving-Madrid-Spain.jpg';
+    //trip.picture = 'https://dreampeaks.com/wp-content/uploads/2018/07/Skydiving-Madrid-Spain.jpg';
     trip.cancelled = false;
     trip.cancelledReason = null;
     trip.creator = "yb6ORb8";
@@ -63,7 +64,7 @@ export class TripService {
     trip.requirements = ['Be under 26 years old', 'Be a student', 'Tolerate long bus trips'];
     trip.startDate = new Date('2020-04-14');
     trip.endDate = new Date('2020-04-18');
-    trip.picture = 'https://www.guruwalk.com/blog/wp-content/uploads/2019/09/que-ver-lisboa.jpg';
+    //trip.picture = 'https://www.guruwalk.com/blog/wp-content/uploads/2019/09/que-ver-lisboa.jpg';
     trip.cancelled = true;
     trip.cancelledReason = 'Cancelled due to COVID-19';
     trip.creator = "yb6ORb8";
@@ -87,7 +88,7 @@ export class TripService {
    */
   getTripCreator(id: String){
     return new Promise<any>((resolve, reject) => {
-      let apiURL = environment.backendApiBaseURL+'/actors/yb6ORb8';
+      let apiURL = environment.backendApiBaseURL+'/api/v1/actors/' + id;
       this.http.get(apiURL).toPromise().then(res => {
         resolve(res);
       }).catch(error => {
@@ -101,20 +102,45 @@ export class TripService {
     return this.http.get<Trip[]>(url).toPromise();
   }
 
-  getTripsPage(start: number, psize: number, keyword:string) {
-    const url = `${this.tripsUrl}/search`;
+  getTripsPage(pstart: number, psize: number, keyword:string, myTrips: boolean) {
+    const url = `${this.tripsUrl}`;
+    let idCreator = '';
+    if(myTrips){
+       idCreator = this.authService.getCurrentActor()._id;
+       //idCreator = '5e9d73832830b00012df40bc';
+    }
+    
     const parameters = {
-      startFrom: '' + start,
+      page: '' + pstart,
       pageSize: '' + psize,
-      tripTitle: keyword == null ? '' : keyword
+      keyword: keyword == null ? '' : keyword,
+      published: 'true',
+      creator: idCreator,
     };
 
+    console.log(parameters);
+
     if(keyword == null) {
-      delete parameters.tripTitle;
+      delete parameters.keyword;
     }
 
     return this.http.get<Trip[]>(url, {
       params: parameters, observe: 'body',
     }).toPromise();
+  }
+
+  updateTrip(trip: Trip) {
+    const url = `${this.tripsUrl}/${trip._id}`;
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+
+    const body = JSON.stringify(trip);
+    console.log(body);
+    return new Promise<any>((resolve, reject) => {
+      this.http.put(url, body, httpOptions).toPromise()
+        .then(res => {
+          resolve(res);
+        }, err => {console.log(err); reject(err)});
+    });
   }
 }
