@@ -18,12 +18,13 @@ const MAX_TRIPS = 12;
 export class TripListComponent extends TranslatableComponent implements OnInit {
 
   numObjects = MAX_TRIPS;
-  page = 1;
+  page = 0;
   data: any[];
   filteredTrips: any[];
   actor: Actor;
   keyword: string;
   direction: string;
+  myTrips = false;
 
   constructor(private tripService: TripService, private router: Router, private route: ActivatedRoute,
     public authService: AuthService, private translateService: TranslateService) {
@@ -32,8 +33,17 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => this.keyword = params['keyword']);
+    this.route.data.subscribe(data => {
+        if(data.myTrips){
+          this.myTrips = true;
+        }else{
+          this.myTrips = false;
+        }
+    });
 
-    this.tripService.getTripsPage(this.page, MAX_TRIPS, this.keyword)
+    console.log(this.myTrips);
+
+    this.tripService.getTripsPage(this.page, MAX_TRIPS, this.keyword, this.myTrips)
       .then((val) => {
         this.data = val;
         this.assignCopy();
@@ -85,9 +95,10 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
   }
 
   addTrips(startIndex, endIndex, _method) {
-    this.tripService.getTripsPage(startIndex, MAX_TRIPS, this.keyword)
+    this.tripService.getTripsPage(startIndex, MAX_TRIPS, this.keyword, this.myTrips)
       .then(val => {
         this.data = this.data.concat(val);
+        this.assignCopy();
       })
       .catch(err => {
         console.log(err);

@@ -102,14 +102,23 @@ export class TripService {
     return this.http.get<Trip[]>(url).toPromise();
   }
 
-  getTripsPage(pstart: number, psize: number, keyword:string) {
+  getTripsPage(pstart: number, psize: number, keyword:string, myTrips: boolean) {
     const url = `${this.tripsUrl}`;
+    let idCreator = '';
+    if(myTrips){
+       idCreator = this.authService.getCurrentActor()._id;
+       //idCreator = '5e9d73832830b00012df40bc';
+    }
+    
     const parameters = {
       page: '' + pstart,
       pageSize: '' + psize,
       keyword: keyword == null ? '' : keyword,
       published: 'true',
+      creator: idCreator,
     };
+
+    console.log(parameters);
 
     if(keyword == null) {
       delete parameters.keyword;

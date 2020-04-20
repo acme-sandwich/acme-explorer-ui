@@ -17,7 +17,7 @@
         <li class="drop-down" ><a id="header-trips" href="javascript:void(0);">{{'trips.trips' | translate}}</a>
           <ul>
             <li><a id="header-trips-list" routerLink="/trips">{{'trips.list' | translate}}</a></li>
-            <li *ngIf="activeRole === 'MANAGER'"><a id="header-trips-new" routerLink="">{{'trips.myCreated' | translate}}</a></li>
+            <li *ngIf="activeRole === 'MANAGER'"><a id="header-trips-new" routerLink="/trips/my-trips">{{'trips.myCreated' | translate}}</a></li>
           </ul>
         </li>
 
