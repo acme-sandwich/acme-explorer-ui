@@ -34,7 +34,7 @@
         </li>
 
         <li *ngIf="currentActor">
-          <a id="header-profile" routerLink="/actors/display/{{currentActor.id}}">{{'actor.profile' | translate}}</a>
+          <a id="header-profile" routerLink="/actors/display/{{currentActor._id}}">{{'actor.profile' | translate}}</a>
         </li>
 
         <li *ngIf="!currentActor">

@@ -1,7 +1,15 @@
 import { Entity } from './entity.model';
 
+class Picture  {
+    data: string;
+    contentType: string;
+
+    constructor(){
+    }
+}
+
 export class Sponsorship extends Entity {
-    banner: string;
+    banner: Picture;
     landingPage: string;
     payed: boolean;
     trips: [string];

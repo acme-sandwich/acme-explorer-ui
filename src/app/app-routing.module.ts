@@ -32,9 +32,9 @@ const appRoutes: Routes = [
     {path: '', component: ApplicationListComponent },
   ]},
   {path: 'actors', children: [
-    {path: '', component: ActorListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'ADMINISTRATOR'}},
     {path: 'display/:id', component: ActorDisplayComponent},
     {path: ':id/applications', component: ApplicationListComponent},
+    {path: '', component: ActorListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'ADMINISTRATOR'}},
   ]},
   {path: 'sponsorships', children: [
     {path: 'new', component: SponsorshipListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}},
