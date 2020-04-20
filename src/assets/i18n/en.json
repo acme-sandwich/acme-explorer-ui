@@ -29,7 +29,8 @@
         "trips": "TRIPS",
         "applications": "APPLICATIONS",
         "receivedApplications": "Received applications",
-        "profile": "My profile"
+        "profile": "My profile",
+        "status": "Status"
     },
     "security": {
         "login": "Login",
