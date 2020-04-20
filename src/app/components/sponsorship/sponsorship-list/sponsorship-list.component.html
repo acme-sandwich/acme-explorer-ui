@@ -36,13 +36,13 @@
 
                   <div class="entry-img">
                       <img *ngIf="sponsorship.banner != null && sponsorship.banner.length != 0" class="img-fluid"
-                          src="{{sponsorship.banner}}" alt="{{sponsorship.landingPage}}">
+                          src="{{sponsorship.banner.data}}" alt="{{sponsorship.landingPage}}">
                       <img *ngIf="!sponsorship.banner || sponsorship.banner.length === 0" class="img-fluid"
                           src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{sponsorship.landingPage}}">
                   </div>
 
                   <h2 class="entry-title">
-                      <a routerLink="/sponsorships/{{sponsorship.id}}">{{'sponsorships.display' | translate}}</a>
+                      <a routerLink="/sponsorships/{{sponsorship._id}}">{{'sponsorships.display' | translate}}</a>
                   </h2>
                   <div *ngIf="sponsorship.payed" class="text-success">
                     <h4>{{'sponsorship.payed' | translate}}</h4>

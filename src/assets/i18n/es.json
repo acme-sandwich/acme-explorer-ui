@@ -76,7 +76,9 @@
         "options": "Opciones",
         "goBack": "Volver atrás",
         "edit": "Editar",
-        "buy": "Comprar viaje"
+        "buy": "Comprar viaje",
+        "stages": "Etapas",
+        "stage": "Etapa"
     },
     "sponsorships": {
         "sponsorships": "Patrocinios",

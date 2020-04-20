@@ -76,7 +76,9 @@
         "options": "Options",
         "goBack": "Go back",
         "edit": "Editar",
-        "buy": "Buy trip"
+        "buy": "Buy trip",
+        "stages": "Stages",
+        "stage": "Stage"
     },
     "sponsorships": {
         "sponsorships": "Sponsorships",

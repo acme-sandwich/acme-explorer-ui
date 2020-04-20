@@ -28,7 +28,7 @@ export class ApplicationListComponent extends TranslatableComponent implements O
    }
 
    getExplorerApplications() {
-      this.applicationService.getApplicationsByExplorer(this.currentActor.id)
+      this.applicationService.getApplicationsByExplorer('5e9d9ec976ae7200126553e5')//this.currentActor._id
         .then((val) => {
           for (let i = 0; i < val.length; i ++) {
             this.tripService.getTrip(val[i].trip).then((tripVal) => {
@@ -44,7 +44,7 @@ export class ApplicationListComponent extends TranslatableComponent implements O
 
    getManagerApplications() {
       let result;
-      this.applicationService.getApplicationsByManager(this.currentActor.id)
+      this.applicationService.getApplicationsByManager('5e9d9ec976ae720012655407')//this.currentActor._id
       .then((val) => {
         for (let i = 0; i < val.length; i ++) {
           this.tripService.getTrip(val[i].trip).then((tripVal) => {
@@ -69,6 +69,7 @@ export class ApplicationListComponent extends TranslatableComponent implements O
       this.getExplorerApplications();
     } else if (this.authService.getCurrentActorRole() === 'MANAGER') {
       this.getManagerApplications();
+      console.log('sabe que soy manager');
     }
 
     this.dtOptions = {

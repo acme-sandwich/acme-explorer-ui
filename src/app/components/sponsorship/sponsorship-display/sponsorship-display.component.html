@@ -23,7 +23,7 @@
       <article class="entry entry-single">
 
         <div class="entry-img">
-          <img *ngIf="sponsorship.banner != null && sponsorship.banner.length != 0" class="img-fluid" src="{{sponsorship.banner}}"
+          <img *ngIf="sponsorship.banner != null && sponsorship.banner.data.length != 0" class="img-fluid" src="{{sponsorship.banner.data}}"
             alt="{{sponsorship.landingPage}}">
           <img *ngIf="!sponsorship.banner || sponsorship.banner.length === 0" class="img-fluid"
             src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{sponsorship.landingPage}}">
@@ -31,7 +31,7 @@
 
         <div class="entry-meta">
           <ul>
-            <li class="d-flex align-items-center"><i class="icofont-user"></i> {{'sponsorship.creator' | translate}}: <a routerLink="/actors/display/{{creator.id}}"> {{creator.name}}</a>
+            <li class="d-flex align-items-center"><i class="icofont-user"></i> {{'sponsorship.creator' | translate}}: <a routerLink="/actors/display/{{creator._id}}"> {{creator.name}}</a>
             </li>
           </ul>
         </div>
@@ -49,7 +49,7 @@
           <h3>{{'sponsorship.trips' | translate}}</h3>
           <p>
             <span *ngFor="let trip of trips; let i = index">
-              <a routerLink="/trips/display/{{trip.id}}">{{trip.title}}</a> <br />
+              <a routerLink="/trips/display/{{trip._id}}">{{trip.title}}</a> <br />
             </span>
           </p>
         </div>

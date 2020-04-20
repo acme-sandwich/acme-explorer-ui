@@ -1,12 +1,11 @@
 import { Entity } from './entity.model';
 
-class Stage extends Entity {
+class Stage  {
     title: string;
     description: string;
     price: number;
 
     constructor(){
-        super();
     }
 }
 

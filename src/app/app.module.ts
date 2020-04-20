@@ -34,6 +34,8 @@ import { SponsorshipListComponent } from './components/sponsorship/sponsorship-l
 import { SponsorshipDisplayComponent } from './components/sponsorship/sponsorship-display/sponsorship-display.component';
 import { TripEditComponent } from './components/trip/trip-edit/trip-edit.component';
 import { DashboardDisplayComponent } from './components/dashboard/dashboard-display/dashboard-display.component';
+import { AuditsListComponent } from './components/audits/audits-list/audits-list.component';
+import { AuditsDisplayComponent } from './components/audits/audits-display/audits-display.component';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -74,7 +76,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     SponsorshipListComponent,
     SponsorshipDisplayComponent,
     TripEditComponent,
-    DashboardDisplayComponent
+    DashboardDisplayComponent,
+    AuditsListComponent,
+    AuditsDisplayComponent
   ],
   imports: [
     DataTablesModule,

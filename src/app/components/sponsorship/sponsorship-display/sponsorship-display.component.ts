@@ -33,13 +33,13 @@ export class SponsorshipDisplayComponent extends TranslatableComponent implement
     this.currentActor = this.authService.getCurrentActor();
     console.log(this.route);
     // Recover sponsorship
-    this.sponsorshipService.getSponsorship(this.id)
+    this.sponsorshipService.getSponsorship(this.id, '5e9d9ec976ae72001265543f') // this.currentActor._id
       .then((val) => {
         this.sponsorship = val;
-        if (!this.currentActor || !this.currentActor.id || this.currentActor.id != this.sponsorship.creator) {
+        if (!this.currentActor || !this.currentActor._id ) { //|| this.currentActor.id != this.sponsorship.sponsor
           this.router.navigate(['/denied-access']);
         } else {
-          this.sponsorshipService.getSponsorshipCreator(this.sponsorship.creator)
+          this.sponsorshipService.getSponsorshipCreator(this.sponsorship.sponsor)
           .then((val1) => {
             this.creator = val1;
             this.sponsorshipService.getSponsorshipTrips(this.sponsorship.trips)

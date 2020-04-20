@@ -59,6 +59,17 @@
               <p> <i class="icofont-check"></i> {{req}}</p>
             </span>
           </p>
+          <h3>{{'trip.stages' | translate}}</h3>
+          <p>
+            <span *ngFor="let req of trip.stages; let i = index">
+              <p> 
+                <i class="icofont-airplane-alt"></i> {{trip.stages[i].title}} - {{trip.stages[i].price}} €
+              </p>
+              <p>
+                {{trip.stages[i].description}}
+              </p>
+            </span>
+          </p>
         </div>
 
         <div class="entry-footer clearfix" hidden="true">

@@ -61,8 +61,6 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
         for(var i = 0; i < this.trip.picture.length; i++){
           this.pictures.push(this.trip.picture[i]);
         }
-        console.log(this.trip.picture);
-        console.log(this.pictures);
       })
       .catch((err) => {
         console.error(err);

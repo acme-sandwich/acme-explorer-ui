@@ -12,18 +12,19 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class SponsorshipService {
-  private sponsorshipsUrl = environment.backendApiBaseURL + '/sponsorships';
+  private sponsorshipsActorsUrl = environment.backendApiBaseURL + '/api/v1/actors';
+  private sponsorshipsUrl = environment.backendApiBaseURL + '/api/v1/sponsorships';
 
   constructor(private http: HttpClient) { }
 
-  getSponsorship(id: String){
-    const url = `${this.sponsorshipsUrl}/${id}`;
+  getSponsorship(id: String, idActor: String){
+    const url = `${environment.backendApiBaseURL}/api/v1/actors/${idActor}/sponsorships/${id}`;
     return this.http.get<Sponsorship>(url).toPromise();
   }
   
   getSponsorshipCreator(id: String){
     return new Promise<any>((resolve, reject) => {
-      let apiURL = environment.backendApiBaseURL+'/actors/'+id;
+      let apiURL = environment.backendApiBaseURL+'/api/v1/actors/'+id;
       this.http.get(apiURL).toPromise().then(res => {
         resolve(res);
       }).catch(error => {
@@ -38,7 +39,7 @@ export class SponsorshipService {
       let trips = [];
       ids.forEach(id => {
         promises.push(new Promise<any>((resolve, reject) => {
-          let apiURL = environment.backendApiBaseURL+'/trips/'+id;
+          let apiURL = environment.backendApiBaseURL+'/api/v1/trips/'+id;
           this.http.get(apiURL).toPromise().then(res => {
             trips.push(res);
             resolve(res);
@@ -59,7 +60,7 @@ export class SponsorshipService {
   }
 
   getSponsorshipsSponsor(id: String){
-    const url = `${this.sponsorshipsUrl}?creator=${id}`;
+    const url = `${this.sponsorshipsActorsUrl}/${id}/sponsorships`;
     return this.http.get<Sponsorship[]>(url).toPromise();
   }
 }

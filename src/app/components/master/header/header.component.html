@@ -21,7 +21,7 @@
           </ul>
         </li>
 
-        <li *ngIf="activeRole === 'EXPLORER' || activeRole === 'MANAGER'"><a id="header-applications-list" routerLink="/actors/{{currentActor.id}}/applications">{{'applications.list' | translate}}</a></li>
+        <li *ngIf="activeRole === 'EXPLORER' || activeRole === 'MANAGER'"><a id="header-applications-list" routerLink="/actors/{{currentActor._id}}/applications">{{'applications.list' | translate}}</a></li>
         <li *ngIf="activeRole === 'ADMINISTRATOR'"><a id="header-actors-list" routerLink="/actors">{{'actor.list' | translate}}</a></li>
         <li *ngIf="activeRole === 'ADMINISTRATOR'"><a id="header-dashboard-display" routerLink="/dashboard">{{'dashboard.display' | translate}}</a></li>
 

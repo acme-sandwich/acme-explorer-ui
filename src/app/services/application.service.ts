@@ -11,7 +11,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ApplicationService {
-  private applicationsUrl = environment.backendApiBaseURL + '/applications';
+  private applicationsUrl = environment.backendApiBaseURL + '/api';
 
   constructor(private http: HttpClient) { }
 
@@ -21,12 +21,12 @@ export class ApplicationService {
   }
 
   getApplicationsByExplorer(id: String) {
-    const url = `${this.applicationsUrl}?explorer=${id}`;
+    const url = `${this.applicationsUrl}/v2/my-applications?explorer=${id}`;
     return this.http.get<Application[]>(url).toPromise();
   }
 
   getApplicationsByManager(id: String) {
-    const url = `${this.applicationsUrl}?manager=${id}`;
+    const url = `${this.applicationsUrl}/v2/my-applications?manager=${id}`;
     return this.http.get<Application[]>(url).toPromise();
   }
 }

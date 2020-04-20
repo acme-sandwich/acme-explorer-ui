@@ -23,7 +23,7 @@ export class SponsorshipListComponent extends TranslatableComponent implements O
 
   ngOnInit() {
     this.actor = this.authService.getCurrentActor();
-    this.sponsorshipService.getSponsorshipsSponsor(this.actor.id)
+    this.sponsorshipService.getSponsorshipsSponsor('5e9d9ec976ae72001265543f')//this.actor._id
       .then((val) => {
         this.data = val;
       })
