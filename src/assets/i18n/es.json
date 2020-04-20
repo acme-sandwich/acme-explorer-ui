@@ -29,7 +29,8 @@
         "trips": "VIAJES",
         "applications": "PETICIONES",
         "receivedApplications": "Peticiones recibidas",
-        "profile": "Mi perfil"
+        "profile": "Mi perfil",
+        "status": "Estado"
     },
     "security": {
         "login": "Iniciar sesión",

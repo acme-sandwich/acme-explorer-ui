@@ -25,17 +25,16 @@ export class ActorListComponent extends TranslatableComponent implements OnInit 
   }
 
   ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+    };
+
     this.actorService.getActors()
       .then((val) => {
         this.data = val;
         console.log(this.data);
       })
       .catch((err) => console.error(err.message));
-
-      this.dtOptions = {
-        pagingType: 'full_numbers',
-        pageLength: 5,
-      }
   }
-
 }
