@@ -38,7 +38,7 @@
 					<i class="glyphicon glyphicon-cloud"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">8,252</span>
+					<span class="dbox__count">{{this.dashboard.tripsPerManagers.avgManagerTrips}}</span>
 					<span class="dbox__title">{{'dashboard.average' | translate}}</span>
 				</div>
 				
@@ -53,7 +53,7 @@
 					<i class="glyphicon glyphicon-download"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">100</span>
+					<span class="dbox__count">{{this.dashboard.tripsPerManagers.avgManagerTrips}}</span>
 					<span class="dbox__title">{{'dashboard.minimum' | translate}}</span>
 				</div>
 				
@@ -68,7 +68,7 @@
 					<i class="glyphicon glyphicon-heart"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">2502</span>
+					<span class="dbox__count">{{this.dashboard.tripsPerManagers.maxManagerTrips}}</span>
 					<span class="dbox__title">{{'dashboard.maximum' | translate}}</span>
 				</div>
 				
@@ -83,7 +83,7 @@
 					<i class="glyphicon glyphicon-heart"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">2502</span>
+					<span class="dbox__count">{{this.dashboard.tripsPerManagers.stdDevManagerTrips}}</span>
 					<span class="dbox__title">{{'dashboard.stdDeviation' | translate}}</span>
 				</div>
 				
@@ -113,7 +113,7 @@
 					<i class="glyphicon glyphicon-cloud"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">8,252</span>
+					<span class="dbox__count">{{this.dashboard.applicationsPerTrip.avgTripApplication}}</span>
 					<span class="dbox__title">{{'dashboard.average' | translate}}</span>
 				</div>
 				
@@ -128,7 +128,7 @@
 					<i class="glyphicon glyphicon-download"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">100</span>
+					<span class="dbox__count">{{this.dashboard.applicationsPerTrip.minTripApplication}}</span>
 					<span class="dbox__title">{{'dashboard.minimum' | translate}}</span>
 				</div>
 				
@@ -143,7 +143,7 @@
 					<i class="glyphicon glyphicon-heart"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">2502</span>
+					<span class="dbox__count">{{this.dashboard.applicationsPerTrip.maxTripApplication}}</span>
 					<span class="dbox__title">{{'dashboard.maximum' | translate}}</span>
 				</div>
 				
@@ -158,7 +158,7 @@
 					<i class="glyphicon glyphicon-heart"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">2502</span>
+					<span class="dbox__count">{{this.dashboard.applicationsPerTrip.stdDevTripApplication}}</span>
 					<span class="dbox__title">{{'dashboard.stdDeviation' | translate}}</span>
 				</div>
 				
@@ -188,7 +188,7 @@
 					<i class="glyphicon glyphicon-cloud"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">8,252</span>
+					<span class="dbox__count">{{this.dashboard.pricePerTrip.avgPrice}}</span>
 					<span class="dbox__title">{{'dashboard.average' | translate}}</span>
 				</div>
 				
@@ -203,7 +203,7 @@
 					<i class="glyphicon glyphicon-download"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">100</span>
+					<span class="dbox__count">{{this.dashboard.pricePerTrip.minPrice}}</span>
 					<span class="dbox__title">{{'dashboard.minimum' | translate}}</span>
 				</div>
 				
@@ -218,7 +218,7 @@
 					<i class="glyphicon glyphicon-heart"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">2502</span>
+					<span class="dbox__count">{{this.dashboard.pricePerTrip.maxPrice}}</span>
 					<span class="dbox__title">{{'dashboard.maximum' | translate}}</span>
 				</div>
 				
@@ -233,7 +233,7 @@
 					<i class="glyphicon glyphicon-heart"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">2502</span>
+					<span class="dbox__count">{{this.dashboard.pricePerTrip.stdDevPrice}}</span>
 					<span class="dbox__title">{{'dashboard.stdDeviation' | translate}}</span>
 				</div>
 				
@@ -263,7 +263,7 @@
 					<i class="glyphicon glyphicon-cloud"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">8,252</span>
+					<span class="dbox__count">{{this.dashboard.ratioApplicationsPerStatus.ratioPendingApplications}}</span>
 					<span class="dbox__title">{{'dashboard.pending' | translate}}</span>
 				</div>
 				
@@ -278,7 +278,7 @@
 					<i class="glyphicon glyphicon-download"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">100</span>
+					<span class="dbox__count">{{this.dashboard.ratioApplicationsPerStatus.ratioRejectedApplications}}</span>
 					<span class="dbox__title">{{'dashboard.rejected' | translate}}</span>
 				</div>
 				
@@ -293,7 +293,7 @@
 					<i class="glyphicon glyphicon-heart"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">2502</span>
+					<span class="dbox__count">{{this.dashboard.ratioApplicationsPerStatus.ratioDueApplications}}</span>
 					<span class="dbox__title">{{'dashboard.due' | translate}}</span>
 				</div>
 				
@@ -308,7 +308,7 @@
 					<i class="glyphicon glyphicon-heart"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">2502</span>
+					<span class="dbox__count">{{this.dashboard.ratioApplicationsPerStatus.ratioAcceptedApplications}}</span>
 					<span class="dbox__title">{{'dashboard.accepted' | translate}}</span>
 				</div>
 				
@@ -323,7 +323,7 @@
 					<i class="glyphicon glyphicon-heart"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">2502</span>
+					<span class="dbox__count">{{this.dashboard.ratioApplicationsPerStatus.ratioCancelledApplications}}</span>
 					<span class="dbox__title">{{'dashboard.cancelled' | translate}}</span>
 				</div>
 				
@@ -353,7 +353,8 @@
 					<i class="glyphicon glyphicon-cloud"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">8,252</span>
+					<span class="dbox__count">From: {{this.dashboard.avgFinderPrices.avgMinPrice}}</span>
+					<span class="dbox__count">To: {{this.dashboard.avgFinderPrices.avgMaxPrice}}</span>
 					<span class="dbox__title">{{'dashboard.avgPriceRange' | translate}}</span>
 				</div>
 				
@@ -368,7 +369,9 @@
 					<i class="glyphicon glyphicon-download"></i>
 				</div>
 				<div class="dbox__body">
-					<span class="dbox__count">100</span>
+					<span class="dbox__count" *ngFor="let word of this.dashboard.topFinderKeyWords">
+						<span class="dbox__count">{{word.keyword}}: {{word.keywordSum}}</span>
+					</span>
 					<span class="dbox__title">{{'dashboard.topTenKeywords' | translate}}</span>
 				</div>
 				
