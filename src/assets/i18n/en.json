@@ -60,7 +60,8 @@
         "empty": "No trips found",
         "more": "View more",
         "edit": "Edit",
-        "placeholderSearcher": "Title, ticker or description"
+        "placeholderSearcher": "Title, ticker or description",
+        "myCreated": "My created trips"
     },
     "trip": {
         "info": "Information",

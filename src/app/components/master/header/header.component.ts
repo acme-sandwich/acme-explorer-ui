@@ -40,7 +40,7 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
       
       if (loggedIn) {
         this.currentActor = this.authService.getCurrentActor();
-        this.activeRole = this.currentActor.role.toString();
+        this.activeRole = this.currentActor.role[0].toString();
       } else {
         this.activeRole = 'anonymous';
         this.currentActor = null;
@@ -48,6 +48,9 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
     });
     if(this.currentActor == null){
       this.currentActor = this.authService.getCurrentActor();
+      if(this.currentActor != null){
+        this.activeRole = this.currentActor.role[0].toString();
+      }
     }
 
     const component = this;

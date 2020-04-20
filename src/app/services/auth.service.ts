@@ -30,7 +30,7 @@ export class AuthService {
           // if the authentication was ok, then we proceed
           const headers = new HttpHeaders();
           headers.append('Content-type', 'application/json');
-          const url = `${environment.backendApiBaseURL + '/actors'}`;
+          const url = `${environment.backendApiBaseURL + '/api/v1/actors'}`;
           const body = JSON.stringify(actor);
           this.http.post(url, body, httpOptions).toPromise()
             .then(res => {
@@ -48,7 +48,7 @@ export class AuthService {
     return new Promise<any>((resolve, reject) => {
       this.fireAuth.auth.signInWithEmailAndPassword(email, password)
         .then(_ => {
-          const url = environment.backendApiBaseURL + '/actors?email=' + email;
+          const url = environment.backendApiBaseURL + '/api/v1/actors?email=' + email;
           this.http.get<Actor[]>(url).toPromise()
             .then((actor: Actor[]) => {
               this.currentActor = actor[0];
@@ -72,7 +72,7 @@ export class AuthService {
       this.fireAuth.auth.signOut()
         .then(_ => {
           this.currentActor = null;
-          localStorage.setItem('currentActor', null);
+          localStorage.setItem('currentActor', '');
           resolve();
         }).catch(error => {
           reject(error);
@@ -81,19 +81,28 @@ export class AuthService {
   }
 
   getRoles(): string[] {
-    return ['ADMINISTRATOR', 'EXPLORER', 'MANAGER', 'SPONSOR'];
+    return ['ADMINISTRATOR', 'EXPLORER', 'MANAGER', 'SPONSOR', 'AUDITOR'];
   };
 
   getCurrentActor() {
     if (this.currentActor == null) {
       const currentActorLocalStorage = localStorage.getItem('currentActor');
-      if(currentActorLocalStorage != null){
+      if(currentActorLocalStorage != null && currentActorLocalStorage != ''){
         let currentActorLocalStorageObject = JSON.parse(currentActorLocalStorage);
         this.currentActor = currentActorLocalStorageObject;
+        //console.log(this.currentActor.role[0].toString());
       }
     }
     return this.currentActor;
     ;
+  }
+
+  getCurrentActorRole(){
+    if(this.getCurrentActor()){
+      return this.currentActor.role[0].toString();
+    }else{
+      return 'anonymous';
+    }
   }
 
   setCurrentActor(actor: Actor) {
@@ -104,7 +113,7 @@ export class AuthService {
     let result = false;
 
     if (this.getCurrentActor()) {
-      if (roles.indexOf(this.getCurrentActor().role.toString()) !== -1) {
+      if (roles.indexOf(this.getCurrentActor().role[0].toString()) !== -1) {
         result = true;
       } else {
         result = false;

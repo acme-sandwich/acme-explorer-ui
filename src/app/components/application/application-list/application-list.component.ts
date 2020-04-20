@@ -65,9 +65,9 @@ export class ApplicationListComponent extends TranslatableComponent implements O
     // Recover current actor
     this.currentActor = this.authService.getCurrentActor();
 
-    if (this.currentActor.role === 'EXPLORER') {
+    if (this.authService.getCurrentActorRole() === 'EXPLORER') {
       this.getExplorerApplications();
-    } else if (this.currentActor.role === 'MANAGER') {
+    } else if (this.authService.getCurrentActorRole() === 'MANAGER') {
       this.getManagerApplications();
     }
 

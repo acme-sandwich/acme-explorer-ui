@@ -60,7 +60,8 @@
         "empty": "No se ha encontrado ningún viaje",
         "more": "Ver más",
         "edit": "Editar",
-        "placeholderSearcher": "Título, ticker o descripción"
+        "placeholderSearcher": "Título, ticker o descripción",
+        "myCreated": "Mis viajes creados"
     },
     "trip": {
         "info": "Información",
