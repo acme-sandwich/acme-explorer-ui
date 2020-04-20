@@ -20,13 +20,14 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
   numObjects = MAX_TRIPS;
   page = 1;
   data: any[];
+  filteredTrips: any[];
   actor: Actor;
   keyword: string;
   direction: string;
 
-  constructor(private tripService: TripService, private router: Router, private route: ActivatedRoute, 
+  constructor(private tripService: TripService, private router: Router, private route: ActivatedRoute,
     public authService: AuthService, private translateService: TranslateService) {
-      super(translateService);
+    super(translateService);
   }
 
   ngOnInit() {
@@ -35,17 +36,31 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
     this.tripService.getTripsPage(this.page, MAX_TRIPS, this.keyword)
       .then((val) => {
         this.data = val;
+        this.assignCopy();
       })
       .catch((err) => console.error(err.message));
 
     this.actor = this.authService.getCurrentActor();
   }
 
+  assignCopy() {
+    this.filteredTrips = Object.assign([], this.data);
+  }
+
+  filterTrip(value) {
+    if (!value) {
+      this.assignCopy();
+    }
+    this.filteredTrips = Object.assign([], this.data).filter(
+      item => (item.title.toLowerCase().indexOf(value.toLowerCase()) > -1) || (item.description.toLowerCase().indexOf(value.toLowerCase()) > -1) || (item.ticker.toLowerCase().indexOf(value.toLowerCase()) > -1)
+    )
+  }
+
   newTrip() {
     this.router.navigate(['/trips/new']);
   }
 
-  onScrollDown(ev){
+  onScrollDown(ev) {
     this.page = this.page + 1;
     const start = this.page;
     this.numObjects += MAX_TRIPS;
@@ -56,7 +71,7 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
   onScrollUp(ev) {
     this.page = this.page + 1;
     const start = this.page;
-    this.numObjects += MAX_TRIPS; 
+    this.numObjects += MAX_TRIPS;
     this.prependTrips(start, this.numObjects);
     this.direction = 'up';
   }
@@ -71,11 +86,11 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
 
   addTrips(startIndex, endIndex, _method) {
     this.tripService.getTripsPage(startIndex, MAX_TRIPS, this.keyword)
-      .then(val => { 
-        this.data = this.data.concat(val); 
+      .then(val => {
+        this.data = this.data.concat(val);
       })
-      .catch(err => { 
-        console.log(err); 
+      .catch(err => {
+        console.log(err);
       });
   }
 

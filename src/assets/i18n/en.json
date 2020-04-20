@@ -59,7 +59,8 @@
         "new": "New trip",
         "empty": "No trips found",
         "more": "View more",
-        "edit": "Edit"
+        "edit": "Edit",
+        "placeholderSearcher": "Title, ticker or description"
     },
     "trip": {
         "info": "Information",

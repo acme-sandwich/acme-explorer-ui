@@ -59,7 +59,8 @@
         "new": "Nuevo viaje",
         "empty": "No se ha encontrado ningún viaje",
         "more": "Ver más",
-        "edit": "Editar"
+        "edit": "Editar",
+        "placeholderSearcher": "Título, ticker o descripción"
     },
     "trip": {
         "info": "Información",
