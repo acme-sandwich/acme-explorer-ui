@@ -20,14 +20,25 @@ export class AuditsService {
 
    }
 
-   getAudit(id: String){
-    const url = `${this.auditsUrl}/${id}`;
+   getAudit(auditId: String, actorId: String){
+    const url = `${environment.backendApiBaseURL}/api/v1/actors/${actorId}/audits/${auditId}`;
     return this.http.get<Audit>(url).toPromise();
   }
 
   getAuditCreator(id: String){
     return new Promise<any>((resolve, reject) => {
       let apiURL = environment.backendApiBaseURL+'/api/v1/actors/' + id;
+      this.http.get(apiURL).toPromise().then(res => {
+        resolve(res);
+      }).catch(error => {
+        reject(error);
+      });
+    });
+  }
+
+  getAuditTrip(id: String){
+    return new Promise<any>((resolve, reject) => {
+      let apiURL = environment.backendApiBaseURL+'/api/v1/trips/' + id;
       this.http.get(apiURL).toPromise().then(res => {
         resolve(res);
       }).catch(error => {
@@ -43,6 +54,11 @@ export class AuditsService {
 
   getAuditsAuditor(idActor: String){
     const url = `${environment.backendApiBaseURL}/api/v1/actors/${idActor}/audits`;
+    return this.http.get<Audit[]>(url).toPromise();
+  }
+
+  getAuditsTrip(idTrip: String){
+    const url = `${environment.backendApiBaseURL}/api/v1/trips/${idTrip}/audits`;
     return this.http.get<Audit[]>(url).toPromise();
   }
 }

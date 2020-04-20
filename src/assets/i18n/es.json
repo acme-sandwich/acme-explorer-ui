@@ -140,5 +140,14 @@
         "avgPriceRange": "RANGO MEDIO DE PRECIO",
         "topTenKeywords": "TOP 10 PALABRAS CLAVE",
         "moreInfo": "Más información"
+    },
+    "audits":{
+        "audits": "Auditorías",
+        "audit": "Auditoría",
+        "empty": "No has creado ninguna auditoría",
+        "new": "Nueva auditoría",
+        "auditor": "Auditor",
+        "attachments": "Adjuntos",
+        "trip": "Viaje"
     }
 }

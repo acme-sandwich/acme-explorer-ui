@@ -140,5 +140,14 @@
         "avgPriceRange": "AVERAGE PRICE RANGE",
         "topTenKeywords": "TOP 10 KEYWORDS",
         "moreInfo": "More info"
+    },
+    "audits":{
+        "audits": "Audits",
+        "audit": "Audit",
+        "empty": "You have not created any audit",
+        "new": "New audit",
+        "auditor": "Auditor",
+        "attachments": "Attachments",
+        "trip": "Trip"
     }
 }

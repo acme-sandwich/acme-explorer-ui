@@ -70,6 +70,14 @@
               </p>
             </span>
           </p>
+          <h3>{{'audits.audits' | translate}}</h3>
+          <p>
+            <span *ngFor="let aud of audits; let i = index">
+              <p> 
+                <i class="icofont-airplane-alt"></i>{{aud.title}}
+              </p>
+            </span>
+          </p>
         </div>
 
         <div class="entry-footer clearfix" hidden="true">

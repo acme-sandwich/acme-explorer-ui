@@ -18,6 +18,8 @@ import { SponsorshipDisplayComponent } from './components/sponsorship/sponsorshi
 import { SponsorshipListComponent } from './components/sponsorship/sponsorship-list/sponsorship-list.component';
 import { TripEditComponent } from './components/trip/trip-edit/trip-edit.component';
 import { DashboardDisplayComponent } from './components/dashboard/dashboard-display/dashboard-display.component';
+import { AuditsListComponent } from './components/audits/audits-list/audits-list.component';
+import { AuditsDisplayComponent } from './components/audits/audits-display/audits-display.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -41,6 +43,10 @@ const appRoutes: Routes = [
     {path: 'edit', component: SponsorshipListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}},
     {path: ':id', component: SponsorshipDisplayComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}},
     {path: '', component: SponsorshipListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}}
+  ]},
+  {path: 'audits', children: [
+    {path: ':id', component: AuditsDisplayComponent},
+    {path: '', component: AuditsListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'AUDITOR'}}
   ]},
   {path: 'dashboard', component: DashboardDisplayComponent},
   {path: 'terms-and-conditions', component: TermsAndConditionsComponent},
