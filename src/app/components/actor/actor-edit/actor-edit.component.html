@@ -46,11 +46,17 @@
                             <label>{{'actor.name' | translate}}</label>
                             <input class="form-control" formControlName="name" placeholder="{{'actor.name' | translate}}">
                           </div>
+                          <div *ngIf="actorForm.get('name').errors && actorForm.get('name').touched && actorForm.get('name').errors.required" class="text-danger">
+                            {{ 'errorMessages.validation.required' | translate }}
+                          </div>
                         </div>
                         <div class="col">
                           <div class="form-group">
                             <label>{{'actor.surname' | translate}}</label>
                             <input class="form-control" formControlName="surname" placeholder="{{'actor.surname' | translate}}">
+                          </div>
+                          <div *ngIf="actorForm.get('surname').errors && actorForm.get('surname').touched && actorForm.get('surname').errors.required" class="text-danger">
+                            {{ 'errorMessages.validation.required' | translate }}
                           </div>
                         </div>
                       </div>
@@ -66,6 +72,9 @@
                             <label>{{'actor.phone' | translate}}</label>
                             <input class="form-control" formControlName="phone" placeholder="{{'actor.phone' | translate}}">
                           </div>
+                          <div *ngIf="actorForm.get('phone').errors && actorForm.get('phone').touched && actorForm.get('phone').errors.pattern" class="text-danger">
+                            {{ 'errorMessages.validation.pattern.numeric' | translate }}
+                          </div>
                         </div>
                       </div>
                       <div class="row">
@@ -73,6 +82,11 @@
                           <div class="form-group">
                             <label>{{'actor.address' | translate}}</label>
                             <input class="form-control" formControlName="address" placeholder="{{'actor.address' | translate}}">
+                          </div>
+                          <div *ngIf="actorForm.get('address').errors && actorForm.get('address').touched && actorForm.get('address').errors.maxlength" class="text-danger">
+                            {{ 'errorMessages.validation.string.maxLength' | translate: {
+                            maxvalue: actorForm.get('address').errors.maxlength.requiredLength
+                            } }}
                           </div>
                         </div>
                       </div>
@@ -109,7 +123,7 @@
                   <div class="row">
                     <div class="col d-flex justify-content-end">
                       <button (click)="goBack()" class="bn btn-primary" style="background: lightgrey; border-color: lightgrey;">Cancelar</button>
-                      <button class="btn btn-primary" type="submit">{{'actor.saveChanges' | translate}}</button>
+                      <button class="btn btn-primary" type="submit" [disabled]="actorForm.invalid">{{'actor.saveChanges' | translate}}</button>
                     </div>
                   </div>
                 </form>

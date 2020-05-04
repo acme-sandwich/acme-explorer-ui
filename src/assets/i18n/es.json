@@ -155,5 +155,12 @@
         "auditor": "Auditor",
         "attachments": "Adjuntos",
         "trip": "Viaje"
+    },
+    "errorMessages":{
+        "validation": {
+            "required": "Ups, debes introducir este valor.",
+            "pattern.numeric": "Ups, solo se aceptan valores numéricos en este campo.",
+            "string.maxLength": "Vaya, debes introducir un máximo de {{maxvalue}} caracteres en este campo."
+        }
     }
 }

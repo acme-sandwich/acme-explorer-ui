@@ -155,5 +155,12 @@
         "auditor": "Auditor",
         "attachments": "Attachments",
         "trip": "Trip"
+    },
+    "errorMessages":{
+        "validation": {
+            "required": "Oops, you must introduce this value.",
+            "pattern.numeric": "Oops, only digits are allowed in this field.",
+            "string.maxLength": "Oops, you must introduce a maximum of {{maxvalue}} characters in this field."
+        }
     }
 }

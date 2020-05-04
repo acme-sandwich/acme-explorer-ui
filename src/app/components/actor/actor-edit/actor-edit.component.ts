@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslatableComponent } from '../../shared/translatable/translatable.component';
 import { AuthService } from 'src/app/services/auth.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-actor-edit',
@@ -31,11 +31,11 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
     this.actorForm = this.fb.group({
       id: [''],
       role: [''],
-      name: [''],
-      surname: [''],
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
       email: [''],
-      phone: [''],
-      address: ['']
+      phone: ['', Validators.pattern('[0-9]+')],
+      address: ['', Validators.maxLength(50)]
     });
 
     this.currentActor = this.authService.getCurrentActor().id;
