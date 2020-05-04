@@ -22,9 +22,9 @@
 
       <article class="entry entry-single">
         <div class="entry-img">
-          <img *ngIf="trip.picture != null && trip.picture.length != 0" class="img-fluid" src="{{trip.picture[0].data}}"
+          <img *ngIf="trip.photoObject != null && trip.photoObject.Buffer != 0" class="img-fluid" src="{{trip.photoObject.Buffer}}"
             alt="{{trip.title}}">
-          <img *ngIf="!trip.picture || trip.picture.length === 0" class="img-fluid"
+          <img *ngIf="!trip.photoObject || trip.photoObject.Buffer.length === 0 " class="img-fluid"
             src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{trip.title}}">
         </div>
 

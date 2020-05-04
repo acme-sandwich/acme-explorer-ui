@@ -93,7 +93,8 @@
         "addRequirement": "Añadir requisito",
         "removeRequirement": "Quitar requisito",
         "addStage": "Añadir etapa",
-        "removeStage": "Quitar etapa"
+        "removeStage": "Quitar etapa",
+        "pictures": "Pictures"
     },
     "stage": {
         "stage": "Etapa",

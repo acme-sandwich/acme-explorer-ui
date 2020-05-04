@@ -93,7 +93,8 @@
         "addRequirement": "Add requirement",
         "removeRequirement": "Remove requirement",
         "addStage": "Add stage",
-        "removeStage":"Remove stage"
+        "removeStage":"Remove stage",
+        "pictures": "Imágenes"
     },
     "stage": {
         "stage": "Stage",

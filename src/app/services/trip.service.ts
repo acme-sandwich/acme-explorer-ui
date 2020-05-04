@@ -130,11 +130,28 @@ export class TripService {
     const url = `${this.tripsUrl}/${trip._id}`;
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin','*');
 
     const body = JSON.stringify(trip);
     console.log(body);
     return new Promise<any>((resolve, reject) => {
       this.http.put(url, body, httpOptions).toPromise()
+        .then(res => {
+          resolve(res);
+        }, err => {console.log(err); reject(err)});
+    });
+  }
+
+  createTrip(trip: Trip) {
+    const url = `${this.tripsUrl}`;
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin','*');
+
+    const body = JSON.stringify(trip);
+    console.log(body);
+    return new Promise<any>((resolve, reject) => {
+      this.http.post(url, body, httpOptions).toPromise()
         .then(res => {
           resolve(res);
         }, err => {console.log(err); reject(err)});

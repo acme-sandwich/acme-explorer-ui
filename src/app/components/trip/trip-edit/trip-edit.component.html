@@ -43,6 +43,18 @@
                 </label>
               </div>
 
+              <div class="form-group has-danger">
+                <label for="picture" class="form-control-label">{{'trip.pictures' | translate}}
+                  <input class="form-control" formControlName="picture" (change)="onFileChange($event)" type="file">
+                </label>
+              </div>
+
+              <img id="pictureViewerId" *ngIf="picture != null" class="card-img-top img-fluid" style="display: block; object-fit: contain;"
+                src="{{picture}}">
+              <img *ngIf="picture === null" class="card-img-top img-fluid" style="width: 50%; display: block; object-fit: contain;"
+                src="https://windsongwny.com/wp-content/uploads/2019/02/noimage4x3.png">
+
+              <textarea id="showresult" hidden="true"></textarea>
 
               <div class="form-group has-danger">
                 <label for="pickerStartDate" class="form-control-label">{{'trip.startDate' | translate}}</label>
