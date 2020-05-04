@@ -72,6 +72,7 @@
         "price": "Precio",
         "creator": "Creador",
         "requirements": "Requisitos",
+        "requirement": "Requisito",
         "cancelled": "Este viaje ha sido cancelado",
         "searchOthers": "Buscar otros viajes",
         "options": "Opciones",
@@ -82,7 +83,17 @@
         "stage": "Etapa",
         "editTrip": "Editar viaje",
         "startDate": "Fecha de inicio",
-        "endDate": "Fecha de fin"
+        "endDate": "Fecha de fin",
+        "addRequirement": "Añadir requisito",
+        "removeRequirement": "Quitar requisito",
+        "addStage": "Añadir etapa",
+        "removeStage": "Quitar etapa"
+    },
+    "stage": {
+        "stage": "Etapa",
+        "title": "Título",
+        "description": "Descripción",
+        "price": "Precio"
     },
     "sponsorships": {
         "sponsorships": "Patrocinios",
@@ -152,5 +163,9 @@
         "auditor": "Auditor",
         "attachments": "Adjuntos",
         "trip": "Viaje"
+    },
+    "form":{
+        "save": "Guardar",
+        "cancel": "Cancelar"
     }
 }

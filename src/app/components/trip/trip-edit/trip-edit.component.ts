@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
 import { TranslatableComponent } from '../../shared/translatable/translatable.component';
 import { TranslateService } from '@ngx-translate/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -42,7 +42,9 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
       picture: [''],
       startDate: [''],
       endDate: [''],
-      published: ['']
+      published: [''],
+      requirements: this.fb.array([]),
+      stages: this.fb.array([])
     });
 
     const idActor = this.authService.getCurrentActor().id;
@@ -59,8 +61,72 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
         this.tripForm.controls['startDate'].setValue(trip.startDate);
         this.tripForm.controls['endDate'].setValue(trip.endDate);
         this.tripForm.controls['published'].setValue(trip.published);
+
+        for(let i = 0; i < trip.requirements.length; i++) {
+          this.addRequirementFromFormCreation(trip.requirements[i]);
+        }
+
+        let control = <FormArray>this.tripForm.controls.stages;
+        trip.stages.forEach(x => {
+          control.push(this.fb.group({
+            title: x.title,
+            description: x.description,
+            price: x.price
+          }));
+        });
+        console.log(this.stages);
       }
     })
+  }
+
+  createStageFormGroup(stageObj) {
+    return new FormGroup({
+      title: new FormControl(stageObj.title),
+      description: new FormControl(stageObj.description),
+      price: new FormControl(stageObj.price)
+    });
+  }
+
+  get requirements() {
+    return this.tripForm.get('requirements') as FormArray;
+  }
+
+  get stages() {
+    return this.tripForm.get('stages') as FormArray;
+  }
+
+  addRequirement() {
+    this.requirements.push(this.fb.control(''));
+  }
+
+  addRequirementFromFormCreation(requirement: string) {
+    this.requirements.push(this.fb.control(requirement));
+  }
+
+  addStage() {
+    let control = <FormArray>this.tripForm.controls.stages;
+    control.push(this.fb.group({
+      title: '',
+      description: '',
+      price: 1
+    }));
+    console.log("añadido nuevo stage vacio", this.stages);
+
+    /*let stageForm: FormGroup;
+    stageForm = this.fb.group({
+      title: [''],
+      description: [''],
+      price: ['1']
+    });
+    this.stages.push(this.fb.control(stageForm));*/
+  }
+
+  removeStage(index: number) {
+    this.stages.removeAt(index);
+  }
+
+  removeRequirement(index: number){
+    this.requirements.removeAt(index);
   }
 
   onSubmit() {
