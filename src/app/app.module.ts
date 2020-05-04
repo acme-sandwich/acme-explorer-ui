@@ -36,6 +36,8 @@ import { TripEditComponent } from './components/trip/trip-edit/trip-edit.compone
 import { DashboardDisplayComponent } from './components/dashboard/dashboard-display/dashboard-display.component';
 import { AuditsListComponent } from './components/audits/audits-list/audits-list.component';
 import { AuditsDisplayComponent } from './components/audits/audits-display/audits-display.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule, MatNativeDateModule, MatInputModule } from '@angular/material';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -97,7 +99,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     FontAwesomeModule,
     HttpModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule
   ],
   providers: [AngularFireAuth],
   bootstrap: [AppComponent]

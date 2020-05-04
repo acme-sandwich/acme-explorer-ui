@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Trip } from '../models/trip.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Actor } from '../models/actor.model';
-import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { catchError, map, tap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
 const httpOptions = {

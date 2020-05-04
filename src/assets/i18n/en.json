@@ -79,7 +79,10 @@
         "edit": "Editar",
         "buy": "Buy trip",
         "stages": "Stages",
-        "stage": "Stage"
+        "stage": "Stage",
+        "editTrip": "Editar viaje",
+        "startDate": "Start date",
+        "endDate": "End date"
     },
     "sponsorships": {
         "sponsorships": "Sponsorships",

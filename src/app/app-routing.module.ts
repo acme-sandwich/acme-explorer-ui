@@ -27,6 +27,7 @@ const appRoutes: Routes = [
   {path: 'register', component: RegisterComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'anonymous'}},
   {path: 'trips', children: [
     {path: 'display/:id', component: TripDisplayComponent},
+    {path: 'edit/:id', component: TripEditComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER'}},
     {path: 'my-trips', component: TripListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER', myTrips:true}},
     {path: '', component: TripListComponent},
   ]},

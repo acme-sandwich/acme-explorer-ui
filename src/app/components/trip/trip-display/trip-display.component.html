@@ -107,21 +107,15 @@
     <div class="col-lg-4">
 
       <div class="sidebar">
-
-        <h3 class="sidebar-title">{{'trip.searchOthers' |translate}}</h3>
-        <div class="sidebar-item search-form">
-          <form action="/trips/search?keyword" method="GET">
-            <input type="text">
-            <button type="submit"><i class="icofont-search"></i></button>
-          </form>
-        </div>
-
         <h3 class="sidebar-title">{{'trip.options' |translate}}</h3>
         <div class="sidebar-item categories">
           <ul>
-            <li [hidden]="!currentActor || currentActor.id !== trip.creator"><a href="#">{{'trip.edit' |translate}}</a>
+            <li [hidden]="!currentActor || currentActor.id !== trip.creator">
+              <a href="/trips/edit/{{trip._id}}">{{'trip.edit' |translate}}</a>
             </li>
-
+            <li>
+              <a href="/trips/edit/{{trip._id}}">{{'trip.edit' |translate}}</a>
+            </li>
             <li *ngIf="purchasable"><a *ngIf="!currentActor" href="/login">{{'trip.buy' |translate}}</a></li>
             <li *ngIf="purchasable"><a *ngIf="currentActor !== null && activeRole === 'EXPLORER'"
                 href="javascript:alert('El usuario será redirigido a la ventana de comprar un viaje pagando con Paypal');">{{'trip.buy' |translate}}</a>
@@ -129,11 +123,9 @@
             <li><a href="javascript:void(0);" (click)="goBack()">{{'trip.goBack' |translate}}</a></li>
           </ul>
 
-        </div><!-- End sidebar categories-->
-
-      </div><!-- End sidebar -->
-
-    </div><!-- End trip sidebar -->
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 

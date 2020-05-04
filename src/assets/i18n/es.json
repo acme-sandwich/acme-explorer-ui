@@ -79,7 +79,10 @@
         "edit": "Editar",
         "buy": "Comprar viaje",
         "stages": "Etapas",
-        "stage": "Etapa"
+        "stage": "Etapa",
+        "editTrip": "Editar viaje",
+        "startDate": "Fecha de inicio",
+        "endDate": "Fecha de fin"
     },
     "sponsorships": {
         "sponsorships": "Patrocinios",
