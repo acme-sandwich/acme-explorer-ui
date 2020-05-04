@@ -36,7 +36,9 @@
         "currentPassword": "Contraseña actual",
         "newPassword": "Nueva contraseña",
         "confirmPassword": "Confirmar contraseña",
-        "saveChanges": "Guardar cambios"
+        "saveChanges": "Guardar cambios",
+        "banned": "Baneado",
+        "available" : "Disponible"
     },
     "security": {
         "login": "Iniciar sesión",

@@ -39,4 +39,22 @@ export class ActorDisplayComponent extends TranslatableComponent implements OnIn
       });
   }
 
+  onBanActor() {
+    console.log(this.actor);
+    this.actorService.banActor(this.actor).then((val) => {
+      this.router.navigate(['/actors']);
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
+
+  onUnbanActor() {
+    console.log(this.actor);
+    this.actorService.unbanActor(this.actor).then((val) => {
+      this.router.navigate(['/actors']);
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
+
 }

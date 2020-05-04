@@ -34,7 +34,9 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <a class="profile-edit-btn" routerLink="/actors/edit/{{actor._id}}" >{{'actor.edit' |translate}}</a>
+                        <button *ngIf="currentActor._id == id" class="profile-edit-btn" routerLink="/actors/edit/{{actor._id}}" style="margin-bottom: 5px;">{{'actor.edit' | translate}}</button>
+                        <button *ngIf="!actor.banned && activeRole === 'ADMINISTRATOR'" class="profile-edit-btn" (click)="onBanActor()" style="background-color: #94c045; color: white;">{{'actor.available' |translate}}</button>
+                        <button *ngIf="actor.banned && activeRole === 'ADMINISTRATOR'" class="profile-edit-btn" (click)="onUnbanActor()" style="background-color: rgb(250, 83, 83); color: white;" >{{'actor.banned' | translate}}</button>
                     </div>
                 </div>
                 <div class="row">

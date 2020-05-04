@@ -4,6 +4,7 @@ import { TranslatableComponent } from '../../shared/translatable/translatable.co
 import { TranslateService } from '@ngx-translate/core';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { Actor } from 'src/app/models/actor.model';
+import { Router, ActivatedRoute } from '@angular/router';
 declare const $: any;
 
 @Component({
@@ -19,7 +20,8 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
   private currentActor: Actor;
   private userLoggedIn: boolean;
 
-  constructor(private authService: AuthService, private translateService: TranslateService, private ngZone: NgZone) {
+  constructor(private authService: AuthService, private translateService: TranslateService, 
+    private ngZone: NgZone, private router: Router, private route: ActivatedRoute) {
     super(translateService);
     this.translateService.get('header.home').subscribe((text:string) => {this.home = text});
    }
@@ -166,6 +168,7 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
     .then(_ => {
       this.activeRole = 'anonymous';
       this.currentActor = null;
+      this.router.navigate(['/']);
     }).catch(error => {
       console.log(error);
     });

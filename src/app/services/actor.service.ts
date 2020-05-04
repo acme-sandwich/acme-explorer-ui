@@ -91,17 +91,52 @@ export class ActorService {
 
   updateActor(actor: Actor) {
     const url = `${this.actorsUrl}/${actor.id}`;
-    console.log(actor.id);
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
 
     const body = JSON.stringify(actor);
-    console.log(body);
+
     return new Promise<any>((resolve, reject) => {
       this.http.put(url, body, httpOptions).toPromise()
         .then(res => {
           resolve(res);
         }, err => {console.log(err); reject(err)});
+    });
+  }
+
+  banActor(actor: Actor) {
+    const url = `${this.actorsUrl}/ban/${actor._id}`;
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+
+    const body = JSON.stringify(actor);
+
+    return new Promise<any>((resolve, reject) => {
+      this.http.put(url, body, httpOptions).toPromise()
+        .then(res => {
+          resolve(res);
+        }, err => {
+          console.log(err);
+          reject(err);
+        });
+    });
+  }
+
+  unbanActor(actor: Actor) {
+    const url = `${this.actorsUrl}/unban/${actor._id}`;
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+
+    const body = JSON.stringify(actor);
+
+    return new Promise<any>((resolve, reject) => {
+      this.http.put(url, body, httpOptions).toPromise()
+        .then(res => {
+          resolve(res);
+        }, err => {
+          console.log(err);
+          reject(err);
+        });
     });
   }
 }
