@@ -36,7 +36,9 @@
         "currentPassword": "Contraseña actual",
         "newPassword": "Nueva contraseña",
         "confirmPassword": "Confirmar contraseña",
-        "saveChanges": "Guardar cambios"
+        "saveChanges": "Guardar cambios",
+        "banned": "Baneado",
+        "available" : "Disponible"
     },
     "security": {
         "login": "Iniciar sesión",
@@ -174,5 +176,12 @@
     "form":{
         "save": "Guardar",
         "cancel": "Cancelar"
+    },
+    "errorMessages":{
+        "validation": {
+            "required": "Ups, debes introducir este valor.",
+            "pattern.numeric": "Ups, solo se aceptan valores numéricos en este campo.",
+            "string.maxLength": "Vaya, debes introducir un máximo de {{maxvalue}} caracteres en este campo."
+        }
     }
 }
