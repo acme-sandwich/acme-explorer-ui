@@ -20,6 +20,7 @@ import { TripEditComponent } from './components/trip/trip-edit/trip-edit.compone
 import { DashboardDisplayComponent } from './components/dashboard/dashboard-display/dashboard-display.component';
 import { AuditsListComponent } from './components/audits/audits-list/audits-list.component';
 import { AuditsDisplayComponent } from './components/audits/audits-display/audits-display.component';
+import { ActorEditComponent } from './components/actor/actor-edit/actor-edit.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
     {path: 'display/:id', component: ActorDisplayComponent},
     {path: ':id/applications', component: ApplicationListComponent},
     {path: '', component: ActorListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'ADMINISTRATOR'}},
+    {path: 'edit/:id', component: ActorEditComponent}
   ]},
   {path: 'sponsorships', children: [
     {path: 'new', component: SponsorshipListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}},

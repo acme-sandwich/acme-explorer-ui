@@ -36,6 +36,7 @@ import { TripEditComponent } from './components/trip/trip-edit/trip-edit.compone
 import { DashboardDisplayComponent } from './components/dashboard/dashboard-display/dashboard-display.component';
 import { AuditsListComponent } from './components/audits/audits-list/audits-list.component';
 import { AuditsDisplayComponent } from './components/audits/audits-display/audits-display.component';
+import { ActorEditComponent } from './components/actor/actor-edit/actor-edit.component';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -78,7 +79,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TripEditComponent,
     DashboardDisplayComponent,
     AuditsListComponent,
-    AuditsDisplayComponent
+    AuditsDisplayComponent,
+    ActorEditComponent
   ],
   imports: [
     DataTablesModule,

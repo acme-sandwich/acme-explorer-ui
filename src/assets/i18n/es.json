@@ -30,7 +30,13 @@
         "applications": "PETICIONES",
         "receivedApplications": "Peticiones recibidas",
         "profile": "Mi perfil",
-        "status": "Estado"
+        "status": "Estado",
+        "edit": "Editar perfil",
+        "changePassword": "Cambiar contraseña",
+        "currentPassword": "Contraseña actual",
+        "newPassword": "Nueva contraseña",
+        "confirmPassword": "Confirmar contraseña",
+        "saveChanges": "Guardar cambios"
     },
     "security": {
         "login": "Iniciar sesión",
