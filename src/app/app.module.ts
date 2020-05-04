@@ -38,6 +38,7 @@ import { AuditsListComponent } from './components/audits/audits-list/audits-list
 import { AuditsDisplayComponent } from './components/audits/audits-display/audits-display.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule, MatNativeDateModule, MatInputModule } from '@angular/material';
+import { ActorEditComponent } from './components/actor/actor-edit/actor-edit.component';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -80,7 +81,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TripEditComponent,
     DashboardDisplayComponent,
     AuditsListComponent,
-    AuditsDisplayComponent
+    AuditsDisplayComponent,
+    ActorEditComponent
   ],
   imports: [
     DataTablesModule,

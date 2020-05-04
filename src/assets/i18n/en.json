@@ -30,7 +30,13 @@
         "applications": "APPLICATIONS",
         "receivedApplications": "Received applications",
         "profile": "My profile",
-        "status": "Status"
+        "status": "Status",
+        "edit": "Edit profile",
+        "changePassword": "Change password",
+        "currentPassword": "Current password",
+        "newPassword": "New password",
+        "confirmPassword": "Confirm password",
+        "saveChanges": "Save changes"
     },
     "security": {
         "login": "Login",
