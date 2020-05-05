@@ -15,6 +15,7 @@
         "register": "Register",
         "update": "Update",
         "register.title": "Register new actor",
+        "register.explorer": "Register new explorer",
         "list": "List actors",
         "display": "Display actor",
         "actors": "Actors",
@@ -38,7 +39,9 @@
         "confirmPassword": "Confirm password",
         "saveChanges": "Save changes",
         "banned": "Banned",
-        "available" : "Available"
+        "available" : "Available",
+        "create.new": "Create new actor",
+        "admin.options": "Admin options"
     },
     "security": {
         "login": "Login",

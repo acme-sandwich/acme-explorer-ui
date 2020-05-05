@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { AuthService } from '../../../services/auth.service';
@@ -13,10 +13,21 @@ export class RegisterComponent  {
 
   registrationForm: FormGroup;
   roleList: string[];
+  adminConnected = false;
 
-  constructor(private authService: AuthService, private fb: FormBuilder, private router: Router) { 
-    this.roleList = this.authService.getRoles();
+  constructor(private authService: AuthService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) { 
+    this.roleList = this.authService.getRolesForAdminActorCreation();
     this.createForm();
+  }
+
+  ngOnInit() {
+    this.route.data.subscribe(data => {
+        if(data.adminConnected){
+          this.adminConnected = true;
+        }else{
+          this.adminConnected = false;
+        }
+    });
   }
 
   createForm() {
@@ -33,13 +44,26 @@ export class RegisterComponent  {
   }
 
   onRegister() {
-    this.authService.registerUser(this.registrationForm.value)
-    .then(res => {
-      console.log(res);
-      this.router.navigate(['/login']);
-    }, err => {
-      console.log(err);
-    });
+    const actor = this.registrationForm.value;
+    if(!this.adminConnected) {
+      actor.role = ['EXPLORER'];
+      this.authService.registerUser(actor)
+      .then(res => {
+        console.log(res);
+        this.router.navigate(['/login']);
+      }, err => {
+        console.log(err);
+      });
+    } else {
+      this.authService.registerUser(actor)
+      .then(res => {
+        console.log(res);
+        this.router.navigate(['/home']);
+      }, err => {
+        console.log(err);
+      });
+    }
+    
   }
 
 }

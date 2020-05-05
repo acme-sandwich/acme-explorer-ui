@@ -84,6 +84,10 @@ export class AuthService {
     return ['ADMINISTRATOR', 'EXPLORER', 'MANAGER', 'SPONSOR', 'AUDITOR'];
   };
 
+  getRolesForAdminActorCreation(): string[] {
+    return ['ADMINISTRATOR', 'MANAGER', 'SPONSOR', 'AUDITOR'];
+  };
+
   getCurrentActor() {
     if (this.currentActor == null) {
       const currentActorLocalStorage = localStorage.getItem('currentActor');

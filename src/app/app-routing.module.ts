@@ -25,7 +25,7 @@ import { ActorEditComponent } from './components/actor/actor-edit/actor-edit.com
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
   {path: 'login', component: LoginComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'anonymous'}},
-  {path: 'register', component: RegisterComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'anonymous'}},
+  {path: 'register', component: RegisterComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'anonymous', adminConnected: false}},
   {path: 'trips', children: [
     {path: 'create', component: TripEditComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER'}},
     {path: 'display/:id', component: TripDisplayComponent},
@@ -39,8 +39,9 @@ const appRoutes: Routes = [
   {path: 'actors', children: [
     {path: 'display/:id', component: ActorDisplayComponent},
     {path: ':id/applications', component: ApplicationListComponent},
+    {path: 'edit/:id', component: ActorEditComponent},
+    {path: 'create', component: RegisterComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'ADMINISTRATOR', adminConnected: true}},
     {path: '', component: ActorListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'ADMINISTRATOR'}},
-    {path: 'edit/:id', component: ActorEditComponent}
   ]},
   {path: 'sponsorships', children: [
     {path: 'new', component: SponsorshipListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}},
