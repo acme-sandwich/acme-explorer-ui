@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, FormArray, Validators } from '@angular/forms';
 import { TranslatableComponent } from '../../shared/translatable/translatable.component';
 import { TranslateService } from '@ngx-translate/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -23,7 +23,8 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
   tripForm: FormGroup;
   trip: Trip;
   photoChanged = false;
-  public picture: string;
+  picture: string;
+  idTrip = '0';
 
   constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private authService: AuthService,
     private tripService: TripService, private translateService: TranslateService) { 
@@ -38,13 +39,13 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
     this.tripForm = this.fb.group({
       _id: [''],
       ticker: [''],
-      title: [''],
-      description: [''],
+      title: ['', Validators.required],
+      description: ['', Validators.required],
       price: [''],
       picture: [''],
       photo: [''],
-      startDate: [''],
-      endDate: [''],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
       published: [''],
       creator: [''],
       requirements: this.fb.array([]),
@@ -52,15 +53,15 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
     });
 
     const idActor = this.authService.getCurrentActor()._id;
-    const idTrip = this.route.snapshot.params['id'];
-    if(idTrip == null) {
+    this.idTrip = this.route.snapshot.params['id'];
+    if(this.idTrip == null) {
         this.trip = new Trip();
         this.trip.published = false;
 
         this.tripForm.controls['published'].setValue(this.trip.published);
         this.tripForm.controls['creator'].setValue(idActor);
     } else {
-      this.tripService.getTrip(idTrip).then((trip) => {
+      this.tripService.getTrip(this.idTrip).then((trip) => {
         this.trip = trip;
         if(trip){
           this.tripForm.controls['_id'].setValue(trip._id);
@@ -97,14 +98,6 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
     }
   }
 
-  createStageFormGroup(stageObj) {
-    return new FormGroup({
-      title: new FormControl(stageObj.title),
-      description: new FormControl(stageObj.description),
-      price: new FormControl(stageObj.price)
-    });
-  }
-
   get requirements() {
     return this.tripForm.get('requirements') as FormArray;
   }
@@ -124,9 +117,9 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
   addStage() {
     let control = <FormArray>this.tripForm.controls.stages;
     control.push(this.fb.group({
-      title: '',
-      description: '',
-      price: 1
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      price: [1, Validators.pattern('[0-9]+')]
     }));
   }
 
@@ -139,7 +132,6 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
   }
 
   onFileChange(event) {
-    console.log('en el onfile change');
     const reader = new FileReader();
     const showout = document.getElementById('showresult');
     let res;
@@ -195,7 +187,11 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/trips/display/'+this.trip._id]);
+    if(this.trip._id != '0') {
+      this.router.navigate(['/trips/display/'+this.trip._id]);
+    } else {
+      this.router.navigate(['/trips/my-trips']);
+    }
   }
 
 }

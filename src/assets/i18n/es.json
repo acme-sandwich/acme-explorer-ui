@@ -96,7 +96,8 @@
         "removeRequirement": "Quitar requisito",
         "addStage": "Añadir etapa",
         "removeStage": "Quitar etapa",
-        "pictures": "Pictures"
+        "pictures": "Imágenes",
+        "create": "Crear viaje"
     },
     "stage": {
         "stage": "Etapa",
@@ -181,6 +182,8 @@
         "validation": {
             "required": "Ups, debes introducir este valor.",
             "pattern.numeric": "Ups, solo se aceptan valores numéricos en este campo.",
+            "pattern.numeric.positive": "Ups, solo se aceptan valores numéricos positivos en este campo.",
+            "pattern.date": "Ups, la fecha debe tener formato dd/mm/aaaa",
             "string.maxLength": "Vaya, debes introducir un máximo de {{maxvalue}} caracteres en este campo."
         }
     }

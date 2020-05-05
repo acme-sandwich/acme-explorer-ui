@@ -96,7 +96,8 @@
         "removeRequirement": "Remove requirement",
         "addStage": "Add stage",
         "removeStage":"Remove stage",
-        "pictures": "Imágenes"
+        "pictures": "Pictures",
+        "create": "Create trip"
     },
     "stage": {
         "stage": "Stage",
@@ -181,6 +182,8 @@
         "validation": {
             "required": "Oops, you must introduce this value.",
             "pattern.numeric": "Oops, only digits are allowed in this field.",
+            "pattern.numeric.positive": "Oops, only positive digits are allowed in this field.",
+            "pattern.date": "Oops, date must be format dd/mm/yyyy",
             "string.maxLength": "Oops, you must introduce a maximum of {{maxvalue}} characters in this field."
         }
     }
