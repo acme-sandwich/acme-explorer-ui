@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AppComponent } from './app.component';
-import { TripDisplayComponent } from './components/trip/trip-display/trip-display.component';
+import { TripDisplayComponent, CancelTripDialog } from './components/trip/trip-display/trip-display.component';
 import { TripListComponent } from './components/trip/trip-list/trip-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/master/header/header.component';
@@ -39,6 +39,7 @@ import { AuditsDisplayComponent } from './components/audits/audits-display/audit
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule, MatNativeDateModule, MatInputModule } from '@angular/material';
 import { ActorEditComponent } from './components/actor/actor-edit/actor-edit.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -62,6 +63,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     TripListComponent,
     TripDisplayComponent,
+    CancelTripDialog,
     HeaderComponent,
     RegisterComponent,
     LoginComponent,
@@ -105,9 +107,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule, 
+    MatDialogModule
   ],
   providers: [AngularFireAuth],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CancelTripDialog]
 })
 export class AppModule { }

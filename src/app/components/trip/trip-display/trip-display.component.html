@@ -35,19 +35,20 @@
         <div class="entry-meta">
           <ul>
             <li class="d-flex align-items-center"><i class="icofont-user"></i> {{'trip.creator' | translate}}: <a
-                href=""> {{creator.name}}</a>
+                href="/actors/display/{{trip.creator}}"> {{creator.name}}</a>
             </li>
             <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i>{{trip.startDate |localizedDate}} -
               {{trip.endDate |localizedDate}}</li>
             <li class="d-flex align-items-center"><i class="icofont-price"></i>{{trip.price}} €</li>
+            <li class="d-flex align-items-center">Ticker: {{trip.ticker}}</li>
           </ul>
         </div>
 
         <div class="entry-content">
-          <div [hidden]="!trip.cancelled" class="text-danger">
+          <div [hidden]="!cancelled" class="text-danger">
             <h3>{{'trip.cancelled' | translate}}</h3>
             <p>
-              {{trip.cancelledReason}}
+              {{cancelledReason}}
             </p>
           </div>
           <p>
@@ -110,11 +111,11 @@
         <h3 class="sidebar-title">{{'trip.options' |translate}}</h3>
         <div class="sidebar-item categories">
           <ul>
-            <li [hidden]="!currentActor || currentActor.id !== trip.creator">
+            <li [hidden]="!editable || !currentActor || currentActor._id !== trip.creator">
               <a href="/trips/edit/{{trip._id}}">{{'trip.edit' |translate}}</a>
             </li>
-            <li>
-              <a href="/trips/edit/{{trip._id}}">{{'trip.edit' |translate}}</a>
+            <li [hidden]="!editable || !currentActor || currentActor._id !== trip.creator">
+              <a href="javascript:void(0);" (click)="openCancelDialog()" >{{'trip.cancel' |translate}}</a>
             </li>
             <li *ngIf="purchasable"><a *ngIf="!currentActor" href="/login">{{'trip.buy' |translate}}</a></li>
             <li *ngIf="purchasable"><a *ngIf="currentActor !== null && activeRole === 'EXPLORER'"

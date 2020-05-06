@@ -100,7 +100,10 @@
         "addStage": "Añadir etapa",
         "removeStage": "Quitar etapa",
         "pictures": "Imágenes",
-        "create": "Crear viaje"
+        "create": "Crear viaje",
+        "cancel": "Cancelar viaje",
+        "cancel.confirmation": "¿Estás seguro que deseas cancelar el viaje?",
+        "cancel.message": "Por favor, escribe el motivo por el que deseas cancelar el viaje"
     },
     "stage": {
         "stage": "Etapa",

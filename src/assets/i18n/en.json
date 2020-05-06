@@ -100,7 +100,10 @@
         "addStage": "Add stage",
         "removeStage":"Remove stage",
         "pictures": "Pictures",
-        "create": "Create trip"
+        "create": "Create trip",
+        "cancel": "Cancel trip",
+        "cancel.confirmation": "Are you sure you want to cancel the trip?",
+        "cancel.message": "Please type in the reason why you want to cancel the trip"
     },
     "stage": {
         "stage": "Stage",
