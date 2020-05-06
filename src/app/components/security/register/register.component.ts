@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { AuthService } from '../../../services/auth.service';
 
@@ -32,12 +32,12 @@ export class RegisterComponent  {
 
   createForm() {
     this.registrationForm = this.fb.group({
-      name: [''],
-      surname: [''],
-      email: [''],
-      password: [''],
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
       phone: [''],
-      address: [''],
+      address: ['', Validators.maxLength(50)],
       role: [''],
       banned: ['false']
     });

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, FormArray, Validators } from '@angular/forms';
+import { Component, OnInit, NgModule } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, FormArray, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { TranslatableComponent } from '../../shared/translatable/translatable.component';
 import { TranslateService } from '@ngx-translate/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -8,6 +8,21 @@ import { TripService } from 'src/app/services/trip.service';
 import { Trip, PictureObject } from 'src/app/models/trip.model';
 import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from './format-datepicker';
+
+const DatesValidator: ValidatorFn = (fg: FormGroup) => {
+  const start: Date = new Date(fg.get('startDate').value);
+  const end: Date = new Date(fg.get('endDate').value);
+  let res;
+
+  if(start == null || end == null) {
+    res = null;
+  } else if (start > end ) {
+    res = {datesValidator: true}
+  } else {
+    res = null;
+  }
+  return res;
+}
 
 @Component({
   selector: 'app-trip-edit',
@@ -25,6 +40,9 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
   photoChanged = false;
   picture: string;
   idTrip = '0';
+  requirementsNumber = 0;
+  stagesNumber = 0;
+  datesRangeError = true;
 
   constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private authService: AuthService,
     private tripService: TripService, private translateService: TranslateService) { 
@@ -45,18 +63,18 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
       picture: [''],
       photo: [''],
       startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      endDate: ['', [Validators.required]],
       published: [''],
       creator: [''],
       requirements: this.fb.array([]),
       stages: this.fb.array([]),
-    });
+    }, {validator: DatesValidator});
 
     const idActor = this.authService.getCurrentActor()._id;
     this.idTrip = this.route.snapshot.params['id'];
     if(this.idTrip == null) {
         this.trip = new Trip();
-        this.trip.published = false;
+        this.trip.published = true;
 
         this.tripForm.controls['published'].setValue(this.trip.published);
         this.tripForm.controls['creator'].setValue(idActor);
@@ -83,6 +101,7 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
   
           for(let i = 0; i < trip.requirements.length; i++) {
             this.addRequirementFromFormCreation(trip.requirements[i]);
+            this.requirementsNumber = this.requirementsNumber + 1;
           }
   
           let control = <FormArray>this.tripForm.controls.stages;
@@ -92,6 +111,7 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
               description: x.description,
               price: x.price
             }));
+            this.stagesNumber = this.stagesNumber + 1;
           });
         }
       })
@@ -108,6 +128,7 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
 
   addRequirement() {
     this.requirements.push(this.fb.control(''));
+    this.requirementsNumber = this.requirementsNumber + 1;
   }
 
   addRequirementFromFormCreation(requirement: string) {
@@ -121,14 +142,17 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
       description: ['', Validators.required],
       price: [1, Validators.pattern('[0-9]+')]
     }));
+    this.stagesNumber = this.stagesNumber + 1;
   }
 
   removeStage(index: number) {
     this.stages.removeAt(index);
+    this.stagesNumber = this.stagesNumber - 1;
   }
 
   removeRequirement(index: number){
     this.requirements.removeAt(index);
+    this.requirementsNumber = this.requirementsNumber - 1;
   }
 
   onFileChange(event) {
@@ -167,7 +191,6 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
     if(this.trip._id == null || this.trip._id === '' || this.trip._id === '0') {
       delete formModel["_id"];
       delete formModel["ticker"];
-      console.log(formModel);
       // The trip is new
       this.tripService.createTrip(formModel).then((val) => {
         console.log(val);
@@ -178,7 +201,6 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
     } else {
       // The trip already exists and it's updating
       this.tripService.updateTrip(formModel).then((val) => {
-        console.log(val);
         this.router.navigate(['/trips']);
       }).catch((err) => {
         console.error(err);
@@ -194,4 +216,14 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
     }
   }
 
+}
+
+export function startEndDatesValidator(control: FormGroup): {[key: string]: boolean} | null {
+  const start = control.get('startDate').value;
+  const end = control.get('endDate').value;
+
+  if(start != null && end != null && start > end) {
+    return {'startEndDatesValidator': true};
+  }
+  return null;
 }

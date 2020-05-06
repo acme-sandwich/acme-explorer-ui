@@ -104,7 +104,6 @@ export class TripService {
     let idCreator = '';
     if(myTrips){
        idCreator = this.authService.getCurrentActor()._id;
-       //idCreator = '5e9d73832830b00012df40bc';
     }
     
     const parameters = {
@@ -114,8 +113,6 @@ export class TripService {
       published: 'true',
       creator: idCreator,
     };
-
-    console.log(parameters);
 
     if(keyword == null) {
       delete parameters.keyword;

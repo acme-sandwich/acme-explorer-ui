@@ -187,7 +187,10 @@
             "pattern.numeric": "Ups, solo se aceptan valores numéricos en este campo.",
             "pattern.numeric.positive": "Ups, solo se aceptan valores numéricos positivos en este campo.",
             "pattern.date": "Ups, la fecha debe tener formato dd/mm/aaaa",
-            "string.maxLength": "Vaya, debes introducir un máximo de {{maxvalue}} caracteres en este campo."
+            "string.maxLength": "Vaya, debes introducir un máximo de {{maxvalue}} caracteres en este campo.",
+            "minOneStage": "Ups, debes crear al menos una etapa.",
+            "minOneRequirement": "Ups, debes añadir al menos un requisito.",
+            "startEndDatesRange": "Ups, la fecha de inicio debe ser anterior a la de fin."
         }
     }
 }

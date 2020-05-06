@@ -34,7 +34,7 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
       name: ['', Validators.required],
       surname: ['', Validators.required],
       email: [''],
-      phone: ['', Validators.pattern('[0-9]+')],
+      phone: [''],
       address: ['', Validators.maxLength(50)]
     });
 

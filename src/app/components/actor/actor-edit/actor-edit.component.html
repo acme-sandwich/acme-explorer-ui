@@ -72,9 +72,6 @@
                             <label>{{'actor.phone' | translate}}</label>
                             <input class="form-control" formControlName="phone" placeholder="{{'actor.phone' | translate}}">
                           </div>
-                          <div *ngIf="actorForm.get('phone').errors && actorForm.get('phone').touched && actorForm.get('phone').errors.pattern" class="text-danger">
-                            {{ 'errorMessages.validation.pattern.numeric' | translate }}
-                          </div>
                         </div>
                       </div>
                       <div class="row">

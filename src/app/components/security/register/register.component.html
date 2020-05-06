@@ -29,11 +29,19 @@
               <div class="form-group has-danger">
                 <label for="name" class="form-control-label">{{'actor.name' | translate}}:</label>
                 <input id="name" type="text" formControlName="name" class="form-control">
+                <div *ngIf="registrationForm.get('name').errors && registrationForm.get('name').touched &&
+                registrationForm.get('name').errors.required" class="text-danger">
+                  {{'errorMessages.validation.required' | translate}}
+                </div>
               </div>
 
               <div class="form-group has-danger">
                 <label for="surname" class="form-control-label">{{'actor.surname' | translate}}:</label>
                 <input id="surname" type="text" formControlName="surname" class="form-control">
+                <div *ngIf="registrationForm.get('surname').errors && registrationForm.get('surname').touched &&
+                registrationForm.get('surname').errors.required" class="text-danger">
+                  {{'errorMessages.validation.required' | translate}}
+                </div>
               </div>
 
               <div class="form-group has-danger">
@@ -44,19 +52,32 @@
               <div class="form-group has-danger">
                 <label for="address" class="form-control-label">{{'actor.address' | translate}}:</label>
                 <input id="address" type="text" formControlName="address" class="form-control">
+                <div *ngIf="registrationForm.get('address').errors && registrationForm.get('address').touched && registrationForm.get('address').errors.maxlength" class="text-danger">
+                  {{ 'errorMessages.validation.string.maxLength' | translate: {
+                  maxvalue: registrationForm.get('address').errors.maxlength.requiredLength
+                  } }}
+                </div>
               </div>
 
               <div class="form-group has-danger">
                 <label for="email" class="form-control-label">{{'actor.email' | translate}}:</label>
                 <input id="email" type="text" formControlName="email" class="form-control">
+                <div *ngIf="registrationForm.get('email').errors && registrationForm.get('email').touched &&
+                registrationForm.get('email').errors.required" class="text-danger">
+                  {{'errorMessages.validation.required' | translate}}
+                </div>
               </div>
 
               <div class="form-group has-danger">
                 <label for="password" class="form-control-label">{{'actor.password' | translate}}:</label>
                 <input id="password" type="password" formControlName="password" class="form-control">
+                <div *ngIf="registrationForm.get('password').errors && registrationForm.get('password').touched &&
+                registrationForm.get('password').errors.required" class="text-danger">
+                  {{'errorMessages.validation.required' | translate}}
+                </div>
               </div>
 
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">
                 {{'security.register' | translate}}
               </button>
             </fieldset>
