@@ -103,7 +103,11 @@
         "create": "Create trip",
         "cancel": "Cancel trip",
         "cancel.confirmation": "Are you sure you want to cancel the trip?",
-        "cancel.message": "Please type in the reason why you want to cancel the trip"
+        "cancel.message": "Please type in the reason why you want to cancel the trip",
+        "delete": "Delete trip",
+        "delete.confirmation": "Are you sure you want to delete the trip?",
+        "delete.message": "This action cannot be undone",
+        "cantModify": "You cannot modify, cancel or delte the trip because it is going to start in less than a week."
     },
     "stage": {
         "stage": "Stage",
@@ -140,6 +144,9 @@
             "login.failed": "Error during login, please try again later",
             "user.not.found": "User email not found",
             "wrong.password": "Wrong password"
+        },
+        "trip":{
+            "delete.error.oneWeek": "The trip couldn't be deleted because it will start in less than a week."
         }
     },
     "applications": {

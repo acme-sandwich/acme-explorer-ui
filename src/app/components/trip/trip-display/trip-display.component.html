@@ -22,8 +22,8 @@
 
       <article class="entry entry-single">
         <div class="entry-img">
-          <img *ngIf="trip.photoObject != null && trip.photoObject.Buffer != 0" class="img-fluid" src="{{trip.photoObject.Buffer}}"
-            alt="{{trip.title}}">
+          <img *ngIf="trip.photoObject != null && trip.photoObject.Buffer != 0" class="img-fluid"
+            src="{{trip.photoObject.Buffer}}" alt="{{trip.title}}">
           <img *ngIf="!trip.photoObject || trip.photoObject.Buffer.length === 0 " class="img-fluid"
             src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{trip.title}}">
         </div>
@@ -63,7 +63,7 @@
           <h3>{{'trip.stages' | translate}}</h3>
           <p>
             <span *ngFor="let req of trip.stages; let i = index">
-              <p> 
+              <p>
                 <i class="icofont-airplane-alt"></i> {{trip.stages[i].title}} - {{trip.stages[i].price}} €
               </p>
               <p>
@@ -74,7 +74,7 @@
           <h3>{{'audits.audits' | translate}}</h3>
           <p>
             <span *ngFor="let aud of audits; let i = index">
-              <p> 
+              <p>
                 <i class="icofont-airplane-alt"></i>{{aud.title}}
               </p>
             </span>
@@ -111,17 +111,24 @@
         <h3 class="sidebar-title">{{'trip.options' |translate}}</h3>
         <div class="sidebar-item categories">
           <ul>
-            <li [hidden]="!editable || !currentActor || currentActor._id !== trip.creator">
+            <li [hidden]="editable || !currentActor || currentActor._id !== trip.creator">
+              {{'trip.cantModify' |translate}}
+            </li>
+            <li [hidden]="cancelled || !editable || !currentActor || currentActor._id !== trip.creator">
               <a href="/trips/edit/{{trip._id}}">{{'trip.edit' |translate}}</a>
             </li>
-            <li [hidden]="!editable || !currentActor || currentActor._id !== trip.creator">
-              <a href="javascript:void(0);" (click)="openCancelDialog()" >{{'trip.cancel' |translate}}</a>
+            <li [hidden]="cancelled || !editable || !currentActor || currentActor._id !== trip.creator">
+              <a href="javascript:void(0);" (click)="openCancelDialog()">{{'trip.cancel' |translate}}</a>
+            </li>
+            <li [hidden]="cancelled || !editable || !currentActor || currentActor._id !== trip.creator">
+              <a href="javascript:void(0);" (click)="openDeleteDialog()">{{'trip.delete' |translate}}</a>
             </li>
             <li><a *ngIf="currentActor !== null && currentActor.role == 'EXPLORER'" href="/trips/{{trip._id}}/applications/create">
               {{'applications.apply' | translate}}
             </a></li>
-            <li *ngIf="purchasable"><a *ngIf="!currentActor" href="/login">{{'trip.buy' |translate}}</a></li>
-            <li *ngIf="purchasable"><a *ngIf="currentActor !== null && activeRole === 'EXPLORER'"
+            <li [hidden]="cancelled" *ngIf="purchasable"><a *ngIf="!currentActor"
+                href="/login">{{'trip.buy' |translate}}</a></li>
+            <li [hidden]="cancelled" *ngIf="purchasable"><a *ngIf="currentActor !== null && activeRole === 'EXPLORER'"
                 href="javascript:alert('El usuario será redirigido a la ventana de comprar un viaje pagando con Paypal');">{{'trip.buy' |translate}}</a>
             </li>
             <li><a href="javascript:void(0);" (click)="goBack()">{{'trip.goBack' |translate}}</a></li>

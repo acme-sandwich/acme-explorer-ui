@@ -103,7 +103,11 @@
         "create": "Crear viaje",
         "cancel": "Cancelar viaje",
         "cancel.confirmation": "¿Estás seguro que deseas cancelar el viaje?",
-        "cancel.message": "Por favor, escribe el motivo por el que deseas cancelar el viaje"
+        "cancel.message": "Por favor, escribe el motivo por el que deseas cancelar el viaje",
+        "delete": "Borrar viaje",
+        "delete.confirmation": "¿Estás seguro que deseas borrar el viaje?",
+        "delete.message": "Esta acción no se puede deshacer",
+        "cantModify": "No puedes editar, cancelar ni borrar el viaje debido a que va a empezar en menos de una semana."
     },
     "stage": {
         "stage": "Etapa",
@@ -140,6 +144,9 @@
             "login.failed": "No se pudo iniciar sesión, inténtelo de nuevo más tarde",
             "user.not.found": "Error iniciando sesión, usuario no encontrado",
             "wrong.password": "Error iniciando sesión, contraseña incorrecta"
+        },
+        "trip":{
+            "delete.error.oneWeek": "No se pudo borrar el viaje debido a que queda menos de una semana para que comience."
         }
     },
     "applications": {

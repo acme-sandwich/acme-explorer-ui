@@ -8,10 +8,16 @@ import { TranslateService } from '@ngx-translate/core';
 import { Actor } from 'src/app/models/actor.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuditsService } from 'src/app/services/audits.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MessageService } from 'src/app/services/message.service';
 
 export interface DialogData {
   cancelledReason: string;
+}
+
+export interface DeleteDialogData {
+  delete: boolean;
+  deleteConfirm: string;
 }
 
 @Component({
@@ -20,7 +26,7 @@ export interface DialogData {
   styleUrls: ['./trip-display.component.css']
 })
 export class TripDisplayComponent extends TranslatableComponent implements OnInit {
-  
+
   trip = new Trip();
   creator = new Actor();
   id: String;
@@ -33,13 +39,13 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
   cancelled = false;
   cancelledReason = '';
 
-  constructor(private authService: AuthService, private tripService: TripService, private router: Router, 
+  constructor(private authService: AuthService, private tripService: TripService, private router: Router,
     private route: ActivatedRoute, private translateService: TranslateService, private auditService: AuditsService,
-    public dialog: MatDialog) { 
-      super(translateService);
+    public dialog: MatDialog, public cancelDialog: MatDialog, public messageService: MessageService) {
+    super(translateService);
   }
 
-  getRequirements(){
+  getRequirements() {
     console.log(this.trip.requirements);
     return this.trip.requirements;
   }
@@ -57,25 +63,25 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
       .then((val) => {
         this.trip = val;
         // Checks if the trip can be bought
-        if(this.trip.cancelled || today > this.trip.startDate){
+        if (this.trip.cancelled || today > this.trip.startDate) {
           this.purchasable = false;
-          if(this.trip.cancelled) {
+          if (this.trip.cancelled) {
             this.cancelled = this.trip.cancelled;
             this.cancelledReason = this.trip.cancelledReason;
           }
-        }else{
+        } else {
           this.purchasable = true;
         };
-        if(new Date(this.trip.startDate) > oneWeek) {
+        if (new Date(this.trip.startDate) > oneWeek) {
           this.editable = true;
         }
         this.tripService.getTripCreator(this.trip.creator)
-        .then((val1) => {
-          this.creator = val1;
-        }).catch((err1) => {
-          console.log(err1);
-        });
-        for(var i = 0; i < this.trip.picture.length; i++){
+          .then((val1) => {
+            this.creator = val1;
+          }).catch((err1) => {
+            console.log(err1);
+          });
+        for (var i = 0; i < this.trip.picture.length; i++) {
           this.pictures.push(this.trip.picture[i]);
         }
         this.auditService.getAuditsTrip(this.id)
@@ -89,46 +95,70 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
         console.error(err);
       });
 
-      this.currentActor = this.authService.getCurrentActor();
+    this.currentActor = this.authService.getCurrentActor();
 
-      // Recover current actor
-      this.authService.userLoggedIn.subscribe((loggedIn: boolean) => {
-        if (loggedIn) {
-          this.currentActor = this.authService.getCurrentActor();
-          this.activeRole = this.currentActor.role.toString();
-        } else {
-          this.currentActor = null;
-          this.activeRole = 'anonymous';
-        }
-        
-      });
+    // Recover current actor
+    this.authService.userLoggedIn.subscribe((loggedIn: boolean) => {
+      if (loggedIn) {
+        this.currentActor = this.authService.getCurrentActor();
+        this.activeRole = this.currentActor.role.toString();
+      } else {
+        this.currentActor = null;
+        this.activeRole = 'anonymous';
+      }
+
+    });
   }
 
   goBack(): void {
     this.router.navigate(['/trips']);
   }
 
-  newTrip(): void{
+  newTrip(): void {
     console.log("New trip functionallity not implemented yet");
   }
 
   openCancelDialog(): void {
     const dialogRef = this.dialog.open(CancelTripDialog, {
       width: '500px',
-      data: {cancelledReason: this.cancelledReason}
+      data: { cancelledReason: this.cancelledReason }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      if(result && result !== '') {
-        this.cancelledReason = result;
-        this.tripService.cancelTrip(this.trip._id, this.cancelledReason).then((val) => {
-          this.cancelled = true;
-          this.trip.cancelled = true;
-          this.trip.cancelledReason = this.cancelledReason;
-        }).catch((err) => {
-          console.error(err);
-        });
+      if (!this.trip.cancelled) {
+        if (result && result !== '') {
+          this.cancelledReason = result;
+          this.tripService.cancelTrip(this.trip._id, this.cancelledReason).then((val) => {
+            this.cancelled = true;
+            this.trip.cancelled = true;
+            this.trip.cancelledReason = this.cancelledReason;
+          }).catch((err) => {
+            console.error(err);
+          });
+        }
+      }
+    });
+  }
+
+  openDeleteDialog(): void {
+    const dialogRef = this.cancelDialog.open(DeleteTripDialog, {
+      width: '500px',
+      data: { deleted: false, deleteConfirm: '' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        var oneWeek = new Date();
+        oneWeek.setDate(oneWeek.getDate() + 7);
+        if (new Date(this.trip.startDate) > oneWeek) {
+          this.tripService.deleteTrip(this.trip._id).then((val) => {
+            this.router.navigate(['/trips']);
+          }).catch((err) => {
+            console.error(err);
+          });
+        } else {
+          this.messageService.notifyMessage('messages.trip.delete.error.oneWeek', 'alert alert-danger');
+        }
       }
     });
   }
@@ -143,10 +173,27 @@ export class CancelTripDialog {
 
   constructor(
     public cancelTripDialog: MatDialogRef<CancelTripDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   onNoClick(): void {
     this.cancelTripDialog.close();
   }
 
 }
+
+@Component({
+  selector: 'delete-trip-dialog',
+  templateUrl: 'delete-trip-dialog.html',
+})
+export class DeleteTripDialog {
+
+  constructor(
+    public deleteTripDialog: MatDialogRef<DeleteTripDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DeleteDialogData) { }
+
+  onNoClick(): void {
+    this.deleteTripDialog.close();
+  }
+
+}
+
