@@ -149,7 +149,12 @@
         "comments": "Comments",
         "applications": "Applications",
         "trip": "Trip",
-        "explorer": "Explorer"
+        "explorer": "Explorer",
+        "apply": "Apply",
+        "comment": "Comment",
+        "addComment": "Add comment",
+        "removeComment": "Remove comment",
+        "applyOptComments": "You are about to apply for this trip. You can add some optional comments below."
     },
     "dashboard": {
         "display": "Dashboard",

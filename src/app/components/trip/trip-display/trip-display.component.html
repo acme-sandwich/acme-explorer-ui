@@ -117,6 +117,9 @@
             <li [hidden]="!editable || !currentActor || currentActor._id !== trip.creator">
               <a href="javascript:void(0);" (click)="openCancelDialog()" >{{'trip.cancel' |translate}}</a>
             </li>
+            <li><a *ngIf="currentActor !== null && currentActor.role == 'EXPLORER'" href="/trips/{{trip._id}}/applications/create">
+              {{'applications.apply' | translate}}
+            </a></li>
             <li *ngIf="purchasable"><a *ngIf="!currentActor" href="/login">{{'trip.buy' |translate}}</a></li>
             <li *ngIf="purchasable"><a *ngIf="currentActor !== null && activeRole === 'EXPLORER'"
                 href="javascript:alert('El usuario será redirigido a la ventana de comprar un viaje pagando con Paypal');">{{'trip.buy' |translate}}</a>

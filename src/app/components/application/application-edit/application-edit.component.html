@@ -1,0 +1,96 @@
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="breadcrumb-hero">
+    <div class="container">
+      <div class="breadcrumb-hero">
+        <h2>{{trip.title}}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <ol>
+      <li><a href="/">{{'header.home' | translate}}</a></li>
+      <li><a href="/trips">{{'trips.trips' | translate}}</a></li>
+      <li><a href="/trips/display/{{trip._id}}">{{trip.title}}</a></li>
+      <li>{{'applications.apply' | translate}}</li>
+    </ol>
+  </div>
+</section>
+
+
+<section id="blog" class="blog container">
+  <div class="row">
+    <div class="col-lg-8 entries">
+
+      <article class="entry entry-single">
+        <div class="entry-img">
+          <img *ngIf="trip.photoObject != null && trip.photoObject.Buffer != 0" class="img-fluid" src="{{trip.photoObject.Buffer}}"
+            alt="{{trip.title}}">
+          <img *ngIf="!trip.photoObject || trip.photoObject.Buffer.length === 0 " class="img-fluid"
+            src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{trip.title}}">
+        </div>
+
+        <h2 class="entry-title">
+          {{trip.title}}
+        </h2>
+
+        <div class="entry-meta">
+          <ul>
+            <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i>{{trip.startDate |localizedDate}} -
+              {{trip.endDate |localizedDate}}</li>
+            <li class="d-flex align-items-center"><i class="icofont-price"></i>{{trip.price}} €</li>
+          </ul>
+        </div>
+
+        <div class="entry-content">
+          <div [hidden]="!cancelled" class="text-danger">
+            <h3>{{'trip.cancelled' | translate}}</h3>
+            <p>
+              {{cancelledReason}}
+            </p>
+          </div>
+          <p>
+            {{trip.description}}
+          </p>
+          <div>
+            <h3>{{'applications.apply' |translate}}</h3>
+            <div>
+                {{'applications.applyOptComments' | translate}}
+                
+                <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
+                  <input class="form-control" formControlName="id" type="hidden">
+                  <input class="form-control" formControlName="status" type="hidden">
+                  <input class="form-control" formControlName="trip" type="hidden">
+                  <input class="form-control" formControlName="explorer" type="hidden">
+                  <input class="form-control" formControlName="moment" type="hidden">
+    
+                  <br>
+                  <div formArrayName="comments">
+                    <h6>{{'applications.comments' | translate}}</h6>
+                    <div *ngFor="let req of comments.controls; let i=index">
+                      <label>
+                        {{'applications.comment' | translate}}:
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <button type='button' class="btn btn-danger"
+                              (click)="removeComment(i)">{{'applications.removeComment' | translate}}</button>
+                          </div>
+                          <input type="text" [formControlName]="i" class="form-control" style="width: 400px;">
+                        </div>
+                      </label>
+                    </div>
+                    <button type='button' class="btn btn-info"
+                      (click)="addComment()">{{'applications.addComment' | translate}}</button>
+                  </div>
+    
+                  <button type="submit" class="btn btn-primary" [disabled]="applicationForm.invalid">
+                    {{'form.save' | translate}}
+                  </button>
+                </form>
+              
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

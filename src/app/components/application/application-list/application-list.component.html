@@ -14,14 +14,14 @@
   </div>
 </section>
 
-<table datatable [dtOptions]="dtOptions" class="table table-sm table-striped" width="100%">
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-striped" width="100%">
   <thead style="background-color: #94c045;">
     <tr>
       <td translate>{{'applications.status'}}</td>
       <th translate>{{'applications.trip'}}</th>
       <th translate>{{'applications.explorer'}}</th>
       <th translate>{{'applications.moment'}}</th>
-      <th translate>Comments</th>
+      <th translate>{{'applications.comments'}}</th>
     </tr>
   </thead>
   <tbody>

@@ -8,6 +8,7 @@ import { TranslatableComponent } from '../../shared/translatable/translatable.co
 import { ActorService } from '../../../services/actor.service';
 import { Actor } from 'src/app/models/actor.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-application-list',
@@ -15,12 +16,12 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./application-list.component.css']
 })
 export class ApplicationListComponent extends TranslatableComponent implements OnInit {
-
   private applications: Application[];
   data: any[] = [];
   dtOptions: any = {};
   private currentActor: Actor;
   private activeRole: String;
+  dtTrigger: Subject<any> = new Subject();
 
   constructor(private applicationService: ApplicationService, private translateService: TranslateService,
     private tripService: TripService, private actorService: ActorService, private authService: AuthService) {
@@ -28,7 +29,7 @@ export class ApplicationListComponent extends TranslatableComponent implements O
    }
 
    getExplorerApplications() {
-      this.applicationService.getApplicationsByExplorer('5e9d9ec976ae7200126553e5')//this.currentActor._id
+      this.applicationService.getApplicationsByExplorer(this.currentActor._id)
         .then((val) => {
           for (let i = 0; i < val.length; i ++) {
             this.tripService.getTrip(val[i].trip).then((tripVal) => {
@@ -39,12 +40,13 @@ export class ApplicationListComponent extends TranslatableComponent implements O
             });
           }
           this.data = val;
+          this.dtTrigger.next();
         }).catch((err) => console.error(err.message));
    }
 
    getManagerApplications() {
       let result;
-      this.applicationService.getApplicationsByManager('5e9d9ec976ae720012655407')//this.currentActor._id
+      this.applicationService.getApplicationsByManager(this.currentActor._id)
       .then((val) => {
         for (let i = 0; i < val.length; i ++) {
           this.tripService.getTrip(val[i].trip).then((tripVal) => {
@@ -56,6 +58,7 @@ export class ApplicationListComponent extends TranslatableComponent implements O
         }
         this.data = val;
         result = val;
+        this.dtTrigger.next();
       }).catch((err) => console.error(err.message));
 
       return result;
@@ -74,16 +77,15 @@ export class ApplicationListComponent extends TranslatableComponent implements O
 
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 4,
+      pageLength: 5,
       columns: [
       {
         title: 'applications.status',
         data: 'status'
       }, {
         title: 'applications.trip',
-        //data: 'tripName'
       }, {
-        title: 'applications.explorer'
+        title: 'applications.explorer',
       }, {
         title: 'applications.moment',
         data: 'moment'

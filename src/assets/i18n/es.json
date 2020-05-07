@@ -149,7 +149,12 @@
         "comments": "Comentarios",
         "applications": "Peticiones",
         "trip": "Viaje",
-        "explorer": "Explorador"
+        "explorer": "Explorador",
+        "apply": "Aplicar",
+        "comment": "Comentario",
+        "addComment": "Añadir comentario",
+        "removeComment": "Eliminar comentario",
+        "applyOptComments": " Vas a solicitar este viaje. Puedes añadir comentarios de forma opcional justo debajo."
     },
     "dashboard": {
         "display": "Dashboard",

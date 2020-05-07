@@ -21,6 +21,7 @@ import { DashboardDisplayComponent } from './components/dashboard/dashboard-disp
 import { AuditsListComponent } from './components/audits/audits-list/audits-list.component';
 import { AuditsDisplayComponent } from './components/audits/audits-display/audits-display.component';
 import { ActorEditComponent } from './components/actor/actor-edit/actor-edit.component';
+import { ApplicationEditComponent } from './components/application/application-edit/application-edit.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
     {path: 'edit/:id', component: TripEditComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER'}},
     {path: 'my-trips', component: TripListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER', myTrips:true}},
     {path: '', component: TripListComponent},
+    {path: ':id/applications/create', component: ApplicationEditComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'EXPLORER'}},
   ]},
   {path: 'applications', children: [
     {path: '', component: ApplicationListComponent },
