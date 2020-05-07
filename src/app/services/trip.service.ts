@@ -116,4 +116,21 @@ export class TripService {
         }, err => {console.log(err); reject(err)});
     });
   }
+
+  deleteTrip(tripId: string) {
+    const url = `${this.tripsUrl}/${tripId}`;
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+
+    //return this.http.delete(url).toPromise();
+    console.log('intentando borrar...');
+
+    return new Promise<any>((resolve, reject) => {
+      this.http.delete(url, httpOptions).toPromise()
+        .then(res => {
+          console.log(res);
+          resolve(res);
+        }, err => {console.log(err); reject(err)});
+    });
+  }
 }

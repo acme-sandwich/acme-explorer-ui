@@ -1,3 +1,4 @@
-<div class={{cssClass}} role="alert" *ngIf="infoMessage != null && infoMessage.length > 0 && showMessage">
+<div class={{cssClass}} role="alert" id="message-alert" *ngIf="infoMessage != null && infoMessage.length > 0 && showMessage">
+  <a href="javascript:void(0);" class="close" aria-label="close" (click)="hideMessage()">&times;</a>
   {{ infoMessage | translate }}
 </div>
