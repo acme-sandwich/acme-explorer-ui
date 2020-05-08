@@ -35,7 +35,6 @@ export class ActorListComponent extends TranslatableComponent implements OnInit 
     this.actorService.getActors()
       .then((val) => {
         this.data = val;
-        console.log(this.data);
         this.dtTrigger.next();
       })
       .catch((err) => console.error(err.message));

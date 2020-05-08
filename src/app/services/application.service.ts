@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Application } from '../models/application.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Trip } from '../models/trip.model';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -16,7 +17,7 @@ export class ApplicationService {
   constructor(private http: HttpClient) { }
 
   getApplications(){
-    const url = `${this.applicationsUrl}`;
+    const url = `${this.applicationsUrl}/v1/my-applications`;
     return this.http.get<Application[]>(url).toPromise();
   }
 
@@ -55,7 +56,7 @@ export class ApplicationService {
     const url = `${this.applicationsUrl}/v2/applications/${application._id}`;
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    headers.append('Access-Control-Allow-Origin','*');
+    headers.append('Access-Control-Allow-Origin', '*');
 
     const body = JSON.stringify(application);
     
@@ -65,5 +66,10 @@ export class ApplicationService {
           resolve(res);
         }, err => {console.log(err); reject(err)});
     });
+  }
+
+  getApplicationsByTrip(trip: Trip) {
+    const url = `${this.applicationsUrl}/v1/trips/${trip._id}/applications`;
+    return this.http.get<Application>(url).toPromise();
   }
 }

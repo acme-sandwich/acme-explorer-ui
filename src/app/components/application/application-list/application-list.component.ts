@@ -16,7 +16,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./application-list.component.css']
 })
 export class ApplicationListComponent extends TranslatableComponent implements OnInit {
-  private applications: Application[];
+  private applications: Application[] = [];
   data: any[] = [];
   dtOptions: any = {};
   private currentActor: Actor;
@@ -45,23 +45,19 @@ export class ApplicationListComponent extends TranslatableComponent implements O
    }
 
    getManagerApplications() {
-      let result;
-      this.applicationService.getApplicationsByManager(this.currentActor._id)
-      .then((val) => {
-        for (let i = 0; i < val.length; i ++) {
-          this.tripService.getTrip(val[i].trip).then((tripVal) => {
-            val[i]['tripName'] = tripVal.title;
-          });
-          this.actorService.getActor(val[i].explorer).then((explorerVal) => {
-            val[i]['explorerName'] = explorerVal.name + ' ' + explorerVal.surname;
-          });
-        }
-        this.data = val;
-        result = val;
-        this.dtTrigger.next();
-      }).catch((err) => console.error(err.message));
-
-      return result;
+    this.applicationService.getApplicationsByManager(this.currentActor._id)
+    .then((val) => {
+      for (let i = 0; i < val.length; i ++) {
+        this.tripService.getTrip(val[i].trip).then((tripVal) => {
+          val[i]['tripName'] = tripVal.title;
+        });
+        this.actorService.getActor(val[i].explorer).then((explorerVal) => {
+          val[i]['explorerName'] = explorerVal.name + ' ' + explorerVal.surname;
+        });
+      }
+      this.data = val;
+      this.dtTrigger.next();
+    }).catch((err) => console.error(err.message));
    }
 
   ngOnInit() {
@@ -72,7 +68,6 @@ export class ApplicationListComponent extends TranslatableComponent implements O
       this.getExplorerApplications();
     } else if (this.authService.getCurrentActorRole() === 'MANAGER') {
       this.getManagerApplications();
-      console.log('sabe que soy manager');
     }
 
     this.dtOptions = {

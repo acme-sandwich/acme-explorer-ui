@@ -133,4 +133,19 @@ export class TripService {
         }, err => {console.log(err); reject(err)});
     });
   }
+
+  getCreatedTrips() {
+    const url = `${this.tripsUrl}`;
+    let idCreator = '';
+
+    idCreator = this.authService.getCurrentActor()._id;
+
+    const parameters = {
+      creator: idCreator,
+    };
+
+    return this.http.get<Trip[]>(url, {
+      params: parameters, observe: 'body',
+    }).toPromise();
+  }
 }

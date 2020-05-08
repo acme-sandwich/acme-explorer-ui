@@ -27,7 +27,6 @@
   <tbody>
     <tr *ngFor="let app of data">
       <td>{{app.status}}</td>
-      <!--<td style="cursor: pointer;" routerLink="/trips/display/{{app.trip}}">{{app.tripName}}</td>-->
       <td><a href="/trips/display/{{app.trip}}">{{app.tripName}}</a></td>
       <td><a href="/actors/display/{{app.explorer}}">{{app.explorerName}}</a></td>
       <td>{{app.moment | date}}</td>

@@ -37,6 +37,7 @@ export class ApplicationEditComponent extends TranslatableComponent implements O
 
     this.tripService.getTrip(this.tripId).then((val) => {
       this.applicationForm.controls['trip'].setValue(val);
+      this.applicationForm.controls['manager'].setValue(val.creator);
       this.trip = val;
     });
 
@@ -50,6 +51,7 @@ export class ApplicationEditComponent extends TranslatableComponent implements O
       trip: [''],
       explorer: [''],
       moment: [''],
+      manager: [''],
       comments: this.fb.array([]),
     });
 
