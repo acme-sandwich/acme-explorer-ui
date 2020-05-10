@@ -16,7 +16,7 @@ import { Trip } from 'src/app/models/trip.model';
 export class AuditsDisplayComponent extends TranslatableComponent implements OnInit {
   id: String;
   private currentActor: Actor;
-  audit: Audit;
+  audit = new Audit();
   trip: Trip;
   auditor: Actor;
   
@@ -30,10 +30,10 @@ export class AuditsDisplayComponent extends TranslatableComponent implements OnI
     this.currentActor = this.authService.getCurrentActor();
     console.log(this.route);
     // Recover audit
-    this.auditService.getAudit(this.id, '5e9d9ec976ae720012655444') // this.currentActor._id
+    this.auditService.getAudit(this.id, this.currentActor._id) // this.currentActor._id
       .then((val) => {
         this.audit = val;
-        if (!this.currentActor || !this.currentActor._id) { //|| this.currentActor.id != this.sponsorship.sponsor
+        if (!this.currentActor || this.currentActor._id != this.audit.auditor) { //|| this.currentActor.id != this.sponsorship.sponsor
           this.router.navigate(['/denied-access']);
         } else {
           this.auditService.getAuditCreator(this.audit.auditor)

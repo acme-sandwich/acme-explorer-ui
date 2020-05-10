@@ -41,6 +41,7 @@ import { MatDatepickerModule, MatNativeDateModule, MatInputModule } from '@angul
 import { ActorEditComponent } from './components/actor/actor-edit/actor-edit.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ApplicationEditComponent } from './components/application/application-edit/application-edit.component';
+import { AuditsEditComponent } from './components/audits/audits-edit/audits-edit.component';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -87,7 +88,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuditsListComponent,
     AuditsDisplayComponent,
     ActorEditComponent,
-    ApplicationEditComponent
+    ApplicationEditComponent,
+    AuditsEditComponent
   ],
   imports: [
     DataTablesModule,

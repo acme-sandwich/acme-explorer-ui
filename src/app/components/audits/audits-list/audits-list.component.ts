@@ -23,12 +23,21 @@ export class AuditsListComponent extends TranslatableComponent implements OnInit
     
 
   ngOnInit() {
-    this.actor = this.authService.getCurrentActor();
-    this.auditService.getAuditsAuditor('5e9d9ec976ae720012655444')//this.actor._id
-      .then((val) => {
+    const idTrip = this.route.snapshot.params['id'];
+    if (idTrip) {
+      this.auditService.getAuditsTrip(idTrip).then(val => {
         this.data = val;
+        console.log(val);
       })
-      .catch((err) => console.error(err.message));
+      .catch(err => console.error(err.message));
+    } else{
+      this.actor = this.authService.getCurrentActor();
+      this.auditService.getAuditsAuditor(this.actor._id)//this.actor._id
+        .then((val) => {
+          this.data = val;
+        })
+        .catch((err) => console.error(err.message));
+    }
   }
 
 }

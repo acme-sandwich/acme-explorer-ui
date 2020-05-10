@@ -192,6 +192,17 @@
         "attachments": "Attachments",
         "trip": "Trip"
     },
+    "audit":{
+        "create":"Create audit",
+        "edit":"Edit",
+        "trip":"Trip",
+        "title":"Title",
+        "description":"Description",
+        "attachments":"Attachments",
+        "attachment":"Attachment",
+        "addAttachment":"Add attachment",
+        "removeAttachment":"Remove attachment"
+    },
     "form":{
         "save": "Save",
         "cancel": "Cancel"

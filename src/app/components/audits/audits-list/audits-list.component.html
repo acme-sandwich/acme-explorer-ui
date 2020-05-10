@@ -24,7 +24,7 @@
 
     <div class="blog-pagination" data-aos="fade-up">
       <ul class="">
-        <li class="active"><a routerLink="/audits">{{'audits.new' |translate}}</a></li>
+        <li class="active"><a *ngIf="actor !== null && actor.role == 'AUDITOR'" routerLink="/audits/create">{{'audits.new' |translate}}</a></li>
       </ul>
     </div>
 

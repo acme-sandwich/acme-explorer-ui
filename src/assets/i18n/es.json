@@ -192,6 +192,17 @@
         "attachments": "Adjuntos",
         "trip": "Viaje"
     },
+    "audit":{
+        "create":"Crear auditoría",
+        "edit":"Editar",
+        "trip":"Viaje",
+        "title":"Título",
+        "description":"Descripción",
+        "attachments":"Adjuntos",
+        "attachment":"Adjunto",
+        "addAttachment":"Añadir adjunto",
+        "removeAttachment":"Quitar adjunto"
+    },
     "form":{
         "save": "Guardar",
         "cancel": "Cancelar"

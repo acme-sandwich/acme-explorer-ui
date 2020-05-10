@@ -131,6 +131,12 @@
             <li [hidden]="cancelled" *ngIf="purchasable"><a *ngIf="currentActor !== null && activeRole === 'EXPLORER'"
                 href="javascript:alert('El usuario será redirigido a la ventana de comprar un viaje pagando con Paypal');">{{'trip.buy' |translate}}</a>
             </li>
+            <li><a *ngIf="currentActor !== null && currentActor.role == 'AUDITOR'" href="/audits/create/{{trip._id}}">
+              {{'audits.new' | translate}}
+            </a></li>
+            <li>
+              <a href="/audits/trips/{{trip._id}}">{{'audits.audits' |translate}}</a>
+            </li>
             <li><a href="javascript:void(0);" (click)="goBack()">{{'trip.goBack' |translate}}</a></li>
           </ul>
 

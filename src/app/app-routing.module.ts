@@ -20,6 +20,7 @@ import { TripEditComponent } from './components/trip/trip-edit/trip-edit.compone
 import { DashboardDisplayComponent } from './components/dashboard/dashboard-display/dashboard-display.component';
 import { AuditsListComponent } from './components/audits/audits-list/audits-list.component';
 import { AuditsDisplayComponent } from './components/audits/audits-display/audits-display.component';
+import { AuditsEditComponent } from './components/audits/audits-edit/audits-edit.component';
 import { ActorEditComponent } from './components/actor/actor-edit/actor-edit.component';
 import { ApplicationEditComponent } from './components/application/application-edit/application-edit.component';
 
@@ -52,6 +53,9 @@ const appRoutes: Routes = [
     {path: '', component: SponsorshipListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}}
   ]},
   {path: 'audits', children: [
+    {path: 'create/:id', component: AuditsEditComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'AUDITOR'}},
+    {path: 'create', component: AuditsEditComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'AUDITOR'}},
+    {path: 'trips/:id', component: AuditsListComponent},
     {path: ':id', component: AuditsDisplayComponent},
     {path: '', component: AuditsListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'AUDITOR'}}
   ]},
