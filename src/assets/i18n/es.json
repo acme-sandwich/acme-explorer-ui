@@ -143,7 +143,9 @@
             "login.correct":"Has iniciado sesión correctamente",
             "login.failed": "No se pudo iniciar sesión, inténtelo de nuevo más tarde",
             "user.not.found": "Error iniciando sesión, usuario no encontrado",
-            "wrong.password": "Error iniciando sesión, contraseña incorrecta"
+            "wrong.password": "Error iniciando sesión, contraseña incorrecta",
+            "register.failed": "El correo electrónico ya está en uso",
+            "register.weak.password": "La contraseña es demasiado débil. Recuerda que debe tener como mínimo 6 caracteres"
         },
         "trip":{
             "delete.error.oneWeek": "No se pudo borrar el viaje debido a que queda menos de una semana para que comience."

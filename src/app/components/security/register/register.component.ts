@@ -45,6 +45,7 @@ export class RegisterComponent  {
 
   onRegister() {
     const actor = this.registrationForm.value;
+    // Se va a regisrar un nuevo explorador
     if(!this.adminConnected) {
       actor.role = ['EXPLORER'];
       this.authService.registerUser(actor)
@@ -55,6 +56,7 @@ export class RegisterComponent  {
         console.log(err);
       });
     } else {
+      // El administrador va a registrar un Manager, Auditor, Sponsor u otro Administrador
       this.authService.registerUser(actor)
       .then(res => {
         console.log(res);

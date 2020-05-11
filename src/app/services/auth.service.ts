@@ -39,6 +39,11 @@ export class AuthService {
               reject(err);
             });
         }).catch(err => {
+          if(err.code === 'auth/email-already-in-use') {
+            this.messageService.notifyMessage('messages.auth.register.failed', 'alert alert-danger');
+          } else if(err.code === 'auth/weak-password') {
+            this.messageService.notifyMessage('messages.auth.register.weak.password', 'alert alert-danger');
+          }
           reject(err);
         });
     });
