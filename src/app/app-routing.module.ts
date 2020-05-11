@@ -59,7 +59,7 @@ const appRoutes: Routes = [
     {path: ':id', component: AuditsDisplayComponent},
     {path: '', component: AuditsListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'AUDITOR'}}
   ]},
-  {path: 'dashboard', component: DashboardDisplayComponent},
+  {path: 'dashboard', component: DashboardDisplayComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'ADMINISTRATOR'}},
   {path: 'terms-and-conditions', component: TermsAndConditionsComponent},
   {path: 'not-found', component: NotFoundPageComponent},
   {path: 'denied-access', component: DeniedAccessPageComponent},
