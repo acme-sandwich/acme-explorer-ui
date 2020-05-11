@@ -13,10 +13,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ActorDisplayComponent extends TranslatableComponent implements OnInit {
 
-  private actor: Actor;
+  private actor: Actor; // Actor cuyo perfil se está mostrando
   id: String;
   private activeRole: String;
-  private currentActor: Actor;
+  private currentActor: Actor; // Actor logueado ahora mismo
 
   constructor(private actorService: ActorService, private router: Router, private route: ActivatedRoute, 
     private translateService: TranslateService, private authService: AuthService) {

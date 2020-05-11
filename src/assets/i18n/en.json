@@ -142,6 +142,7 @@
         "auth":{
             "login.correct":"Correct login",
             "login.failed": "Error during login, please try again later",
+            "login.failed.ban": "You cannot login into the system because your account got banned. Please contact an administrator for further information.",
             "user.not.found": "User email not found",
             "wrong.password": "Wrong password",
             "register.failed": "The email is already in use",

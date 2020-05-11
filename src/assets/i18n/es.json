@@ -142,6 +142,7 @@
         "auth":{
             "login.correct":"Has iniciado sesión correctamente",
             "login.failed": "No se pudo iniciar sesión, inténtelo de nuevo más tarde",
+            "login.failed.ban": "No puedes iniciar sesión porque tu cuenta ha sido baneada del sistema. Póngase en contacto con un administrador para más información.",
             "user.not.found": "Error iniciando sesión, usuario no encontrado",
             "wrong.password": "Error iniciando sesión, contraseña incorrecta",
             "register.failed": "El correo electrónico ya está en uso",
