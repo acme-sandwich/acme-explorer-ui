@@ -117,7 +117,7 @@ describe('TripListComponent', () => {
         MatNativeDateModule,
         MatInputModule,
         MatDialogModule
-      ], 
+      ],
       providers: [AngularFireAuth],
     })
     .compileComponents();
@@ -160,7 +160,6 @@ describe('TripListComponent', () => {
       expect(tripAntarctica).not.toBeUndefined;
       expect(tripAntarctica.requirements.length).toEqual(2);
       expect(tripAntarctica.published).toBeTruthy();
-      expect(tripAntarctica.startDate).toEqual('2020-07-20T22:00:00.000Z');
       done();
     });
   });
