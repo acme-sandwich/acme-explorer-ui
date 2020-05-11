@@ -60,7 +60,7 @@ export class RegisterComponent  {
       this.authService.registerUser(actor)
       .then(res => {
         console.log(res);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
       }, err => {
         console.log(err);
       });

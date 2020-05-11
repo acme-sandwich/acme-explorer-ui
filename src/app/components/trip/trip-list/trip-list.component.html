@@ -20,7 +20,7 @@
 
         <div class="blog-pagination" data-aos="fade-up">
             <ul class="">
-                <li class="active"><a routerLink="/trips/create">{{'trips.new' |translate}}</a></li>
+                <li *ngIf="currentActorRole === 'MANAGER'" class="active"><a routerLink="/trips/create">{{'trips.new' |translate}}</a></li>
                 <input #myInput placeholder=" {{'trips.placeholderSearcher' |translate}}" [(ngModel)]="trip" (input)="filterTrip(myInput.value)" size="50"/>
             </ul>          
         </div>

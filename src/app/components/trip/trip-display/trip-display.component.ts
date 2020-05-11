@@ -101,12 +101,11 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
     this.authService.userLoggedIn.subscribe((loggedIn: boolean) => {
       if (loggedIn) {
         this.currentActor = this.authService.getCurrentActor();
-        this.activeRole = this.currentActor.role.toString();
+        this.activeRole = this.authService.getCurrentActorRole();
       } else {
         this.currentActor = null;
         this.activeRole = 'anonymous';
       }
-
     });
   }
 

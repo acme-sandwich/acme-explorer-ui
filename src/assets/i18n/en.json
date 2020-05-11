@@ -189,10 +189,12 @@
         "audits": "Audits",
         "audit": "Audit",
         "empty": "You have not created any audit",
+        "trip.empty": "This trip does not have any audit",
         "new": "New audit",
         "auditor": "Auditor",
         "attachments": "Attachments",
-        "trip": "Trip"
+        "trip": "Trip",
+        "goBack": "Volver atrás"
     },
     "audit":{
         "create":"Create audit",
@@ -203,7 +205,8 @@
         "attachments":"Attachments",
         "attachment":"Attachment",
         "addAttachment":"Add attachment",
-        "removeAttachment":"Remove attachment"
+        "removeAttachment":"Remove attachment",
+        "goBack": "Go back"
     },
     "form":{
         "save": "Save",

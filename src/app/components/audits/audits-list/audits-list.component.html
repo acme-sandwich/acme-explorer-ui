@@ -14,18 +14,19 @@
   </div>
 </section>
 
-<div *ngIf="data == undefined || data.length == 0">
-  {{ 'audits.empty' | translate}}
-</div>
-
 <!-- ======= Blog Section ======= -->
 <section id="blog" class="blog">
   <div class="container">
 
     <div class="blog-pagination" data-aos="fade-up">
       <ul class="">
-        <li class="active"><a *ngIf="actor !== null && actor.role == 'AUDITOR'" routerLink="/audits/create">{{'audits.new' |translate}}</a></li>
+        <li class="active"><a *ngIf="actor != null && activeRole == 'AUDITOR'" routerLink="/audits/create">{{'audits.new' |translate}}</a></li>
       </ul>
+    </div>
+
+    <div *ngIf="data == undefined || data.length == 0">
+      <span *ngIf="idTrip != null">{{ 'audits.trip.empty' | translate}}</span>
+      <span *ngIf="idTrip == null">{{ 'audits.empty' | translate}}</span>
     </div>
 
     <div *ngIf="data != undefined && data.length > 0" class="row">
@@ -45,5 +46,10 @@
         </article>
       </div>
     </div>
+
+    <button *ngIf="idTrip != null" (click)="goBack()" class="bn btn-primary">
+      {{'audits.goBack' | translate}}
+    </button>
+
   </div>
 </section>

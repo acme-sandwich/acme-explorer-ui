@@ -189,10 +189,12 @@
         "audits": "Auditorías",
         "audit": "Auditoría",
         "empty": "No has creado ninguna auditoría",
+        "trip.empty": "Este viaje no tiene ninguna auditoría",
         "new": "Nueva auditoría",
         "auditor": "Auditor",
         "attachments": "Adjuntos",
-        "trip": "Viaje"
+        "trip": "Viaje",
+        "goBack": "Volver atrás"
     },
     "audit":{
         "create":"Crear auditoría",
@@ -203,7 +205,8 @@
         "attachments":"Adjuntos",
         "attachment":"Adjunto",
         "addAttachment":"Añadir adjunto",
-        "removeAttachment":"Quitar adjunto"
+        "removeAttachment":"Quitar adjunto",
+        "goBack": "Volver atrás"
     },
     "form":{
         "save": "Guardar",

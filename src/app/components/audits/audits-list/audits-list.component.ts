@@ -15,6 +15,8 @@ export class AuditsListComponent extends TranslatableComponent implements OnInit
 
   data: any[];
   actor: Actor;
+  activeRole: string;
+  idTrip: string;
 
   constructor(private auditService: AuditsService, private router: Router, private route: ActivatedRoute, 
     public authService: AuthService, private translateService: TranslateService) { 
@@ -23,20 +25,29 @@ export class AuditsListComponent extends TranslatableComponent implements OnInit
     
 
   ngOnInit() {
-    const idTrip = this.route.snapshot.params['id'];
-    if (idTrip) {
-      this.auditService.getAuditsTrip(idTrip).then(val => {
+    this.actor = this.authService.getCurrentActor();
+    this.activeRole = this.authService.getCurrentActorRole();
+
+    this.idTrip = this.route.snapshot.params['id'];
+    if (this.idTrip) {
+      this.auditService.getAuditsTrip(this.idTrip).then(val => {
         this.data = val;
         console.log(val);
       })
       .catch(err => console.error(err.message));
     } else{
-      this.actor = this.authService.getCurrentActor();
-      this.auditService.getAuditsAuditor(this.actor._id)//this.actor._id
+      
+      this.auditService.getAuditsAuditor(this.actor._id)
         .then((val) => {
           this.data = val;
         })
         .catch((err) => console.error(err.message));
+    }
+  }
+
+  goBack() {
+    if(this.idTrip) {
+      this.router.navigate(['/trips/display/'+this.idTrip]);
     }
   }
 
