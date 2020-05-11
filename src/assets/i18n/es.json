@@ -164,7 +164,12 @@
         "comment": "Comentario",
         "addComment": "Añadir comentario",
         "removeComment": "Eliminar comentario",
-        "applyOptComments": " Vas a solicitar este viaje. Puedes añadir comentarios de forma opcional justo debajo."
+        "applyOptComments": " Vas a solicitar este viaje. Puedes añadir comentarios de forma opcional justo debajo.",
+        "noComment": "El explorador no ha añadido ningún comentario en esta solicitud.",
+        "actions": "Acciones",
+        "cancel": "Cancelar",
+        "reject": "Rechazar",
+        "due": "Duetear"
     },
     "dashboard": {
         "display": "Dashboard",
