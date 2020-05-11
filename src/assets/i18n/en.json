@@ -207,6 +207,7 @@
         "attachment":"Attachment",
         "addAttachment":"Add attachment",
         "removeAttachment":"Remove attachment",
+        "moment": "Creation moment",
         "goBack": "Go back"
     },
     "form":{

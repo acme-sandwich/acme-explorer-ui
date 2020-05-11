@@ -207,6 +207,7 @@
         "attachment":"Adjunto",
         "addAttachment":"Añadir adjunto",
         "removeAttachment":"Quitar adjunto",
+        "moment": "Momento de creación",
         "goBack": "Volver atrás"
     },
     "form":{
