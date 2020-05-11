@@ -23,6 +23,7 @@ import { AuditsDisplayComponent } from './components/audits/audits-display/audit
 import { AuditsEditComponent } from './components/audits/audits-edit/audits-edit.component';
 import { ActorEditComponent } from './components/actor/actor-edit/actor-edit.component';
 import { ApplicationEditComponent } from './components/application/application-edit/application-edit.component';
+import { TripAddPhotoComponent } from './components/trip/trip-add-photo/trip-add-photo.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 
 const appRoutes: Routes = [
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
     {path: 'display/:id', component: TripDisplayComponent},
     {path: 'edit/:id', component: TripEditComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER'}},
     {path: 'my-trips', component: TripListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER', myTrips:true}},
+    {path: 'add-picture/:id', component: TripAddPhotoComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER'}},
     {path: '', component: TripListComponent},
     {path: ':id/applications/create', component: ApplicationEditComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'EXPLORER'}},
   ]},

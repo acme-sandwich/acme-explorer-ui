@@ -42,6 +42,7 @@ import { ActorEditComponent } from './components/actor/actor-edit/actor-edit.com
 import {MatDialogModule} from '@angular/material/dialog';
 import { ApplicationEditComponent } from './components/application/application-edit/application-edit.component';
 import { AuditsEditComponent } from './components/audits/audits-edit/audits-edit.component';
+import { TripAddPhotoComponent } from './components/trip/trip-add-photo/trip-add-photo.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 
@@ -92,6 +93,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ActorEditComponent,
     ApplicationEditComponent,
     AuditsEditComponent,
+    TripAddPhotoComponent,
     CheckoutComponent
   ],
   imports: [

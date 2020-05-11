@@ -52,7 +52,7 @@ export class Trip extends Entity {
     deleted: boolean;
     stages: Stage[];
     photo: string;
-    photoObject: PictureObject;
+    photoObject: PictureObject[];
 
     constructor(){
         super();

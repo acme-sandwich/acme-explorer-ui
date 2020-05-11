@@ -107,7 +107,9 @@
         "delete": "Borrar viaje",
         "delete.confirmation": "¿Estás seguro que deseas borrar el viaje?",
         "delete.message": "Esta acción no se puede deshacer",
-        "cantModify": "No puedes editar, cancelar ni borrar el viaje debido a que va a empezar en menos de una semana."
+        "cantModify": "No puedes editar, cancelar ni borrar el viaje debido a que va a empezar en menos de una semana.",
+        "addPicture": "Añadir imagen al viaje",
+        "deletePicture": "Borrar imagen del viaje"
     },
     "stage": {
         "stage": "Etapa",
@@ -208,7 +210,7 @@
         "edit":"Editar",
         "trip":"Viaje",
         "title":"Título",
-        "description":"Descripción",
+        "description":"Descripción",    
         "attachments":"Adjuntos",
         "attachment":"Adjunto",
         "addAttachment":"Añadir adjunto",
