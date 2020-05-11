@@ -9,6 +9,38 @@ import { NgModule } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { DataTablesModule } from 'angular-datatables';
 import { AngularFireModule } from 'angularfire2';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpModule } from '@angular/http';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule, MatNativeDateModule, MatInputModule, MatDialogModule } from '@angular/material';
+import { AppComponent } from 'src/app/app.component';
+import { TripDisplayComponent, CancelTripDialog, DeleteTripDialog } from '../trip-display/trip-display.component';
+import { HeaderComponent } from '../../master/header/header.component';
+import { RegisterComponent } from '../../security/register/register.component';
+import { LoginComponent } from '../../security/login/login.component';
+import { FooterComponent } from '../../master/footer/footer.component';
+import { LocalizedDataPipe } from '../../shared/LocalizedDatePipe';
+import { HomeComponent } from '../../home/home.component';
+import { MessageComponent } from '../../master/message/message.component';
+import { NotFoundPageComponent } from '../../shared/not-found-page/not-found-page.component';
+import { TermsAndConditionsComponent } from '../../master/terms-and-conditions/terms-and-conditions.component';
+import { DeniedAccessPageComponent } from '../../security/denied-access-page/denied-access-page.component';
+import { ApplicationListComponent } from '../../application/application-list/application-list.component';
+import { ActorListComponent } from '../../actor/actor-list/actor-list.component';
+import { ActorDisplayComponent } from '../../actor/actor-display/actor-display.component';
+import { SponsorshipListComponent } from '../../sponsorship/sponsorship-list/sponsorship-list.component';
+import { SponsorshipDisplayComponent } from '../../sponsorship/sponsorship-display/sponsorship-display.component';
+import { TripEditComponent } from '../trip-edit/trip-edit.component';
+import { DashboardDisplayComponent } from '../../dashboard/dashboard-display/dashboard-display.component';
+import { AuditsListComponent } from '../../audits/audits-list/audits-list.component';
+import { AuditsDisplayComponent } from '../../audits/audits-display/audits-display.component';
+import { ActorEditComponent } from '../../actor/actor-edit/actor-edit.component';
+import { ApplicationEditComponent } from '../../application/application-edit/application-edit.component';
+import { AuditsEditComponent } from '../../audits/audits-edit/audits-edit.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -28,17 +60,64 @@ export const firebaseConfig  = {
 describe('TripListComponent', () => {
   let component: TripListComponent;
   let fixture: ComponentFixture<TripListComponent>;
+  let tripService: TripService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TripListComponent, TranslatableComponent],
-      imports: [TranslateModule.forRoot({
-        loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-        }
-      }), HttpClientModule, DataTablesModule, AngularFireModule.initializeApp(firebaseConfig), ], 
+      declarations: [
+        AppComponent,
+        TripListComponent,
+        TripDisplayComponent,
+        CancelTripDialog,
+        DeleteTripDialog,
+        HeaderComponent,
+        RegisterComponent,
+        LoginComponent,
+        TranslatableComponent,
+        FooterComponent,
+        LocalizedDataPipe,
+        HomeComponent,
+        MessageComponent,
+        NotFoundPageComponent,
+        TermsAndConditionsComponent,
+        DeniedAccessPageComponent,
+        ApplicationListComponent,
+        ActorListComponent,
+        ActorDisplayComponent,
+        SponsorshipListComponent,
+        SponsorshipDisplayComponent,
+        TripEditComponent,
+        DashboardDisplayComponent,
+        AuditsListComponent,
+        AuditsDisplayComponent,
+        ActorEditComponent,
+        ApplicationEditComponent,
+        AuditsEditComponent
+      ],
+      imports: [
+        DataTablesModule,
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        AngularFireModule.initializeApp(firebaseConfig),
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+          }
+        }),
+        AppRoutingModule,
+        FontAwesomeModule,
+        HttpModule,
+        InfiniteScrollModule,
+        BrowserAnimationsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MatDialogModule
+      ], 
       providers: [AngularFireAuth],
     })
     .compileComponents();
@@ -47,6 +126,8 @@ describe('TripListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TripListComponent);
     component = fixture.componentInstance;
+    tripService = TestBed.get(TripService);
+    component.ngOnInit();
     fixture.detectChanges();
   });
 
@@ -54,25 +135,33 @@ describe('TripListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have more than 1 trips n the collection', () => {
-    expect(component.data.length).toBeGreaterThan(1);
+  it('should have more than 1 trips in the collection', async (done) => {
+    expect(component.data).toBeUndefined;
+    component.ngOnInit();
+    fixture.detectChanges();
+    spyOn(tripService, 'getTrips').and.returnValue(Promise.resolve(true));
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      expect(component.data.length).toBeGreaterThanOrEqual(1);
+      done();
+    });
   });
 
+  it('should have trip to Antarctica', async (done) => {
+    expect(component.data).toBeUndefined;
+    component.ngOnInit();
+    fixture.detectChanges();
+    spyOn(tripService, 'getTrips').and.returnValue(Promise.resolve(true));
 
-  it('should display a table with 3 rows', () => {
-    const compiled = fixture.debugElement.nativeElement;
-    const elements = compiled.querySelector('table').getElementsByTagName('tr');
-    expect(elements.length).toBe(3);
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      const tripAntarctica = component.data.find(trip => trip.title === 'Vive La Antártida');
+      expect(tripAntarctica).not.toBeUndefined;
+      expect(tripAntarctica.requirements.length).toEqual(2);
+      expect(tripAntarctica.published).toBeTruthy();
+      expect(tripAntarctica.startDate).toEqual('2020-07-20T22:00:00.000Z');
+      done();
+    });
   });
-
-  it('should have the same trips than the ones created in the service', () => {
-    const tripService = fixture.debugElement.injector.get(TripService);
-    const componentTrips = component.data;
-    const serviceTrips = tripService.createTrips();
-    expect(componentTrips.length).toBe(serviceTrips.length);
-    for(let i = 0; i < componentTrips.length; i++){
-      expect(componentTrips[i].ticker).toBe(serviceTrips[i].ticker);
-    }
-  });
-
 });
