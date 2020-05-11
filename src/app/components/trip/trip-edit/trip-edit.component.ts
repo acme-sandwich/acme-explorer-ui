@@ -8,6 +8,7 @@ import { TripService } from 'src/app/services/trip.service';
 import { Trip, PictureObject } from 'src/app/models/trip.model';
 import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from './format-datepicker';
+import { Actor } from 'src/app/models/actor.model';
 
 const DatesValidator: ValidatorFn = (fg: FormGroup) => {
   const start: Date = new Date(fg.get('startDate').value);
@@ -43,6 +44,7 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
   requirementsNumber = 0;
   stagesNumber = 0;
   datesRangeError = true;
+  actor: Actor;
 
   constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private authService: AuthService,
     private tripService: TripService, private translateService: TranslateService) { 
@@ -50,6 +52,9 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.actor = this.authService.getCurrentActor();
+    this.idTrip = this.route.snapshot.params['id'];
+
     this.createForm();
   }
 
@@ -71,7 +76,7 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
     }, {validator: DatesValidator});
 
     const idActor = this.authService.getCurrentActor()._id;
-    this.idTrip = this.route.snapshot.params['id'];
+    
     if(this.idTrip == null) {
         this.trip = new Trip();
         this.trip.published = true;
@@ -82,7 +87,11 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
       this.tripService.getTrip(this.idTrip).then((trip) => {
         this.trip = trip;
         if(trip){
-          this.tripForm.controls['_id'].setValue(trip._id);
+          // Comprobamos que el actor tenga permiso para editar este viaje
+          if(trip.creator !== this.actor._id) {
+            this.router.navigate(['/denied-access']);
+          } else {
+            this.tripForm.controls['_id'].setValue(trip._id);
           this.tripForm.controls['ticker'].setValue(trip.ticker);
           this.tripForm.controls['title'].setValue(trip.title);
           this.tripForm.controls['description'].setValue(trip.description);
@@ -113,6 +122,7 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
             }));
             this.stagesNumber = this.stagesNumber + 1;
           });
+          }
         }
       })
     }

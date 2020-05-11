@@ -84,7 +84,7 @@
           </form>
 
           <div class="row">
-            <div>
+            <div *ngIf="!adminConnected">
               <p>{{'security.alreadyRegistered' | translate}} <a href="/login">{{'security.login' | translate}}</a></p>
             </div>
           </div>
