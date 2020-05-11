@@ -42,6 +42,8 @@ import { ActorEditComponent } from './components/actor/actor-edit/actor-edit.com
 import {MatDialogModule} from '@angular/material/dialog';
 import { ApplicationEditComponent } from './components/application/application-edit/application-edit.component';
 import { AuditsEditComponent } from './components/audits/audits-edit/audits-edit.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -89,7 +91,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuditsDisplayComponent,
     ActorEditComponent,
     ApplicationEditComponent,
-    AuditsEditComponent
+    AuditsEditComponent,
+    CheckoutComponent
   ],
   imports: [
     DataTablesModule,
@@ -113,7 +116,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule, 
-    MatDialogModule
+    MatDialogModule,
+    NgxPayPalModule
   ],
   providers: [AngularFireAuth],
   bootstrap: [AppComponent],

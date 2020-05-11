@@ -32,7 +32,7 @@ export class ApplicationService {
   }
 
   getApplication(id: String) {
-    const url = `${this.applicationsUrl}/v2/applications/${id}`;
+    const url = `${this.applicationsUrl}/v1/applications/${id}`;
     return this.http.get<Application>(url).toPromise();
   }
 
@@ -53,13 +53,13 @@ export class ApplicationService {
   }
 
   updateApplication(application: Application) {
-    const url = `${this.applicationsUrl}/v2/applications/${application._id}`;
+    const url = `${this.applicationsUrl}/v1/applications/${application._id}`;
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     headers.append('Access-Control-Allow-Origin', '*');
 
     const body = JSON.stringify(application);
-    
+
     return new Promise<any>((resolve, reject) => {
       this.http.put(url, body, httpOptions).toPromise()
         .then(res => {

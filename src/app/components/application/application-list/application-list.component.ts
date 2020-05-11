@@ -38,6 +38,7 @@ export class ApplicationListComponent extends TranslatableComponent implements O
             this.tripService.getTrip(val[i].trip).then((tripVal) => {
               val[i]['tripName'] = tripVal.title;
               val[i]['isCancelable'] = this.checkCancelable(tripVal.startDate);
+              val[i]['tripPrice'] = tripVal.price;
               console.log(val);
             });
             this.actorService.getActor(val[i].explorer).then((explorerVal) => {

@@ -169,7 +169,8 @@
         "actions": "Acciones",
         "cancel": "Cancelar",
         "reject": "Rechazar",
-        "due": "Duetear"
+        "due": "Duetear",
+        "pay": "Pagar"
     },
     "dashboard": {
         "display": "Dashboard",
@@ -230,5 +231,8 @@
             "minOneRequirement": "Ups, debes añadir al menos un requisito.",
             "startEndDatesRange": "Ups, la fecha de inicio debe ser anterior a la de fin."
         }
+    },
+    "order":{
+        "placed": "El viaje se ha comprado satisfactoriamente."
     }
 }

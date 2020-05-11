@@ -23,6 +23,7 @@ import { AuditsDisplayComponent } from './components/audits/audits-display/audit
 import { AuditsEditComponent } from './components/audits/audits-edit/audits-edit.component';
 import { ActorEditComponent } from './components/actor/actor-edit/actor-edit.component';
 import { ApplicationEditComponent } from './components/application/application-edit/application-edit.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
   ]},
   {path: 'applications', children: [
     {path: '', component: ApplicationListComponent },
+    {path: ':id/checkout', component: CheckoutComponent}
   ]},
   {path: 'actors', children: [
     {path: 'display/:id', component: ActorDisplayComponent},
