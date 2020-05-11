@@ -235,6 +235,9 @@
         }
     },
     "order":{
-        "placed": "The trip has been purchased successfully."
+        "placed": "The trip has been purchased successfully.",
+        "paymentOptions": "Payment options",
+        "payTripTo": "Pay trip to ",
+        "payment": "Payment"
     }
 }

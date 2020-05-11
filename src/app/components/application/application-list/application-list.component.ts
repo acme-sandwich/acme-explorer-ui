@@ -39,7 +39,6 @@ export class ApplicationListComponent extends TranslatableComponent implements O
               val[i]['tripName'] = tripVal.title;
               val[i]['isCancelable'] = this.checkCancelable(tripVal.startDate);
               val[i]['tripPrice'] = tripVal.price;
-              console.log(val);
             });
             this.actorService.getActor(val[i].explorer).then((explorerVal) => {
               val[i]['explorerName'] = explorerVal.name + ' ' + explorerVal.surname;
@@ -103,7 +102,6 @@ export class ApplicationListComponent extends TranslatableComponent implements O
 
   cancelApplication(application: Application) {
     this.applicationService.cancelApplication(application).then((val) => {
-      console.log(val);
       this.router.navigate(['/']);
     }).catch((err) => {
       console.error(err);

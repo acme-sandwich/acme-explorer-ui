@@ -235,6 +235,9 @@
         }
     },
     "order":{
-        "placed": "El viaje se ha comprado satisfactoriamente."
+        "placed": "El viaje se ha comprado satisfactoriamente.",
+        "paymentOptions": "Opciones de pago",
+        "payTripTo": "Pagar viaje a ",
+        "payment": "Pago"
     }
 }

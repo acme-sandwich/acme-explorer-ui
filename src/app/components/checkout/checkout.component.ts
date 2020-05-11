@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { Application } from 'src/app/models/application.model';
 import { ApplicationService } from '../../services/application.service';
+import { Trip } from 'src/app/models/trip.model';
+import { TripService } from '../../services/trip.service';
 
 @Component({
   selector: 'app-checkout',
@@ -16,20 +18,28 @@ export class CheckoutComponent extends TranslatableComponent implements OnInit {
   private payPalConfig ?: PayPalConfig;
   private appId: string;
   private application: Application;
+  private tripId: string;
+  private trip: Trip;
 
   constructor(private translateService: TranslateService,
     private route: ActivatedRoute,
-    private router: Router, private applicationService: ApplicationService) {
+    private router: Router, private applicationService: ApplicationService,
+    private tripService: TripService) {
     super(translateService);
    }
 
   ngOnInit() {
     this.appId = this.route.snapshot.queryParams['id'];
+    this.tripId = this.route.snapshot.queryParams['trip_id'];
 
     this.applicationService.getApplication(this.appId).then((val) => {
       this.application = val;
-      console.log(val);
     });
+
+    this.tripService.getTrip(this.tripId).then((val) => {
+      this.trip = val;
+      console.log(val);
+    })
 
     this.initConfig();
   }

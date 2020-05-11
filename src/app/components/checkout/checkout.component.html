@@ -1,9 +1,80 @@
-<div class="container">
-  <div class="row" style="height: 50%;">
-    <div class="col-sm-4 align-self-center"></div>
-    <div class="col-sm-4 align-self-center">
-      <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="breadcrumb-hero">
+    <div class="container">
+      <div class="breadcrumb-hero">
+        <h2>{{'order.payTripTo' | translate}} {{trip.title}}</h2>
+      </div>
     </div>
-    <div class="col-sm-4 align-self-center"></div>
   </div>
-</div>
+  <div class="container">
+    <ol>
+      <li><a href="/">{{'header.home' | translate}}</a></li>
+      <li><a href="/trips">{{'trips.trips' | translate}}</a></li>
+      <li><a href="/trips/display/{{trip._id}}">{{trip.title}}</a></li>
+      <li>{{'order.payment' | translate}}</li>
+    </ol>
+  </div>
+</section>
+
+
+<section id="blog" class="blog container">
+  <div class="row">
+    <div class="col-lg-8 entries">
+
+      <article class="entry entry-single">
+        <div class="entry-img">
+          <img *ngIf="trip.photoObject[0] != null && trip.photoObject[0].Buffer != 0" class="img-fluid" src="{{trip.photoObject[0].Buffer}}"
+            alt="{{trip.title}}">
+          <img *ngIf="!trip.photoObject[0] || trip.photoObject[0].Buffer.length === 0 " class="img-fluid"
+            src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{trip.title}}">
+        </div>
+
+        <h2 class="entry-title">
+          {{trip.title}}
+        </h2>
+
+        <div class="entry-meta">
+          <ul>
+            <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i>{{trip.startDate |localizedDate}} -
+              {{trip.endDate |localizedDate}}</li>
+            <li class="d-flex align-items-center"><i class="icofont-price"></i>{{trip.price}} €</li>
+          </ul>
+        </div>
+
+        <div class="entry-content">
+          <div [hidden]="!cancelled" class="text-danger">
+            <h3>{{'trip.cancelled' | translate}}</h3>
+            <p>
+              {{cancelledReason}}
+            </p>
+          </div>
+          <p>
+            {{trip.description}}
+          </p>
+        </div>
+      </article>
+    </div>
+    <div class="col-lg-4">
+
+      <div class="sidebar">
+        <h3 class="sidebar-title">{{'order.paymentOptions' |translate}}</h3>
+        <br>
+        <div class="sidebar-item categories">
+          <ul>
+            <div class="container">
+              <div style="height: 50%;">
+                <div class="col-sm-4 align-self-center"></div>
+                <div class="col-sm-4 align-self-center">
+                  <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                </div>
+                <div class="col-sm-4 align-self-center"></div>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
