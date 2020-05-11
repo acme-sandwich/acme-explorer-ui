@@ -123,7 +123,7 @@
             <li [hidden]="cancelled || !editable || !currentActor || currentActor._id !== trip.creator">
               <a href="javascript:void(0);" (click)="openDeleteDialog()">{{'trip.delete' |translate}}</a>
             </li>
-            <li><a *ngIf="currentActor !== null && activeRole == 'EXPLORER'" href="/trips/{{trip._id}}/applications/create">
+            <li><a *ngIf="currentActor !== null && currentActor.role == 'EXPLORER'" href="/trips/{{trip._id}}/applications/create">
               {{'applications.apply' | translate}}
             </a></li>
             <li [hidden]="cancelled" *ngIf="purchasable"><a *ngIf="!currentActor"

@@ -9,6 +9,7 @@ import { ActorService } from '../../../services/actor.service';
 import { Actor } from 'src/app/models/actor.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Subject } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-application-list',
@@ -22,9 +23,11 @@ export class ApplicationListComponent extends TranslatableComponent implements O
   private currentActor: Actor;
   private activeRole: String;
   dtTrigger: Subject<any> = new Subject();
+  private isCancelable: boolean;
 
   constructor(private applicationService: ApplicationService, private translateService: TranslateService,
-    private tripService: TripService, private actorService: ActorService, private authService: AuthService) {
+    private tripService: TripService, private actorService: ActorService, private authService: AuthService,
+    private router: Router, private route: ActivatedRoute) {
     super(translateService);
    }
 
@@ -34,6 +37,8 @@ export class ApplicationListComponent extends TranslatableComponent implements O
           for (let i = 0; i < val.length; i ++) {
             this.tripService.getTrip(val[i].trip).then((tripVal) => {
               val[i]['tripName'] = tripVal.title;
+              val[i]['isCancelable'] = this.checkCancelable(tripVal.startDate);
+              console.log(val);
             });
             this.actorService.getActor(val[i].explorer).then((explorerVal) => {
               val[i]['explorerName'] = explorerVal.name + ' ' + explorerVal.surname;
@@ -88,8 +93,48 @@ export class ApplicationListComponent extends TranslatableComponent implements O
         title: 'Comments',
         data: 'comments',
         class: 'none'
+      }, {
+        title: 'Actions'
       }],
       responsive: true
     };
+  }
+
+  cancelApplication(application: Application) {
+    this.applicationService.cancelApplication(application).then((val) => {
+      console.log(val);
+      this.router.navigate(['/']);
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
+
+  rejectApplication(application: Application) {
+    this.applicationService.rejectApplication(application).then((val) => {
+      this.router.navigate(['/']);
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
+
+  dueApplication(application: Application) {
+    this.applicationService.dueApplication(application).then((val) => {
+      this.router.navigate(['/']);
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
+
+  checkCancelable(startDate: Date) {
+    let result;
+    const actualDate = new Date();
+    const tripStartDate = new Date(startDate);
+
+    if (tripStartDate >= actualDate) {
+      result = true;
+    } else {
+      result = false;
+    }
+    return result;
   }
 }

@@ -163,7 +163,12 @@
         "comment": "Comment",
         "addComment": "Add comment",
         "removeComment": "Remove comment",
-        "applyOptComments": "You are about to apply for this trip. You can add some optional comments below."
+        "applyOptComments": "You are about to apply for this trip. You can add some optional comments below.",
+        "noComment": "Explorer did not add any comment to this application.",
+        "actions": "Actions",
+        "cancel": "Cancel",
+        "reject": "Reject",
+        "due": "Due"
     },
     "dashboard": {
         "display": "Dashboard",
