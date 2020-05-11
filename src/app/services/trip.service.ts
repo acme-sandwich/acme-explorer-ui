@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Trip } from '../models/trip.model';
+import { Trip, PictureObject } from '../models/trip.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
@@ -147,5 +147,37 @@ export class TripService {
     return this.http.get<Trip[]>(url, {
       params: parameters, observe: 'body',
     }).toPromise();
+  }
+
+  addPictureToTrip(tripId: string, pictureObject: PictureObject) {
+    const url = `${this.tripsUrl}/${tripId}/photos`;
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin','*');
+
+    const body = JSON.stringify(pictureObject);
+    console.log(body);
+    
+    return new Promise<any>((resolve, reject) => {
+      this.http.put(url, body, httpOptions).toPromise()
+        .then(res => {
+          resolve(res);
+        }, err => {console.log(err); reject(err)});
+    });
+  }
+
+  deletePictureFromTrip(tripId: string, pictureIndex: number) {
+    const url = `${this.tripsUrl}/${tripId}/photos?photoIndex=${pictureIndex}`;
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin','*');
+
+    return new Promise<any>((resolve, reject) => {
+      this.http.delete(url, httpOptions).toPromise()
+        .then(res => {
+          console.log(res);
+          resolve(res);
+        }, err => {console.log(err); reject(err)});
+    });
   }
 }

@@ -1,0 +1,24 @@
+.btn-primary {
+    transition-duration: 0.4s;
+    background-color: transparent;
+    color: black;
+    border-color: transparent;
+}
+
+.btn-reject {
+    border-color: red;
+}
+
+.btn-reject:hover {
+    background-color: red; /* Green */
+    color: white;
+}
+
+.btn-due {
+    border-color: #94c045;
+}
+
+.btn-due:hover {
+    background-color: #94c045;
+    color: white;
+}

@@ -57,10 +57,15 @@ export class AuthService {
           this.http.get<Actor[]>(url).toPromise()
             .then((actor: Actor[]) => {
               this.currentActor = actor[0];
-              this.userLoggedIn.next(true);
-              this.messageService.notifyMessage('messages.auth.login.correct', 'alert alert-success');
-              localStorage.setItem('currentActor', JSON.stringify(this.currentActor));
-              resolve(this.currentActor);
+              if(this.currentActor.banned) {
+                this.messageService.notifyMessage('messages.auth.login.failed.ban', 'alert alert-danger');
+                reject('User account banned');
+              } else {
+                this.userLoggedIn.next(true);
+                this.messageService.notifyMessage('messages.auth.login.correct', 'alert alert-success');
+                localStorage.setItem('currentActor', JSON.stringify(this.currentActor));
+                resolve(this.currentActor);
+              }
             }).catch(error => {
               this.messageService.notifyMessage('messages.auth.login.failed', 'alert alert-danger');
               reject(error);

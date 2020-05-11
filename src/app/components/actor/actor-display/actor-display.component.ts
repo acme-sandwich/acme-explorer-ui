@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslatableComponent } from '../../shared/translatable/translatable.component';
 import { AuthService } from 'src/app/services/auth.service';
+import { ApplicationService } from '../../../services/application.service';
+import { TripService } from '../../../services/trip.service';
 
 @Component({
   selector: 'app-actor-display',
@@ -13,18 +15,21 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ActorDisplayComponent extends TranslatableComponent implements OnInit {
 
-  private actor: Actor;
+  private actor: Actor; // Actor cuyo perfil se está mostrando
   id: String;
   private activeRole: String;
-  private currentActor: Actor;
+  private currentActor: Actor; // Actor logueado ahora mismo
+  private sentApplications = 0;
+  private tripsCompleted = 0;
+  private spentMoney = 0;
 
   constructor(private actorService: ActorService, private router: Router, private route: ActivatedRoute, 
-    private translateService: TranslateService, private authService: AuthService) {
+    private translateService: TranslateService, private authService: AuthService,
+    private applicationService: ApplicationService, private tripService: TripService) {
     super(translateService);
    }
 
   ngOnInit() {
-
     this.currentActor = this.authService.getCurrentActor();
     this.activeRole = this.currentActor.role.toString();
 
@@ -37,10 +42,24 @@ export class ActorDisplayComponent extends TranslatableComponent implements OnIn
       .catch((err) => {
         console.error(err);
       });
+
+    this.applicationService.getApplicationsByExplorer(this.id)
+      .then((val) => {
+        console.log(val);
+        this.sentApplications = val.length;
+        for (let i = 0; i < val.length; i++) {
+          if (val[i].status === 'ACCEPTED') {
+            this.tripsCompleted++;
+            this.tripService.getTrip(val[i].trip)
+              .then((valTrip) => {
+                this.spentMoney = this.spentMoney + valTrip.price;
+              })
+          }
+        }
+      }
   }
 
   onBanActor() {
-    console.log(this.actor);
     this.actorService.banActor(this.actor).then((val) => {
       this.router.navigate(['/actors']);
     }).catch((err) => {
@@ -49,7 +68,6 @@ export class ActorDisplayComponent extends TranslatableComponent implements OnIn
   }
 
   onUnbanActor() {
-    console.log(this.actor);
     this.actorService.unbanActor(this.actor).then((val) => {
       this.router.navigate(['/actors']);
     }).catch((err) => {

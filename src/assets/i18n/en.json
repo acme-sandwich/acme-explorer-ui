@@ -107,7 +107,9 @@
         "delete": "Delete trip",
         "delete.confirmation": "Are you sure you want to delete the trip?",
         "delete.message": "This action cannot be undone",
-        "cantModify": "You cannot modify, cancel or delte the trip because it is going to start in less than a week."
+        "cantModify": "You cannot modify, cancel or delte the trip because it is going to start in less than a week.",
+        "addPicture": "Add picture to trip",
+        "deletePicture": "Delete picture from trip"
     },
     "stage": {
         "stage": "Stage",
@@ -142,6 +144,7 @@
         "auth":{
             "login.correct":"Correct login",
             "login.failed": "Error during login, please try again later",
+            "login.failed.ban": "You cannot login into the system because your account got banned. Please contact an administrator for further information.",
             "user.not.found": "User email not found",
             "wrong.password": "Wrong password",
             "register.failed": "The email is already in use",
@@ -163,7 +166,13 @@
         "comment": "Comment",
         "addComment": "Add comment",
         "removeComment": "Remove comment",
-        "applyOptComments": "You are about to apply for this trip. You can add some optional comments below."
+        "applyOptComments": "You are about to apply for this trip. You can add some optional comments below.",
+        "noComment": "Explorer did not add any comment to this application.",
+        "actions": "Actions",
+        "cancel": "Cancel",
+        "reject": "Reject",
+        "due": "Due",
+        "pay": "Pay"
     },
     "dashboard": {
         "display": "Dashboard",
@@ -206,6 +215,7 @@
         "attachment":"Attachment",
         "addAttachment":"Add attachment",
         "removeAttachment":"Remove attachment",
+        "moment": "Creation moment",
         "goBack": "Go back"
     },
     "form":{
@@ -223,5 +233,11 @@
             "minOneRequirement": "Oops, you must add at least one requirement.",
             "startEndDatesRange": "Oops, the start date must be older than the end date."
         }
+    },
+    "order":{
+        "placed": "The trip has been purchased successfully.",
+        "paymentOptions": "Payment options",
+        "payTripTo": "Pay trip to ",
+        "payment": "Payment"
     }
 }

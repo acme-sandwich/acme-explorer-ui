@@ -22,9 +22,9 @@
 
       <article class="entry entry-single">
         <div class="entry-img">
-          <img *ngIf="trip.photoObject != null && trip.photoObject.Buffer != 0" class="img-fluid"
-            src="{{trip.photoObject.Buffer}}" alt="{{trip.title}}">
-          <img *ngIf="!trip.photoObject || trip.photoObject.Buffer.length === 0 " class="img-fluid"
+          <img *ngIf="trip.photoObject != null && trip.photoObject[0].Buffer != 0" class="img-fluid"
+            src="{{trip.photoObject[0].Buffer}}" alt="{{trip.title}}">
+          <img *ngIf="!trip.photoObject || !trip.photoObject[0] || trip.photoObject[0].Buffer.length === 0 " class="img-fluid"
             src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{trip.title}}">
         </div>
 
@@ -115,6 +115,9 @@
               {{'trip.cantModify' |translate}}
             </li>
             <li [hidden]="cancelled || !editable || !currentActor || currentActor._id !== trip.creator">
+              <a href="/trips/add-picture/{{trip._id}}">{{'trip.addPicture' |translate}}</a>
+            </li>
+            <li [hidden]="cancelled || !editable || !currentActor || currentActor._id !== trip.creator">
               <a href="/trips/edit/{{trip._id}}">{{'trip.edit' |translate}}</a>
             </li>
             <li [hidden]="cancelled || !editable || !currentActor || currentActor._id !== trip.creator">
@@ -123,7 +126,7 @@
             <li [hidden]="cancelled || !editable || !currentActor || currentActor._id !== trip.creator">
               <a href="javascript:void(0);" (click)="openDeleteDialog()">{{'trip.delete' |translate}}</a>
             </li>
-            <li><a *ngIf="currentActor !== null && activeRole == 'EXPLORER'" href="/trips/{{trip._id}}/applications/create">
+            <li><a *ngIf="currentActor !== null && currentActor.role == 'EXPLORER'" href="/trips/{{trip._id}}/applications/create">
               {{'applications.apply' | translate}}
             </a></li>
             <li [hidden]="cancelled" *ngIf="purchasable"><a *ngIf="!currentActor"

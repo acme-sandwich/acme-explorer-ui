@@ -107,7 +107,9 @@
         "delete": "Borrar viaje",
         "delete.confirmation": "¿Estás seguro que deseas borrar el viaje?",
         "delete.message": "Esta acción no se puede deshacer",
-        "cantModify": "No puedes editar, cancelar ni borrar el viaje debido a que va a empezar en menos de una semana."
+        "cantModify": "No puedes editar, cancelar ni borrar el viaje debido a que va a empezar en menos de una semana.",
+        "addPicture": "Añadir imagen al viaje",
+        "deletePicture": "Borrar imagen del viaje"
     },
     "stage": {
         "stage": "Etapa",
@@ -142,6 +144,7 @@
         "auth":{
             "login.correct":"Has iniciado sesión correctamente",
             "login.failed": "No se pudo iniciar sesión, inténtelo de nuevo más tarde",
+            "login.failed.ban": "No puedes iniciar sesión porque tu cuenta ha sido baneada del sistema. Póngase en contacto con un administrador para más información.",
             "user.not.found": "Error iniciando sesión, usuario no encontrado",
             "wrong.password": "Error iniciando sesión, contraseña incorrecta",
             "register.failed": "El correo electrónico ya está en uso",
@@ -163,7 +166,13 @@
         "comment": "Comentario",
         "addComment": "Añadir comentario",
         "removeComment": "Eliminar comentario",
-        "applyOptComments": " Vas a solicitar este viaje. Puedes añadir comentarios de forma opcional justo debajo."
+        "applyOptComments": " Vas a solicitar este viaje. Puedes añadir comentarios de forma opcional justo debajo.",
+        "noComment": "El explorador no ha añadido ningún comentario en esta solicitud.",
+        "actions": "Acciones",
+        "cancel": "Cancelar",
+        "reject": "Rechazar",
+        "due": "Duetear",
+        "pay": "Pagar"
     },
     "dashboard": {
         "display": "Dashboard",
@@ -201,11 +210,12 @@
         "edit":"Editar",
         "trip":"Viaje",
         "title":"Título",
-        "description":"Descripción",
+        "description":"Descripción",    
         "attachments":"Adjuntos",
         "attachment":"Adjunto",
         "addAttachment":"Añadir adjunto",
         "removeAttachment":"Quitar adjunto",
+        "moment": "Momento de creación",
         "goBack": "Volver atrás"
     },
     "form":{
@@ -223,5 +233,11 @@
             "minOneRequirement": "Ups, debes añadir al menos un requisito.",
             "startEndDatesRange": "Ups, la fecha de inicio debe ser anterior a la de fin."
         }
+    },
+    "order":{
+        "placed": "El viaje se ha comprado satisfactoriamente.",
+        "paymentOptions": "Opciones de pago",
+        "payTripTo": "Pagar viaje a ",
+        "payment": "Pago"
     }
 }
