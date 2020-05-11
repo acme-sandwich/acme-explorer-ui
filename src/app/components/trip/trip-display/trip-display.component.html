@@ -22,10 +22,18 @@
 
       <article class="entry entry-single">
         <div class="entry-img">
-          <img *ngIf="trip.photoObject != null && trip.photoObject[0].Buffer != 0" class="img-fluid"
-            src="{{trip.photoObject[0].Buffer}}" alt="{{trip.title}}">
-          <img *ngIf="!trip.photoObject || !trip.photoObject[0] || trip.photoObject[0].Buffer.length === 0 " class="img-fluid"
-            src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{trip.title}}">
+
+
+          <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig"
+            (afterChange)="afterChange($event)">
+            <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+              <img src="{{ slide.Buffer }}" alt="" width="100%">
+            </div>
+          </ngx-slick>
+
+          <img *ngIf="!trip.photoObject || !trip.photoObject[0] || trip.photoObject[0].Buffer.length === 0 "
+            class="img-fluid" src="https://i.ya-webdesign.com/images/image-not-available-png-5.png"
+            alt="{{trip.title}}">
         </div>
 
         <h2 class="entry-title">
@@ -126,17 +134,18 @@
             <li [hidden]="cancelled || !editable || !currentActor || currentActor._id !== trip.creator">
               <a href="javascript:void(0);" (click)="openDeleteDialog()">{{'trip.delete' |translate}}</a>
             </li>
-            <li><a *ngIf="currentActor !== null && currentActor.role == 'EXPLORER'" href="/trips/{{trip._id}}/applications/create">
-              {{'applications.apply' | translate}}
-            </a></li>
+            <li><a *ngIf="currentActor !== null && activeRole == 'EXPLORER'"
+                href="/trips/{{trip._id}}/applications/create">
+                {{'applications.apply' | translate}}
+              </a></li>
             <li [hidden]="cancelled" *ngIf="purchasable"><a *ngIf="!currentActor"
                 href="/login">{{'trip.buy' |translate}}</a></li>
             <li [hidden]="cancelled" *ngIf="purchasable"><a *ngIf="currentActor !== null && activeRole === 'EXPLORER'"
                 href="javascript:alert('El usuario será redirigido a la ventana de comprar un viaje pagando con Paypal');">{{'trip.buy' |translate}}</a>
             </li>
             <li><a *ngIf="currentActor !== null && activeRole == 'AUDITOR'" href="/audits/create/{{trip._id}}">
-              {{'audits.new' | translate}}
-            </a></li>
+                {{'audits.new' | translate}}
+              </a></li>
             <li>
               <a href="/audits/trips/{{trip._id}}">{{'audits.audits' |translate}}</a>
             </li>

@@ -45,6 +45,14 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
     super(translateService);
   }
 
+  slides = [];
+  slideConfig = {"slidesToShow": 1, "slidesToScroll": 1, "autoplay": true};
+
+ 
+  afterChange(e) {
+    console.log(e);
+  }
+
   getRequirements() {
     console.log(this.trip.requirements);
     return this.trip.requirements;
@@ -74,6 +82,9 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
         };
         if (new Date(this.trip.startDate) > oneWeek) {
           this.editable = true;
+        }
+        for(let i = 0; i < this.trip.photoObject.length; i++) {
+          this.slides.push(this.trip.photoObject[i]);
         }
         this.tripService.getTripCreator(this.trip.creator)
           .then((val1) => {
@@ -111,6 +122,14 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
 
   goBack(): void {
     this.router.navigate(['/trips']);
+  }
+
+  deleteSecondPicture() {
+    this.tripService.deletePictureFromTrip(this.trip._id, 1).then((val) => {
+      this.router.navigate(['/trips/display/' + this.trip._id]);
+    }).catch((err) => {
+      console.error(err);
+    })
   }
 
   newTrip(): void {

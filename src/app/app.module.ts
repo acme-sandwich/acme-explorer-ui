@@ -45,6 +45,7 @@ import { AuditsEditComponent } from './components/audits/audits-edit/audits-edit
 import { TripAddPhotoComponent } from './components/trip/trip-add-photo/trip-add-photo.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { SlickModule } from 'ngx-slick';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -119,7 +120,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatNativeDateModule,
     MatInputModule, 
     MatDialogModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    SlickModule.forRoot()
   ],
   providers: [AngularFireAuth],
   bootstrap: [AppComponent],
