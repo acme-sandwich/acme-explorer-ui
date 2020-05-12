@@ -220,6 +220,16 @@
         "moment": "Creation moment",
         "goBack": "Go back"
     },
+    "finder":{
+        "finder":"Finder",
+        "keyword":"Keyword",
+        "minprice":"Minimum price",
+        "maxprice":"Maximum price",
+        "datestart":"Minimum date",
+        "dateend":"Maximum date",
+        "search":"Search",
+        "goBack":"Go back"
+    },
     "form":{
         "save": "Save",
         "cancel": "Cancel"
@@ -233,7 +243,8 @@
             "string.maxLength": "Oops, you must introduce a maximum of {{maxvalue}} characters in this field.",
             "minOneStage": "Oops, you must add at least one stage.",
             "minOneRequirement": "Oops, you must add at least one requirement.",
-            "startEndDatesRange": "Oops, the start date must be older than the end date."
+            "startEndDatesRange": "Oops, the start date must be older than the end date.",
+            "pricesRange": "Oops, the maximum price must be greater than the minimum price."
         }
     },
     "order":{

@@ -45,6 +45,8 @@ import { AuditsEditComponent } from './components/audits/audits-edit/audits-edit
 import { TripAddPhotoComponent } from './components/trip/trip-add-photo/trip-add-photo.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { FinderEditComponent } from './components/finder/finder-edit/finder-edit.component';
+import { FinderListComponent } from './components/finder/finder-list/finder-list.component';
 import { SlickModule } from 'ngx-slick';
 
 export const firebaseConfig  = {
@@ -96,7 +98,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ApplicationEditComponent,
     AuditsEditComponent,
     TripAddPhotoComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    FinderEditComponent,
+    FinderListComponent
   ],
   imports: [
     DataTablesModule,
