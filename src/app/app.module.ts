@@ -48,6 +48,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { FinderEditComponent } from './components/finder/finder-edit/finder-edit.component';
 import { FinderListComponent } from './components/finder/finder-list/finder-list.component';
 import { SlickModule } from 'ngx-slick';
+import { CanDeactivateService } from './services/can-deactivate.service';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -128,7 +129,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxPayPalModule,
     SlickModule.forRoot()
   ],
-  providers: [AngularFireAuth],
+  providers: [AngularFireAuth, CanDeactivateService],
   bootstrap: [AppComponent],
   entryComponents: [CancelTripDialog, DeleteTripDialog, DeleteImageDialog]
 })

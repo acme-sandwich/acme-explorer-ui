@@ -27,6 +27,7 @@ import { TripAddPhotoComponent } from './components/trip/trip-add-photo/trip-add
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { FinderEditComponent } from './components/finder/finder-edit/finder-edit.component';
 import { FinderListComponent } from './components/finder/finder-list/finder-list.component';
+import { CanDeactivateService } from './services/can-deactivate.service';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -35,7 +36,7 @@ const appRoutes: Routes = [
   {path: 'trips', children: [
     {path: 'create', component: TripEditComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER'}},
     {path: 'display/:id', component: TripDisplayComponent},
-    {path: 'edit/:id', component: TripEditComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER'}},
+    {path: 'edit/:id', component: TripEditComponent, canDeactivate: [CanDeactivateService], canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER'}},
     {path: 'my-trips', component: TripListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER', myTrips:true}},
     {path: 'add-picture/:id', component: TripAddPhotoComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER'}},
     {path: '', component: TripListComponent},

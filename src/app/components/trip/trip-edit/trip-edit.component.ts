@@ -9,6 +9,8 @@ import { Trip, PictureObject } from 'src/app/models/trip.model';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from './format-datepicker';
 import { Actor } from 'src/app/models/actor.model';
+import { CanComponentDeactivate } from 'src/app/services/can-deactivate.service';
+import { Observable } from 'rxjs';
 
 const DatesValidator: ValidatorFn = (fg: FormGroup) => {
   const start: Date = new Date(fg.get('startDate').value);
@@ -34,7 +36,7 @@ const DatesValidator: ValidatorFn = (fg: FormGroup) => {
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
   ]
 })
-export class TripEditComponent extends TranslatableComponent implements OnInit {
+export class TripEditComponent extends TranslatableComponent implements OnInit, CanComponentDeactivate {
 
   tripForm: FormGroup;
   trip: Trip;
@@ -45,15 +47,29 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
   stagesNumber = 0;
   datesRangeError = true;
   actor: Actor;
+  updated: boolean;
 
   constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private authService: AuthService,
     private tripService: TripService, private translateService: TranslateService) {
     super(translateService);
   }
 
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    let result = true;
+    console.log('hola');
+    const message = this.translateService.instant('messages.discard.changes');
+    console.log('updated: ' + this.updated);
+    console.log('dirty:' + this.tripForm.dirty);
+    if(!this.updated && this.tripForm.dirty) {
+      result = confirm(message);
+    }
+    return result;
+  }
+
   ngOnInit() {
     this.actor = this.authService.getCurrentActor();
     this.idTrip = this.route.snapshot.params['id'];
+    this.updated = false;
 
     this.createForm();
   }
@@ -204,6 +220,7 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
       // The trip is new
       this.tripService.createTrip(formModel).then((val) => {
         console.log(val);
+        this.updated = true;
         this.router.navigate(['/trips/display/' + val._id]);
       }).catch((err) => {
         console.error(err);
@@ -211,6 +228,7 @@ export class TripEditComponent extends TranslatableComponent implements OnInit {
     } else {
       // The trip already exists and it's updating
       this.tripService.updateTrip(formModel).then((val) => {
+        this.updated = true;
         this.router.navigate(['/trips/display/' + val._id]);
       }).catch((err) => {
         console.error(err);

@@ -178,7 +178,8 @@
         },
         "trip":{
             "delete.error.oneWeek": "The trip couldn't be deleted because it will start in less than a week."
-        }
+        },
+        "discard.changes": "Do you want to discard changes?"
     },
     "applications": {
         "list": "List applications",

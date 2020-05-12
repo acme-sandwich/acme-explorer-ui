@@ -178,7 +178,8 @@
         },
         "trip":{
             "delete.error.oneWeek": "No se pudo borrar el viaje debido a que queda menos de una semana para que comience."
-        }
+        },
+        "discard.changes": "¿Seguro que quieres descartar los cambios?"
     },
     "applications": {
         "list": "Listar peticiones",
