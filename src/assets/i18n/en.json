@@ -69,7 +69,16 @@
     },
     "footer": {
         "terms": "Terms and conditions",
-        "visitors": "Visitors"
+        "visitors": "Visitors",
+        "acmeExplorerDescription": "Acme Explorer is a project developed for the subject Client Technologies in the Software Engineering Master Degree: Cloud, Data and IT management, by the University of Seville.",
+        "team": "Team",
+        "teamDescription": "Acme Explorer has been developed by:",
+        "contactUs": "Contact us",
+        "allRightsReserved": "All Rights Reserved",
+        "seville": "Seville",
+        "spain": "Spain",
+        "phone": "Phone",
+        "postalCode": "PC"
     },
     "header": {
         "home": "Home",

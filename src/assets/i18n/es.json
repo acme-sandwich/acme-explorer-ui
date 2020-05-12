@@ -69,7 +69,16 @@
     },
     "footer": {
         "terms": "Términos y condiciones",
-        "visitors": "Visitantes"
+        "visitors": "Visitantes",
+        "acmeExplorerDescription": "Acme Explorer es un proyecto desarrollado para la asignatura Tecnologías de Cliente del Máster de Ingeniería del Software: Cloud, Datos y Gestión TI perteneciente a la Universidad de Sevilla.",
+        "team": "Equipo",
+        "teamDescription": "Acme Explorer ha sido desarrollado por:",
+        "contactUs": "Contáctanos",
+        "allRightsReserved": "Todos los derechos reservados",
+        "seville": "Sevilla",
+        "spain": "España",
+        "phone": "Teléfono",
+        "postalCode": "CP"
     },
     "header": {
         "home": "Inicio",
