@@ -109,7 +109,9 @@
         "delete.message": "Esta acción no se puede deshacer",
         "cantModify": "No puedes editar, cancelar ni borrar el viaje debido a que va a empezar en menos de una semana.",
         "addPicture": "Añadir imagen al viaje",
-        "deletePicture": "Borrar imagen del viaje"
+        "deletePicture": "Borrar esta imagen",
+        "deleteImage.confirmation": "¿Estás seguro que deseas borrar esta imagen del viaje?",
+        "deleteImage.cantDelete": "No puedes borrar la imagen principal. La puedes cambiar editando el viaje."
     },
     "stage": {
         "stage": "Etapa",

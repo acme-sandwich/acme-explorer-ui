@@ -24,18 +24,19 @@
         <div class="entry-img">
 
 
-          <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig"
-            (afterChange)="afterChange($event)">
+          <ngx-slick *ngIf="trip.photoObject && trip.photoObject.length > 0" class="carousel" #slickModal="slick-modal"
+            [config]="slideConfig" (afterChange)="afterChange($event)">
             <div ngxSlickItem *ngFor="let slide of slides" class="slide">
-              <img src="{{ slide.Buffer }}" alt="" width="100%">
+              <img src="{{ slide.Buffer }}" alt="" width="100%" height="350">
             </div>
           </ngx-slick>
 
           <img *ngIf="!trip.photoObject || !trip.photoObject[0] || trip.photoObject[0].Buffer.length === 0 "
             class="img-fluid" src="https://i.ya-webdesign.com/images/image-not-available-png-5.png"
             alt="{{trip.title}}">
+          <a *ngIf="trip.photoObject && trip.photoObject.length > 0 && currentActor && currentActor._id === trip.creator"
+            href="javascript:void(0);" (click)="openDeleteImageDialog()">{{'trip.deletePicture' |translate}}</a>
         </div>
-
         <h2 class="entry-title">
           {{trip.title}}
         </h2>

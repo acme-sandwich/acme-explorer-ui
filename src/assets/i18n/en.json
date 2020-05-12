@@ -109,7 +109,9 @@
         "delete.message": "This action cannot be undone",
         "cantModify": "You cannot modify, cancel or delte the trip because it is going to start in less than a week.",
         "addPicture": "Add picture to trip",
-        "deletePicture": "Delete picture from trip"
+        "deletePicture": "Delete this picture",
+        "deleteImage.confirmation": "Are you sure you want to delete this image from the trip?",
+        "deleteImage.cantDelete": "You cannot delete the principal image. You can change it by editing the trip."
     },
     "stage": {
         "stage": "Stage",

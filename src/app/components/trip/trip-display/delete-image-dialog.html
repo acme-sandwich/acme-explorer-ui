@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>{{'trip.deleteImage.confirmation' |translate}}</h1>
+<div *ngIf="data.imageIndex === 0" mat-dialog-content>
+    <p>{{'trip.deleteImage.cantDelete' |translate}}</p>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">{{'trip.goBack' |translate}}</button>
+    <button mat-button [disabled]="data.imageIndex === 0" [mat-dialog-close]="data.imageIndex"
+        cdkFocusInitial>{{'trip.deletePicture' |translate}}</button>
+</div>

@@ -104,7 +104,6 @@ export class AuthService {
       if(currentActorLocalStorage != null && currentActorLocalStorage != ''){
         let currentActorLocalStorageObject = JSON.parse(currentActorLocalStorage);
         this.currentActor = currentActorLocalStorageObject;
-        //console.log(this.currentActor.role[0].toString());
       }
     }
     return this.currentActor;

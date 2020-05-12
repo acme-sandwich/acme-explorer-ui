@@ -20,6 +20,11 @@ export interface DeleteDialogData {
   deleteConfirm: string;
 }
 
+export interface DeleteImageData {
+  deleteImage: boolean;
+  imageIndex: number;
+}
+
 @Component({
   selector: 'app-trip-display',
   templateUrl: './trip-display.component.html',
@@ -38,10 +43,11 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
   editable = false;
   cancelled = false;
   cancelledReason = '';
+  imageIndex: number;
 
   constructor(private authService: AuthService, private tripService: TripService, private router: Router,
     private route: ActivatedRoute, private translateService: TranslateService, private auditService: AuditsService,
-    public dialog: MatDialog, public cancelDialog: MatDialog, public messageService: MessageService) {
+    public dialog: MatDialog, public cancelDialog: MatDialog, public deleteImageDialog: MatDialog, public messageService: MessageService) {
     super(translateService);
   }
 
@@ -50,17 +56,18 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
 
  
   afterChange(e) {
-    console.log(e);
+    this.imageIndex = e.currentSlide;
   }
 
   getRequirements() {
-    console.log(this.trip.requirements);
     return this.trip.requirements;
   }
 
   ngOnInit() {
     // Recover id param
     this.id = this.route.snapshot.params['id'];
+    // First image in carousel
+    this.imageIndex = 0;
     // Todays date
     const today = new Date();
     // Date in one week
@@ -124,14 +131,6 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
     this.router.navigate(['/trips']);
   }
 
-  deleteSecondPicture() {
-    this.tripService.deletePictureFromTrip(this.trip._id, 1).then((val) => {
-      this.router.navigate(['/trips/display/' + this.trip._id]);
-    }).catch((err) => {
-      console.error(err);
-    })
-  }
-
   newTrip(): void {
     console.log("New trip functionallity not implemented yet");
   }
@@ -181,6 +180,23 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
     });
   }
 
+  openDeleteImageDialog(): void {
+    const dialogRef = this.cancelDialog.open(DeleteImageDialog, {
+      width: '500px',
+      data: { deleteImage: false, imageIndex: this.imageIndex }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) { // Result is the index of the image to delete
+        this.tripService.deletePictureFromTrip(this.trip._id, result).then((val) => {
+          this.slides.splice(result, 1);
+        }).catch((err) => {
+          console.error(err);
+        })
+      }
+    });
+  }
+
 }
 
 @Component({
@@ -211,6 +227,22 @@ export class DeleteTripDialog {
 
   onNoClick(): void {
     this.deleteTripDialog.close();
+  }
+
+}
+
+@Component({
+  selector: 'delete-image-dialog',
+  templateUrl: 'delete-image-dialog.html',
+})
+export class DeleteImageDialog {
+
+  constructor(
+    public deleteImageDialog: MatDialogRef<DeleteImageDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DeleteImageData) { }
+
+  onNoClick(): void {
+    this.deleteImageDialog.close();
   }
 
 }
