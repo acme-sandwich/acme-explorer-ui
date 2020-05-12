@@ -56,7 +56,6 @@ export class ApplicationEditComponent extends TranslatableComponent implements O
     });
 
     this.currentActor = this.authService.getCurrentActor();
-    this.tripId = this.route.snapshot.params['id'];
     this.applicationId = this.route.snapshot.params['apId'];
 
     if (this.applicationId == null) {

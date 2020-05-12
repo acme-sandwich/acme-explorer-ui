@@ -41,6 +41,15 @@ import { AuditsDisplayComponent } from '../../audits/audits-display/audits-displ
 import { ActorEditComponent } from '../../actor/actor-edit/actor-edit.component';
 import { ApplicationEditComponent } from '../../application/application-edit/application-edit.component';
 import { AuditsEditComponent } from '../../audits/audits-edit/audits-edit.component';
+import { RouterModule } from '@angular/router';
+import { TripAddPhotoComponent } from '../trip-add-photo/trip-add-photo.component';
+import { CheckoutComponent } from '../../checkout/checkout.component';
+import { FinderEditComponent } from '../../finder/finder-edit/finder-edit.component';
+import { FinderListComponent } from '../../finder/finder-list/finder-list.component';
+import { OsmViewComponent } from '../trip-display/osm-view/osm-view.component';
+import { AngularOpenlayersModule } from 'ngx-openlayers';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { SlickModule } from 'ngx-slick';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -92,9 +101,15 @@ describe('TripListComponent', () => {
         AuditsDisplayComponent,
         ActorEditComponent,
         ApplicationEditComponent,
-        AuditsEditComponent
+        AuditsEditComponent,
+        TripAddPhotoComponent,
+        CheckoutComponent,
+        FinderEditComponent,
+        FinderListComponent,
+        OsmViewComponent
       ],
-      imports: [
+      imports: [AppRoutingModule,
+        RouterModule,
         DataTablesModule,
         BrowserModule,
         FormsModule,
@@ -108,7 +123,6 @@ describe('TripListComponent', () => {
             deps: [HttpClient]
           }
         }),
-        AppRoutingModule,
         FontAwesomeModule,
         HttpModule,
         InfiniteScrollModule,
@@ -116,7 +130,10 @@ describe('TripListComponent', () => {
         MatDatepickerModule,
         MatNativeDateModule,
         MatInputModule,
-        MatDialogModule
+        MatDialogModule,
+        SlickModule.forRoot(),
+        NgxPayPalModule,
+        AngularOpenlayersModule
       ],
       providers: [AngularFireAuth],
     })

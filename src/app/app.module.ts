@@ -51,6 +51,7 @@ import { SlickModule } from 'ngx-slick';
 import { CanDeactivateService } from './services/can-deactivate.service';
 import { AngularOpenlayersModule } from 'ngx-openlayers';
 import { OsmViewComponent } from './../app/components/trip/trip-display/osm-view/osm-view.component';
+import { RouterModule } from '@angular/router';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -106,7 +107,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FinderListComponent,
     OsmViewComponent
   ],
-  imports: [
+  imports: [AppRoutingModule,
     DataTablesModule,
     BrowserModule,
     FormsModule,
@@ -120,7 +121,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    AppRoutingModule,
     FontAwesomeModule,
     HttpModule,
     InfiniteScrollModule,
@@ -131,7 +131,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatDialogModule,
     NgxPayPalModule,
     SlickModule.forRoot(),
-    AngularOpenlayersModule
+    AngularOpenlayersModule, 
+    RouterModule
   ],
   providers: [AngularFireAuth, CanDeactivateService],
   bootstrap: [AppComponent],

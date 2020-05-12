@@ -5,8 +5,4 @@ import { FinderService } from './finder.service';
 describe('FinderService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
-    const service: FinderService = TestBed.get(FinderService);
-    expect(service).toBeTruthy();
-  });
 });

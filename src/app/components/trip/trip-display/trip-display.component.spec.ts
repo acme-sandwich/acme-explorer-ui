@@ -45,6 +45,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { MessageService } from 'src/app/services/message.service';
 import { ActivatedRoute } from '@angular/router';
+import { TripAddPhotoComponent } from '../trip-add-photo/trip-add-photo.component';
+import { CheckoutComponent } from '../../checkout/checkout.component';
+import { FinderEditComponent } from '../../finder/finder-edit/finder-edit.component';
+import { FinderListComponent } from '../../finder/finder-list/finder-list.component';
+import { SlickModule } from 'ngx-slick';
+import { OsmViewComponent } from './osm-view/osm-view.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { AngularOpenlayersModule } from 'ngx-openlayers';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -116,7 +124,12 @@ describe('TripDisplayComponent', () => {
         AuditsDisplayComponent,
         ActorEditComponent,
         ApplicationEditComponent,
-        AuditsEditComponent
+        AuditsEditComponent,
+        TripAddPhotoComponent,
+        CheckoutComponent,
+        FinderEditComponent,
+        FinderListComponent,
+        OsmViewComponent
       ],
       imports: [
         DataTablesModule,
@@ -140,7 +153,10 @@ describe('TripDisplayComponent', () => {
         MatDatepickerModule,
         MatNativeDateModule,
         MatInputModule,
-        MatDialogModule
+        MatDialogModule,
+        SlickModule.forRoot(),
+        NgxPayPalModule,
+        AngularOpenlayersModule
       ],
       providers: [AngularFireAuth, {provide: ActivatedRoute, useValue: mockActivatedRoute}],
     })
