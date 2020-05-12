@@ -11,6 +11,7 @@ import { AuditsService } from 'src/app/services/audits.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MessageService } from 'src/app/services/message.service';
 
+declare var ol: any;
 export interface DialogData {
   cancelledReason: string;
 }
@@ -44,6 +45,10 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
   cancelled = false;
   cancelledReason = '';
   imageIndex: number;
+
+  coordenadasLongitud = 0;
+  coordenadasLatitud = 0;
+
 
   constructor(private authService: AuthService, private tripService: TripService, private router: Router,
     private route: ActivatedRoute, private translateService: TranslateService, private auditService: AuditsService,
@@ -93,6 +98,8 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
         for(let i = 0; i < this.trip.photoObject.length; i++) {
           this.slides.push(this.trip.photoObject[i]);
         }
+        this.coordenadasLatitud = val.latitude;
+        this.coordenadasLongitud = val.longitude;
         this.tripService.getTripCreator(this.trip.creator)
           .then((val1) => {
             this.creator = val1;

@@ -113,11 +113,11 @@
                 </div>
                 <button type='button' class="btn btn-info"
                   (click)="addRequirement()">{{'trip.addRequirement' | translate}}</button>
-                  <div *ngIf="requirementsNumber < 1" class="text-danger">
-                    {{ 'errorMessages.validation.minOneRequirement' | translate }}
-                  </div>
+                <div *ngIf="requirementsNumber < 1" class="text-danger">
+                  {{ 'errorMessages.validation.minOneRequirement' | translate }}
+                </div>
               </div>
-              
+
 
               <br />
 
@@ -168,6 +168,16 @@
                 <button type='button' class="btn btn-info" (click)="addStage()">{{'trip.addStage' | translate}}</button>
                 <div *ngIf="stagesNumber < 1" class="text-danger">
                   {{ 'errorMessages.validation.minOneStage' | translate }}
+                </div>
+              </div>
+
+              <div class="form-group has-danger">
+                <label class="form-control-label">{{'trip.startPlace' | translate}}</label>
+                <div id="map" class="map">
+                  <vo-ui-osm-view [showDebugInfo]="false" [showControlsZoom]="true" [showControlsCurrentLocation]="true"
+                    (addressChanged)="onAddressChange($event)" [latitude]="37.38283" [longitude]="-5.97317" 
+                    [latitudePointer]="37.38283" [longitudePointer]="-5.97317" [zoom]="10" >
+                  </vo-ui-osm-view>
                 </div>
               </div>
 

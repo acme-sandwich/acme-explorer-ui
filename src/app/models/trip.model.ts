@@ -53,6 +53,8 @@ export class Trip extends Entity {
     stages: Stage[];
     photo: string;
     photoObject: PictureObject[];
+    latitude: number;
+    longitude: number;
 
     constructor(){
         super();

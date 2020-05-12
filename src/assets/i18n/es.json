@@ -135,7 +135,8 @@
         "addPicture": "Añadir imagen al viaje",
         "deletePicture": "Borrar esta imagen",
         "deleteImage.confirmation": "¿Estás seguro que deseas borrar esta imagen del viaje?",
-        "deleteImage.cantDelete": "No puedes borrar la imagen principal. La puedes cambiar editando el viaje."
+        "deleteImage.cantDelete": "No puedes borrar la imagen principal. La puedes cambiar editando el viaje.",
+        "startPlace": "Punto de encuentro"
     },
     "stage": {
         "stage": "Etapa",

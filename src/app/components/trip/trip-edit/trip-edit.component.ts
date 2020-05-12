@@ -11,6 +11,7 @@ import { AppDateAdapter, APP_DATE_FORMATS } from './format-datepicker';
 import { Actor } from 'src/app/models/actor.model';
 import { CanComponentDeactivate } from 'src/app/services/can-deactivate.service';
 import { Observable } from 'rxjs';
+import { storage } from 'firebase';
 
 const DatesValidator: ValidatorFn = (fg: FormGroup) => {
   const start: Date = new Date(fg.get('startDate').value);
@@ -56,10 +57,7 @@ export class TripEditComponent extends TranslatableComponent implements OnInit, 
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     let result = true;
-    console.log('hola');
     const message = this.translateService.instant('messages.discard.changes');
-    console.log('updated: ' + this.updated);
-    console.log('dirty:' + this.tripForm.dirty);
     if(!this.updated && this.tripForm.dirty) {
       result = confirm(message);
     }
@@ -205,6 +203,23 @@ export class TripEditComponent extends TranslatableComponent implements OnInit, 
 
   onSubmit() {
     const formModel = this.tripForm.value;
+    let latitude = localStorage.getItem('tripLatitude');
+    let longitude = localStorage.getItem('tripLongitude');
+    let latitudeNumber;
+    let longitudeNumber;
+    if(latitude != null && latitude !== '') {
+      latitudeNumber = parseFloat(latitude);
+    }
+    if(longitude != null && longitude !== '') {
+      longitudeNumber = parseFloat(longitude);
+    }
+
+    if(longitudeNumber != null && latitudeNumber != null) {
+      formModel.longitude = longitudeNumber;
+      formModel.latitude = latitudeNumber;
+    }
+    localStorage.setItem('tripLatitude', '');
+    localStorage.setItem('tripLongitude', '');
 
     // check if picture has changed
     if (this.photoChanged) {

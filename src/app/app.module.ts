@@ -49,6 +49,8 @@ import { FinderEditComponent } from './components/finder/finder-edit/finder-edit
 import { FinderListComponent } from './components/finder/finder-list/finder-list.component';
 import { SlickModule } from 'ngx-slick';
 import { CanDeactivateService } from './services/can-deactivate.service';
+import { AngularOpenlayersModule } from 'ngx-openlayers';
+import { OsmViewComponent } from './../app/components/trip/trip-display/osm-view/osm-view.component';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -101,7 +103,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TripAddPhotoComponent,
     CheckoutComponent,
     FinderEditComponent,
-    FinderListComponent
+    FinderListComponent,
+    OsmViewComponent
   ],
   imports: [
     DataTablesModule,
@@ -127,7 +130,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatInputModule, 
     MatDialogModule,
     NgxPayPalModule,
-    SlickModule.forRoot()
+    SlickModule.forRoot(),
+    AngularOpenlayersModule
   ],
   providers: [AngularFireAuth, CanDeactivateService],
   bootstrap: [AppComponent],
