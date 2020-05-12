@@ -2,7 +2,22 @@
     "main": {
         "header": "¡Bienvenido a Acme Explorer!",
         "subheader": "Empieza a disfrutar ahora de las mejores excursiones nacionales e internacionales reservando con nosotros",
-        "getstarted": "Vamos allá"
+        "getstarted": "Vamos allá",
+        "earnMoneyPublishingYourTrips": "Gana dinero publicando tus viajes",
+        "earnMoneyPublishingYourTripsDescription": "Con nosotros, puedes publicar tantos viajes como quieras y aceptar o rechazar de forma cómoda y muy automatizada las aplicaciones que el resto de usuarios harán a tus viajes publicados. Además, gracias al pago con Paypal, llevamos la comodidad por bandera.",
+        "ourAdvantages": "Nuestras ventajas",
+        "dontLoseTime": "No pierdas tiempo",
+        "fewClicksToApply": "Con solo unos pocos clics serás capaz de reservar viajes y disfrutar",
+        "beEfficient": "Sé eficiente",
+        "beEfficientDescription": "Servimos para publicar y reservar viajes auditados, ni más ni menos",
+        "enjoyPaypal": "Disfruta de PayPal",
+        "enjoyPaypalDescription": "El pago está automatizado con PayPal, por lo que si no estás contento siempre podrás pedir la devolución",
+        "trustTheLeader": "Confía en el líder",
+        "trustTheLeaderDescription": "En Acme Explorer somos líderes en la gestión de viajes. Nos preocupamos de todo para que tú únicamente disfrutes",
+        "happyClients": "Clientes felices",
+        "projects": "Proyectos",
+        "yearsOfExperience": "Años de experiencia",
+        "awards": "Premios"
     },
     "actor":{
         "email": "Correo electrónico",

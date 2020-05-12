@@ -2,7 +2,22 @@
     "main": {
         "header": "Welcome to Acme Explorer!",
         "subheader": "Enjoy now the best national and international trips booking with us",
-        "getstarted": "Get started"
+        "getstarted": "Get started",
+        "earnMoneyPublishingYourTrips": "Earn money publishing your trips",
+        "earnMoneyPublishingYourTripsDescription": "With us, you can publish as many trips as you want, and accept or reject the applications that the other users make to your published trips. Furhermore, thanks to the Paypal payment method, everything works as smooth as possible.",
+        "ourAdvantages": "Our advantages",
+        "dontLoseTime": "Don't lose time",
+        "fewClicksToApply": "With only a few clics you will be able to book trips and enjoy",
+        "beEfficient": "Be efficient",
+        "beEfficientDescription": "Our function is to publish and book trips, no more no less",
+        "enjoyPaypal": "Enjoy PayPal",
+        "enjoyPaypalDescription": "Payment is automated with PayPal, so if you are not happy you can always request your money back",
+        "trustTheLeader": "Trust the leader",
+        "trustTheLeaderDescription": "In Acme Explorer we are the best in trips management. We worry about things so you only relax",
+        "happyClients": "Happy clients",
+        "projects": "Projects",
+        "yearsOfExperience": "Years of experience",
+        "awards": "Awards"
     },
     "actor":{
         "email": "Email",
