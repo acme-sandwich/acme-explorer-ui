@@ -1,4 +1,4 @@
-<section id="breadcrumbs" class="breadcrumbs">
+<section *ngIf="trip != null" id="breadcrumbs" class="breadcrumbs">
   <div class="breadcrumb-hero">
     <div class="container">
       <div class="breadcrumb-hero">
@@ -17,15 +17,15 @@
 </section>
 
 
-<section id="blog" class="blog container">
+<section *ngIf="trip != null" id="blog" class="blog container">
   <div class="row">
     <div class="col-lg-8 entries">
 
       <article class="entry entry-single">
         <div class="entry-img">
-          <img *ngIf="trip != null && trip.photoObject != null && trip.photoObject[0] != null && trip.photoObject[0].Buffer != 0" class="img-fluid" src="{{trip.photoObject[0].Buffer}}"
+          <img *ngIf="trip.photoObject != null && trip.photoObject[0] != null && trip.photoObject[0].Buffer != 0" class="img-fluid" src="{{trip.photoObject[0].Buffer}}"
             alt="{{trip.title}}">
-          <img *ngIf="trip == null || trip.photoObject == null || trip.photoObject[0] == null || trip.photoObject[0].Buffer == null || trip.photoObject[0].Buffer.length === 0 " class="img-fluid"
+          <img *ngIf="trip.photoObject == null || trip.photoObject[0] == null || trip.photoObject[0].Buffer == null || trip.photoObject[0].Buffer.length === 0 " class="img-fluid"
             src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{trip.title}}">
         </div>
 

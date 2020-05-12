@@ -26,10 +26,10 @@
 
           <div *ngFor="let trip of data; let i = index" class="col-lg-4  col-md-6 d-flex align-items-stretch"
               data-aos="fade-up">
-              <article class="entry">
+              <article *ngIf="trip != null" class="entry">
 
                   <div class="entry-img">
-                      <img *ngIf="trip.photoObject != null && trip.photoObject[0].Buffer != null && trip.photoObject[0].Buffer.length != 0" class="img-fluid"
+                      <img *ngIf="trip.photoObject != null && trip.photoObject[0] != null && trip.photoObject[0].Buffer != null && trip.photoObject[0].Buffer.length != 0" class="img-fluid"
                           src="{{trip.photoObject[0].Buffer}}" alt="{{trip.title}}">
                       <img *ngIf="!trip.photoObject || !trip.photoObject[0] || trip.photoObject[0].Buffer === 0" class="img-fluid"
                           src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{trip.title}}">

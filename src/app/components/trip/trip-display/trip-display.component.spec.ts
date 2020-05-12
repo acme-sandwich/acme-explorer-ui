@@ -166,7 +166,7 @@ describe('TripDisplayComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TripDisplayComponent);
     component = fixture.componentInstance;
-    mockActivatedRoute.testParams = {id: '5eb8f4d63b4e970019af657c'};
+    mockActivatedRoute.testParams = {id: '5ebad957f06c1f0019cc7187'};
     tripService = TestBed.get(TripService);
     component.ngOnInit();
     fixture.detectChanges();

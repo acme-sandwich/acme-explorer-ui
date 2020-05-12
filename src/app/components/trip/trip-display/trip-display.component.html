@@ -24,7 +24,7 @@
         <div class="entry-img">
 
 
-          <ngx-slick *ngIf="trip.photoObject && trip.photoObject.length > 0" class="carousel" #slickModal="slick-modal"
+          <ngx-slick *ngIf="trip.photoObject && trip.photoObject.length > 0 && slides" class="carousel" #slickModal="slick-modal"
             [config]="slideConfig" (afterChange)="afterChange($event)">
             <div ngxSlickItem *ngFor="let slide of slides" class="slide">
               <img src="{{ slide.Buffer }}" alt="" width="100%" height="350">
