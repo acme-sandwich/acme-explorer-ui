@@ -22,6 +22,8 @@
         </li>
 
         <li *ngIf="activeRole === 'EXPLORER' || activeRole === 'MANAGER'"><a id="header-applications-list" routerLink="/actors/{{currentActor._id}}/applications">{{'applications.list' | translate}}</a></li>
+
+        <li *ngIf="activeRole === 'EXPLORER'"><a id="header-finder-edit" routerLink="/finder/edit">{{'finder.finder' | translate}}</a></li>
     
         <li *ngIf="activeRole === 'AUDITOR'"><a id="header-audit-list" routerLink="/audits">{{'audits.audits' | translate}}</a></li>
 

@@ -56,7 +56,7 @@ export class ActorDisplayComponent extends TranslatableComponent implements OnIn
               })
           }
         }
-      })
+      });
   }
 
   onBanActor() {

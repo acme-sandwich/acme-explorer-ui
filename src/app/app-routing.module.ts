@@ -25,6 +25,8 @@ import { ActorEditComponent } from './components/actor/actor-edit/actor-edit.com
 import { ApplicationEditComponent } from './components/application/application-edit/application-edit.component';
 import { TripAddPhotoComponent } from './components/trip/trip-add-photo/trip-add-photo.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { FinderEditComponent } from './components/finder/finder-edit/finder-edit.component';
+import { FinderListComponent } from './components/finder/finder-list/finder-list.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -62,6 +64,10 @@ const appRoutes: Routes = [
     {path: 'trips/:id', component: AuditsListComponent},
     {path: ':id', component: AuditsDisplayComponent},
     {path: '', component: AuditsListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'AUDITOR'}}
+  ]},
+  {path: 'finder', children: [
+    {path: 'edit', component: FinderEditComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'EXPLORER'}},
+    {path: 'results', component: FinderListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'EXPLORER'}},
   ]},
   {path: 'dashboard', component: DashboardDisplayComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'ADMINISTRATOR'}},
   {path: 'terms-and-conditions', component: TermsAndConditionsComponent},

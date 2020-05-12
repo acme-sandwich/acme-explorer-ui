@@ -235,6 +235,16 @@
         "moment": "Momento de creación",
         "goBack": "Volver atrás"
     },
+    "finder":{
+        "finder":"Buscador",
+        "keyword":"Palabra clave",
+        "minprice":"Precio mínimo",
+        "maxprice":"Precio máximo",
+        "datestart":"Fecha mínima",
+        "dateend":"Fecha máxima",
+        "search":"Buscar",
+        "goBack":"Volver atrás"
+    },
     "form":{
         "save": "Guardar",
         "cancel": "Cancelar"
@@ -248,7 +258,8 @@
             "string.maxLength": "Vaya, debes introducir un máximo de {{maxvalue}} caracteres en este campo.",
             "minOneStage": "Ups, debes crear al menos una etapa.",
             "minOneRequirement": "Ups, debes añadir al menos un requisito.",
-            "startEndDatesRange": "Ups, la fecha de inicio debe ser anterior a la de fin."
+            "startEndDatesRange": "Ups, la fecha de inicio debe ser anterior a la de fin.",
+            "pricesRange": "Ups, el precio mínimo debe ser menor que el máximo."
         }
     },
     "order":{
