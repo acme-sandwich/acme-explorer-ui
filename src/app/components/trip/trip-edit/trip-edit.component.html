@@ -107,7 +107,7 @@
                         <button type='button' class="btn btn-danger"
                           (click)="removeRequirement(i)">{{'trip.removeRequirement' | translate}}</button>
                       </div>
-                      <input type="text" [formControlName]="i" class="form-control">
+                      <input type="text" [formControlName]="i" class="form-control" id='requirement_input_{{i}}'>
                     </div>
                   </label>
                 </div>
