@@ -175,7 +175,7 @@ describe('TripListComponent', () => {
       fixture.detectChanges();
       const tripAntarctica = component.data.find(trip => trip.title === 'Vive La Antártida');
       expect(tripAntarctica).not.toBeUndefined;
-      expect(tripAntarctica.requirements.length).toEqual(2);
+      expect(tripAntarctica.requirements.length).toBeGreaterThanOrEqual(2);
       expect(tripAntarctica.published).toBeTruthy();
       done();
     });

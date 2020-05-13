@@ -186,7 +186,7 @@ describe('TripDisplayComponent', () => {
       fixture.detectChanges();
       expect(component.trip).not.toBeUndefined;
       expect(component.trip.title).toEqual('Vive La Antártida');
-      expect(component.trip.requirements.length).toEqual(2);
+      expect(component.trip.requirements.length).toBeGreaterThanOrEqual(2);
       expect(component.trip.published).toBeTruthy();
       done();
     });

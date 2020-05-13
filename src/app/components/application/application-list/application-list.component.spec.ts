@@ -7,7 +7,7 @@ import { TranslatableComponent } from '../../shared/translatable/translatable.co
 import { DataTablesModule } from 'angular-datatables';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
-import { RouterModule } from '@angular/router';
+import { RouterModule, ActivatedRoute } from '@angular/router';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HomeComponent } from '../../home/home.component';
 import { LoginComponent } from '../../security/login/login.component';
@@ -46,6 +46,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { GeoLocationService } from '../../trip/trip-display/osm-view/geo-location.service';
 import { AngularOpenlayersModule } from 'ngx-openlayers';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { ApplicationService } from 'src/app/services/application.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -62,11 +65,32 @@ export const firebaseConfig  = {
   measurementId: "G-VG730MX3T7"
 };
 
+@Injectable()
+export class ActivatedRouteStub {
+  private subject = new BehaviorSubject(this.testParams);
+  params = this.subject.asObservable();
+
+  private _testParams = {};
+  get testParams() {return this._testParams;}
+  set testParams(params: {}) {
+    this._testParams = params;
+    this.subject.next(params);
+  }
+
+  get snapshot() {
+    return {params: this.testParams};
+  }
+}
+
 describe('ApplicationListComponent', () => {
   let component: ApplicationListComponent;
   let fixture: ComponentFixture<ApplicationListComponent>;
+  let applicationService: ApplicationService;
+  let mockActivatedRoute;
 
   beforeEach(async(() => {
+    mockActivatedRoute = new ActivatedRouteStub();
+
     TestBed.configureTestingModule({
       declarations: [AppComponent,
         TripListComponent,
@@ -110,7 +134,7 @@ describe('ApplicationListComponent', () => {
       MatInputModule,
       MatDialogModule,
       SlickModule.forRoot(), FontAwesomeModule, ReactiveFormsModule, NgxPayPalModule, AngularOpenlayersModule],
-      providers: [AngularFireAuth, GeoLocationService]
+      providers: [AngularFireAuth, GeoLocationService, {provide: ActivatedRoute, useValue: mockActivatedRoute}]
     })
     .compileComponents();
   }));
@@ -118,11 +142,57 @@ describe('ApplicationListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ApplicationListComponent);
     component = fixture.componentInstance;
+    mockActivatedRoute.testParams = {id: '5ebafda7f06c1f0019cc718c'};
+    applicationService = TestBed.get(ApplicationService);
+    localStorage.setItem('currentActor', JSON.stringify({
+      role: ["EXPLORER"],
+      banned: false,
+      _id: "5ebafda7f06c1f0019cc718c",
+      name: "Explorador",
+      surname: "Guerrero",
+      email: "explorer1@mail.com",
+      phone: "7868231",
+      address: "explorer street",
+    }));
+    component.ngOnInit();
     fixture.detectChanges();
   });
+
+  afterEach(() => {
+    localStorage.setItem('currentActor', '');
+  })
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should have more than 1 application in the collection', async (done) => {
+    expect(component.data).toBeUndefined;
+    component.ngOnInit();
+    fixture.detectChanges();
+    spyOn(applicationService, 'getApplicationsByExplorer').and.returnValue(Promise.resolve(true));
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      expect(component.data.length).toBeGreaterThanOrEqual(1);
+      done();
+    });
+  });
+
+  it('should have application to trip to Antarctica', async (done) => {
+    expect(component.data).toBeUndefined;
+    component.ngOnInit();
+    fixture.detectChanges();
+    spyOn(applicationService, 'getApplicationsByExplorer').and.returnValue(Promise.resolve(true));
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      const appAntarctica = component.data.find(application => application.trip === '5ebad957f06c1f0019cc7187');
+      expect(appAntarctica).not.toBeUndefined;
+      expect(appAntarctica.comments.length).toBeGreaterThanOrEqual(1);
+      expect(appAntarctica.explorer).toEqual('5ebafda7f06c1f0019cc718c');
+      expect(appAntarctica.status).toEqual('PENDING');
+      done();
+    });
+  });
 });

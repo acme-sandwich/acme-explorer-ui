@@ -96,7 +96,8 @@ export class ApplicationListComponent extends TranslatableComponent implements O
       }, {
         title: 'Actions'
       }],
-      responsive: true
+      responsive: true,
+      retrieve: true
     };
   }
 
