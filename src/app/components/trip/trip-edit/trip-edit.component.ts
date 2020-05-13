@@ -49,6 +49,8 @@ export class TripEditComponent extends TranslatableComponent implements OnInit, 
   datesRangeError = true;
   actor: Actor;
   updated: boolean;
+  latitude: number;
+  longitude: number;
 
   constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private authService: AuthService,
     private tripService: TripService, private translateService: TranslateService) {
@@ -136,6 +138,11 @@ export class TripEditComponent extends TranslatableComponent implements OnInit, 
               }));
               this.stagesNumber = this.stagesNumber + 1;
             });
+            
+            if(trip.latitude != null && trip.longitude != null) {
+              this.latitude = trip.latitude;
+              this.longitude = trip.longitude;
+            }
           }
         }
       })

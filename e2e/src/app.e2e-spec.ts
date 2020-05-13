@@ -37,6 +37,8 @@ describe('workspace-project App', () => {
     browser.sleep(2000);
     editTrip.setDescription('Esta es la nueva descripción del trip, cambiada gracias a protractor');
     browser.sleep(2000);
+    editTrip.removeRequirement();
+    browser.sleep(2000);
     editTrip.clickNewRequirement();
     browser.sleep(2000);
     editTrip.addNewRequirement('Nuevo requisito para el trip gracias a Protractor');

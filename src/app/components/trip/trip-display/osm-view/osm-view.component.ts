@@ -84,7 +84,6 @@ export class OsmViewComponent implements OnInit, OnDestroy {
     const lonlat = proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326')
     this.longitudePointer = lonlat[0]
     this.latitudePointer = lonlat[1]
-    console.log('estoy aqui');
     localStorage.setItem('tripLongitude', this.longitudePointer+'');
     localStorage.setItem('tripLatitude', this.latitudePointer+'');
     this.reverseGeo()

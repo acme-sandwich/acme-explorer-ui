@@ -12,13 +12,17 @@ export class EditTripPage {
     }
 
     clickNewRequirement() {
-        const addNewRequirementButtonSelector = '#service-login > div > div > div > div > form > fieldset > div.ng-pristine.ng-valid.ng-touched > button';
         const selector = '#service-login > div > div > div > div > form > fieldset > div:nth-child(12) > button';
         element(by.css(selector)).click();
     }
 
+    removeRequirement() {
+        const selector = 'remove_requirement_button_1';
+        element(by.id(selector)).click();
+    }
+
     addNewRequirement(newRequirement: string) {
-        const selector = 'requirement_input_2';
+        const selector = 'requirement_input_1';
         element(by.id(selector)).sendKeys(newRequirement);
     }
 
