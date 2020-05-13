@@ -60,8 +60,8 @@ const appRoutes: Routes = [
     {path: '', component: SponsorshipListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}}
   ]},
   {path: 'audits', children: [
-    {path: 'create/:id', component: AuditsEditComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'AUDITOR'}},
-    {path: 'create', component: AuditsEditComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'AUDITOR'}},
+    {path: 'create/:id', component: AuditsEditComponent, canDeactivate: [CanDeactivateService], canActivate: [ActorRoleGuard], data: {expectedRole: 'AUDITOR'}},
+    {path: 'create', component: AuditsEditComponent, canDeactivate: [CanDeactivateService], canActivate: [ActorRoleGuard], data: {expectedRole: 'AUDITOR'}},
     {path: 'trips/:id', component: AuditsListComponent},
     {path: ':id', component: AuditsDisplayComponent},
     {path: '', component: AuditsListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'AUDITOR'}}

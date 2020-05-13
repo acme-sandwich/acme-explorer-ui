@@ -7,24 +7,37 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuditsService } from 'src/app/services/audits.service';
 import { TripService } from 'src/app/services/trip.service';
+import { CanComponentDeactivate } from 'src/app/services/can-deactivate.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-audits-edit',
   templateUrl: './audits-edit.component.html',
   styleUrls: ['./audits-edit.component.css']
 })
-export class AuditsEditComponent extends TranslatableComponent implements OnInit {
+export class AuditsEditComponent extends TranslatableComponent implements OnInit, CanComponentDeactivate {
   auditForm: FormGroup;
   attachmentsNumber = 0;
   trips = [];
   idTrip = '0';
+  updated: boolean;
 
   constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private authService: AuthService,
     private auditService: AuditsService, private tripService: TripService, private translateService: TranslateService) {
       super(translateService);
     }
 
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    let result = true;
+    const message = this.translateService.instant('messages.discard.changes');
+    if(!this.updated && this.auditForm.dirty) {
+      result = confirm(message);
+    }
+    return result;
+  }
+
   ngOnInit() {
+    this.updated = false;
     this.createForm()
   }
 
@@ -45,7 +58,6 @@ export class AuditsEditComponent extends TranslatableComponent implements OnInit
         this.trips = val;
       });
     } else {
-      console.log('heyy');
       this.auditForm.controls['trip'].setValue(this.idTrip);
     }
     this.auditForm.controls['auditor'].setValue(idActor);
@@ -70,6 +82,7 @@ export class AuditsEditComponent extends TranslatableComponent implements OnInit
     delete formModel._id;
     this.auditService.createAudit(formModel, this.authService.getCurrentActor()._id).then((val) => {
       console.log(val);
+      this.updated = true;
       this.router.navigate(['/audits/'+val._id]);
     }).catch((err) => {
       console.error(err);
