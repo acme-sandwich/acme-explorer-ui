@@ -69,6 +69,20 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
   }
 
   ngOnInit() {
+    this.currentActor = this.authService.getCurrentActor();
+    this.activeRole = this.authService.getCurrentActorRole();
+
+    // Recover current actor
+    this.authService.userLoggedIn.subscribe((loggedIn: boolean) => {
+      if (loggedIn) {
+        this.currentActor = this.authService.getCurrentActor();
+        this.activeRole = this.authService.getCurrentActorRole();
+      } else {
+        this.currentActor = null;
+        this.activeRole = 'anonymous';
+      }
+    });
+
     // Recover id param
     this.id = this.route.snapshot.params['id'];
     // First image in carousel
@@ -115,24 +129,20 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
           }).catch((err1) => {
             console.log(err1);
           });
+          console.log(this.currentActor);
+          console.log(this.activeRole);
+
+          console.log('todo esto debe dar false');
+          console.log(this.cancelled);
+          console.log(!this.editable);
+          console.log(!this.currentActor);
+          console.log(this.currentActor._id !== this.trip.creator);
+          console.log(this.currentActor._id);
+          console.log(this.trip.creator);
       })
       .catch((err) => {
         console.error(err);
       });
-
-    this.currentActor = this.authService.getCurrentActor();
-    this.activeRole = this.authService.getCurrentActorRole();
-
-    // Recover current actor
-    this.authService.userLoggedIn.subscribe((loggedIn: boolean) => {
-      if (loggedIn) {
-        this.currentActor = this.authService.getCurrentActor();
-        this.activeRole = this.authService.getCurrentActorRole();
-      } else {
-        this.currentActor = null;
-        this.activeRole = 'anonymous';
-      }
-    });
   }
 
   goBack(): void {

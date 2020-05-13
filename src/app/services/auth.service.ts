@@ -64,6 +64,7 @@ export class AuthService {
                 this.userLoggedIn.next(true);
                 this.messageService.notifyMessage('messages.auth.login.correct', 'alert alert-success');
                 localStorage.setItem('currentActor', JSON.stringify({
+                  _id: this.currentActor._id,
                   name: this.currentActor.name,
                   surname: this.currentActor.surname,
                   phone: this.currentActor.phone,

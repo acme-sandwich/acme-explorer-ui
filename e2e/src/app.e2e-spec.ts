@@ -28,9 +28,10 @@ describe('workspace-project App', () => {
     login.fillCredentials();
     browser.sleep(2000);
     page.navigateTo();
+    browser.sleep(3000);
     expect(page.getTitleText()).toEqual('Vive La Antártida');
     page.navigateToTrip('5ebad957f06c1f0019cc7187');
-    browser.sleep(2000);
+    browser.sleep(6000);
     page.editTrip();
     browser.sleep(2000);
     editTrip.emptyDescription();

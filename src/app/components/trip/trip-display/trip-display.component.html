@@ -112,7 +112,7 @@
               <a href="/trips/add-picture/{{trip._id}}">{{'trip.addPicture' |translate}}</a>
             </li>
             <li [hidden]="cancelled || !editable || !currentActor || currentActor._id !== trip.creator">
-              <a href="/trips/edit/{{trip._id}}">{{'trip.edit' |translate}}</a>
+              <a id="edit-trip-link" href="/trips/edit/{{trip._id}}">{{'trip.edit' |translate}}</a>
             </li>
             <li [hidden]="cancelled || !editable || !currentActor || currentActor._id !== trip.creator">
               <a href="javascript:void(0);" (click)="openCancelDialog()">{{'trip.cancel' |translate}}</a>

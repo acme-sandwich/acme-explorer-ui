@@ -20,8 +20,8 @@ export class TripsPage {
     }
 
     editTrip() {
-        const selector = '#blog > div > div.col-lg-4 > div > div > ul > li:nth-child(3) > a';
-        element(by.css(selector)).click();
+        const selector = 'edit-trip-link';
+        element(by.id(selector)).click();
     }
 
 }
