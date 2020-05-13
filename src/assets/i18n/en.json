@@ -131,7 +131,7 @@
         "delete": "Delete trip",
         "delete.confirmation": "Are you sure you want to delete the trip?",
         "delete.message": "This action cannot be undone",
-        "cantModify": "You cannot modify, cancel or delte the trip because it is going to start in less than a week.",
+        "cantModify": "You cannot modify, cancel or delete the trip because it is going to start in less than a week.",
         "addPicture": "Add picture to trip",
         "deletePicture": "Delete this picture",
         "deleteImage.confirmation": "Are you sure you want to delete this image from the trip?",
