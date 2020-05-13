@@ -11,8 +11,8 @@ import { AppDateAdapter, APP_DATE_FORMATS } from './format-datepicker';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 
 const PricesValidator: ValidatorFn = (fg: FormGroup) => {
-  const minp: number = fg.get('minPrice').value;
-  const maxp: number = fg.get('maxPrice').value;
+  const minp: number = fg.get('minPrice').value && fg.get('minPrice').value != '' ? parseInt(fg.get('minPrice').value) : null;
+  const maxp: number = fg.get('maxPrice').value && fg.get('maxPrice').value != '' ? parseInt(fg.get('maxPrice').value) : null;
   let res;
 
   if (minp == null || maxp == null) {
@@ -26,8 +26,8 @@ const PricesValidator: ValidatorFn = (fg: FormGroup) => {
 }
 
 const DatesValidator: ValidatorFn = (fg: FormGroup) => {
-  const start: Date = fg.get('dateStart').value ? new Date(fg.get('dateStart').value) : null;
-  const end: Date = fg.get('dateEnd').value ? new Date(fg.get('dateEnd').value) : null;
+  const start: Date = fg.get('dateStart').value && fg.get('dateStart').value != '' ? new Date(fg.get('dateStart').value) : null;
+  const end: Date = fg.get('dateEnd').value && fg.get('dateEnd').value != '' ? new Date(fg.get('dateEnd').value) : null;
   let res;
 
   if (start == null || end == null) {
