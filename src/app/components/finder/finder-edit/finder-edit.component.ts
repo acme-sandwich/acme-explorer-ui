@@ -83,8 +83,8 @@ export class FinderEditComponent extends TranslatableComponent implements OnInit
     const idActor = this.authService.getCurrentActor()._id;
 
     this.finderService.getFinders(idActor).then((finders) => {
-      if (finders && finders.length > 0) {
-        const finder = finders[0];
+      if (finders && finders.length > 0 && finders.find(fndr => fndr.explorer == this.actor._id)) {
+        const finder = finders.find(fndr => fndr.explorer == this.actor._id);
         this.finder = finder;
         if (finder) {
           if (finder.explorer !== this.actor._id) {

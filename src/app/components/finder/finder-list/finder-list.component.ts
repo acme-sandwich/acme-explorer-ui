@@ -25,9 +25,8 @@ export class FinderListComponent extends TranslatableComponent implements OnInit
   ngOnInit() {
     this.actor = this.authService.getCurrentActor();
     this.finderService.getFinders(this.actor._id).then(val => {
-      if (val && val.length > 0) {
-        const finder = val[0];
-        console.log(finder);
+      if (val && val.length > 0 && val.find(fndr => fndr.explorer == this.actor._id)) {
+        const finder = val.find(fndr => fndr.explorer == this.actor._id);
         var promises = [];
         var tempData = [];
         finder.trips.forEach(trip => {
