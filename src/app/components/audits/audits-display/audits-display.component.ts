@@ -19,6 +19,7 @@ export class AuditsDisplayComponent extends TranslatableComponent implements OnI
   audit = new Audit();
   trip: Trip;
   auditor: Actor;
+  private auditorId: string;
   
   constructor(private authService: AuthService, private auditService: AuditsService, private router: Router,
     private route: ActivatedRoute, private translateService: TranslateService) {
@@ -28,27 +29,25 @@ export class AuditsDisplayComponent extends TranslatableComponent implements OnI
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.currentActor = this.authService.getCurrentActor();
-    console.log(this.route);
+    this.auditorId = this.route.snapshot.queryParams['auditorId'];
+
     // Recover audit
-    this.auditService.getAudit(this.id, this.currentActor._id) // this.currentActor._id
+    this.auditService.getAudit(this.id, this.auditorId) // this.currentActor._id
       .then((val) => {
         this.audit = val;
-        if (!this.currentActor || this.currentActor._id != this.audit.auditor) { //|| this.currentActor.id != this.sponsorship.sponsor
-          this.router.navigate(['/denied-access']);
-        } else {
-          this.auditService.getAuditCreator(this.audit.auditor)
-            .then((val1) => {
-              this.auditor = val1;
-            }).catch((err1) => {
-              console.log(err1);
-            });
-          this.auditService.getAuditTrip(this.audit.trip)
-          .then((val2) => {
-            this.trip = val2;
+        this.auditService.getAuditCreator(this.audit.auditor)
+          .then((val1) => {
+            this.auditor = val1;
           }).catch((err1) => {
             console.log(err1);
           });
-        }
+        this.auditService.getAuditTrip(this.audit.trip)
+        .then((val2) => {
+          this.trip = val2;
+        }).catch((err1) => {
+          console.log(err1);
+        });
+        
       })
       .catch((err) => {
         console.error(err);
