@@ -22,12 +22,21 @@
 
       <article class="entry entry-single">
         <div class="entry-img">
-          <img *ngIf="trip.picture != null && trip.picture.length != 0" class="img-fluid" src="{{trip.picture[0].data}}"
-            alt="{{trip.title}}">
-          <img *ngIf="!trip.picture || trip.picture.length === 0" class="img-fluid"
-            src="https://i.ya-webdesign.com/images/image-not-available-png-5.png" alt="{{trip.title}}">
-        </div>
 
+
+          <ngx-slick *ngIf="trip.photoObject && trip.photoObject.length > 0 && slides" class="carousel" #slickModal="slick-modal"
+            [config]="slideConfig" (afterChange)="afterChange($event)">
+            <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+              <img src="{{ slide.Buffer }}" alt="" width="100%" height="350">
+            </div>
+          </ngx-slick>
+
+          <img *ngIf="!trip.photoObject || !trip.photoObject[0] || trip.photoObject[0].Buffer.length === 0 "
+            class="img-fluid" src="https://i.ya-webdesign.com/images/image-not-available-png-5.png"
+            alt="{{trip.title}}">
+          <a *ngIf="trip.photoObject && trip.photoObject.length > 0 && currentActor && currentActor._id === trip.creator"
+            href="javascript:void(0);" (click)="openDeleteImageDialog()">{{'trip.deletePicture' |translate}}</a>
+        </div>
         <h2 class="entry-title">
           {{trip.title}}
         </h2>
@@ -35,19 +44,20 @@
         <div class="entry-meta">
           <ul>
             <li class="d-flex align-items-center"><i class="icofont-user"></i> {{'trip.creator' | translate}}: <a
-                href=""> {{creator.name}}</a>
+                href="/actors/display/{{trip.creator}}"> {{creator.name}}</a>
             </li>
             <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i>{{trip.startDate |localizedDate}} -
               {{trip.endDate |localizedDate}}</li>
             <li class="d-flex align-items-center"><i class="icofont-price"></i>{{trip.price}} €</li>
+            <li class="d-flex align-items-center">Ticker: {{trip.ticker}}</li>
           </ul>
         </div>
 
         <div class="entry-content">
-          <div [hidden]="!trip.cancelled" class="text-danger">
+          <div [hidden]="!cancelled" class="text-danger">
             <h3>{{'trip.cancelled' | translate}}</h3>
             <p>
-              {{trip.cancelledReason}}
+              {{cancelledReason}}
             </p>
           </div>
           <p>
@@ -62,7 +72,7 @@
           <h3>{{'trip.stages' | translate}}</h3>
           <p>
             <span *ngFor="let req of trip.stages; let i = index">
-              <p> 
+              <p>
                 <i class="icofont-airplane-alt"></i> {{trip.stages[i].title}} - {{trip.stages[i].price}} €
               </p>
               <p>
@@ -73,32 +83,17 @@
           <h3>{{'audits.audits' | translate}}</h3>
           <p>
             <span *ngFor="let aud of audits; let i = index">
-              <p> 
+              <p>
                 <i class="icofont-airplane-alt"></i>{{aud.title}}
               </p>
             </span>
           </p>
-        </div>
-
-        <div class="entry-footer clearfix" hidden="true">
-          <div class="float-left">
-            <i class="icofont-folder"></i>
-            <ul class="cats">
-              <li><a href="#">Business</a></li>
-            </ul>
-
-            <i class="icofont-tags"></i>
-            <ul class="tags">
-              <li><a href="#">Creative</a></li>
-              <li><a href="#">Tips</a></li>
-              <li><a href="#">Marketing</a></li>
-            </ul>
-          </div>
-
-          <div class="float-right share">
-            <a href="" title="Share on Twitter"><i class="icofont-twitter"></i></a>
-            <a href="" title="Share on Facebook"><i class="icofont-facebook"></i></a>
-            <a href="" title="Share on Instagram"><i class="icofont-instagram"></i></a>
+          <div *ngIf="coordenadasLatitud != null && coordenadasLongitud != null" id="map" class="map">
+            <h3>{{'trip.startPlace' | translate}}</h3>
+            <vo-ui-osm-view [showDebugInfo]="false" [showControlsZoom]="true" [showControlsCurrentLocation]="true"
+              (addressChanged)="onAddressChange($event)" [latitude]="coordenadasLatitud" [longitude]="coordenadasLongitud"
+              [latitudePointer]="coordenadasLatitud" [longitudePointer]="coordenadasLongitud" [zoom]="10">
+            </vo-ui-osm-view>
           </div>
         </div>
       </article>
@@ -107,33 +102,41 @@
     <div class="col-lg-4">
 
       <div class="sidebar">
-
-        <h3 class="sidebar-title">{{'trip.searchOthers' |translate}}</h3>
-        <div class="sidebar-item search-form">
-          <form action="/trips/search?keyword" method="GET">
-            <input type="text">
-            <button type="submit"><i class="icofont-search"></i></button>
-          </form>
-        </div>
-
         <h3 class="sidebar-title">{{'trip.options' |translate}}</h3>
         <div class="sidebar-item categories">
           <ul>
-            <li [hidden]="!currentActor || currentActor.id !== trip.creator"><a href="#">{{'trip.edit' |translate}}</a>
+            <li [hidden]="editable || !currentActor || currentActor._id !== trip.creator">
+              {{'trip.cantModify' |translate}}
             </li>
-
-            <li *ngIf="purchasable"><a *ngIf="!currentActor" href="/login">{{'trip.buy' |translate}}</a></li>
-            <li *ngIf="purchasable"><a *ngIf="currentActor !== null && activeRole === 'EXPLORER'"
-                href="javascript:alert('El usuario será redirigido a la ventana de comprar un viaje pagando con Paypal');">{{'trip.buy' |translate}}</a>
+            <li [hidden]="cancelled || !editable || !currentActor || currentActor._id !== trip.creator">
+              <a href="/trips/add-picture/{{trip._id}}">{{'trip.addPicture' |translate}}</a>
+            </li>
+            <li [hidden]="cancelled || !editable || !currentActor || currentActor._id !== trip.creator">
+              <a id="edit-trip-link" href="/trips/edit/{{trip._id}}">{{'trip.edit' |translate}}</a>
+            </li>
+            <li [hidden]="cancelled || !editable || !currentActor || currentActor._id !== trip.creator">
+              <a href="javascript:void(0);" (click)="openCancelDialog()">{{'trip.cancel' |translate}}</a>
+            </li>
+            <li [hidden]="cancelled || !editable || !currentActor || currentActor._id !== trip.creator">
+              <a href="javascript:void(0);" (click)="openDeleteDialog()">{{'trip.delete' |translate}}</a>
+            </li>
+            <li [hidden]="cancelled || !currentActor || activeRole != 'EXPLORER'">
+              <a href="/trips/{{trip._id}}/applications/create">
+                {{'applications.apply' | translate}}
+              </a>
+            </li>
+            <li [hidden]="currentActor == null || activeRole !== 'AUDITOR'">
+              <a  href="/audits/create/{{trip._id}}">{{'audits.new' | translate}}</a>
+            </li>
+            <li>
+              <a href="/audits/trips/{{trip._id}}">{{'audits.audits' |translate}}</a>
             </li>
             <li><a href="javascript:void(0);" (click)="goBack()">{{'trip.goBack' |translate}}</a></li>
           </ul>
 
-        </div><!-- End sidebar categories-->
-
-      </div><!-- End sidebar -->
-
-    </div><!-- End trip sidebar -->
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 

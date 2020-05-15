@@ -1,68 +1,53 @@
 <!-- ======= Footer ======= -->
 <footer id="footer">
-  <div class="footer-top">
-      <div class="container">
-      <div class="row">
-  
-          <div class="col-lg-3 col-md-6 footer-info">
-          <h3>Acme<span>Explorer</span></h3>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
-          </div>
-  
-          <div class="col-lg-3 col-md-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-              <li><a href="/">Home</a></li>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="/terms-and-conditions">{{'footer.terms' | translate}}</a></li>
-          </ul>
-          </div>
-  
-          <div class="col-lg-3 col-md-6 footer-contact">
-          <h4>Contact Us</h4>
-          <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
-          </p>
-  
-          <div class="social-links">
-              <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
-              <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
-              <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="icofont-skype"></i></a>
-              <a href="#" class="linkedin"><i class="icofont-linkedin"></i></a>
-          </div>
-  
-          </div>
-  
-          <div class="col-lg-3 col-md-6 footer-newsletter">
-          <h4>Our Newsletter</h4>
-          <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
-          <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-          </form>
-          </div>
-  
-      </div>
-      </div>
-  </div>
-  
-  <div class="container">
-      <div class="copyright">
-        Acme <strong>Explorer &copy;</strong> {{today |localizedDate }}. All Rights Reserved
-      </div>
-      <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/serenity-bootstrap-corporate-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-  </div>
-  </footer><!-- End Footer -->
-  
-  <a href="javascript:void(0);" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 footer-info">
+                    <h3>Acme<span>Explorer</span></h3>
+                    <p>{{'footer.acmeExplorerDescription' | translate}}</p>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-links">
+                    <h4>{{'footer.team' | translate}}</h4>
+                    <p>
+                        {{'footer.teamDescription' | translate}}
+                    </p>
+                    <ul>
+                        <li>Rafael Fresno Aranda</li>
+                        <li>Jorge Gordo Aguilar</li>
+                        <li>Antonio Rodríguez Artacho</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-contact">
+                    <h4>{{'footer.contactUs' | translate}}</h4>
+                    <p>
+                        Avenida de la Reina Mercedes <br>
+                        {{'footer.postalCode' | translate}} 41012 {{'footer.seville' | translate}}<br>
+                        ({{'footer.seville' | translate}}) {{'footer.spain' | translate}}<br>
+                        <strong>{{'footer.phone' | translate}}:</strong> +34 954 11 22 33<br>
+                        <strong>Email:</strong> info@acmeexplorer.com<br>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="copyright">
+            Acme <strong>Explorer &copy;</strong> {{today |localizedDate }}. {{'footer.allRightsReserved' | translate}}. <a routerLink="/terms-and-conditions">{{'footer.terms' | translate}}.</a>
+        </div>
+        <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/serenity-bootstrap-corporate-template/ -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+    </div>
+</footer><!-- End Footer -->
+
+<a href="javascript:void(0);" class="back-to-top"><i class="icofont-simple-up"></i></a>

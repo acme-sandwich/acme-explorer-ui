@@ -1,0 +1,10 @@
+body{
+    margin-top:20px;
+    background:#f8f8f8
+}
+
+button:disabled, button[disabled] {
+    background-color: #a7b888;
+    border-color: #a7b888;
+    cursor: default;
+}

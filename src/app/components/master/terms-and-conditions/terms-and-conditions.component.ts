@@ -14,15 +14,21 @@ export class TermsAndConditionsComponent implements OnInit {
   private htmlFile = 'assets/terms-and-conditions/terms-and-conditions_' + this.translateService.currentLang + '.html';
 
   constructor(private translateService: TranslateService, private http: Http, private sanitizer: DomSanitizer, private router: Router) {
-    this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
-      this.htmlFile = 'assets/terms-and-conditions/terms-and-conditions_' + event.lang + '.html';
-      this.http.get(this.htmlFile).subscribe((html) => {
-        this.myTemplate = sanitizer.bypassSecurityTrustHtml(html.text());
-      });
-    });
+    
   }
 
   ngOnInit() {
+    this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.htmlFile = 'assets/terms-and-conditions/terms-and-conditions_' + event.lang + '.html';
+      this.http.get(this.htmlFile).subscribe((html) => {
+        this.myTemplate = this.sanitizer.bypassSecurityTrustHtml(html.text());
+      });
+    });
+    const lang = this.translateService.currentLang;
+    this.htmlFile = 'assets/terms-and-conditions/terms-and-conditions_' + lang + '.html';
+    this.http.get(this.htmlFile).subscribe((html) => {
+      this.myTemplate = this.sanitizer.bypassSecurityTrustHtml(html.text());
+    });
   }
 
 }

@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>{{'trip.delete.confirmation' |translate}}</h1>
+<div mat-dialog-content>
+  <p>{{'trip.delete.message' |translate}}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">{{'trip.goBack' |translate}}</button>
+  <button mat-button [mat-dialog-close]="true" 
+  cdkFocusInitial>{{'trip.delete' |translate}}</button>
+</div>

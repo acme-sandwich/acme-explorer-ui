@@ -9,7 +9,6 @@
   <div class="container">
     <ol>
       <li><a routerLink="/">{{'header.home' | translate}}</a></li>
-      <li><a routerLink="/audits">{{'audits.audits' | translate}}</a></li>
       <li>{{'audits.audit' | translate}}</li>
     </ol>
   </div>
@@ -27,9 +26,11 @@
         </h2>
         <div class="entry-meta">
           <ul>
-            <li class="d-flex align-items-center"><i class="icofont-user"></i> {{'audits.auditor' | translate}}: <a routerLink="/actors/display/{{auditor._id}}"> {{auditor.name}}</a>
+            <li *ngIf="auditor != null" class="d-flex align-items-center"><i class="icofont-user"></i> {{'audits.auditor' | translate}}: <a routerLink="/actors/display/{{auditor._id}}"> {{auditor.name}}</a>
             </li>
-            <li class="d-flex align-items-center"><i class="icofont-user"></i> {{'audits.trip' | translate}}: <a routerLink="/trips/display/{{trip._id}}"> {{trip.title}}</a>
+            <li *ngIf="trip != null" class="d-flex align-items-center"><i class="icofont-airplane-alt"></i> {{'audits.trip' | translate}}: <a routerLink="/trips/display/{{trip._id}}"> {{trip.title}}</a>
+            </li>
+            <li *ngIf="trip != null" class="d-flex align-items-center"><i class="icofont-wall-clock"></i> {{'audit.moment' | translate}}: {{audit.moment |localizedDate }}
             </li>
           </ul>
         </div>

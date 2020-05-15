@@ -20,22 +20,37 @@ import { TripEditComponent } from './components/trip/trip-edit/trip-edit.compone
 import { DashboardDisplayComponent } from './components/dashboard/dashboard-display/dashboard-display.component';
 import { AuditsListComponent } from './components/audits/audits-list/audits-list.component';
 import { AuditsDisplayComponent } from './components/audits/audits-display/audits-display.component';
+import { AuditsEditComponent } from './components/audits/audits-edit/audits-edit.component';
+import { ActorEditComponent } from './components/actor/actor-edit/actor-edit.component';
+import { ApplicationEditComponent } from './components/application/application-edit/application-edit.component';
+import { TripAddPhotoComponent } from './components/trip/trip-add-photo/trip-add-photo.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { FinderEditComponent } from './components/finder/finder-edit/finder-edit.component';
+import { FinderListComponent } from './components/finder/finder-list/finder-list.component';
+import { CanDeactivateService } from './services/can-deactivate.service';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
   {path: 'login', component: LoginComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'anonymous'}},
-  {path: 'register', component: RegisterComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'anonymous'}},
+  {path: 'register', component: RegisterComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'anonymous', adminConnected: false}},
   {path: 'trips', children: [
+    {path: 'create', component: TripEditComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER'}},
     {path: 'display/:id', component: TripDisplayComponent},
+    {path: 'edit/:id', component: TripEditComponent, canDeactivate: [CanDeactivateService], canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER'}},
     {path: 'my-trips', component: TripListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER', myTrips:true}},
+    {path: 'add-picture/:id', component: TripAddPhotoComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'MANAGER'}},
     {path: '', component: TripListComponent},
+    {path: ':id/applications/create', component: ApplicationEditComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'EXPLORER'}},
   ]},
   {path: 'applications', children: [
     {path: '', component: ApplicationListComponent },
+    {path: ':id/checkout', component: CheckoutComponent}
   ]},
   {path: 'actors', children: [
     {path: 'display/:id', component: ActorDisplayComponent},
     {path: ':id/applications', component: ApplicationListComponent},
+    {path: 'edit/:id', component: ActorEditComponent},
+    {path: 'create', component: RegisterComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'ADMINISTRATOR', adminConnected: true}},
     {path: '', component: ActorListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'ADMINISTRATOR'}},
   ]},
   {path: 'sponsorships', children: [
@@ -45,10 +60,17 @@ const appRoutes: Routes = [
     {path: '', component: SponsorshipListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'SPONSOR'}}
   ]},
   {path: 'audits', children: [
+    {path: 'create/:id', component: AuditsEditComponent, canDeactivate: [CanDeactivateService], canActivate: [ActorRoleGuard], data: {expectedRole: 'AUDITOR'}},
+    {path: 'create', component: AuditsEditComponent, canDeactivate: [CanDeactivateService], canActivate: [ActorRoleGuard], data: {expectedRole: 'AUDITOR'}},
+    {path: 'trips/:id', component: AuditsListComponent},
     {path: ':id', component: AuditsDisplayComponent},
     {path: '', component: AuditsListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'AUDITOR'}}
   ]},
-  {path: 'dashboard', component: DashboardDisplayComponent},
+  {path: 'finder', children: [
+    {path: 'edit', component: FinderEditComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'EXPLORER'}},
+    {path: 'results', component: FinderListComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'EXPLORER'}},
+  ]},
+  {path: 'dashboard', component: DashboardDisplayComponent, canActivate: [ActorRoleGuard], data: {expectedRole: 'ADMINISTRATOR'}},
   {path: 'terms-and-conditions', component: TermsAndConditionsComponent},
   {path: 'not-found', component: NotFoundPageComponent},
   {path: 'denied-access', component: DeniedAccessPageComponent},

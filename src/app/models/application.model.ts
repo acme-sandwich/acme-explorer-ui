@@ -6,6 +6,8 @@ export class Application  extends Entity {
     comments: string[];
     trip: string;
     explorer: string;
+    manager: string;
+    reason: string;
 
     constructor() {
         super();

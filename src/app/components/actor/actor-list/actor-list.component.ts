@@ -3,6 +3,7 @@ import { Actor } from '../../../models/actor.model';
 import { ActorService } from '../../../services/actor.service';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslatableComponent } from '../../shared/translatable/translatable.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-actor-list',
@@ -14,6 +15,7 @@ export class ActorListComponent extends TranslatableComponent implements OnInit 
   private actors: Actor[];
   data: any[];
   dtOptions: any = {};
+  dtTrigger: Subject<any> = new Subject();
 
   constructor(private actorService: ActorService, private translateService: TranslateService) {
     super(translateService);
@@ -33,7 +35,7 @@ export class ActorListComponent extends TranslatableComponent implements OnInit 
     this.actorService.getActors()
       .then((val) => {
         this.data = val;
-        console.log(this.data);
+        this.dtTrigger.next();
       })
       .catch((err) => console.error(err.message));
   }

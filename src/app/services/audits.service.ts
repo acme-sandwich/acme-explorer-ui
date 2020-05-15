@@ -61,4 +61,20 @@ export class AuditsService {
     const url = `${environment.backendApiBaseURL}/api/v1/trips/${idTrip}/audits`;
     return this.http.get<Audit[]>(url).toPromise();
   }
+
+  createAudit(audit: Audit, actorId: String) {
+    const url = `${environment.backendApiBaseURL}/api/v1/actors/${actorId}/audits`;
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Access-Control-Allow-Origin','*');
+
+    const body = JSON.stringify(audit);
+    
+    return new Promise<any>((resolve, reject) => {
+      this.http.post(url, body, httpOptions).toPromise()
+        .then(res => {
+          resolve(res);
+        }, err => {console.log(err); reject(err)});
+    });
+  }
 }

@@ -2,7 +2,22 @@
     "main": {
         "header": "¡Bienvenido a Acme Explorer!",
         "subheader": "Empieza a disfrutar ahora de las mejores excursiones nacionales e internacionales reservando con nosotros",
-        "getstarted": "Vamos allá"
+        "getstarted": "Vamos allá",
+        "earnMoneyPublishingYourTrips": "Gana dinero publicando tus viajes",
+        "earnMoneyPublishingYourTripsDescription": "Con nosotros, puedes publicar tantos viajes como quieras y aceptar o rechazar de forma cómoda y muy automatizada las aplicaciones que el resto de usuarios harán a tus viajes publicados. Además, gracias al pago con Paypal, llevamos la comodidad por bandera.",
+        "ourAdvantages": "Nuestras ventajas",
+        "dontLoseTime": "No pierdas tiempo",
+        "fewClicksToApply": "Con solo unos pocos clics serás capaz de reservar viajes y disfrutar",
+        "beEfficient": "Sé eficiente",
+        "beEfficientDescription": "Servimos para publicar y reservar viajes auditados, ni más ni menos",
+        "enjoyPaypal": "Disfruta de PayPal",
+        "enjoyPaypalDescription": "El pago está automatizado con PayPal, por lo que si no estás contento siempre podrás pedir la devolución",
+        "trustTheLeader": "Confía en el líder",
+        "trustTheLeaderDescription": "En Acme Explorer somos líderes en la gestión de viajes. Nos preocupamos de todo para que tú únicamente disfrutes",
+        "happyClients": "Clientes felices",
+        "projects": "Proyectos",
+        "yearsOfExperience": "Años de experiencia",
+        "awards": "Premios"
     },
     "actor":{
         "email": "Correo electrónico",
@@ -15,6 +30,7 @@
         "register": "Registrar",
         "update": "Actualizar",
         "register.title": "Registro de actor",
+        "register.explorer": "Registro de explorador",
         "list": "Listar actores",
         "display": "Mostrar actor",
         "actors": "Actores",
@@ -30,7 +46,17 @@
         "applications": "PETICIONES",
         "receivedApplications": "Peticiones recibidas",
         "profile": "Mi perfil",
-        "status": "Estado"
+        "status": "Estado",
+        "edit": "Editar perfil",
+        "changePassword": "Cambiar contraseña",
+        "currentPassword": "Contraseña actual",
+        "newPassword": "Nueva contraseña",
+        "confirmPassword": "Confirmar contraseña",
+        "saveChanges": "Guardar cambios",
+        "banned": "Baneado",
+        "available" : "Disponible",
+        "create.new": "Crear nuevo actor",
+        "admin.options": "Opciones de administrador"
     },
     "security": {
         "login": "Iniciar sesión",
@@ -43,7 +69,16 @@
     },
     "footer": {
         "terms": "Términos y condiciones",
-        "visitors": "Visitantes"
+        "visitors": "Visitantes",
+        "acmeExplorerDescription": "Acme Explorer es un proyecto desarrollado para la asignatura Tecnologías de Cliente del Máster de Ingeniería del Software: Cloud, Datos y Gestión TI perteneciente a la Universidad de Sevilla.",
+        "team": "Equipo",
+        "teamDescription": "Acme Explorer ha sido desarrollado por:",
+        "contactUs": "Contáctanos",
+        "allRightsReserved": "Todos los derechos reservados",
+        "seville": "Sevilla",
+        "spain": "España",
+        "phone": "Teléfono",
+        "postalCode": "CP"
     },
     "header": {
         "home": "Inicio",
@@ -72,6 +107,7 @@
         "price": "Precio",
         "creator": "Creador",
         "requirements": "Requisitos",
+        "requirement": "Requisito",
         "cancelled": "Este viaje ha sido cancelado",
         "searchOthers": "Buscar otros viajes",
         "options": "Opciones",
@@ -79,7 +115,34 @@
         "edit": "Editar",
         "buy": "Comprar viaje",
         "stages": "Etapas",
-        "stage": "Etapa"
+        "stage": "Etapa",
+        "editTrip": "Editar viaje",
+        "startDate": "Fecha de inicio",
+        "endDate": "Fecha de fin",
+        "addRequirement": "Añadir requisito",
+        "removeRequirement": "Quitar requisito",
+        "addStage": "Añadir etapa",
+        "removeStage": "Quitar etapa",
+        "pictures": "Imágenes",
+        "create": "Crear viaje",
+        "cancel": "Cancelar viaje",
+        "cancel.confirmation": "¿Estás seguro que deseas cancelar el viaje?",
+        "cancel.message": "Por favor, escribe el motivo por el que deseas cancelar el viaje",
+        "delete": "Borrar viaje",
+        "delete.confirmation": "¿Estás seguro que deseas borrar el viaje?",
+        "delete.message": "Esta acción no se puede deshacer",
+        "cantModify": "No puedes editar, cancelar ni borrar el viaje debido a que va a empezar en menos de una semana.",
+        "addPicture": "Añadir imagen al viaje",
+        "deletePicture": "Borrar esta imagen",
+        "deleteImage.confirmation": "¿Estás seguro que deseas borrar esta imagen del viaje?",
+        "deleteImage.cantDelete": "No puedes borrar la imagen principal. La puedes cambiar editando el viaje.",
+        "startPlace": "Punto de encuentro"
+    },
+    "stage": {
+        "stage": "Etapa",
+        "title": "Título",
+        "description": "Descripción",
+        "price": "Precio"
     },
     "sponsorships": {
         "sponsorships": "Patrocinios",
@@ -101,16 +164,23 @@
     },
     "denied-access-page": {
         "title": "Acceso denegado",
-        "message-start": "No tiene permiso para acceder a",
+        "message-start": "No tiene permiso para acceder a esta página",
         "message-end": "en este servidor"
     },
     "messages": {
         "auth":{
             "login.correct":"Has iniciado sesión correctamente",
             "login.failed": "No se pudo iniciar sesión, inténtelo de nuevo más tarde",
+            "login.failed.ban": "No puedes iniciar sesión porque tu cuenta ha sido baneada del sistema. Póngase en contacto con un administrador para más información.",
             "user.not.found": "Error iniciando sesión, usuario no encontrado",
-            "wrong.password": "Error iniciando sesión, contraseña incorrecta"
-        }
+            "wrong.password": "Error iniciando sesión, contraseña incorrecta",
+            "register.failed": "El correo electrónico ya está en uso",
+            "register.weak.password": "La contraseña es demasiado débil. Recuerda que debe tener como mínimo 6 caracteres"
+        },
+        "trip":{
+            "delete.error.oneWeek": "No se pudo borrar el viaje debido a que queda menos de una semana para que comience."
+        },
+        "discard.changes": "¿Seguro que quieres descartar los cambios?"
     },
     "applications": {
         "list": "Listar peticiones",
@@ -119,7 +189,21 @@
         "comments": "Comentarios",
         "applications": "Peticiones",
         "trip": "Viaje",
-        "explorer": "Explorador"
+        "explorer": "Explorador",
+        "apply": "Aplicar",
+        "comment": "Comentario",
+        "addComment": "Añadir comentario",
+        "removeComment": "Eliminar comentario",
+        "applyOptComments": " Vas a solicitar este viaje. Puedes añadir comentarios de forma opcional justo debajo.",
+        "noComment": "El explorador no ha añadido ningún comentario en esta solicitud.",
+        "actions": "Acciones",
+        "cancel": "Cancelar",
+        "reject": "Rechazar",
+        "due": "Aceptar",
+        "pay": "Pagar",
+        "reject.confirmation": "¿Estás seguro que deseas rechazar la aplicación del usuario?",
+        "reject.message": "Escriba el motivo por el que rechaza la aplicación",
+        "reason": "Razón de rechazo"
     },
     "dashboard": {
         "display": "Dashboard",
@@ -145,9 +229,58 @@
         "audits": "Auditorías",
         "audit": "Auditoría",
         "empty": "No has creado ninguna auditoría",
+        "trip.empty": "Este viaje no tiene ninguna auditoría",
         "new": "Nueva auditoría",
         "auditor": "Auditor",
         "attachments": "Adjuntos",
-        "trip": "Viaje"
+        "trip": "Viaje",
+        "goBack": "Volver atrás"
+    },
+    "audit":{
+        "create":"Crear auditoría",
+        "edit":"Editar",
+        "trip":"Viaje",
+        "title":"Título",
+        "description":"Descripción",    
+        "attachments":"Adjuntos",
+        "attachment":"Adjunto",
+        "addAttachment":"Añadir adjunto",
+        "removeAttachment":"Quitar adjunto",
+        "moment": "Momento de creación",
+        "goBack": "Volver atrás"
+    },
+    "finder":{
+        "finder":"Buscador",
+        "keyword":"Palabra clave",
+        "minprice":"Precio mínimo",
+        "maxprice":"Precio máximo",
+        "datestart":"Fecha mínima",
+        "dateend":"Fecha máxima",
+        "search":"Buscar",
+        "goBack":"Volver atrás"
+    },
+    "form":{
+        "save": "Guardar",
+        "cancel": "Cancelar"
+    },
+    "errorMessages":{
+        "validation": {
+            "required": "Ups, debes introducir este valor.",
+            "pattern.numeric": "Ups, solo se aceptan valores numéricos en este campo.",
+            "pattern.numeric.positive": "Ups, solo se aceptan valores numéricos positivos en este campo.",
+            "pattern.date": "Ups, la fecha debe tener formato dd/mm/aaaa",
+            "string.maxLength": "Vaya, debes introducir un máximo de {{maxvalue}} caracteres en este campo.",
+            "minOneStage": "Ups, debes crear al menos una etapa.",
+            "minOneRequirement": "Ups, debes añadir al menos un requisito.",
+            "startEndDatesRange": "Ups, la fecha de inicio no debe ser pasada y debe ser anterior a la de fin.",
+            "startEndDatesRangeFinder": "Ups, la fecha de inicio debe ser anterior a la de fin.",
+            "pricesRange": "Ups, el precio mínimo debe ser menor que el máximo."
+        }
+    },
+    "order":{
+        "placed": "El viaje se ha comprado satisfactoriamente.",
+        "paymentOptions": "Opciones de pago",
+        "payTripTo": "Pagar viaje a ",
+        "payment": "Pago"
     }
 }

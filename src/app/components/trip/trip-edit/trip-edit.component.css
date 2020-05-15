@@ -1,0 +1,8 @@
+.input-left {
+    padding-right: 50;
+}
+
+.button-right {
+    margin-left: -50px;
+    -webkit-appearance: none;
+}

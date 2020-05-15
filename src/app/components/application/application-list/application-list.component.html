@@ -14,29 +14,42 @@
   </div>
 </section>
 
-<table datatable [dtOptions]="dtOptions" class="table table-sm table-striped" width="100%">
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm table-striped" width="100%">
   <thead style="background-color: #94c045;">
     <tr>
       <td translate>{{'applications.status'}}</td>
       <th translate>{{'applications.trip'}}</th>
       <th translate>{{'applications.explorer'}}</th>
       <th translate>{{'applications.moment'}}</th>
-      <th translate>Comments</th>
+      <th translate>{{'applications.comments'}}</th>
+      <th translate>{{'applications.reason'}}</th>
+      <th translate>{{'applications.actions'}}</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let app of data">
       <td>{{app.status}}</td>
-      <!--<td style="cursor: pointer;" routerLink="/trips/display/{{app.trip}}">{{app.tripName}}</td>-->
       <td><a href="/trips/display/{{app.trip}}">{{app.tripName}}</a></td>
       <td><a href="/actors/display/{{app.explorer}}">{{app.explorerName}}</a></td>
-      <td>{{app.moment | date}}</td>
+      <td>{{app.moment | localizedDate}}</td>
       <td>
         <ul class="list-group">
-        <li class="list-group-item" *ngFor="let comment of app.comments">
-            <p class="card-text">{{comment}}</p>
-        </li>
+          <li class="list-group-item" *ngFor="let comment of app.comments">
+              <p class="card-text">{{comment}}</p>
+          </li>
         </ul>
+        <ul class="list-group" *ngIf="app.comments.length < 1">
+          <li class="list-group-item">
+            <p class="card-text" style="color: red;" translate>{{'applications.noComment'}}</p>
+          </li>
+        </ul>
+      </td>
+      <td>{{app.reason}}</td>
+      <td>
+        <a routerLink="/applications/{{app._id}}/checkout" [queryParams]="{'total':app.tripPrice, 'id':app._id, 'trip_id': app.trip}" *ngIf="this.currentActor.role == 'EXPLORER' && app.status === 'DUE'" style="margin: 0; cursor: pointer;" class="button btn-primary btn-due">{{'applications.pay' | translate}}</a>
+        <button *ngIf="this.currentActor.role == 'EXPLORER' && app.status !== 'CANCELLED' && app.status !== 'REJECTED' && app.isCancelable === true" (click)="cancelApplication(app)" class="button btn-primary btn-reject" style="margin: 0; margin-left: 5px;">{{'applications.cancel' | translate}}</button>
+        <button *ngIf="this.currentActor.role == 'MANAGER' && app.status === 'PENDING'" (click)="dueApplication(app)" class="button btn-primary btn-due" style="margin: 0;">{{'applications.due' | translate}}</button>
+        <button *ngIf="this.currentActor.role == 'MANAGER' && app.status === 'PENDING'" (click)="rejectApplication(app)" class="button btn-primary btn-reject" style="margin: 0; margin-left: 5px;">{{'applications.reject' | translate}}</button>
       </td>
     </tr>
   </tbody>

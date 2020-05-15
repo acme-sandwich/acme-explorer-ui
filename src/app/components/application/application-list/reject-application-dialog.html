@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>{{'applications.reject.confirmation' |translate}}</h1>
+<div mat-dialog-content>
+  <p>{{'applications.reject.message' |translate}}</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.rejectedReason">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">{{'trip.goBack' |translate}}</button>
+  <button mat-button [disabled]="data.rejectedReason === ''" [mat-dialog-close]="data.rejectedReason" 
+  cdkFocusInitial>{{'applications.reject' |translate}}</button>
+</div>

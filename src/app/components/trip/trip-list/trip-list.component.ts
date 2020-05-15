@@ -25,6 +25,7 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
   keyword: string;
   direction: string;
   myTrips = false;
+  currentActorRole: string;
 
   constructor(private tripService: TripService, private router: Router, private route: ActivatedRoute,
     public authService: AuthService, private translateService: TranslateService) {
@@ -41,8 +42,6 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
         }
     });
 
-    console.log(this.myTrips);
-
     this.tripService.getTripsPage(this.page, MAX_TRIPS, this.keyword, this.myTrips)
       .then((val) => {
         this.data = val;
@@ -51,6 +50,7 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
       .catch((err) => console.error(err.message));
 
     this.actor = this.authService.getCurrentActor();
+    this.currentActorRole = this.authService.getCurrentActorRole();
   }
 
   assignCopy() {

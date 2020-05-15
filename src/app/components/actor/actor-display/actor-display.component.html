@@ -5,14 +5,10 @@
 
 <div class="container emp-profile">
             <form method="post">
-                <div class="row">
+                <div *ngIf="actor != null" class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
                             <img src="https://i.stack.imgur.com/34AD2.jpg" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                {{'actor.changePhoto' | translate}}
-                                <input type="file" name="file"/>
-                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -34,21 +30,20 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                        <button *ngIf="currentActor != null && actor != null && currentActor._id == id" class="profile-edit-btn" routerLink="/actors/edit/{{actor._id}}" style="margin-bottom: 5px;">{{'actor.edit' | translate}}</button>
+                        <button *ngIf="actor != null && !actor.banned && activeRole === 'ADMINISTRATOR'" class="profile-edit-btn" (click)="onBanActor()" style="background-color: #94c045; color: white;">{{'actor.available' |translate}}</button>
+                        <button *ngIf="actor != null && actor.banned && activeRole === 'ADMINISTRATOR'" class="profile-edit-btn" (click)="onUnbanActor()" style="background-color: rgb(250, 83, 83); color: white;" >{{'actor.banned' | translate}}</button>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-work">
-                            <p style="margin-bottom: 5px;">{{'actor.trips' | translate}}</p>
-                            <a href="">{{'actor.completedTrips' | translate}}</a><br/>
-                            <a href="">{{'actor.futureTrips' | translate}}</a><br/>
+                    <div  class="col-md-4">
+                        <div *ngIf="actor != null && actor._id === currentActor._id" class="profile-work">
                             <p style="margin-bottom: 5px;">{{'actor.applications' | translate}}</p>
-                            <a *ngIf="activeRole === 'EXPLORER'" href="/actors/{{currentActor.id}}/applications">{{'actor.myApplications' | translate}}</a>
-                            <a *ngIf="activeRole === 'MANAGER'" href="/actors/{{currentActor.id}}/applications">{{'actor.receivedApplications' | translate}}</a>
+                            <a *ngIf="currentActor != null && activeRole === 'EXPLORER'" href="/actors/{{currentActor._id}}/applications">{{'actor.myApplications' | translate}}</a>
+                            <a *ngIf="currentActor != null && activeRole === 'MANAGER'" href="/actors/{{currentActor._id}}/applications">{{'actor.receivedApplications' | translate}}</a>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div *ngIf="actor != null" class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
@@ -98,7 +93,7 @@
                                                 <label>{{'actor.completedTrips' | translate}}</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>6</p>
+                                                <p>{{tripsCompleted}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -106,7 +101,7 @@
                                                 <label>{{'actor.spentMoney' | translate}}</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>2589 €</p>
+                                                <p>{{spentMoney}} €</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -114,7 +109,7 @@
                                                 <label>{{'actor.sentApplications' | translate}}</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>10</p>
+                                                <p>{{sentApplications}}</p>
                                             </div>
                                         </div>
                             </div>

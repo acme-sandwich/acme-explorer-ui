@@ -39,6 +39,11 @@ export class AuthService {
               reject(err);
             });
         }).catch(err => {
+          if(err.code === 'auth/email-already-in-use') {
+            this.messageService.notifyMessage('messages.auth.register.failed', 'alert alert-danger');
+          } else if(err.code === 'auth/weak-password') {
+            this.messageService.notifyMessage('messages.auth.register.weak.password', 'alert alert-danger');
+          }
           reject(err);
         });
     });
@@ -52,10 +57,24 @@ export class AuthService {
           this.http.get<Actor[]>(url).toPromise()
             .then((actor: Actor[]) => {
               this.currentActor = actor[0];
-              this.userLoggedIn.next(true);
-              this.messageService.notifyMessage('messages.auth.login.correct', 'alert alert-success');
-              localStorage.setItem('currentActor', JSON.stringify(this.currentActor));
-              resolve(this.currentActor);
+              if(this.currentActor.banned) {
+                this.messageService.notifyMessage('messages.auth.login.failed.ban', 'alert alert-danger');
+                reject('User account banned');
+              } else {
+                this.userLoggedIn.next(true);
+                this.messageService.notifyMessage('messages.auth.login.correct', 'alert alert-success');
+                localStorage.setItem('currentActor', JSON.stringify({
+                  _id: this.currentActor._id,
+                  name: this.currentActor.name,
+                  surname: this.currentActor.surname,
+                  phone: this.currentActor.phone,
+                  role: this.currentActor.role,
+                  email: this.currentActor.email,
+                  address: this.currentActor.address,
+                  banned: this.currentActor.banned
+                }));
+                resolve(this.currentActor);
+              }
             }).catch(error => {
               this.messageService.notifyMessage('messages.auth.login.failed', 'alert alert-danger');
               reject(error);
@@ -84,13 +103,16 @@ export class AuthService {
     return ['ADMINISTRATOR', 'EXPLORER', 'MANAGER', 'SPONSOR', 'AUDITOR'];
   };
 
+  getRolesForAdminActorCreation(): string[] {
+    return ['ADMINISTRATOR', 'MANAGER', 'SPONSOR', 'AUDITOR'];
+  };
+
   getCurrentActor() {
     if (this.currentActor == null) {
       const currentActorLocalStorage = localStorage.getItem('currentActor');
       if(currentActorLocalStorage != null && currentActorLocalStorage != ''){
         let currentActorLocalStorageObject = JSON.parse(currentActorLocalStorage);
         this.currentActor = currentActorLocalStorageObject;
-        //console.log(this.currentActor.role[0].toString());
       }
     }
     return this.currentActor;
