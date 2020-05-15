@@ -39,10 +39,9 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
 
   ngOnInit() {
     this.authService.userLoggedIn.subscribe((loggedIn: boolean) => {
-      
       if (loggedIn) {
         this.currentActor = this.authService.getCurrentActor();
-        this.activeRole = this.currentActor.role[0].toString();
+        this.activeRole = this.authService.getCurrentActorRole();
       } else {
         this.activeRole = 'anonymous';
         this.currentActor = null;
@@ -57,7 +56,8 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
 
     const component = this;
     let headerHome, headerTrips, headerTripsList, headerTripsNew, headerLogin, headerLogout, headerRegister, headerLanguage,
-    headerSponsorships, headerSponsorshipsList, headerSponsorshipsNew;
+    headerSponsorships, headerSponsorshipsList, headerSponsorshipsNew, myProfile, adminOptions, adminActorsList, adminDashboard,
+    adminActorCreate, audits, finder, applications, myTrips;
     this.translateService.stream('header.home').subscribe((text:string) => {headerHome = text});
     this.translateService.stream('trips.trips').subscribe((text:string) => {headerTrips = text});
     this.translateService.stream('trips.list').subscribe((text:string) => {headerTripsList = text});
@@ -65,10 +65,19 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
     this.translateService.stream('sponsorships.sponsorships').subscribe((text:string) => {headerSponsorships = text});
     this.translateService.stream('sponsorships.list').subscribe((text:string) => {headerSponsorshipsList = text});
     this.translateService.stream('sponsorships.new').subscribe((text:string) => {headerSponsorshipsNew = text});
+    this.translateService.stream('actor.profile').subscribe((text:string) => {myProfile = text});
     this.translateService.stream('header.login').subscribe((text:string) => {headerLogin = text});
     this.translateService.stream('header.logout').subscribe((text:string) => {headerLogout = text});
     this.translateService.stream('header.register').subscribe((text:string) => {headerRegister = text});
     this.translateService.stream('header.language').subscribe((text:string) => {headerLanguage = text});
+    this.translateService.stream('actor.admin.options').subscribe((text:string) => {adminOptions = text});
+    this.translateService.stream('actor.list').subscribe((text:string) => {adminActorsList = text});
+    this.translateService.stream('dashboard.display').subscribe((text:string) => {adminDashboard = text});
+    this.translateService.stream('actor.create.new').subscribe((text:string) => {adminActorCreate = text});
+    this.translateService.stream('audits.audits').subscribe((text:string) => {audits = text});
+    this.translateService.stream('finder.finder').subscribe((text:string) => {finder = text});
+    this.translateService.stream('applications.list').subscribe((text:string) => {applications = text});
+    this.translateService.stream('trips.myCreated').subscribe((text:string) => {myTrips = text});
 
     if ($('.nav-menu').length) {
       const $mobile_nav = $('.nav-menu').clone().prop({
@@ -85,13 +94,58 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
         $('.mobile-nav #header-trips').html(headerTrips);
         $('.mobile-nav #header-trips-list').html(headerTripsList);
         $('.mobile-nav #header-trips-new').html(headerTripsNew);
-        $('.mobile-nav #header-sponsorships').html(headerSponsorships);
-        $('.mobile-nav #header-sponsorships-list').html(headerSponsorshipsList);
-        $('.mobile-nav #header-sponsorships-new').html(headerSponsorshipsNew);
-        $('.mobile-nav #header-login').html(headerLogin);
-        $('.mobile-nav #header-logout').html(headerLogout);
-        $('.mobile-nav #header-register').html(headerRegister);
+        $('.mobile-nav #header-sponsorships2').html(headerSponsorships);
+        $('.mobile-nav #header-sponsorships-list2').html(headerSponsorshipsList);
+        $('.mobile-nav #header-sponsorships-new2').html(headerSponsorshipsNew);
+        //$('.mobile-nav #header-login').html(headerLogin);
+        $('.mobile-nav #header-profile2').html(myProfile);
+        $('.mobile-nav #header-login2').html(headerLogin);
+        //$('.mobile-nav #header-logout').html(headerLogout);
+        $('.mobile-nav #header-logout2').html(headerLogout);
+        $('.mobile-nav #header-register2').html(headerRegister);
         $('.mobile-nav #header-language').html(headerLanguage);
+        $('.mobile-nav #header-admin-options2').html(adminOptions);
+        $('.mobile-nav #header-admin-actors-list2').html(adminActorsList);
+        $('.mobile-nav #header-admin-dashboard-display2').html(adminDashboard);
+        $('.mobile-nav #header-admin-actor-create2').html(adminActorCreate);
+        $('.mobile-nav #header-audit-list2').html(audits);
+        $('.mobile-nav #header-finder-edit2').html(finder);
+        $('.mobile-nav #header-applications-list2').html(applications);
+        $('.mobile-nav #header-trips-new2').html(myTrips);
+        if(component.currentActor == null) {
+          console.log('El actor principal es null');
+          $('.mobile-nav #header-register2-li').removeAttr('hidden');
+          $('.mobile-nav #header-login2-li').removeAttr('hidden');
+        } else {
+          $('.mobile-nav #header-register2-li').hide();
+          $('.mobile-nav #header-login2-li').hide();
+
+          $('.mobile-nav #header-logout2-li').removeAttr('hidden');
+          $('.mobile-nav #header-profile2-li').removeAttr('hidden');
+          $('.mobile-nav #header-profile2').attr('href', '/actors/display/'+component.currentActor._id);
+
+          if (component.activeRole == 'MANAGER') {
+            $('.mobile-nav #header-applications-list2-li').removeAttr('hidden');
+            $('.mobile-nav #header-applications-list2').attr('href', '/actors/'+component.currentActor._id+'/applications');
+
+            $('.mobile-nav #header-trips-new2-li').removeAttr('hidden');
+
+          } else if (component.activeRole === 'ADMINISTRATOR') {
+            $('.mobile-nav #header-admin-options2-li').removeAttr('hidden');
+          } else if (component.activeRole === 'EXPLORER') {
+            $('.mobile-nav #header-finder-edit2-li').removeAttr('hidden');
+
+            $('.mobile-nav #header-applications-list2-li').removeAttr('hidden');
+            $('.mobile-nav #header-applications-list2').attr('href', '/actors/'+component.currentActor._id+'/applications');
+
+          } else if (component.activeRole === 'SPONSOR') {
+            $('.mobile-nav #header-sponsorships2-li').removeAttr('hidden');
+
+          } else if (component.activeRole === 'AUDITOR') {
+            $('.mobile-nav #header-audit-list2-li').removeAttr('hidden');
+
+          }
+        }
       });
       $(document).on('click', '.mobile-nav #changeLangEn', function() {
         component.changeLanguageEn();
@@ -101,7 +155,7 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
         component.changeLanguageEs();
         location.reload();
       });
-      $(document).on('click', '.mobile-nav #header-logout', function() {
+      $(document).on('click', '.mobile-nav #header-logout2', function() {
         component.logout();
         location.reload();
       });

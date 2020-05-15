@@ -12,20 +12,24 @@
 
     <nav class="nav-menu d-none d-lg-block">
       <ul>
-        <li class="active"><a id="header-home" routerLink="/">{{'header.home' | translate}}</a></li>
+        <li class="active"><a id="header-home" href="/">{{'header.home' | translate}}</a></li>
 
         <li class="drop-down" ><a id="header-trips" href="javascript:void(0);">{{'trips.trips' | translate}}</a>
           <ul>
-            <li><a id="header-trips-list" routerLink="/trips">{{'trips.list' | translate}}</a></li>
+            <li><a id="header-trips-list" href="/trips">{{'trips.list' | translate}}</a></li>
             <li *ngIf="activeRole === 'MANAGER'"><a id="header-trips-new" routerLink="/trips/my-trips">{{'trips.myCreated' | translate}}</a></li>
+            <li id="header-trips-new2-li" hidden><a id="header-trips-new2" href="/trips/my-trips">{{'trips.myCreated' | translate}}</a></li>
           </ul>
         </li>
 
         <li *ngIf="activeRole === 'EXPLORER' || activeRole === 'MANAGER'"><a id="header-applications-list" routerLink="/actors/{{currentActor._id}}/applications">{{'applications.list' | translate}}</a></li>
+        <li id="header-applications-list2-li" hidden><a id="header-applications-list2" href="">{{'applications.list' | translate}}</a></li>
 
         <li *ngIf="activeRole === 'EXPLORER'"><a id="header-finder-edit" routerLink="/finder/edit">{{'finder.finder' | translate}}</a></li>
+        <li id="header-finder-edit2-li" hidden><a id="header-finder-edit2" href="/finder/edit">{{'finder.finder' | translate}}</a></li>
     
         <li *ngIf="activeRole === 'AUDITOR'"><a id="header-audit-list" routerLink="/audits">{{'audits.audits' | translate}}</a></li>
+        <li id="header-audit-list2-li" hidden><a id="header-audit-list2" href="/audits">{{'audits.audits' | translate}}</a></li>
 
         <li *ngIf="activeRole === 'ADMINISTRATOR'" class="drop-down"> 
           <a id="header-admin-options" href="javascript:void(0);">{{'actor.admin.options' | translate}}</a>
@@ -33,6 +37,14 @@
             <li><a id="header-actors-list" routerLink="/actors">{{'actor.list' | translate}}</a></li>
             <li><a id="header-dashboard-display" routerLink="/dashboard">{{'dashboard.display' | translate}}</a></li>
             <li><a id="header-actor-create" routerLink="/actors/create">{{'actor.create.new' | translate}}</a></li>
+          </ul>
+        </li>
+        <li id="header-admin-options2-li" class="drop-down" hidden> 
+          <a id="header-admin-options2" href="javascript:void(0);">{{'actor.admin.options' | translate}}</a>
+          <ul>
+            <li><a id="header-admin-actors-list2" href="/actors">{{'actor.list' | translate}}</a></li>
+            <li><a id="header-admin-dashboard-display2" href="/dashboard">{{'dashboard.display' | translate}}</a></li>
+            <li><a id="header-admin-actor-create2" href="/actors/create">{{'actor.create.new' | translate}}</a></li>
           </ul>
         </li>
 
@@ -43,20 +55,40 @@
             <li *ngIf="activeRole === 'SPONSOR'"><a id="header-sponsorships-new" routerLink="">{{'sponsorships.new' | translate}}</a></li>
           </ul>
         </li>
+        <li id="header-sponsorships2-li" class="drop-down" hidden>
+          <a id="header-sponsorships2" href="javascript:void(0);">{{'sponsorships.sponsorships' | translate}}</a>
+          <ul>
+            <li><a id="header-sponsorships-list2" href="/sponsorships">{{'sponsorships.list' | translate}}</a></li>
+            <li><a id="header-sponsorships-new2" href="">{{'sponsorships.new' | translate}}</a></li>
+          </ul>
+        </li>
 
         <li *ngIf="currentActor">
           <a id="header-profile" routerLink="/actors/display/{{currentActor._id}}">{{'actor.profile' | translate}}</a>
+        </li>
+        <li id="header-profile2-li" hidden>
+          <a id="header-profile2" href="">{{'actor.profile' | translate}}</a>
         </li>
 
         <li *ngIf="!currentActor">
           <a id="header-login" routerLink="/login">{{'header.login' | translate}}</a>
         </li>
+        <li id="header-login2-li" hidden>
+          <a id="header-login2" href="/login">{{'header.login' | translate}}</a>
+        </li>
+
         <li *ngIf="currentActor">
           <a id="header-logout" href="javascript:void(0);" (click)="logout()">{{'header.logout' | translate}}</a>
+        </li>
+        <li id="header-logout2-li" hidden>
+          <a id="header-logout2" href="javascript:void(0);" (click)="logout()">{{'header.logout' | translate}}</a>
         </li>
 
         <li class="get-started" *ngIf="!currentActor">
           <a id="header-register" routerLink="/register">{{'header.register' | translate}}</a>
+        </li>
+        <li id="header-register2-li" class="get-started" hidden>
+          <a id="header-register2" href="/register">{{'header.register' | translate}}</a>
         </li>
 
         <li class="drop-down"><a id="header-language" href="javascript:void(0);"><fa-icon [icon]="faGlobe"></fa-icon></a>
