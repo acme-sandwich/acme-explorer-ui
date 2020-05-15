@@ -31,7 +31,7 @@ export class ActorDisplayComponent extends TranslatableComponent implements OnIn
 
   ngOnInit() {
     this.currentActor = this.authService.getCurrentActor();
-    this.activeRole = this.currentActor.role.toString();
+    this.activeRole = this.authService.getCurrentActorRole();
 
     this.id = this.route.snapshot.params['id'];
 

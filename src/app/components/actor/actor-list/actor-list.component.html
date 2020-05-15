@@ -34,8 +34,8 @@
       <td>{{actor.email}}</td>
       <td>{{actor.address}}</td>
       <td>{{actor.role}}</td>
-      <td *ngIf="actor.banned" style="background-color: red; color: white;">Banned</td>
-      <td *ngIf="!actor.banned" style="background-color: #94c045;">Available</td>
+      <td *ngIf="actor.banned" style="background-color: red; color: white;">{{'actor.banned' | translate}}</td>
+      <td *ngIf="!actor.banned" style="background-color: #94c045;">{{'actor.available' | translate}}</td>
     </tr>
   </tbody>
 </table>

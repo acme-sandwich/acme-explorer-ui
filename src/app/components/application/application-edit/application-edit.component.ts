@@ -36,9 +36,15 @@ export class ApplicationEditComponent extends TranslatableComponent implements O
     this.tripId = this.route.snapshot.params['id'];
 
     this.tripService.getTrip(this.tripId).then((val) => {
-      this.applicationForm.controls['trip'].setValue(val);
-      this.applicationForm.controls['manager'].setValue(val.creator);
-      this.trip = val;
+      let oneWeek = new Date();
+      oneWeek.setDate(oneWeek.getDate() + 7);
+      if (oneWeek > val.startDate || val.cancelled ) {
+        this.router.navigate(['/denied-access']);
+      } else {
+        this.applicationForm.controls['trip'].setValue(val);
+        this.applicationForm.controls['manager'].setValue(val.creator);
+        this.trip = val;
+      }
     });
 
     this.createForm();

@@ -38,20 +38,23 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
       address: ['', Validators.maxLength(50)]
     });
 
-    this.currentActor = this.authService.getCurrentActor().id;
+    this.currentActor = this.authService.getCurrentActor()._id;
     this.id = this.route.snapshot.params['id'];
     this.actorService.getActor(this.id).then((val) => {
       this.actor = val;
-      console.log(JSON.stringify(val));
-      if (val) {
-        this.actorForm.controls['id'].setValue(val._id);
-        this.actorForm.controls['role'].setValue(val.role);
-        this.actorForm.controls['name'].setValue(val.name);
-        this.actorForm.controls['surname'].setValue(val.surname);
-        this.actorForm.controls['email'].setValue(val.email);
-        this.actorForm.controls['phone'].setValue(val.phone);
-        this.actorForm.controls['address'].setValue(val.address);
-      }
+      if(this.actor._id !== this.currentActor) {
+        this.router.navigate(['/denied-access']);
+      } else {
+        if (val) {
+          this.actorForm.controls['id'].setValue(val._id);
+          this.actorForm.controls['role'].setValue(val.role);
+          this.actorForm.controls['name'].setValue(val.name);
+          this.actorForm.controls['surname'].setValue(val.surname);
+          this.actorForm.controls['email'].setValue(val.email);
+          this.actorForm.controls['phone'].setValue(val.phone);
+          this.actorForm.controls['address'].setValue(val.address);
+        }
+      }   
     });
   }
 

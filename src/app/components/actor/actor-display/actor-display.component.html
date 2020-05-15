@@ -36,11 +36,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-work">
-                            <p style="margin-bottom: 5px;">{{'actor.trips' | translate}}</p>
-                            <a href="">{{'actor.completedTrips' | translate}}</a><br/>
-                            <a href="">{{'actor.futureTrips' | translate}}</a><br/>
+                    <div  class="col-md-4">
+                        <div *ngIf="actor != null && actor._id === currentActor._id" class="profile-work">
                             <p style="margin-bottom: 5px;">{{'actor.applications' | translate}}</p>
                             <a *ngIf="currentActor != null && activeRole === 'EXPLORER'" href="/actors/{{currentActor._id}}/applications">{{'actor.myApplications' | translate}}</a>
                             <a *ngIf="currentActor != null && activeRole === 'MANAGER'" href="/actors/{{currentActor._id}}/applications">{{'actor.receivedApplications' | translate}}</a>

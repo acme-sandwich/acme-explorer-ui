@@ -16,11 +16,14 @@ import { storage } from 'firebase';
 const DatesValidator: ValidatorFn = (fg: FormGroup) => {
   const start: Date = new Date(fg.get('startDate').value);
   const end: Date = new Date(fg.get('endDate').value);
+  const today: Date = new Date();
   let res;
 
   if (start == null || end == null) {
     res = null;
   } else if (start > end) {
+    res = { datesValidator: true }
+  } else if(today > start || today > end) {
     res = { datesValidator: true }
   } else {
     res = null;

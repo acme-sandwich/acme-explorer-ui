@@ -30,7 +30,7 @@ describe('workspace-project App', () => {
     page.navigateTo();
     browser.sleep(3000);
     expect(page.getTitleText()).toEqual('Vive La Antártida');
-    page.navigateToTrip('5ebad957f06c1f0019cc7187');
+    page.navigateToTrip('5ebeb4f16ca50c0019fc6506');
     browser.sleep(6000);
     page.editTrip();
     browser.sleep(2000);

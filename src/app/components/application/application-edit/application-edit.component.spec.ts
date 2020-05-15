@@ -145,13 +145,13 @@ describe('ApplicationEditComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ApplicationEditComponent);
     component = fixture.componentInstance;
-    mockActivatedRoute.testParams = {id: '5ebad957f06c1f0019cc7187'};
+    mockActivatedRoute.testParams = {id: '5ebeb4f16ca50c0019fc6506'};
     applicationService = TestBed.get(ApplicationService);
     tripService = TestBed.get(TripService);
     localStorage.setItem('currentActor', JSON.stringify({
       role: ["EXPLORER"],
       banned: false,
-      _id: "5ebafda7f06c1f0019cc718c",
+      _id: "5ebec7c06ca50c0019fc6522",
       name: "Explorador",
       surname: "Guerrero",
       email: "explorer1@mail.com",
@@ -179,8 +179,8 @@ describe('ApplicationEditComponent', () => {
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      expect(component.tripId).toEqual('5ebad957f06c1f0019cc7187');
-      expect(component.applicationForm.controls['trip'].value._id).toEqual('5ebad957f06c1f0019cc7187');
+      expect(component.tripId).toEqual('5ebeb4f16ca50c0019fc6506');
+      expect(component.applicationForm.controls['trip'].value._id).toEqual('5ebeb4f16ca50c0019fc6506');
       done();
     }).catch(err => {console.log('asdaisd: ' + err)});
   });
@@ -193,7 +193,7 @@ describe('ApplicationEditComponent', () => {
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      expect(component.applicationForm.controls['explorer'].value._id).toEqual('5ebafda7f06c1f0019cc718c');
+      expect(component.applicationForm.controls['explorer'].value._id).toEqual('5ebec7c06ca50c0019fc6522');
       expect(component.applicationForm.controls['status'].value).toEqual('PENDING');
       expect(component.applicationForm.controls['moment'].value).not.toEqual('');
       expect(component.commentsNumber).toEqual(0);

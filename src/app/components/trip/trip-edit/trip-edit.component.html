@@ -69,7 +69,7 @@
               <div class="form-group has-danger">
                 <label for="pickerStartDate" class="form-control-label">{{'trip.startDate' | translate}}</label>
                 <div>
-                  <input matInput [matDatepicker]="pickerStartDate" placeholder="Fecha de comienzo" autocomplete="off"
+                  <input matInput [matDatepicker]="pickerStartDate" autocomplete="off"
                     name="startDate" formControlName="startDate" class="form-control">
                   <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
                   <mat-datepicker [startAt]="startDate" #pickerStartDate></mat-datepicker>
@@ -83,7 +83,7 @@
               <div class="form-group has-danger">
                 <label for="pickerEndDate" class="form-control-label">{{'trip.endDate' | translate}}</label>
                 <div>
-                  <input matInput [matDatepicker]="pickerEndDate" placeholder="Fecha de fin" autocomplete="off"
+                  <input matInput [matDatepicker]="pickerEndDate" autocomplete="off"
                     name="endDate" formControlName="endDate" class="form-control">
                   <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
                   <mat-datepicker [startAt]="endDate" #pickerEndDate></mat-datepicker>

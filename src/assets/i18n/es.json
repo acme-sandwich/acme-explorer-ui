@@ -164,7 +164,7 @@
     },
     "denied-access-page": {
         "title": "Acceso denegado",
-        "message-start": "No tiene permiso para acceder a",
+        "message-start": "No tiene permiso para acceder a esta página",
         "message-end": "en este servidor"
     },
     "messages": {
@@ -199,8 +199,11 @@
         "actions": "Acciones",
         "cancel": "Cancelar",
         "reject": "Rechazar",
-        "due": "Duetear",
-        "pay": "Pagar"
+        "due": "Aceptar",
+        "pay": "Pagar",
+        "reject.confirmation": "¿Estás seguro que deseas rechazar la aplicación del usuario?",
+        "reject.message": "Escriba el motivo por el que rechaza la aplicación",
+        "reason": "Razón de rechazo"
     },
     "dashboard": {
         "display": "Dashboard",
@@ -269,7 +272,8 @@
             "string.maxLength": "Vaya, debes introducir un máximo de {{maxvalue}} caracteres en este campo.",
             "minOneStage": "Ups, debes crear al menos una etapa.",
             "minOneRequirement": "Ups, debes añadir al menos un requisito.",
-            "startEndDatesRange": "Ups, la fecha de inicio debe ser anterior a la de fin.",
+            "startEndDatesRange": "Ups, la fecha de inicio no debe ser pasada y debe ser anterior a la de fin.",
+            "startEndDatesRangeFinder": "Ups, la fecha de inicio debe ser anterior a la de fin.",
             "pricesRange": "Ups, el precio mínimo debe ser menor que el máximo."
         }
     },

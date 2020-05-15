@@ -164,7 +164,7 @@
     },
     "denied-access-page": {
         "title": "Denied access",
-        "message-start": "You don't have permission to access",
+        "message-start": "You don't have permission to access this page",
         "message-end": "on this server"
     },
     "messages": {
@@ -200,7 +200,10 @@
         "cancel": "Cancel",
         "reject": "Reject",
         "due": "Due",
-        "pay": "Pay"
+        "pay": "Pay",
+        "reject.confirmation": "Are you sure you want to reject this application?",
+        "reject.message": "Please type in the reason",
+        "reason": "Rejected reason"
     },
     "dashboard": {
         "display": "Dashboard",
@@ -269,7 +272,8 @@
             "string.maxLength": "Oops, you must introduce a maximum of {{maxvalue}} characters in this field.",
             "minOneStage": "Oops, you must add at least one stage.",
             "minOneRequirement": "Oops, you must add at least one requirement.",
-            "startEndDatesRange": "Oops, the start date must be older than the end date.",
+            "startEndDatesRange": "Oops, the start date must not be past and must be older than the end date.",
+            "startEndDatesRangeFinder": "Oops, the start date must be older than the end date.",
             "pricesRange": "Oops, the maximum price must be greater than the minimum price."
         }
     },

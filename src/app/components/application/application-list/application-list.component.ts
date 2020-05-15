@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Inject } from '@angular/core';
 import { Application } from '../../../models/application.model';
 import { ApplicationService } from '../../../services/application.service';
 import { TripService } from '../../../services/trip.service';
@@ -10,6 +10,12 @@ import { Actor } from 'src/app/models/actor.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Subject } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+
+export interface RejectApplicationData {
+  rejectedReason: string;
+}
+
 
 @Component({
   selector: 'app-application-list',
@@ -24,10 +30,12 @@ export class ApplicationListComponent extends TranslatableComponent implements O
   private activeRole: String;
   dtTrigger: Subject<any> = new Subject();
   private isCancelable: boolean;
+  rejectedReason = '';
+  private application: Application;
 
   constructor(private applicationService: ApplicationService, private translateService: TranslateService,
     private tripService: TripService, private actorService: ActorService, private authService: AuthService,
-    private router: Router, private route: ActivatedRoute) {
+    private router: Router, private route: ActivatedRoute, public rejectDialog: MatDialog) {
     super(translateService);
    }
 
@@ -90,11 +98,15 @@ export class ApplicationListComponent extends TranslatableComponent implements O
         title: 'applications.moment',
         data: 'moment'
       }, {
-        title: 'Comments',
+        title: 'applications.comments',
         data: 'comments',
         class: 'none'
-      }, {
-        title: 'Actions'
+      }, 
+      {title: 'applications.reason',
+        data: 'reason'
+      },
+      {
+        title: 'applications.actions'
       }],
       responsive: true,
       retrieve: true
@@ -110,11 +122,7 @@ export class ApplicationListComponent extends TranslatableComponent implements O
   }
 
   rejectApplication(application: Application) {
-    this.applicationService.rejectApplication(application).then((val) => {
-      this.router.navigate(['/']);
-    }).catch((err) => {
-      console.error(err);
-    });
+    this.openRejectDialog(application);
   }
 
   dueApplication(application: Application) {
@@ -137,4 +145,40 @@ export class ApplicationListComponent extends TranslatableComponent implements O
     }
     return result;
   }
+
+  openRejectDialog(application: Application): void {
+    const dialogRef = this.rejectDialog.open(RejectApplicationDialog, {
+      width: '500px',
+      data: { rejectedReason: this.rejectedReason }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        if (result && result !== '') {
+          this.rejectedReason = result;
+          application.reason = this.rejectedReason;
+          console.log(this.rejectedReason);
+          this.applicationService.rejectApplication(application).then((val) => {
+            this.router.navigate(['/']);
+          }).catch((err) => {
+            console.error(err);
+          });
+        }
+    });
+  }
+}
+
+@Component({
+  selector: 'reject-application-dialog',
+  templateUrl: 'reject-application-dialog.html',
+})
+export class RejectApplicationDialog {
+
+  constructor(
+    public rejectApplicationDialog: MatDialogRef<RejectApplicationDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: RejectApplicationData) { }
+
+  onNoClick(): void {
+    this.rejectApplicationDialog.close();
+  }
+
 }

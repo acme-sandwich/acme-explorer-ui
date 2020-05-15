@@ -90,11 +90,11 @@ export class ApplicationService {
   }
 
   rejectApplication(application: Application) {
-    const url = `${this.applicationsUrl}/v1/applications/reject/${application._id}`;
+    const url = `${this.applicationsUrl}/v1/applications/${application._id}`;
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     headers.append('Access-Control-Allow-Origin', '*');
-
+    application.status = 'REJECTED';
     const body = JSON.stringify(application);
 
     return new Promise<any>((resolve, reject) => {

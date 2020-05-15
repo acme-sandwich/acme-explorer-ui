@@ -7,6 +7,7 @@ export class Application  extends Entity {
     trip: string;
     explorer: string;
     manager: string;
+    reason: string;
 
     constructor() {
         super();

@@ -26,7 +26,7 @@ import { NotFoundPageComponent } from './components/shared/not-found-page/not-fo
 import { TermsAndConditionsComponent } from './components/master/terms-and-conditions/terms-and-conditions.component';
 import { HttpModule } from '@angular/http';
 import { DeniedAccessPageComponent } from './components/security/denied-access-page/denied-access-page.component';
-import { ApplicationListComponent } from './components/application/application-list/application-list.component';
+import { ApplicationListComponent, RejectApplicationDialog } from './components/application/application-list/application-list.component';
 import { DataTablesModule } from 'angular-datatables';
 import { ActorListComponent } from './components/actor/actor-list/actor-list.component';
 import { ActorDisplayComponent } from './components/actor/actor-display/actor-display.component';
@@ -78,6 +78,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CancelTripDialog,
     DeleteTripDialog,
     DeleteImageDialog,
+    RejectApplicationDialog,
     HeaderComponent,
     RegisterComponent,
     LoginComponent,
@@ -136,6 +137,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [AngularFireAuth, CanDeactivateService],
   bootstrap: [AppComponent],
-  entryComponents: [CancelTripDialog, DeleteTripDialog, DeleteImageDialog]
+  entryComponents: [CancelTripDialog, DeleteTripDialog, DeleteImageDialog, RejectApplicationDialog]
 })
 export class AppModule { }

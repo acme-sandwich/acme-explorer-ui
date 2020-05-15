@@ -1,4 +1,4 @@
-<div class="col" style="width: 50%; margin: 0 auto;">
+<div *ngIf="actor != null" class="col" style="width: 50%; margin: 0 auto;">
   <div class="row">
     <div class="col mb-3">
       <div class="card">
@@ -16,12 +16,6 @@
                 <div class="text-center text-sm-left mb-2 mb-sm-0">
                   <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{actor.name}}</h4>
                   <p class="mb-0">{{actor.surname}}</p>
-                  <div class="mt-2">
-                    <button class="btn btn-primary" type="button">
-                      <i class="fa fa-fw fa-camera"></i>
-                      <span>{{'actor.changePhoto' | translate}}</span>
-                    </button>
-                  </div>
                 </div>
                 <div class="text-center text-sm-right">
                   <span class="badge badge-secondary">{{actor.role}}</span>

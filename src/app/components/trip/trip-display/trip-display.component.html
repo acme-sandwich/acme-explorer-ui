@@ -91,7 +91,7 @@
           <div *ngIf="coordenadasLatitud != null && coordenadasLongitud != null" id="map" class="map">
             <h3>{{'trip.startPlace' | translate}}</h3>
             <vo-ui-osm-view [showDebugInfo]="false" [showControlsZoom]="true" [showControlsCurrentLocation]="true"
-              (addressChanged)="onAddressChange($event)" [latitude]="37.38283" [longitude]="-5.97317"
+              (addressChanged)="onAddressChange($event)" [latitude]="coordenadasLatitud" [longitude]="coordenadasLongitud"
               [latitudePointer]="coordenadasLatitud" [longitudePointer]="coordenadasLongitud" [zoom]="10">
             </vo-ui-osm-view>
           </div>

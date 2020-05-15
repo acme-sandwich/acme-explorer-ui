@@ -46,8 +46,8 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
   cancelledReason = '';
   imageIndex: number;
 
-  coordenadasLongitud = 0;
-  coordenadasLatitud = 0;
+  coordenadasLongitud: number;
+  coordenadasLatitud: number;
 
 
   constructor(private authService: AuthService, private tripService: TripService, private router: Router,

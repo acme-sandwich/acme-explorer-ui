@@ -142,12 +142,12 @@ describe('ApplicationListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ApplicationListComponent);
     component = fixture.componentInstance;
-    mockActivatedRoute.testParams = {id: '5ebafda7f06c1f0019cc718c'};
+    mockActivatedRoute.testParams = {id: '5ebec7c06ca50c0019fc6522'};
     applicationService = TestBed.get(ApplicationService);
     localStorage.setItem('currentActor', JSON.stringify({
       role: ["EXPLORER"],
       banned: false,
-      _id: "5ebafda7f06c1f0019cc718c",
+      _id: "5ebec7c06ca50c0019fc6522",
       name: "Explorador",
       surname: "Guerrero",
       email: "explorer1@mail.com",
@@ -187,10 +187,10 @@ describe('ApplicationListComponent', () => {
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      const appAntarctica = component.data.find(application => application.trip === '5ebad957f06c1f0019cc7187');
+      const appAntarctica = component.data.find(application => application.trip === '5ebeb4f16ca50c0019fc6506');
       expect(appAntarctica).not.toBeUndefined;
       expect(appAntarctica.comments.length).toBeGreaterThanOrEqual(1);
-      expect(appAntarctica.explorer).toEqual('5ebafda7f06c1f0019cc718c');
+      expect(appAntarctica.explorer).toEqual('5ebec7c06ca50c0019fc6522');
       expect(appAntarctica.status).toEqual('PENDING');
       done();
     });
