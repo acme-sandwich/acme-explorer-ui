@@ -2,7 +2,8 @@
   <div class="breadcrumb-hero">
     <div class="container">
       <div class="breadcrumb-hero">
-        <h2>Editando trip</h2>
+        <h2 *ngIf="idTrip != null && idTrip != '0'">{{'trip.editTrip' | translate}}</h2>
+        <h2 *ngIf="idTrip == null || idTrip === '0'">{{'trip.create' | translate}}</h2>
       </div>
     </div>
   </div>
@@ -10,52 +11,194 @@
     <ol>
       <li><a href="/">{{'header.home' | translate}}</a></li>
       <li><a href="/trips">{{'trips.trips' | translate}}</a></li>
-      <li>Editar</li>
+      <li>{{'trip.editTrip' | translate}}</li>
     </ol>
   </div>
 </section>
 
-<form [formGroup]="tripForm" (ngSubmit)="onSubmit()">
-  <div class="form-group has-danger">
-    <input class="form-control" formControlName="id" type="hidden">
-    <input class="form-control" formControlName="title" type="hidden">
-    <input class="form-control" formControlName="description" type="hidden">
-    <input class="form-control" formControlName="price" type="hidden">
-    <input class="form-control" formControlName="picture" type="hidden">
-    <input class="form-control" formControlName="startDate" type="hidden">
-    <input class="form-control" formControlName="endDate" type="hidden">
+<section id="service-login" class="services section-bg">
+  <div class="container">
 
-    <label class="center-block">Titulo
-      <input class="form-control" formControlName="title" placeholder="Titulo">
-    </label>
-  
-    <label class="center-block">Descripcion
-      <input class="form-control" formControlName="description" placeholder="Descripcion">
-    </label>
-  
-    <label class="center-block">Precio
-      <input class="form-control" formControlName="price" placeholder="Precio">
-    </label>
-  
-    <label class="center-block">Imagen
-      <input class="form-control" formControlName="picture">
-    </label>
-  
-    <label class="center-block">Fecha de comienzo
-      <input class="form-control" formControlName="startDate" placeholder="Fecha">
-    </label>
-  
-    <label class="center-block">Fecha de fin
-      <input class="form-control" formControlName="endDate" placeholder="Fecha">
-    </label>
-  
-    <button type="submit" class="btn btn-success" [disabled]="tripForm.invalid">
-      Guardar
-    </button>
-  
-    <button (click)="goBack()" class="bn btn-primary">
-      Cancelar
-    </button>
+    <div class="row justify-content-center align-items-center">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="mx-auto">
 
+          <form [formGroup]="tripForm" (ngSubmit)="onSubmit()">
+            <fieldset>
+
+              <input class="form-control" formControlName="_id" type="hidden">
+              <input class="form-control" formControlName="ticker" type="hidden">
+              <input class="form-control" formControlName="price" type="hidden">
+              <input class="form-control" formControlName="published" type="hidden">
+
+              <div class="form-group has-danger">
+                <label for="title" class="form-control-label">{{'trip.title' | translate}}</label>
+                <input id="title" type="text" formControlName="title" class="form-control">
+                <div *ngIf="tripForm.get('title').errors && tripForm.get('title').touched &&
+                  tripForm.get('title').errors.required" class="text-danger">
+                  {{'errorMessages.validation.required' | translate}}
+                </div>
+              </div>
+
+              <div class="form-group has-danger">
+                <label for="description" class="form-control-label">{{'trip.description' | translate}}
+                  <textarea id="description" rows="4" cols="58" name="description" formControlName="description"
+                    class="form-control">
+                  </textarea>
+                </label>
+                <div *ngIf="tripForm.get('description').errors && tripForm.get('description').touched &&
+                  tripForm.get('description').errors.required" class="text-danger">
+                  {{'errorMessages.validation.required' | translate}}
+                </div>
+              </div>
+
+              <div class="form-group has-danger">
+                <label for="picture" class="form-control-label">{{'trip.pictures' | translate}}
+                  <input class="form-control" formControlName="picture" (change)="onFileChange($event)" type="file">
+                </label>
+              </div>
+
+              <img id="pictureViewerId" *ngIf="picture != null" class="card-img-top img-fluid"
+                style="display: block; object-fit: contain;" src="{{picture}}">
+              <img id="pictureViewerId" *ngIf="picture == null" class="card-img-top img-fluid"
+                style="width: 50%; display: block; object-fit: contain;"
+                src="https://windsongwny.com/wp-content/uploads/2019/02/noimage4x3.png">
+
+              <textarea id="showresult" hidden="true"></textarea>
+
+              <div class="form-group has-danger">
+                <label for="pickerStartDate" class="form-control-label">{{'trip.startDate' | translate}}</label>
+                <div>
+                  <input matInput [matDatepicker]="pickerStartDate" autocomplete="off"
+                    name="startDate" formControlName="startDate" class="form-control">
+                  <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+                  <mat-datepicker [startAt]="startDate" #pickerStartDate></mat-datepicker>
+                </div>
+                <div *ngIf="tripForm.get('startDate').errors && tripForm.get('startDate').touched &&
+                  tripForm.get('startDate').errors.required" class="text-danger">
+                  {{'errorMessages.validation.pattern.date' | translate}}
+                </div>
+              </div>
+
+              <div class="form-group has-danger">
+                <label for="pickerEndDate" class="form-control-label">{{'trip.endDate' | translate}}</label>
+                <div>
+                  <input matInput [matDatepicker]="pickerEndDate" autocomplete="off"
+                    name="endDate" formControlName="endDate" class="form-control">
+                  <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+                  <mat-datepicker [startAt]="endDate" #pickerEndDate></mat-datepicker>
+                </div>
+                <div *ngIf="tripForm.get('endDate').errors && tripForm.get('endDate').touched &&
+                  tripForm.get('endDate').errors.required" class="text-danger">
+                  {{'errorMessages.validation.pattern.date' | translate}}
+                </div>
+                <div *ngIf="tripForm.errors && tripForm.errors.datesValidator" class="text-danger">
+                  {{'errorMessages.validation.startEndDatesRange' | translate}}
+                </div>
+              </div>
+
+              <div formArrayName="requirements">
+                <h4>{{'trip.requirements' | translate}}</h4>
+                <div *ngFor="let req of requirements.controls; let i=index">
+                  <label>
+                    {{'trip.requirement' | translate}}:
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <button type='button' class="btn btn-danger" id='remove_requirement_button_{{i}}'
+                          (click)="removeRequirement(i)">{{'trip.removeRequirement' | translate}}</button>
+                      </div>
+                      <input type="text" [formControlName]="i" class="form-control" id='requirement_input_{{i}}'>
+                    </div>
+                  </label>
+                </div>
+                <button type='button' class="btn btn-info"
+                  (click)="addRequirement()">{{'trip.addRequirement' | translate}}</button>
+                <div *ngIf="requirementsNumber < 1" class="text-danger">
+                  {{ 'errorMessages.validation.minOneRequirement' | translate }}
+                </div>
+              </div>
+
+
+              <br />
+
+              <div formArrayName="stages">
+                <h4>{{'trip.stages' | translate}}</h4>
+                <div *ngFor="let st of stages.controls; let k = index">
+                  <label>
+                    <div class="row">
+                      <div class="col" style="padding-left: 7px;">
+                        <h5>Etapa {{k+1}}</h5>
+                      </div>
+                      <div class="col-auto">
+                        <button type='button' class="btn btn-danger ,ml-auto"
+                          (click)="removeStage(k)">{{'trip.removeStage' | translate}}</button>
+                      </div>
+                      <div [formGroup]="st">
+                        <div class="form-group">
+                          <label>{{'stage.title' | translate}}</label>
+                          <input type="text" formControlName="title" class="form-control">
+                          <div *ngIf="st.controls.title.errors && st.controls.title.touched &&
+                          st.controls.title.errors.required" class="text-danger">
+                            {{'errorMessages.validation.required' | translate}}
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label>{{'stage.description' | translate}}</label>
+                          <textarea rows="4" cols="58" formControlName="description" class="form-control">
+                        </textarea>
+                          <div *ngIf="st.controls.description.errors && st.controls.description.touched &&
+                          st.controls.description.errors.required" class="text-danger">
+                            {{'errorMessages.validation.required' | translate}}
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label>{{'stage.price' | translate}}</label>
+                          <input type="number" formControlName="price" class="form-control">
+                          <div *ngIf="st.controls.price.errors && st.controls.price.touched &&
+                          st.controls.price.errors.pattern" class="text-danger">
+                            {{ 'errorMessages.validation.pattern.numeric.positive' | translate }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+                <button type='button' class="btn btn-info" (click)="addStage()">{{'trip.addStage' | translate}}</button>
+                <div *ngIf="stagesNumber < 1" class="text-danger">
+                  {{ 'errorMessages.validation.minOneStage' | translate }}
+                </div>
+              </div>
+
+              <div class="form-group has-danger">
+                <label class="form-control-label">{{'trip.startPlace' | translate}}</label>
+                <div *ngIf="longitude != null && latitude != null" id="map" class="map">
+                  <vo-ui-osm-view [showDebugInfo]="false" [showControlsZoom]="true" [showControlsCurrentLocation]="true"
+                    [latitude]="37.38283" [longitude]="-5.97317" 
+                    [latitudePointer]="latitude" [longitudePointer]="longitude" [zoom]="10" >
+                  </vo-ui-osm-view>
+                </div>
+                <div *ngIf="longitude == null || latitude == null" id="map" class="map">
+                  <vo-ui-osm-view [showDebugInfo]="false" [showControlsZoom]="true" [showControlsCurrentLocation]="true"
+                    [latitude]="37.38283" [longitude]="-5.97317" 
+                    [zoom]="10" >
+                  </vo-ui-osm-view>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" [disabled]="tripForm.invalid || stagesNumber < 1">
+                {{'form.save' | translate}}
+              </button>
+
+              <button type='button' (click)="goBack()" class="bn btn-primary">
+                {{'form.cancel' | translate}}
+              </button>
+
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-</form>
+</section>

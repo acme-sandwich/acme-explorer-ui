@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>{{'trip.cancel.confirmation' |translate}}</h1>
+<div mat-dialog-content>
+  <p>{{'trip.cancel.message' |translate}}</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.cancelledReason">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">{{'trip.goBack' |translate}}</button>
+  <button mat-button [disabled]="data.cancelledReason === ''" [mat-dialog-close]="data.cancelledReason" 
+  cdkFocusInitial>{{'trip.cancel' |translate}}</button>
+</div>

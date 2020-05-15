@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AppComponent } from './app.component';
-import { TripDisplayComponent } from './components/trip/trip-display/trip-display.component';
+import { TripDisplayComponent, CancelTripDialog, DeleteTripDialog, DeleteImageDialog } from './components/trip/trip-display/trip-display.component';
 import { TripListComponent } from './components/trip/trip-list/trip-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/master/header/header.component';
@@ -26,7 +26,7 @@ import { NotFoundPageComponent } from './components/shared/not-found-page/not-fo
 import { TermsAndConditionsComponent } from './components/master/terms-and-conditions/terms-and-conditions.component';
 import { HttpModule } from '@angular/http';
 import { DeniedAccessPageComponent } from './components/security/denied-access-page/denied-access-page.component';
-import { ApplicationListComponent } from './components/application/application-list/application-list.component';
+import { ApplicationListComponent, RejectApplicationDialog } from './components/application/application-list/application-list.component';
 import { DataTablesModule } from 'angular-datatables';
 import { ActorListComponent } from './components/actor/actor-list/actor-list.component';
 import { ActorDisplayComponent } from './components/actor/actor-display/actor-display.component';
@@ -36,6 +36,22 @@ import { TripEditComponent } from './components/trip/trip-edit/trip-edit.compone
 import { DashboardDisplayComponent } from './components/dashboard/dashboard-display/dashboard-display.component';
 import { AuditsListComponent } from './components/audits/audits-list/audits-list.component';
 import { AuditsDisplayComponent } from './components/audits/audits-display/audits-display.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule, MatNativeDateModule, MatInputModule } from '@angular/material';
+import { ActorEditComponent } from './components/actor/actor-edit/actor-edit.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ApplicationEditComponent } from './components/application/application-edit/application-edit.component';
+import { AuditsEditComponent } from './components/audits/audits-edit/audits-edit.component';
+import { TripAddPhotoComponent } from './components/trip/trip-add-photo/trip-add-photo.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { FinderEditComponent } from './components/finder/finder-edit/finder-edit.component';
+import { FinderListComponent } from './components/finder/finder-list/finder-list.component';
+import { SlickModule } from 'ngx-slick';
+import { CanDeactivateService } from './services/can-deactivate.service';
+import { AngularOpenlayersModule } from 'ngx-openlayers';
+import { OsmViewComponent } from './../app/components/trip/trip-display/osm-view/osm-view.component';
+import { RouterModule } from '@angular/router';
 
 export const firebaseConfig  = {
   apiKey: "AIzaSyBuwZbbyFSAa_PlNx8asvkrVXH-41QBqhg",
@@ -59,6 +75,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     TripListComponent,
     TripDisplayComponent,
+    CancelTripDialog,
+    DeleteTripDialog,
+    DeleteImageDialog,
+    RejectApplicationDialog,
     HeaderComponent,
     RegisterComponent,
     LoginComponent,
@@ -78,9 +98,17 @@ export function HttpLoaderFactory(http: HttpClient) {
     TripEditComponent,
     DashboardDisplayComponent,
     AuditsListComponent,
-    AuditsDisplayComponent
+    AuditsDisplayComponent,
+    ActorEditComponent,
+    ApplicationEditComponent,
+    AuditsEditComponent,
+    TripAddPhotoComponent,
+    CheckoutComponent,
+    FinderEditComponent,
+    FinderListComponent,
+    OsmViewComponent
   ],
-  imports: [
+  imports: [AppRoutingModule,
     DataTablesModule,
     BrowserModule,
     FormsModule,
@@ -94,12 +122,21 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    AppRoutingModule,
     FontAwesomeModule,
     HttpModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule, 
+    MatDialogModule,
+    NgxPayPalModule,
+    SlickModule.forRoot(),
+    AngularOpenlayersModule, 
+    RouterModule
   ],
-  providers: [AngularFireAuth],
-  bootstrap: [AppComponent]
+  providers: [AngularFireAuth, CanDeactivateService],
+  bootstrap: [AppComponent],
+  entryComponents: [CancelTripDialog, DeleteTripDialog, DeleteImageDialog, RejectApplicationDialog]
 })
 export class AppModule { }

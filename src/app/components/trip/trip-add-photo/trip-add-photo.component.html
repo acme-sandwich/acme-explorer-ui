@@ -1,0 +1,57 @@
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="breadcrumb-hero">
+    <div class="container">
+      <div class="breadcrumb-hero">
+        <h2>{{'trip.addPicture' | translate}}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <ol>
+      <li><a href="/">{{'header.home' | translate}}</a></li>
+      <li><a href="/trips">{{'trips.trips' | translate}}</a></li>
+      <li><a *ngIf="trip != null" href="/trips/display/{{idTrip}}">{{trip.title}}</a></li>
+      <li>{{'trip.addPicture' | translate}}</li>
+    </ol>
+  </div>
+</section>
+
+<section id="service-login" class="services section-bg">
+  <div class="container">
+
+    <div class="row justify-content-center align-items-center">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="mx-auto">
+
+          <form [formGroup]="photoForm" (ngSubmit)="onSubmit()">
+            <fieldset>
+
+              <div class="form-group has-danger">
+                <label for="picture" class="form-control-label">{{'trip.addPicture' | translate}}
+                  <input class="form-control" formControlName="picture" (change)="onFileChange($event)" type="file">
+                </label>
+              </div>
+
+              <img id="pictureViewerId" *ngIf="picture != null" class="card-img-top img-fluid"
+                style="display: block; object-fit: contain;" src="{{picture}}">
+              <img id="pictureViewerId" *ngIf="picture == null" class="card-img-top img-fluid"
+                style="width: 50%; display: block; object-fit: contain;"
+                src="https://windsongwny.com/wp-content/uploads/2019/02/noimage4x3.png">
+
+              <textarea id="showresult" hidden="true"></textarea>
+
+              <button type="submit" class="btn btn-primary" >
+                {{'form.save' | translate}}
+              </button>
+
+              <button (click)="goBack()" class="bn btn-primary">
+                {{'form.cancel' | translate}}
+              </button>
+
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

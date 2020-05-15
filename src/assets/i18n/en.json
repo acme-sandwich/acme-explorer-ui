@@ -2,7 +2,22 @@
     "main": {
         "header": "Welcome to Acme Explorer!",
         "subheader": "Enjoy now the best national and international trips booking with us",
-        "getstarted": "Get started"
+        "getstarted": "Get started",
+        "earnMoneyPublishingYourTrips": "Earn money publishing your trips",
+        "earnMoneyPublishingYourTripsDescription": "With us, you can publish as many trips as you want, and accept or reject the applications that the other users make to your published trips. Furhermore, thanks to the Paypal payment method, everything works as smooth as possible.",
+        "ourAdvantages": "Our advantages",
+        "dontLoseTime": "Don't lose time",
+        "fewClicksToApply": "With only a few clics you will be able to book trips and enjoy",
+        "beEfficient": "Be efficient",
+        "beEfficientDescription": "Our function is to publish and book trips, no more no less",
+        "enjoyPaypal": "Enjoy PayPal",
+        "enjoyPaypalDescription": "Payment is automated with PayPal, so if you are not happy you can always request your money back",
+        "trustTheLeader": "Trust the leader",
+        "trustTheLeaderDescription": "In Acme Explorer we are the best in trips management. We worry about things so you only relax",
+        "happyClients": "Happy clients",
+        "projects": "Projects",
+        "yearsOfExperience": "Years of experience",
+        "awards": "Awards"
     },
     "actor":{
         "email": "Email",
@@ -15,6 +30,7 @@
         "register": "Register",
         "update": "Update",
         "register.title": "Register new actor",
+        "register.explorer": "Register new explorer",
         "list": "List actors",
         "display": "Display actor",
         "actors": "Actors",
@@ -30,7 +46,17 @@
         "applications": "APPLICATIONS",
         "receivedApplications": "Received applications",
         "profile": "My profile",
-        "status": "Status"
+        "status": "Status",
+        "edit": "Edit profile",
+        "changePassword": "Change password",
+        "currentPassword": "Current password",
+        "newPassword": "New password",
+        "confirmPassword": "Confirm password",
+        "saveChanges": "Save changes",
+        "banned": "Banned",
+        "available" : "Available",
+        "create.new": "Create new actor",
+        "admin.options": "Admin options"
     },
     "security": {
         "login": "Login",
@@ -43,7 +69,16 @@
     },
     "footer": {
         "terms": "Terms and conditions",
-        "visitors": "Visitors"
+        "visitors": "Visitors",
+        "acmeExplorerDescription": "Acme Explorer is a project developed for the subject Client Technologies in the Software Engineering Master Degree: Cloud, Data and IT management, by the University of Seville.",
+        "team": "Team",
+        "teamDescription": "Acme Explorer has been developed by:",
+        "contactUs": "Contact us",
+        "allRightsReserved": "All Rights Reserved",
+        "seville": "Seville",
+        "spain": "Spain",
+        "phone": "Phone",
+        "postalCode": "PC"
     },
     "header": {
         "home": "Home",
@@ -72,6 +107,7 @@
         "price": "Price",
         "creator": "Creador",
         "requirements": "Requirements",
+        "requirement": "Requirement",
         "cancelled": "This trip is cancelled",
         "searchOthers": "Look for other trips",
         "options": "Options",
@@ -79,7 +115,34 @@
         "edit": "Editar",
         "buy": "Buy trip",
         "stages": "Stages",
-        "stage": "Stage"
+        "stage": "Stage",
+        "editTrip": "Editar viaje",
+        "startDate": "Start date",
+        "endDate": "End date",
+        "addRequirement": "Add requirement",
+        "removeRequirement": "Remove requirement",
+        "addStage": "Add stage",
+        "removeStage":"Remove stage",
+        "pictures": "Pictures",
+        "create": "Create trip",
+        "cancel": "Cancel trip",
+        "cancel.confirmation": "Are you sure you want to cancel the trip?",
+        "cancel.message": "Please type in the reason why you want to cancel the trip",
+        "delete": "Delete trip",
+        "delete.confirmation": "Are you sure you want to delete the trip?",
+        "delete.message": "This action cannot be undone",
+        "cantModify": "You cannot modify, cancel or delete the trip because it is going to start in less than a week.",
+        "addPicture": "Add picture to trip",
+        "deletePicture": "Delete this picture",
+        "deleteImage.confirmation": "Are you sure you want to delete this image from the trip?",
+        "deleteImage.cantDelete": "You cannot delete the principal image. You can change it by editing the trip.",
+        "startPlace": "Start place"
+    },
+    "stage": {
+        "stage": "Stage",
+        "title": "Title",
+        "description": "Description",
+        "price": "Price"
     },
     "sponsorships": {
         "sponsorships": "Sponsorships",
@@ -101,16 +164,23 @@
     },
     "denied-access-page": {
         "title": "Denied access",
-        "message-start": "You don't have permission to access",
+        "message-start": "You don't have permission to access this page",
         "message-end": "on this server"
     },
     "messages": {
         "auth":{
             "login.correct":"Correct login",
             "login.failed": "Error during login, please try again later",
+            "login.failed.ban": "You cannot login into the system because your account got banned. Please contact an administrator for further information.",
             "user.not.found": "User email not found",
-            "wrong.password": "Wrong password"
-        }
+            "wrong.password": "Wrong password",
+            "register.failed": "The email is already in use",
+            "register.weak.password": "Password is too weak. Remember that it must have at least 6 characters"
+        },
+        "trip":{
+            "delete.error.oneWeek": "The trip couldn't be deleted because it will start in less than a week."
+        },
+        "discard.changes": "Do you want to discard changes?"
     },
     "applications": {
         "list": "List applications",
@@ -119,7 +189,21 @@
         "comments": "Comments",
         "applications": "Applications",
         "trip": "Trip",
-        "explorer": "Explorer"
+        "explorer": "Explorer",
+        "apply": "Apply",
+        "comment": "Comment",
+        "addComment": "Add comment",
+        "removeComment": "Remove comment",
+        "applyOptComments": "You are about to apply for this trip. You can add some optional comments below.",
+        "noComment": "Explorer did not add any comment to this application.",
+        "actions": "Actions",
+        "cancel": "Cancel",
+        "reject": "Reject",
+        "due": "Due",
+        "pay": "Pay",
+        "reject.confirmation": "Are you sure you want to reject this application?",
+        "reject.message": "Please type in the reason",
+        "reason": "Rejected reason"
     },
     "dashboard": {
         "display": "Dashboard",
@@ -145,9 +229,58 @@
         "audits": "Audits",
         "audit": "Audit",
         "empty": "You have not created any audit",
+        "trip.empty": "This trip does not have any audit",
         "new": "New audit",
         "auditor": "Auditor",
         "attachments": "Attachments",
-        "trip": "Trip"
+        "trip": "Trip",
+        "goBack": "Volver atrás"
+    },
+    "audit":{
+        "create":"Create audit",
+        "edit":"Edit",
+        "trip":"Trip",
+        "title":"Title",
+        "description":"Description",
+        "attachments":"Attachments",
+        "attachment":"Attachment",
+        "addAttachment":"Add attachment",
+        "removeAttachment":"Remove attachment",
+        "moment": "Creation moment",
+        "goBack": "Go back"
+    },
+    "finder":{
+        "finder":"Finder",
+        "keyword":"Keyword",
+        "minprice":"Minimum price",
+        "maxprice":"Maximum price",
+        "datestart":"Minimum date",
+        "dateend":"Maximum date",
+        "search":"Search",
+        "goBack":"Go back"
+    },
+    "form":{
+        "save": "Save",
+        "cancel": "Cancel"
+    },
+    "errorMessages":{
+        "validation": {
+            "required": "Oops, you must introduce this value.",
+            "pattern.numeric": "Oops, only digits are allowed in this field.",
+            "pattern.numeric.positive": "Oops, only positive digits are allowed in this field.",
+            "pattern.date": "Oops, date must be format dd/mm/yyyy",
+            "string.maxLength": "Oops, you must introduce a maximum of {{maxvalue}} characters in this field.",
+            "minOneStage": "Oops, you must add at least one stage.",
+            "minOneRequirement": "Oops, you must add at least one requirement.",
+            "startEndDatesRange": "Oops, the start date must not be past and must be older than the end date.",
+            "startEndDatesRangeFinder": "Oops, the start date must be older than the end date.",
+            "pricesRange": "Oops, the maximum price must be greater than the minimum price."
+        }
+    },
+    "order":{
+        "placed": "The trip has been purchased successfully.",
+        "paymentOptions": "Payment options",
+        "payTripTo": "Pay trip to ",
+        "payment": "Payment"
     }
 }

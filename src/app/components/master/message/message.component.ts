@@ -4,6 +4,7 @@ import { TranslatableComponent } from '../../shared/translatable/translatable.co
 import { MessageService } from '../../../services/message.service';
 import { InfoMessage } from '../../../models/info-message.model';
 import { Subscription } from 'rxjs';
+declare const $: any;
 
 @Component({
   selector: 'app-message',
@@ -30,6 +31,10 @@ export class MessageComponent extends TranslatableComponent implements OnInit, O
         this.showMessage = false;
       }
     });
+  }
+
+  hideMessage() {
+    this.showMessage = false;
   }
 
   ngOnDestroy() {
