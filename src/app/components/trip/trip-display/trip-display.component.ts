@@ -129,16 +129,6 @@ export class TripDisplayComponent extends TranslatableComponent implements OnIni
           }).catch((err1) => {
             console.log(err1);
           });
-          console.log(this.currentActor);
-          console.log(this.activeRole);
-
-          console.log('todo esto debe dar false');
-          console.log(this.cancelled);
-          console.log(!this.editable);
-          console.log(!this.currentActor);
-          console.log(this.currentActor._id !== this.trip.creator);
-          console.log(this.currentActor._id);
-          console.log(this.trip.creator);
       })
       .catch((err) => {
         console.error(err);
